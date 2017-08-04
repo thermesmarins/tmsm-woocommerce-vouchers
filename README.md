@@ -1,3 +1,13 @@
-# tmsm-woocommerce-vouchers
+TMSM WooCommerce Vouchers
+=================
 
-Test
+WooCommerce vouchers for Thermes Marins de Saint-Malo
+
+Features
+-----------
+
+@TODO
+
+Author
+-----------
+Nicolas Mollet at Thermes Marins de Saint-Malo
