@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -15,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       TMSM WooCommerce Vouchers
  * Plugin URI:        https://github.com/thermesmarins/tmsm-woocommerce-vouchers/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       WooCommerce Vouchers for Thermes Marins de Saint-Malo
  * Version:           1.0.0
  * Author:            Nicolas MOLLET
  * Author URI:        https://github.com/thermesmarins/

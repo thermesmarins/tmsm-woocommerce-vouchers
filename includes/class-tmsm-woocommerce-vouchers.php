@@ -154,6 +154,23 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		// Product types
+		$this->loader->add_filter( 'woocommerce_product_data_tabs', $plugin_admin, 'woocommerce_product_data_tabs_voucher' );
+		$this->loader->add_filter( 'woocommerce_product_data_panels', $plugin_admin, 'woocommerce_product_data_panels_voucher' );
+		$this->loader->add_action( 'woocommerce_process_product_meta_simple', $plugin_admin, 'woocommerce_process_product_save_voucher_options' );
+		$this->loader->add_action( 'woocommerce_process_product_meta_variable', $plugin_admin, 'woocommerce_process_product_save_voucher_options' );
+		$this->loader->add_filter( 'product_type_options', $plugin_admin, 'woocommerce_product_type_options_voucher' );
+		$this->loader->add_action( 'woocommerce_variation_options', $plugin_admin, 'woocommerce_variation_options_voucher', 10 , 3 );
+		$this->loader->add_action( 'woocommerce_save_product_variation', $plugin_admin, 'woocommerce_save_product_variation_voucher', 10, 2 );
+
+		// WooCommerce settings
+		$this->loader->add_filter( 'woocommerce_get_settings_pages', $plugin_admin, 'woocommerce_get_settings_pages_vouchers' );
+		//$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_admin, 'woocommerce_settings_tabs_array_vouchers', 20 );
+		//$this->loader->add_filter( 'woocommerce_settings_vouchers', $plugin_admin, 'woocommerce_settings_vouchers' );
+		//$this->loader->add_filter( 'woocommerce_settings_save_vouchers', $plugin_admin, 'woocommerce_settings_save_vouchers' );
+		//$this->loader->add_filter( 'woocommerce_sections_vouchers', $plugin_admin, 'woocommerce_sections_vouchers' );
+
+
 	}
 
 	/**
@@ -167,8 +184,8 @@ class Tmsm_Woocommerce_Vouchers {
 
 		$plugin_public = new Tmsm_Woocommerce_Vouchers_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 	}
 

@@ -100,4 +100,149 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 
 	}
 
+
+	/**
+	 * Add a custom product tab "voucher"
+	 *
+	 * @param $tabs
+	 *
+	 * @return mixed
+	 */
+	function woocommerce_product_data_tabs_voucher( $tabs) {
+		$tabs['voucher'] = array(
+			'label'		=> __( 'Voucher', 'tmsm-woocommerce-vouchers' ),
+			'target'	=> 'voucher_options',
+			'class'		=> array( 'show_if_simple', 'show_if_variable'  ),
+		);
+		return $tabs;
+	}
+
+	/**
+	 * Tab content of tab "voucher"
+	 */
+	function woocommerce_product_data_panels_voucher() {
+		global $post;
+
+		// Note the 'id' attribute needs to match the 'target' parameter set above
+		?><div id='voucher_options' class='panel woocommerce_options_panel'><?php
+		?><div class='options_group'>
+
+
+		<p>
+			<?php echo __( 'No options at the moment', 'tmsm-woocommerce-vouchers' ); ?>
+		</p>
+
+		<?php
+		/*
+		woocommerce_wp_checkbox( array(
+			'id' 		=> '_allow_personal_message',
+			'label' 	=> __( 'Allow the customer to add a personal message', 'woocommerce' ),
+		) );
+		woocommerce_wp_text_input( array(
+			'id'				=> '_valid_for_days',
+			'label'				=> __( 'Gift card validity (in days)', 'woocommerce' ),
+			'desc_tip'			=> 'true',
+			'description'		=> __( 'Enter the number of days the gift card is valid for.', 'woocommerce' ),
+			'type' 				=> 'number',
+			'custom_attributes'	=> array(
+				'min'	=> '1',
+				'step'	=> '1',
+			),
+		) );
+		*/
+		?></div>
+
+		</div><?php
+	}
+
+
+	/**
+	 * Save options for tab "voucher"
+	 *
+	 * @param $post_id
+	 */
+	function woocommerce_process_product_save_voucher_options( $post_id ) {
+		$is_voucher = isset( $_POST['_voucher'] ) ? 'yes' : 'no';
+		update_post_meta( $post_id, '_voucher', $is_voucher );
+		/*
+		$allow_personal_message = isset( $_POST['_allow_personal_message'] ) ? 'yes' : 'no';
+		update_post_meta( $post_id, '_allow_personal_message', $allow_personal_message );
+
+		if ( isset( $_POST['_valid_for_days'] ) ) :
+			update_post_meta( $post_id, '_valid_for_days', absint( $_POST['_valid_for_days'] ) );
+		endif;
+		*/
+	}
+
+	/**
+	 * Product type "voucher"
+	 *
+	 * @param $product_type_options
+	 *
+	 * @return mixed
+	 */
+	function woocommerce_product_type_options_voucher( $product_type_options ) {
+		$product_type_options['voucher'] = array(
+			'id'            => '_voucher',
+			'wrapper_class' => 'show_if_simple',
+			'label'         => __( 'Voucher', 'tmsm-woocommerce-vouchers' ),
+			'description'   => __( 'Vouchers', 'tmsm-woocommerce-vouchers' ),
+			'default'       => 'no'
+		);
+		return $product_type_options;
+	}
+
+
+	/**
+	 * Product variation type "voucher"
+	 *
+	 * @param $loop
+	 * @param $variation_data
+	 * @param $variation
+	 */
+	public function woocommerce_variation_options_voucher( $loop, $variation_data, $variation ) {
+		$is_voucher = ( isset( $variation_data['_voucher'] ) && 'yes' == $variation_data['_voucher'][0] );
+		echo '<label class="notips"><input type="checkbox" class="checkbox variable_is_voucher" name="variable_is_voucher[' . $loop . ']"' . checked( true, $is_voucher, false ) . '> '.__( 'Voucher', 'tmsm-woocommerce-vouchers' ).'</label>' . PHP_EOL;
+	}
+
+	/**
+	 * Save product variation type "voucher"
+	 *
+	 * @param $variation_id
+	 * @param $i
+	 */
+	public function woocommerce_save_product_variation_voucher( $post_id, $i ) {
+		$is_voucher = isset( $_POST['variable_is_voucher'][ $i  ] ) ? 'yes' : 'no';
+		update_post_meta( $post_id , '_voucher', $is_voucher );
+	}
+
+
+	/**
+	 * Settings section
+	 *
+	 * @param $sections
+	 *
+	 * @return mixed
+	 */
+	function woocommerce_settings_tabs_array_vouchers( $sections ) {
+
+		$sections['vouchers'] = __( 'Vouchers', 'tmsm-woocommerce-vouchers' );
+		return $sections;
+
+	}
+
+	/**
+	 * Include settings class
+	 *
+	 * @param $settings
+	 *
+	 * @return array
+	 */
+	function woocommerce_get_settings_pages_vouchers($settings) {
+		//$settings[] = new WC_Settings_MyPlugin();
+		//$settings[] = new WC_Settings_Rest_API();
+		$settings[] = include( plugin_dir_path( dirname( __FILE__ ) ) .'includes/class-tmsm-woocommerce-vouchers-settings.php' );
+		return $settings; // Return
+	}
+
 }
