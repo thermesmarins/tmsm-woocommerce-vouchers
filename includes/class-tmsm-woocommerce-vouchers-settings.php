@@ -114,7 +114,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 						),
 
 
-
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipienttitle',
@@ -404,8 +403,8 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipientoptionnal',
-							'name'     => __( 'Recipient required', 'tmsm-woocommerce-vouchers' ),
-							'desc'     => '<p class="description">'.__( 'If checked, the customer must set a recipient', 'tmsm-woocommerce-vouchers' ).'</p>',
+							'name'     => __( 'Recipient optionnal', 'tmsm-woocommerce-vouchers' ),
+							'desc'     => '<p class="description">'.__( 'If checked, the customer is not obliged to set a recipient' ).'</p>',
 							'default'  => 'yes',
 						),
 

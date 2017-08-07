@@ -100,4 +100,170 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 	}
 
+	/**
+	 * WooCommerce Single Product: before add to cart button
+	 *
+	 * @since    1.0.0
+	 */
+	public function woocommerce_before_add_to_cart_button() {
+
+		global $product;
+
+		// store product in reset variable
+		$reset_product	= $product;
+
+		//Initilize products
+		$products = array();
+
+		if ( $product->is_type( 'variable' ) ) { //for variable product
+			foreach ( $product->get_children() as $variation_product_id ) {
+				$products[] = wc_get_product( $variation_product_id );
+			}
+		} else {
+			$products[] = $product;
+		}
+
+		foreach ( $products as $product ) {//For all products
+			
+			// Get product ID
+			$product_id = $variation_id = $product->get_id();
+			$is_voucher = false;
+			if( $product->is_type( 'variation' ) ) {
+				// Get product ID
+				//$product_id 	= $woo_vou_model->woo_vou_get_item_productid_from_product($product);
+				if ( $product->is_type( 'variable' ) || $product->is_type( 'variation' ) ) {
+					$product_id = $product->get_parent_id();
+
+				} else {
+					$product_id = $product->get_id();
+				}
+				// Get variation ID
+				$variation_id = $product->get_id();
+			}
+
+			$is_voucher = get_post_meta( $variation_id, '_voucher', true ) == 'yes';
+			$is_virtual = get_post_meta( $variation_id, '_virtual', true ) == 'yes';
+			$is_downloadable = get_post_meta( $variation_id, '_downloadable', true ) == 'yes';
+			echo ' - $product_id:'.$product_id;
+			echo ' - $variation_id:'.$variation_id;
+			echo ' - $is_voucher:'.$is_voucher;
+
+			$settings_physical = get_option('tmsm_woocommerce_vouchers_physical') == 'yes';
+			$settings_virtual = get_option('tmsm_woocommerce_vouchers_virtual') == 'yes';
+			$settings_recipientoptionnal = get_option('tmsm_woocommerce_vouchers_recipientoptionnal') == 'yes';
+			echo ' - $settings_physical:'.$settings_physical;
+			echo ' - $settings_virtual:'.$settings_virtual;
+
+			if($is_virtual && !$settings_virtual) $is_voucher = false;
+			if(!$is_virtual && !$settings_physical) $is_voucher = false;
+
+			if( $is_voucher ) { // if voucher is enable
+
+				echo ' - VOUCHER';
+				//Get product recipient meta setting
+				//$recipient_data	= $woo_vou_model->woo_vou_get_product_recipient_meta( $product_id );
+
+				//Recipient name fields
+				$settings_recipientfirstname = get_option('tmsm_woocommerce_vouchers_recipientfirstname') == 'yes';
+				$settings_recipientfirstnamerequired = get_option('tmsm_woocommerce_vouchers_recipientfirstnamerequired') == 'yes';
+
+				$settings_recipientlastname = get_option('tmsm_woocommerce_vouchers_recipientlastname') == 'yes';
+				$settings_recipientlastnamerequired = get_option('tmsm_woocommerce_vouchers_recipientlastnamerequired') == 'yes';
+
+				$settings_recipientbirthdate = get_option('tmsm_woocommerce_vouchers_recipientbirthdate') == 'yes';
+				$settings_recipientbirthdaterequired = get_option('tmsm_woocommerce_vouchers_recipientbirthdaterequired') == 'yes';
+
+				$settings_recipienttitle = get_option('tmsm_woocommerce_vouchers_recipienttitle') == 'yes';
+				$settings_recipienttitlerequired = get_option('tmsm_woocommerce_vouchers_recipienttitlerequired') == 'yes';
+
+				$settings_recipientaddress = get_option('tmsm_woocommerce_vouchers_recipientaddress') == 'yes';
+				$settings_recipientaddressrequired = get_option('tmsm_woocommerce_vouchers_recipientaddressrequired') == 'yes';
+
+				$settings_recipientzipcode = get_option('tmsm_woocommerce_vouchers_recipientzipcode') == 'yes';
+				$settings_recipientzipcoderequired = get_option('tmsm_woocommerce_vouchers_recipientzipcoderequired') == 'yes';
+
+				$settings_recipientcity = get_option('tmsm_woocommerce_vouchers_recipientcity') == 'yes';
+				$settings_recipientcityrequired = get_option('tmsm_woocommerce_vouchers_recipientcityrequired') == 'yes';
+
+				$settings_recipientcountry = get_option('tmsm_woocommerce_vouchers_recipientcountry') == 'yes';
+				$settings_recipientcountryrequired = get_option('tmsm_woocommerce_vouchers_recipientcountryrequired') == 'yes';
+
+				$settings_recipientmobilephone = get_option('tmsm_woocommerce_vouchers_recipientmobilephone') == 'yes';
+				$settings_recipientmobilephonerequired = get_option('tmsm_woocommerce_vouchers_recipientmobilephonerequired') == 'yes';
+
+				$settings_recipientemail = get_option('tmsm_woocommerce_vouchers_recipientemail') == 'yes';
+				$settings_recipientemailrequired = get_option('tmsm_woocommerce_vouchers_recipientemailrequired') == 'yes';
+
+				$settings_recipientmessage = get_option('tmsm_woocommerce_vouchers_recipientmessage') == 'yes';
+				$settings_recipientmessagerequired = get_option('tmsm_woocommerce_vouchers_recipientmessagerequired') == 'yes';
+
+				$settings_recipientsenddate = get_option('tmsm_woocommerce_vouchers_recipientsenddate') == 'yes';
+				$settings_recipientsenddaterequired = get_option('tmsm_woocommerce_vouchers_recipientsenddaterequired') == 'yes';
+
+
+
+
+
+				$submit_recipientfirstname = isset( $_POST['_recipientfirstname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientfirstname'][$variation_id] ) : '';
+
+				$submit_recipientlastname = isset( $_POST['_recipientlastname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientlastname'][$variation_id] ) : '';
+
+				$submit_recipienttitle = isset( $_POST['_recipienttitle'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipienttitle'][$variation_id] ) : '';
+
+				$submit_recipientbirthdate = isset( $_POST['_recipientbirthdate'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientbirthdate'][$variation_id] ) : '';
+
+				$submit_recipientaddress = isset( $_POST['_recipientaddress'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientaddress'][$variation_id] ) : '';
+
+				$submit_recipientzipcode = isset( $_POST['_recipientzipcode'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientzipcode'][$variation_id] ) : '';
+
+				$submit_recipientcity = isset( $_POST['_recipientcity'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientcity'][$variation_id] ) : '';
+
+				$submit_recipientcountry = isset( $_POST['_recipientcountry'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientcountry'][$variation_id] ) : '';
+
+				$submit_recipientmobilephone = isset( $_POST['_recipientmobilephone'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientmobilephone'][$variation_id] ) : '';
+
+				$submit_recipientemail = isset( $_POST['_recipientemail'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientemail'][$variation_id] ) : '';
+
+				$submit_recipientmessage = isset( $_POST['_recipientmessage'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientmessage'][$variation_id] ) : '';
+
+				$submit_recipientsenddate = isset( $_POST['_recipientsenddate'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientsenddate'][$variation_id] ) : '';
+
+
+				echo '<table class="variations variations-recipient" cellspacing="0">';
+				echo '<tbody>';
+
+
+				if($settings_recipientoptionnal):
+					echo '<tr class="recipientoptionnal-trigger">';
+					echo '<td class="label" colspan="2">';
+					echo '<a href="#"><span class="glyphicon glyphicon-gift"></span> '.__( 'Set a voucher recipient', 'tmsm-woocommerce-vouchers' ).'</a>';
+					echo '</td>';
+					echo '</tr>';
+				endif;
+
+				echo '<tr class="'.($settings_recipientoptionnal?'recipientoptionnal':'').'">';
+				echo '<td class="label">';
+				echo '<label class="control-label" for="recipient_name-'.$variation_id.'">';
+				echo __( 'Recipient first name', 'tmsm-woocommerce-vouchers' );
+				echo '</label>';
+				echo '</td>';
+				echo '<td class="value">';
+				echo '<input type="text" class="input-text form-control" value="'.$submit_recipientfirstname.'" id="recipient_name-'.$variation_id.'" name="_recipientfirstname['.$variation_id.']">';
+				echo '</td>';
+				echo '</tr>';
+
+
+				echo '</tbody>';
+				echo '</table>';
+
+					//woo_vou_get_template( 'woo-vou-recipient-fields.php', $args );
+
+			}
+		}
+
+		// restore product
+		$product	= $reset_product;
+
+	}
+
 }
