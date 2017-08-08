@@ -144,26 +144,27 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$is_voucher = get_post_meta( $variation_id, '_voucher', true ) == 'yes';
 			$is_virtual = get_post_meta( $variation_id, '_virtual', true ) == 'yes';
 			$is_downloadable = get_post_meta( $variation_id, '_downloadable', true ) == 'yes';
+
+			/*
 			echo ' - $product_id:'.$product_id;
 			echo ' - $variation_id:'.$variation_id;
 			echo ' - $is_voucher:'.$is_voucher;
+			*/
 
 			$settings_physical = get_option('tmsm_woocommerce_vouchers_physical') == 'yes';
 			$settings_virtual = get_option('tmsm_woocommerce_vouchers_virtual') == 'yes';
 			$settings_recipientoptionnal = get_option('tmsm_woocommerce_vouchers_recipientoptionnal') == 'yes';
+			/*
 			echo ' - $settings_physical:'.$settings_physical;
 			echo ' - $settings_virtual:'.$settings_virtual;
+			*/
 
 			if($is_virtual && !$settings_virtual) $is_voucher = false;
 			if(!$is_virtual && !$settings_physical) $is_voucher = false;
 
 			if( $is_voucher ) { // if voucher is enable
 
-				echo ' - VOUCHER';
-				//Get product recipient meta setting
-				//$recipient_data	= $woo_vou_model->woo_vou_get_product_recipient_meta( $product_id );
 
-				//Recipient name fields
 				$settings_recipientfirstname = get_option('tmsm_woocommerce_vouchers_recipientfirstname') == 'yes';
 				$settings_recipientfirstnamerequired = get_option('tmsm_woocommerce_vouchers_recipientfirstnamerequired') == 'yes';
 
@@ -229,19 +230,25 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$submit_recipientsenddate = isset( $_POST['_recipientsenddate'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientsenddate'][$variation_id] ) : '';
 
 
-				echo '<table class="variations variations-recipient" cellspacing="0">';
+				echo '<div class="vouchers-fields-wrapper'.($product->is_type( 'variation' )?'-variation':'').'" id="vouchers-fields-wrapper-'.$variation_id.'" >';
+				echo '<p class="h4 vouchers-fields-title">';
+				echo __( 'Recipient of the voucher', 'tmsm-woocommerce-vouchers' );
+				echo '</p>';
+				echo '<table class="variations variations-recipient vouchers-fields" cellspacing="0">';
 				echo '<tbody>';
 
 
+				// recipientoptionnal
 				if($settings_recipientoptionnal):
-					echo '<tr class="recipientoptionnal-trigger">';
+					echo '<tr class="vouchers-recipientoptionnal-trigger">';
 					echo '<td class="label" colspan="2">';
 					echo '<a href="#"><span class="glyphicon glyphicon-gift"></span> '.__( 'Set a voucher recipient', 'tmsm-woocommerce-vouchers' ).'</a>';
 					echo '</td>';
 					echo '</tr>';
 				endif;
 
-				echo '<tr class="'.($settings_recipientoptionnal?'recipientoptionnal':'').'">';
+				// firstname
+				echo '<tr class="'.($settings_recipientoptionnal?'vouchers-recipientoptionnal':'').'">';
 				echo '<td class="label">';
 				echo '<label class="control-label" for="recipient_name-'.$variation_id.'">';
 				echo __( 'Recipient first name', 'tmsm-woocommerce-vouchers' );
@@ -255,6 +262,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 				echo '</tbody>';
 				echo '</table>';
+				echo '</div>';
 
 					//woo_vou_get_template( 'woo-vou-recipient-fields.php', $args );
 
@@ -265,5 +273,102 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$product	= $reset_product;
 
 	}
+
+	/**
+	 * This is used to ensure any required user input fields are supplied
+	 *
+	 * Handles to This is used to ensure any required user input fields are supplied
+	 *
+	 * @param        $valid
+	 * @param        $product_id
+	 * @param        $quantity
+	 * @param string $variation_id
+	 * @param array  $variations
+	 * @param array  $cart_item_data
+	 *
+	 * @since 1.0.0
+	 */
+	/**
+
+	 */
+	public function woocommerce_add_to_cart_validation($valid, $product_id, $quantity, $variation_id = '', $variations = array(), $cart_item_data = array()){
+
+		$variation_id = $variation_id ? $variation_id : $product_id;
+		$product = wc_get_product($variation_id);
+
+		$is_voucher = get_post_meta( $variation_id, '_voucher', true ) == 'yes';
+
+		if($is_voucher){
+
+			$settings_recipientoptionnal = get_option('tmsm_woocommerce_vouchers_recipientoptionnal') == 'yes';
+
+			$settings_recipientfirstname = get_option('tmsm_woocommerce_vouchers_recipientfirstname') == 'yes';
+			$settings_recipientfirstnamerequired = get_option('tmsm_woocommerce_vouchers_recipientfirstnamerequired') == 'yes';
+
+			$submit_recipientfirstname = isset( $_POST['_recipientfirstname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientfirstname'][$variation_id] ) : '';
+
+			/*
+			wc_add_notice('$submit_recipientfirstname:'.$submit_recipientfirstname);
+			wc_add_notice('!$settings_recipientoptionnal:'.!$settings_recipientoptionnal);
+			wc_add_notice('$settings_recipientfirstnamerequired:'.$settings_recipientfirstnamerequired);
+			wc_add_notice('empty($submit_recipientfirstname):'.empty($submit_recipientfirstname));
+			*/
+
+			// validation
+			if (!$settings_recipientoptionnal && $settings_recipientfirstnamerequired && empty($submit_recipientfirstname) ) {
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient first name', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'woovoucher') . '</p>', 'error');
+				$valid = false;
+			}
+
+		}
+		return $valid;
+
+	}
+
+	/**
+	 * Add item data to cart
+	 *
+	 * @param $cart_item_data
+	 * @param $product_id
+	 * @param $variation_id
+	 *
+	 * @since 1.0.0
+	 */
+	public function woocommerce_add_cart_item_data($cart_item_data, $product_id, $variation_id){
+
+		$variation_id = $variation_id ? $variation_id : $product_id;
+
+		$submit_recipientfirstname = isset( $_POST['_recipientfirstname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientfirstname'][$variation_id] ) : '';
+		$cart_item_data['_recipientfirstname'] = $submit_recipientfirstname;
+
+		return $cart_item_data;
+	}
+
+	/**
+	 * Get to cart in item data to display in cart page
+	 *
+	 * @param $data
+	 * @param $item
+	 *
+	 * @since 1.0.0
+	 */
+	public function woocommerce_get_item_data($data, $item) {
+
+		$product_id = isset($item['product_id']) ? $item['product_id'] : '';
+
+
+		if(!empty($item['_recipientfirstname'])){
+			$data[] = array(
+				'name' => __('Recipient first name', 'tmsm-woocommerce-vouchers'),
+				'display' => $item['_recipientfirstname'],
+				'hidden' => false,
+				'value' => ''
+			);
+		}
+
+		return $data;
+	}
+
+
 
 }

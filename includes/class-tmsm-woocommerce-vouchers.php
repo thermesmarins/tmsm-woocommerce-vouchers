@@ -184,9 +184,15 @@ class Tmsm_Woocommerce_Vouchers {
 
 		$plugin_public = new Tmsm_Woocommerce_Vouchers_Public( $this->get_plugin_name(), $this->get_version() );
 
-		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
 		$this->loader->add_action( 'woocommerce_before_add_to_cart_button', $plugin_public, 'woocommerce_before_add_to_cart_button' );
+		$this->loader->add_action( 'woocommerce_add_to_cart_validation', $plugin_public, 'woocommerce_add_to_cart_validation',10, 6 );
+		$this->loader->add_action( 'woocommerce_add_cart_item_data', $plugin_public, 'woocommerce_add_cart_item_data',10, 3 );
+		$this->loader->add_action( 'woocommerce_get_item_data', $plugin_public, 'woocommerce_get_item_data',10, 2 );
+
+
 
 	}
 
