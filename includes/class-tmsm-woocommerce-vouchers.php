@@ -188,12 +188,18 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_action( 'woocommerce_before_add_to_cart_button', $plugin_public, 'woocommerce_before_add_to_cart_button' );
-		$this->loader->add_action( 'woocommerce_add_to_cart_validation', $plugin_public, 'woocommerce_add_to_cart_validation',10, 6 );
-		$this->loader->add_action( 'woocommerce_add_cart_item_data', $plugin_public, 'woocommerce_add_cart_item_data',10, 3 );
-		$this->loader->add_action( 'woocommerce_get_item_data', $plugin_public, 'woocommerce_get_item_data',10, 2 );
+		$this->loader->add_action( 'woocommerce_add_to_cart_validation', $plugin_public, 'woocommerce_add_to_cart_validation', 10, 6 );
+		$this->loader->add_action( 'woocommerce_add_cart_item_data', $plugin_public, 'woocommerce_add_cart_item_data', 10, 3 );
+		$this->loader->add_action( 'woocommerce_get_item_data', $plugin_public, 'woocommerce_get_item_data', 10, 2 );
+		$this->loader->add_action( 'woocommerce_checkout_create_order_line_item', $plugin_public, 'woocommerce_checkout_create_order_line_item', 10, 4 );
 
 
+		$this->loader->add_action( 'woocommerce_order_item_get_formatted_meta_data', $plugin_public, 'woocommerce_order_item_get_formatted_meta_data', 10, 2 );
+		$this->loader->add_action( 'woocommerce_order_item_meta_start', $plugin_public, 'woocommerce_order_item_meta_start', 10, 3 );
+		$this->loader->add_action( 'woocommerce_display_item_meta', $plugin_public, 'woocommerce_display_item_meta', 10, 3 );
 
+
+//woocommerce_before_order_itemmeta
 	}
 
 	/**

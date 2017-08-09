@@ -101,7 +101,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	}
 
 	/**
-	 * WooCommerce Single Product: before add to cart button
+	 * Displays recipient form to single product
 	 *
 	 * @since    1.0.0
 	 */
@@ -251,7 +251,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				echo '<tr class="'.($settings_recipientoptionnal?'vouchers-recipientoptionnal':'').'">';
 				echo '<td class="label">';
 				echo '<label class="control-label" for="recipient_name-'.$variation_id.'">';
-				echo __( 'Recipient first name', 'tmsm-woocommerce-vouchers' );
+				echo __( 'Recipient first name:', 'tmsm-woocommerce-vouchers' );
 				echo '</label>';
 				echo '</td>';
 				echo '<td class="value">';
@@ -275,9 +275,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	}
 
 	/**
-	 * This is used to ensure any required user input fields are supplied
-	 *
-	 * Handles to This is used to ensure any required user input fields are supplied
+	 * Validates recipient data before adding to cart
 	 *
 	 * @param        $valid
 	 * @param        $product_id
@@ -316,7 +314,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			// validation
 			if (!$settings_recipientoptionnal && $settings_recipientfirstnamerequired && empty($submit_recipientfirstname) ) {
-				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient first name', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'woovoucher') . '</p>', 'error');
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient first name:', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'woovoucher') . '</p>', 'error');
 				$valid = false;
 			}
 
@@ -326,7 +324,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	}
 
 	/**
-	 * Add item data to cart
+	 * Add recipient data to cart item meta when product is added to cart
 	 *
 	 * @param $cart_item_data
 	 * @param $product_id
@@ -345,21 +343,21 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	}
 
 	/**
-	 * Get to cart in item data to display in cart page
+	 * Displays recipient data on cart page, checkout page.
 	 *
-	 * @param $data
-	 * @param $item
+	 * @param array $data
+	 * @param array $item
 	 *
+	 * @return array $data
 	 * @since 1.0.0
 	 */
 	public function woocommerce_get_item_data($data, $item) {
 
 		$product_id = isset($item['product_id']) ? $item['product_id'] : '';
 
-
 		if(!empty($item['_recipientfirstname'])){
 			$data[] = array(
-				'name' => __('Recipient first name', 'tmsm-woocommerce-vouchers'),
+				'name' => __('Recipient first name:', 'tmsm-woocommerce-vouchers'),
 				'display' => $item['_recipientfirstname'],
 				'hidden' => false,
 				'value' => ''
@@ -370,5 +368,72 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	}
 
 
+	/**
+	 * Update order item's meta with recipient data
+	 *
+	 * @param WC_Order_Item_Product $item
+	 * @param string $cart_item_key
+	 * @param array $values
+	 * @param $order
+	 */
+	public function woocommerce_checkout_create_order_line_item($item, $cart_item_key, $values, $order){
 
+		$variation_id = isset($values['variation_id']) && !empty($values['variation_id']) ? $values['variation_id'] : $values['product_id'];
+
+		if (!empty($values['_recipientfirstname'])) {
+			$item->add_meta_data( '_recipientfirstname', $values['_recipientfirstname'], true );
+
+		}
+
+	}
+
+	/**
+	 * Displays recipient item meta on order page (backend)
+	 *
+	 * @version 1.0.0
+	 * @since   1.0.0
+	 *
+	 * @param               $formatted_meta
+	 * @param WC_Order_Item $order_item
+	 *
+	 * @return mixed
+	 */
+	public function woocommerce_order_item_get_formatted_meta_data( $formatted_meta, WC_Order_Item $order_item ) {
+		if ( empty( $formatted_meta ) ) {
+			return $formatted_meta;
+		}
+
+		foreach ( $formatted_meta as $meta ) {
+			if($meta->key == '_recipientfirstname' && !empty($meta->value)){
+				$meta->display_key = __('Recipient first name', 'tmsm-woocommerce-vouchers');
+			}
+		}
+
+		return $formatted_meta;
+	}
+
+	/**
+	 * Displays hidden delivery date for order item in order view (frontend)
+	 * /my-account/view-order/$order_id/
+	 * /checkout/order-received/$order_id/
+	 *
+	 * @param  string $html
+	 * @param  WC_Order_Item $item
+	 * @param  array $args
+	 *
+	 * @return string
+	 */
+	public function woocommerce_display_item_meta($html, $item, $args)
+	{
+
+		$strings = [];
+		$recipientfirstname = $item->get_meta( '_recipientfirstname' );
+		if ( isset( $recipientfirstname ) && ! empty( $recipientfirstname ) ) {
+			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient first name:', 'tmsm-woocommerce-vouchers') . '</strong> ' . wp_kses_post($recipientfirstname);;
+		}
+		if ($strings != []){
+			$html = $args['before'] . implode( $args['separator'], $strings ) . $args['after'];
+		}
+		return $html;
+	}
 }
