@@ -276,18 +276,8 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	 * @return array $item_array
 	 */
 	public function woocommerce_hidden_order_itemmeta($item_array = []){
-		$item_meta[] = '_recipientfirstname';
-		$item_meta[] = '_recipientlastname';
-		$item_meta[] = '_recipienttitle';
-		$item_meta[] = '_recipientbirthdate';
-		$item_meta[] = '_recipientaddress';
-		$item_meta[] = '_recipientzipcode';
-		$item_meta[] = '_recipientcity';
-		$item_meta[] = '_recipientcountry';
-		$item_meta[] = '_recipientmobilephone';
-		$item_meta[] = '_recipientemail';
-		$item_meta[] = '_recipientmessage';
-		$item_meta[] = '_recipientsenddate';
+		$item_meta[] = '_virtual';
+		$item_meta[] = '_voucher';
 
 		return $item_meta;
 	}
