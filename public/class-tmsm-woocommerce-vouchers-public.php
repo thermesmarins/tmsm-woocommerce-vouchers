@@ -104,6 +104,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * Displays recipient form to single product
 	 *
 	 * @since    1.0.0
+	 *
+	 * @return void
 	 */
 	public function woocommerce_before_add_to_cart_button() {
 
@@ -292,17 +294,16 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	/**
 	 * Validates recipient data before adding to cart
 	 *
-	 * @param        $valid
-	 * @param        $product_id
-	 * @param        $quantity
-	 * @param string $variation_id
-	 * @param array  $variations
-	 * @param array  $cart_item_data
-	 *
 	 * @since 1.0.0
-	 */
-	/**
-
+	 *
+	 * @param bool    $valid
+	 * @param integer $product_id
+	 * @param integer $quantity
+	 * @param integer $variation_id
+	 * @param array   $variations
+	 * @param array   $cart_item_data
+	 *
+	 * @return bool $valid
 	 */
 	public function woocommerce_add_to_cart_validation($valid, $product_id, $quantity, $variation_id = '', $variations = array(), $cart_item_data = array()){
 
@@ -343,11 +344,12 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	/**
 	 * Add recipient data to cart item meta when product is added to cart
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param array $cart_item_data
 	 * @param integer $product_id
 	 * @param integer $variation_id
 	 *
-	 * @since 1.0.0
 	 * @return array $cart_item_data
 	 */
 	public function woocommerce_add_cart_item_data($cart_item_data, $product_id, $variation_id){
@@ -369,11 +371,12 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	/**
 	 * Displays recipient data on cart page, checkout page.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param array $data
 	 * @param array $item
 	 *
 	 * @return array $data
-	 * @since 1.0.0
 	 */
 	public function woocommerce_get_item_data($data, $item) {
 
@@ -407,10 +410,12 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	/**
 	 * Update order item's meta with recipient data
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param WC_Order_Item_Product $item
-	 * @param string $cart_item_key
-	 * @param array $values
-	 * @param $order
+	 * @param string                $cart_item_key
+	 * @param array                 $values
+	 * @param WC_Order              $order
 	 */
 	public function woocommerce_checkout_create_order_line_item($item, $cart_item_key, $values, $order){
 
@@ -451,9 +456,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * /my-account/view-order/$order_id/
 	 * /checkout/order-received/$order_id/
 	 *
-	 * @param  string $html
+	 * @since 1.0.0
+	 *
+	 * @param  string        $html
 	 * @param  WC_Order_Item $item
-	 * @param  array $args
+	 * @param  array         $args
 	 *
 	 * @return string
 	 */

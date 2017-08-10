@@ -104,9 +104,11 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	/**
 	 * Add a custom product tab "voucher"
 	 *
-	 * @param $tabs
+	 * @since 1.0.0
 	 *
-	 * @return mixed
+	 * @param mixed $tabs
+	 *
+	 * @return mixed $tabs
 	 */
 	function woocommerce_product_data_tabs_voucher( $tabs) {
 		$tabs['voucher'] = array(
@@ -119,6 +121,10 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 
 	/**
 	 * Tab content of tab "voucher"
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
 	 */
 	function woocommerce_product_data_panels_voucher() {
 		global $post;
@@ -126,7 +132,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		// Note the 'id' attribute needs to match the 'target' parameter set above
 		?><div id='voucher_options' class='panel woocommerce_options_panel'><?php
 		?><div class='options_group'>
-
 
 		<p>
 			<?php echo __( 'No options at the moment', 'tmsm-woocommerce-vouchers' ); ?>
@@ -159,7 +164,11 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	/**
 	 * Save options for tab "voucher"
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param $post_id
+	 *
+	 * @return void
 	 */
 	function woocommerce_process_product_save_voucher_options( $post_id ) {
 		$is_voucher = isset( $_POST['_voucher'] ) ? 'yes' : 'no';
@@ -175,7 +184,9 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	}
 
 	/**
-	 * Product type "voucher"
+	 * Definition for product type "voucher"
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param $product_type_options
 	 *
@@ -194,11 +205,15 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 
 
 	/**
-	 * Product variation type "voucher"
+	 * Checkbox for product variation type "voucher"
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param $loop
 	 * @param $variation_data
 	 * @param $variation
+	 *
+	 * @return void
 	 */
 	public function woocommerce_variation_options_voucher( $loop, $variation_data, $variation ) {
 		$is_voucher = ( isset( $variation_data['_voucher'] ) && 'yes' == $variation_data['_voucher'][0] );
@@ -208,8 +223,12 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	/**
 	 * Save product variation type "voucher"
 	 *
-	 * @param $variation_id
-	 * @param $i
+	 * @since 1.0.0
+	 *
+	 * @param integer $post_id
+	 * @param integer $i
+	 *
+	 * @return void
 	 */
 	public function woocommerce_save_product_variation_voucher( $post_id, $i ) {
 		$is_voucher = isset( $_POST['variable_is_voucher'][ $i  ] ) ? 'yes' : 'no';
@@ -220,9 +239,11 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	/**
 	 * Settings section
 	 *
-	 * @param $sections
+	 * @since 1.0.0
 	 *
-	 * @return mixed
+	 * @param mixed $sections
+	 *
+	 * @return mixed $sections
 	 */
 	function woocommerce_settings_tabs_array_vouchers( $sections ) {
 
@@ -234,19 +255,21 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	/**
 	 * Include settings class
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param $settings
 	 *
 	 * @return array
 	 */
 	function woocommerce_get_settings_pages_vouchers($settings) {
-		//$settings[] = new WC_Settings_MyPlugin();
-		//$settings[] = new WC_Settings_Rest_API();
 		$settings[] = include( plugin_dir_path( dirname( __FILE__ ) ) .'includes/class-tmsm-woocommerce-vouchers-settings.php' );
 		return $settings; // Return
 	}
 
 	/**
 	 * Hide order item meta from Order
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param array $item_array
 	 *
