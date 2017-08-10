@@ -311,6 +311,31 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 				$meta->display_key = __('Recipient first name', 'tmsm-woocommerce-vouchers');
 			}
 
+			// lastname
+			if($meta->key == '_recipientlastname' && !empty($meta->value)){
+				$meta->display_key = __('Recipient last name', 'tmsm-woocommerce-vouchers');
+			}
+
+			// address
+			if($meta->key == '_recipientaddress' && !empty($meta->value)){
+				$meta->display_key = __('Recipient address', 'tmsm-woocommerce-vouchers');
+			}
+
+			// zipcode
+			if($meta->key == '_recipientzipcode' && !empty($meta->value)){
+				$meta->display_key = __('Recipient zipcode', 'tmsm-woocommerce-vouchers');
+			}
+
+			// city
+			if($meta->key == '_recipientcity' && !empty($meta->value)){
+				$meta->display_key = __('Recipient city', 'tmsm-woocommerce-vouchers');
+			}
+
+			// country
+			if($meta->key == '_recipientcountry' && !empty($meta->value)){
+				$meta->display_key = __('Recipient country', 'tmsm-woocommerce-vouchers');
+			}
+
 		}
 
 		return $formatted_meta;

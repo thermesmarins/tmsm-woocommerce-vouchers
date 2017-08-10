@@ -234,8 +234,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				echo '<p class="h4 vouchers-fields-title">';
 				echo __( 'Recipient of the voucher', 'tmsm-woocommerce-vouchers' );
 				echo '</p>';
-				echo '<table class="vouchers-fields" cellspacing="0">';
-				echo '<tbody>';
+				echo '<div class="vouchers-fields">';
 
 
 				// recipientoptionnal
@@ -249,38 +248,143 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 				// title
 				if($settings_recipienttitle):
-					echo '<tr class="'.($settings_recipientoptionnal?'vouchers-recipientoptionnal':'').'">';
-					echo '<td class="label '.($settings_recipienttitlerequired && isset($_POST['_recipienttitle'][$variation_id]) && empty($submit_recipienttitle)?'has-error':'').'">';
-					echo '<label class="control-label" for="recipienttitle-'.$variation_id.'">';
-					echo __( 'Recipient title:', 'tmsm-woocommerce-vouchers' );
-					echo '</label>';
-					echo '</td>';
-					echo '<td class="value '.($settings_recipienttitlerequired && isset($_POST['_recipienttitle'][$variation_id]) && empty($submit_recipienttitle)?'has-error':'').'">';
-					echo '<select class="form-control" id="recipienttitle-'.$variation_id.'" name="_recipienttitle['.$variation_id.']">';
-					echo '<option></option>';
-					echo '<option value="1" '.($submit_recipienttitle==1?'selected="selected"':'').'>'.__( 'Miss', 'tmsm-woocommerce-vouchers' ).'</option>';
-					echo '<option value="2" '.($submit_recipienttitle==2?'selected="selected"':'').'>'.__( 'Mr', 'tmsm-woocommerce-vouchers' ).'</option>';
-					echo '</select>';
-					echo '</td>';
-					echo '</tr>';
+					woocommerce_form_field('_recipienttitle['.$variation_id.']', [
+						'type' => 'select',
+						'label' => __( 'Recipient title:', 'tmsm-woocommerce-vouchers' ),
+						'description' => '',
+						'required' => $settings_recipienttitlerequired,
+						'autocomplete' => 'given-name',
+						'id' => '_recipienttitle['.$variation_id.']',
+						//'placeholder' => __( 'Pick a title', 'tmsm-woocommerce-vouchers' ),
+						'options' => [
+							'' => '',
+							1 => __( 'Miss', 'tmsm-woocommerce-vouchers' ),
+							2 => __( 'Mr', 'tmsm-woocommerce-vouchers' ),
+						],
+						'class' => [
+							'form-row-wide',
+							'title-field',
+							'formfield-text',
+							'form-group',
+							($settings_recipienttitlerequired && isset($_POST['_recipienttitle'][$variation_id]) && empty($submit_recipienttitle)?'has-error':''),
+						],
+					], $submit_recipienttitle);
+
 				endif;
 
 				// firstname
 				if($settings_recipientfirstname):
-					echo '<tr class="'.($settings_recipientoptionnal?'vouchers-recipientoptionnal':'').'">';
-					echo '<td class="label '.($settings_recipientfirstnamerequired && isset($_POST['_recipientfirstname'][$variation_id]) && empty($submit_recipientfirstname)?'has-error':'').'">';
-					echo '<label class="control-label" for="recipientfirstname-'.$variation_id.'">';
-					echo __( 'Recipient first name:', 'tmsm-woocommerce-vouchers' );
-					echo '</label>';
-					echo '</td>';
-					echo '<td class="value '.($settings_recipientfirstnamerequired && isset($_POST['_recipientfirstname'][$variation_id]) && empty($submit_recipientfirstname)?'has-error':'').'">';
-					echo '<input type="text" class="input-text form-control" value="'.$submit_recipientfirstname.'" id="recipientfirstname-'.$variation_id.'" name="_recipientfirstname['.$variation_id.']">';
-					echo '</td>';
-					echo '</tr>';
+					woocommerce_form_field('_recipientfirstname['.$variation_id.']', [
+						'type' => 'text',
+						'label' => __( 'Recipient first name:', 'tmsm-woocommerce-vouchers' ),
+						'description' => '',
+						'required' => $settings_recipientfirstnamerequired,
+						'autocomplete' => 'given-name',
+						'id' => '_recipientfirstname['.$variation_id.']',
+						'class' => [
+							'form-row-wide',
+							'firstname-field',
+							'formfield-text',
+							'form-group',
+							($settings_recipientfirstnamerequired && isset($_POST['_recipientfirstname'][$variation_id]) && empty($submit_recipientfirstname)?'has-error':''),
+						],
+					], $submit_recipientfirstname);
 				endif;
 
-				echo '</tbody>';
-				echo '</table>';
+				// lastname
+				if($settings_recipientlastname):
+					woocommerce_form_field('_recipientlastname['.$variation_id.']', [
+						'type' => 'text',
+						'label' => __( 'Recipient lastname:', 'tmsm-woocommerce-vouchers' ),
+						'description' => '',
+						'required' => $settings_recipientlastnamerequired,
+						'autocomplete' => 'family-name',
+						'id' => '_recipientlastname['.$variation_id.']',
+						'class' => [
+							'form-row-wide',
+							'lastname-field',
+							'formfield-text',
+							'form-group',
+							($settings_recipientlastnamerequired && isset($_POST['_recipientlastname'][$variation_id]) && empty($submit_recipientlastname)?'has-error':''),
+						],
+					], $submit_recipientlastname);
+				endif;
+
+				// address
+				if($settings_recipientaddress):
+					woocommerce_form_field('_recipientaddress['.$variation_id.']', [
+						'type' => 'text',
+						'label' => __( 'Recipient address:', 'tmsm-woocommerce-vouchers' ),
+						'description' => '',
+						'required' => $settings_recipientaddressrequired,
+						'autocomplete' => 'address-line1',
+						'id' => '_recipientaddress['.$variation_id.']',
+						'class' => [
+							'form-row-wide',
+							'address-field',
+							'formfield-text',
+							'form-group',
+							($settings_recipientaddressrequired && isset($_POST['_recipientaddress'][$variation_id]) && empty($submit_recipientaddress)?'has-error':''),
+						],
+					], $submit_recipientaddress);
+				endif;
+
+				// zipcode
+				if($settings_recipientzipcode):
+					woocommerce_form_field('_recipientzipcode['.$variation_id.']', [
+						'type' => 'text',
+						'label' => __( 'Recipient zipcode:', 'tmsm-woocommerce-vouchers' ),
+						'description' => '',
+						'required' => $settings_recipientzipcoderequired,
+						'autocomplete' => 'postal-code',
+						'id' => '_recipientzipcode['.$variation_id.']',
+						'validate' => ['postcode'],
+						'class' => [
+							'form-row-wide',
+							'address-field',
+							'formfield-text',
+							'form-group',
+							($settings_recipientzipcoderequired && isset($_POST['_recipientzipcode'][$variation_id]) && empty($submit_recipientzipcode)?'has-error':''),
+						],
+					], $submit_recipientzipcode);
+				endif;
+
+				// city
+				if($settings_recipientcity):
+					woocommerce_form_field('_recipientcity['.$variation_id.']', [
+						'type' => 'text',
+						'label' => __( 'Recipient city:', 'tmsm-woocommerce-vouchers' ),
+						'description' => '',
+						'required' => $settings_recipientcityrequired,
+						'autocomplete' => 'address-level2',
+						'id' => '_recipientcity['.$variation_id.']',
+						'class' => [
+							'form-row-wide',
+							'address-field',
+							'formfield-text',
+							'form-group',
+							($settings_recipientcityrequired && isset($_POST['_recipientcity'][$variation_id]) && empty($submit_recipientcity)?'has-error':''),
+						],
+					], $submit_recipientcity);
+				endif;
+
+				// country
+				if($settings_recipientcountry):
+					woocommerce_form_field('_recipientcountry['.$variation_id.']', [
+						'type' => 'country',
+						'label' => __( 'Recipient country:', 'tmsm-woocommerce-vouchers' ),
+						'description' => '',
+						'required' => $settings_recipientcountryrequired,
+						'autocomplete' => 'country',
+						'id' => '_recipientcountry['.$variation_id.']',
+					    'class' => [
+					    	'form-group single-country'
+					    ],
+					], $submit_recipientcountry);
+
+				endif;
+
+				echo '</div>';
 				echo '</div>';
 
 			}
@@ -316,6 +420,14 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$settings_recipientoptionnal = get_option('tmsm_woocommerce_vouchers_recipientoptionnal') == 'yes';
 
+			// title
+			$settings_recipienttitle = get_option('tmsm_woocommerce_vouchers_recipienttitle') == 'yes';
+			$settings_recipienttitlerequired = get_option('tmsm_woocommerce_vouchers_recipienttitlerequired') == 'yes';
+			$submit_recipienttitle = isset( $_POST['_recipienttitle'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipienttitle'][$variation_id] ) : '';
+			if (!$settings_recipientoptionnal && $settings_recipienttitlerequired && empty($submit_recipienttitle) ) {
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient title', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'tmsm-woocommerce-vouchers') . '</p>', 'error');
+				$valid = false;
+			}
 
 			// firstname
 			$settings_recipientfirstname = get_option('tmsm_woocommerce_vouchers_recipientfirstname') == 'yes';
@@ -326,14 +438,51 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$valid = false;
 			}
 
-			// title
-			$settings_recipienttitle = get_option('tmsm_woocommerce_vouchers_recipienttitle') == 'yes';
-			$settings_recipienttitlerequired = get_option('tmsm_woocommerce_vouchers_recipienttitlerequired') == 'yes';
-			$submit_recipienttitle = isset( $_POST['_recipienttitle'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipienttitle'][$variation_id] ) : '';
-			if (!$settings_recipientoptionnal && $settings_recipienttitlerequired && empty($submit_recipienttitle) ) {
-				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient title', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'tmsm-woocommerce-vouchers') . '</p>', 'error');
+			// lastname
+			$settings_recipientlastname = get_option('tmsm_woocommerce_vouchers_recipientlastname') == 'yes';
+			$settings_recipientlastnamerequired = get_option('tmsm_woocommerce_vouchers_recipientlastnamerequired') == 'yes';
+			$submit_recipientlastname = isset( $_POST['_recipientlastname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientlastname'][$variation_id] ) : '';
+			if (!$settings_recipientoptionnal && $settings_recipientlastnamerequired && empty($submit_recipientlastname) ) {
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient last name', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'tmsm-woocommerce-vouchers') . '</p>', 'error');
 				$valid = false;
 			}
+			
+			// address
+			$settings_recipientaddress = get_option('tmsm_woocommerce_vouchers_recipientaddress') == 'yes';
+			$settings_recipientaddressrequired = get_option('tmsm_woocommerce_vouchers_recipientaddressrequired') == 'yes';
+			$submit_recipientaddress = isset( $_POST['_recipientaddress'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientaddress'][$variation_id] ) : '';
+			if (!$settings_recipientoptionnal && $settings_recipientaddressrequired && empty($submit_recipientaddress) ) {
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient address', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'tmsm-woocommerce-vouchers') . '</p>', 'error');
+				$valid = false;
+			}
+
+			// zipcode
+			$settings_recipientzipcode = get_option('tmsm_woocommerce_vouchers_recipientzipcode') == 'yes';
+			$settings_recipientzipcoderequired = get_option('tmsm_woocommerce_vouchers_recipientzipcoderequired') == 'yes';
+			$submit_recipientzipcode = isset( $_POST['_recipientzipcode'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientzipcode'][$variation_id] ) : '';
+			if (!$settings_recipientoptionnal && $settings_recipientzipcoderequired && empty($submit_recipientzipcode) ) {
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient zipcode', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'tmsm-woocommerce-vouchers') . '</p>', 'error');
+				$valid = false;
+			}
+
+			// city
+			$settings_recipientcity = get_option('tmsm_woocommerce_vouchers_recipientcity') == 'yes';
+			$settings_recipientcityrequired = get_option('tmsm_woocommerce_vouchers_recipientcityrequired') == 'yes';
+			$submit_recipientcity = isset( $_POST['_recipientcity'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientcity'][$variation_id] ) : '';
+			if (!$settings_recipientoptionnal && $settings_recipientcityrequired && empty($submit_recipientcity) ) {
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient city', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'tmsm-woocommerce-vouchers') . '</p>', 'error');
+				$valid = false;
+			}
+
+			// country
+			$settings_recipientcountry = get_option('tmsm_woocommerce_vouchers_recipientcountry') == 'yes';
+			$settings_recipientcountryrequired = get_option('tmsm_woocommerce_vouchers_recipientcountryrequired') == 'yes';
+			$submit_recipientcountry = isset( $_POST['_recipientcountry'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientcountry'][$variation_id] ) : '';
+			if (!$settings_recipientoptionnal && $settings_recipientcountryrequired && empty($submit_recipientcountry) ) {
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient country', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'tmsm-woocommerce-vouchers') . '</p>', 'error');
+				$valid = false;
+			}
+
 
 
 		}
@@ -364,6 +513,25 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$submit_recipientfirstname = isset( $_POST['_recipientfirstname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientfirstname'][$variation_id] ) : '';
 		$cart_item_data['_recipientfirstname'] = $submit_recipientfirstname;
 
+		// lastname
+		$submit_recipientlastname = isset( $_POST['_recipientlastname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientlastname'][$variation_id] ) : '';
+		$cart_item_data['_recipientlastname'] = $submit_recipientlastname;
+
+		// address
+		$submit_recipientaddress = isset( $_POST['_recipientaddress'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientaddress'][$variation_id] ) : '';
+		$cart_item_data['_recipientaddress'] = $submit_recipientaddress;
+		
+		// zipcode
+		$submit_recipientzipcode = isset( $_POST['_recipientzipcode'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientzipcode'][$variation_id] ) : '';
+		$cart_item_data['_recipientzipcode'] = $submit_recipientzipcode;
+		
+		// city
+		$submit_recipientcity = isset( $_POST['_recipientcity'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientcity'][$variation_id] ) : '';
+		$cart_item_data['_recipientcity'] = $submit_recipientcity;
+		
+		// country
+		$submit_recipientcountry = isset( $_POST['_recipientcountry'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientcountry'][$variation_id] ) : '';
+		$cart_item_data['_recipientcountry'] = $submit_recipientcountry;
 
 		return $cart_item_data;
 	}
@@ -402,6 +570,55 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			);
 		}
 
+		// lastname
+		if(!empty($item['_recipientlastname'])){
+			$data[] = array(
+				'name' => __('Recipient last name', 'tmsm-woocommerce-vouchers'),
+				'display' => $item['_recipientlastname'],
+				'hidden' => false,
+				'value' => ''
+			);
+		}
+
+		// address
+		if(!empty($item['_recipientaddress'])){
+			$data[] = array(
+				'name' => __('Recipient address', 'tmsm-woocommerce-vouchers'),
+				'display' => $item['_recipientaddress'],
+				'hidden' => false,
+				'value' => ''
+			);
+		}
+
+		// zipcode
+		if(!empty($item['_recipientzipcode'])){
+			$data[] = array(
+				'name' => __('Recipient zipcode', 'tmsm-woocommerce-vouchers'),
+				'display' => $item['_recipientzipcode'],
+				'hidden' => false,
+				'value' => ''
+			);
+		}
+
+		// city
+		if(!empty($item['_recipientcity'])){
+			$data[] = array(
+				'name' => __('Recipient city', 'tmsm-woocommerce-vouchers'),
+				'display' => $item['_recipientcity'],
+				'hidden' => false,
+				'value' => ''
+			);
+		}
+
+		// country
+		if(!empty($item['_recipientcountry'])){
+			$data[] = array(
+				'name' => __('Recipient country', 'tmsm-woocommerce-vouchers'),
+				'display' => $item['_recipientcountry'],
+				'hidden' => false,
+				'value' => ''
+			);
+		}
 
 		return $data;
 	}
@@ -448,6 +665,26 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$item->add_meta_data( '_recipientfirstname', $values['_recipientfirstname'], true );
 		}
 
+		if (!empty($values['_recipientlastname'])) {
+			$item->add_meta_data( '_recipientlastname', $values['_recipientlastname'], true );
+		}
+
+		if (!empty($values['_recipientaddress'])) {
+			$item->add_meta_data( '_recipientaddress', $values['_recipientaddress'], true );
+		}
+
+		if (!empty($values['_recipientzipcode'])) {
+			$item->add_meta_data( '_recipientzipcode', $values['_recipientzipcode'], true );
+		}
+
+		if (!empty($values['_recipientcity'])) {
+			$item->add_meta_data( '_recipientcity', $values['_recipientcity'], true );
+		}
+
+		if (!empty($values['_recipientcountry'])) {
+			$item->add_meta_data( '_recipientcountry', $values['_recipientcountry'], true );
+		}
+
 	}
 
 
@@ -479,6 +716,36 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$recipientfirstname = $item->get_meta( '_recipientfirstname' );
 		if ( isset( $recipientfirstname ) && ! empty( $recipientfirstname ) ) {
 			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient first name:', 'tmsm-woocommerce-vouchers') . '</strong> ' . wp_kses_post($recipientfirstname);
+		}
+
+		// lastname
+		$recipientlastname = $item->get_meta( '_recipientlastname' );
+		if ( isset( $recipientlastname ) && ! empty( $recipientlastname ) ) {
+			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient last name:', 'tmsm-woocommerce-vouchers') . '</strong> ' . wp_kses_post($recipientlastname);
+		}
+
+		// address
+		$recipientaddress = $item->get_meta( '_recipientaddress' );
+		if ( isset( $recipientaddress ) && ! empty( $recipientaddress ) ) {
+			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient address:', 'tmsm-woocommerce-vouchers') . '</strong> ' . wp_kses_post($recipientaddress);
+		}
+
+		// zipcode
+		$recipientzipcode = $item->get_meta( '_recipientzipcode' );
+		if ( isset( $recipientzipcode ) && ! empty( $recipientzipcode ) ) {
+			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient zipcode:', 'tmsm-woocommerce-vouchers') . '</strong> ' . wp_kses_post($recipientzipcode);
+		}
+
+		// city
+		$recipientcity = $item->get_meta( '_recipientcity' );
+		if ( isset( $recipientcity ) && ! empty( $recipientcity ) ) {
+			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient city:', 'tmsm-woocommerce-vouchers') . '</strong> ' . wp_kses_post($recipientcity);
+		}
+		
+		// country
+		$recipientcountry = $item->get_meta( '_recipientcountry' );
+		if ( isset( $recipientcountry ) && ! empty( $recipientcountry ) ) {
+			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient country:', 'tmsm-woocommerce-vouchers') . '</strong> ' . wp_kses_post($recipientcountry);
 		}
 
 		if ($strings != []){
