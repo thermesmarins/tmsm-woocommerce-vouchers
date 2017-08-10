@@ -96,7 +96,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tmsm-woocommerce-vouchers-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tmsm-woocommerce-vouchers-public.js', array( 'jquery' ), $this->version, true );
 
 	}
 
@@ -124,7 +124,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		}
 
 		foreach ( $products as $product ) {//For all products
-			
 			// Get product ID
 			$product_id = $variation_id = $product->get_id();
 			$is_voucher = false;
@@ -145,11 +144,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$is_virtual = get_post_meta( $variation_id, '_virtual', true ) == 'yes';
 			$is_downloadable = get_post_meta( $variation_id, '_downloadable', true ) == 'yes';
 
-			/*
-			echo ' - $product_id:'.$product_id;
-			echo ' - $variation_id:'.$variation_id;
-			echo ' - $is_voucher:'.$is_voucher;
-			*/
+
+
 
 			$settings_physical = get_option('tmsm_woocommerce_vouchers_physical') == 'yes';
 			$settings_virtual = get_option('tmsm_woocommerce_vouchers_virtual') == 'yes';
@@ -162,6 +158,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			if($is_virtual && !$settings_virtual) $is_voucher = false;
 			if(!$is_virtual && !$settings_physical) $is_voucher = false;
 
+/*
+			echo ' - $product_id:'.$product_id;
+			echo ' - $variation_id:'.$variation_id;
+			echo ' - $is_voucher:'.$is_voucher;
+*/
 			if( $is_voucher ) { // if voucher is enable
 
 
@@ -202,9 +203,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$settings_recipientsenddaterequired = get_option('tmsm_woocommerce_vouchers_recipientsenddaterequired') == 'yes';
 
 
-
-
-
 				$submit_recipientfirstname = isset( $_POST['_recipientfirstname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientfirstname'][$variation_id] ) : '';
 
 				$submit_recipientlastname = isset( $_POST['_recipientlastname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientlastname'][$variation_id] ) : '';
@@ -234,7 +232,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				echo '<p class="h4 vouchers-fields-title">';
 				echo __( 'Recipient of the voucher', 'tmsm-woocommerce-vouchers' );
 				echo '</p>';
-				echo '<table class="variations variations-recipient vouchers-fields" cellspacing="0">';
+				echo '<table class="vouchers-fields" cellspacing="0">';
 				echo '<tbody>';
 
 
@@ -247,24 +245,41 @@ class Tmsm_Woocommerce_Vouchers_Public {
 					echo '</tr>';
 				endif;
 
-				// firstname
-				echo '<tr class="'.($settings_recipientoptionnal?'vouchers-recipientoptionnal':'').'">';
-				echo '<td class="label">';
-				echo '<label class="control-label" for="recipient_name-'.$variation_id.'">';
-				echo __( 'Recipient first name:', 'tmsm-woocommerce-vouchers' );
-				echo '</label>';
-				echo '</td>';
-				echo '<td class="value">';
-				echo '<input type="text" class="input-text form-control" value="'.$submit_recipientfirstname.'" id="recipient_name-'.$variation_id.'" name="_recipientfirstname['.$variation_id.']">';
-				echo '</td>';
-				echo '</tr>';
+				// title
+				if($settings_recipienttitle):
+					echo '<tr class="'.($settings_recipientoptionnal?'vouchers-recipientoptionnal':'').'">';
+					echo '<td class="label '.($settings_recipienttitlerequired && isset($_POST['_recipienttitle'][$variation_id]) && empty($submit_recipienttitle)?'has-error':'').'">';
+					echo '<label class="control-label" for="recipienttitle-'.$variation_id.'">';
+					echo __( 'Recipient title:', 'tmsm-woocommerce-vouchers' );
+					echo '</label>';
+					echo '</td>';
+					echo '<td class="value '.($settings_recipienttitlerequired && isset($_POST['_recipienttitle'][$variation_id]) && empty($submit_recipienttitle)?'has-error':'').'">';
+					echo '<select class="form-control" id="recipienttitle-'.$variation_id.'" name="_recipienttitle['.$variation_id.']">';
+					echo '<option></option>';
+					echo '<option value="1" '.($submit_recipienttitle==1?'selected="selected"':'').'>'.__( 'Miss', 'tmsm-woocommerce-vouchers' ).'</option>';
+					echo '<option value="2" '.($submit_recipienttitle==2?'selected="selected"':'').'>'.__( 'Mr', 'tmsm-woocommerce-vouchers' ).'</option>';
+					echo '</select>';
+					echo '</td>';
+					echo '</tr>';
+				endif;
 
+				// firstname
+				if($settings_recipientfirstname):
+					echo '<tr class="'.($settings_recipientoptionnal?'vouchers-recipientoptionnal':'').'">';
+					echo '<td class="label '.($settings_recipientfirstnamerequired && isset($_POST['_recipientfirstname'][$variation_id]) && empty($submit_recipientfirstname)?'has-error':'').'">';
+					echo '<label class="control-label" for="recipientfirstname-'.$variation_id.'">';
+					echo __( 'Recipient first name:', 'tmsm-woocommerce-vouchers' );
+					echo '</label>';
+					echo '</td>';
+					echo '<td class="value '.($settings_recipientfirstnamerequired && isset($_POST['_recipientfirstname'][$variation_id]) && empty($submit_recipientfirstname)?'has-error':'').'">';
+					echo '<input type="text" class="input-text form-control" value="'.$submit_recipientfirstname.'" id="recipientfirstname-'.$variation_id.'" name="_recipientfirstname['.$variation_id.']">';
+					echo '</td>';
+					echo '</tr>';
+				endif;
 
 				echo '</tbody>';
 				echo '</table>';
 				echo '</div>';
-
-					//woo_vou_get_template( 'woo-vou-recipient-fields.php', $args );
 
 			}
 		}
@@ -300,23 +315,25 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$settings_recipientoptionnal = get_option('tmsm_woocommerce_vouchers_recipientoptionnal') == 'yes';
 
+
+			// firstname
 			$settings_recipientfirstname = get_option('tmsm_woocommerce_vouchers_recipientfirstname') == 'yes';
 			$settings_recipientfirstnamerequired = get_option('tmsm_woocommerce_vouchers_recipientfirstnamerequired') == 'yes';
-
 			$submit_recipientfirstname = isset( $_POST['_recipientfirstname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientfirstname'][$variation_id] ) : '';
-
-			/*
-			wc_add_notice('$submit_recipientfirstname:'.$submit_recipientfirstname);
-			wc_add_notice('!$settings_recipientoptionnal:'.!$settings_recipientoptionnal);
-			wc_add_notice('$settings_recipientfirstnamerequired:'.$settings_recipientfirstnamerequired);
-			wc_add_notice('empty($submit_recipientfirstname):'.empty($submit_recipientfirstname));
-			*/
-
-			// validation
 			if (!$settings_recipientoptionnal && $settings_recipientfirstnamerequired && empty($submit_recipientfirstname) ) {
-				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient first name:', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'woovoucher') . '</p>', 'error');
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient first name', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'tmsm-woocommerce-vouchers') . '</p>', 'error');
 				$valid = false;
 			}
+
+			// title
+			$settings_recipienttitle = get_option('tmsm_woocommerce_vouchers_recipienttitle') == 'yes';
+			$settings_recipienttitlerequired = get_option('tmsm_woocommerce_vouchers_recipienttitlerequired') == 'yes';
+			$submit_recipienttitle = isset( $_POST['_recipienttitle'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipienttitle'][$variation_id] ) : '';
+			if (!$settings_recipientoptionnal && $settings_recipienttitlerequired && empty($submit_recipienttitle) ) {
+				wc_add_notice('<p class="vouchers-fields-error">' . __('Recipient title', 'tmsm-woocommerce-vouchers') .' ' . __('is required.', 'tmsm-woocommerce-vouchers') . '</p>', 'error');
+				$valid = false;
+			}
+
 
 		}
 		return $valid;
@@ -326,18 +343,25 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	/**
 	 * Add recipient data to cart item meta when product is added to cart
 	 *
-	 * @param $cart_item_data
-	 * @param $product_id
-	 * @param $variation_id
+	 * @param array $cart_item_data
+	 * @param integer $product_id
+	 * @param integer $variation_id
 	 *
 	 * @since 1.0.0
+	 * @return array $cart_item_data
 	 */
 	public function woocommerce_add_cart_item_data($cart_item_data, $product_id, $variation_id){
 
 		$variation_id = $variation_id ? $variation_id : $product_id;
 
+		// title
+		$submit_recipienttitle = isset( $_POST['_recipienttitle'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipienttitle'][$variation_id] ) : '';
+		$cart_item_data['_recipienttitle'] = $submit_recipienttitle;
+
+		// firstname
 		$submit_recipientfirstname = isset( $_POST['_recipientfirstname'][$variation_id] ) ? wp_filter_nohtml_kses( $_POST['_recipientfirstname'][$variation_id] ) : '';
 		$cart_item_data['_recipientfirstname'] = $submit_recipientfirstname;
+
 
 		return $cart_item_data;
 	}
@@ -355,14 +379,26 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		$product_id = isset($item['product_id']) ? $item['product_id'] : '';
 
+		// title
+		if(!empty($item['_recipienttitle'])){
+			$data[] = array(
+				'name' => __('Recipient title', 'tmsm-woocommerce-vouchers'),
+				'display' => ($item['_recipienttitle'] == 1 ?__('Miss', 'tmsm-woocommerce-vouchers'):__('Mr', 'tmsm-woocommerce-vouchers')),
+				'hidden' => false,
+				'value' => ''
+			);
+		}
+
+		// firstname
 		if(!empty($item['_recipientfirstname'])){
 			$data[] = array(
-				'name' => __('Recipient first name:', 'tmsm-woocommerce-vouchers'),
+				'name' => __('Recipient first name', 'tmsm-woocommerce-vouchers'),
 				'display' => $item['_recipientfirstname'],
 				'hidden' => false,
 				'value' => ''
 			);
 		}
+
 
 		return $data;
 	}
@@ -380,37 +416,35 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		$variation_id = isset($values['variation_id']) && !empty($values['variation_id']) ? $values['variation_id'] : $values['product_id'];
 
+		$product = $item->get_product();
+
+		if($product){
+			$variation_id = $product->get_id();
+		}
+		$is_virtual = get_post_meta( $variation_id, '_virtual', true ) == 'yes';
+		$is_voucher = get_post_meta( $variation_id, '_voucher', true ) == 'yes';
+
+		if($is_virtual){
+			$item->add_meta_data( '_virtual', 'yes', true );
+		}
+		else{
+			$item->add_meta_data( '_virtual', 'no', true );
+		}
+
+		if($is_voucher){
+			$item->add_meta_data( '_voucher', 'yes', true );
+		}
+
+		if (!empty($values['_recipienttitle'])) {
+			$item->add_meta_data( '_recipienttitle', $values['_recipienttitle'], true );
+		}
+
 		if (!empty($values['_recipientfirstname'])) {
 			$item->add_meta_data( '_recipientfirstname', $values['_recipientfirstname'], true );
-
 		}
 
 	}
 
-	/**
-	 * Displays recipient item meta on order page (backend)
-	 *
-	 * @version 1.0.0
-	 * @since   1.0.0
-	 *
-	 * @param               $formatted_meta
-	 * @param WC_Order_Item $order_item
-	 *
-	 * @return mixed
-	 */
-	public function woocommerce_order_item_get_formatted_meta_data( $formatted_meta, WC_Order_Item $order_item ) {
-		if ( empty( $formatted_meta ) ) {
-			return $formatted_meta;
-		}
-
-		foreach ( $formatted_meta as $meta ) {
-			if($meta->key == '_recipientfirstname' && !empty($meta->value)){
-				$meta->display_key = __('Recipient first name', 'tmsm-woocommerce-vouchers');
-			}
-		}
-
-		return $formatted_meta;
-	}
 
 	/**
 	 * Displays hidden delivery date for order item in order view (frontend)
@@ -427,13 +461,24 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	{
 
 		$strings = [];
+
+		// title
+		$recipienttitle = $item->get_meta( '_recipienttitle' );
+		if ( isset( $recipienttitle ) && ! empty( $recipienttitle ) ) {
+			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient title:', 'tmsm-woocommerce-vouchers') . '</strong> ' . ($recipienttitle == 1?__('Miss', 'tmsm-woocommerce-vouchers'):__('Mr', 'tmsm-woocommerce-vouchers'));
+		}
+
+		// firstname
 		$recipientfirstname = $item->get_meta( '_recipientfirstname' );
 		if ( isset( $recipientfirstname ) && ! empty( $recipientfirstname ) ) {
-			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient first name:', 'tmsm-woocommerce-vouchers') . '</strong> ' . wp_kses_post($recipientfirstname);;
+			$strings[] = '<strong class="wc-item-meta-label">' . __('Recipient first name:', 'tmsm-woocommerce-vouchers') . '</strong> ' . wp_kses_post($recipientfirstname);
 		}
+
 		if ($strings != []){
 			$html = $args['before'] . implode( $args['separator'], $strings ) . $args['after'];
 		}
 		return $html;
 	}
+
+
 }

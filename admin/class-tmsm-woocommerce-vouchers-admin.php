@@ -245,4 +245,62 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		return $settings; // Return
 	}
 
+	/**
+	 * Hide order item meta from Order
+	 *
+	 * @param array $item_array
+	 *
+	 * @return array $item_array
+	 */
+	public function woocommerce_hidden_order_itemmeta($item_array = []){
+		$item_meta[] = '_recipientfirstname';
+		$item_meta[] = '_recipientlastname';
+		$item_meta[] = '_recipienttitle';
+		$item_meta[] = '_recipientbirthdate';
+		$item_meta[] = '_recipientaddress';
+		$item_meta[] = '_recipientzipcode';
+		$item_meta[] = '_recipientcity';
+		$item_meta[] = '_recipientcountry';
+		$item_meta[] = '_recipientmobilephone';
+		$item_meta[] = '_recipientemail';
+		$item_meta[] = '_recipientmessage';
+		$item_meta[] = '_recipientsenddate';
+
+		return $item_meta;
+	}
+
+	/**
+	 * Displays recipient item meta on order page
+	 *
+	 * @version 1.0.0
+	 * @since   1.0.0
+	 *
+	 * @param mixed         $formatted_meta
+	 * @param WC_Order_Item $order_item
+	 *
+	 * @return mixed
+	 */
+	public function woocommerce_order_item_get_formatted_meta_data( $formatted_meta, WC_Order_Item $order_item ) {
+		if ( empty( $formatted_meta ) ) {
+			return $formatted_meta;
+		}
+
+		foreach ( $formatted_meta as $meta ) {
+
+			// title
+			if($meta->key == '_recipienttitle' && !empty($meta->value)){
+				$meta->display_key = __('Recipient title', 'tmsm-woocommerce-vouchers');
+				$meta->display_value = ($meta->value == 1 ?__('Miss', 'tmsm-woocommerce-vouchers'):__('Mr', 'tmsm-woocommerce-vouchers'));
+			}
+
+			// firstname
+			if($meta->key == '_recipientfirstname' && !empty($meta->value)){
+				$meta->display_key = __('Recipient first name', 'tmsm-woocommerce-vouchers');
+			}
+
+		}
+
+		return $formatted_meta;
+	}
+
 }

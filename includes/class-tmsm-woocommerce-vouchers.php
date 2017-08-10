@@ -170,6 +170,9 @@ class Tmsm_Woocommerce_Vouchers {
 		//$this->loader->add_filter( 'woocommerce_settings_save_vouchers', $plugin_admin, 'woocommerce_settings_save_vouchers' );
 		//$this->loader->add_filter( 'woocommerce_sections_vouchers', $plugin_admin, 'woocommerce_sections_vouchers' );
 
+		// Order
+		$this->loader->add_action( 'woocommerce_hidden_order_itemmeta', $plugin_admin, 'woocommerce_hidden_order_itemmeta', 10, 1 );
+		$this->loader->add_action( 'woocommerce_order_item_get_formatted_meta_data', $plugin_public, 'woocommerce_order_item_get_formatted_meta_data', 10, 2 );
 
 	}
 
@@ -192,14 +195,9 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action( 'woocommerce_add_cart_item_data', $plugin_public, 'woocommerce_add_cart_item_data', 10, 3 );
 		$this->loader->add_action( 'woocommerce_get_item_data', $plugin_public, 'woocommerce_get_item_data', 10, 2 );
 		$this->loader->add_action( 'woocommerce_checkout_create_order_line_item', $plugin_public, 'woocommerce_checkout_create_order_line_item', 10, 4 );
-
-
-		$this->loader->add_action( 'woocommerce_order_item_get_formatted_meta_data', $plugin_public, 'woocommerce_order_item_get_formatted_meta_data', 10, 2 );
 		$this->loader->add_action( 'woocommerce_order_item_meta_start', $plugin_public, 'woocommerce_order_item_meta_start', 10, 3 );
 		$this->loader->add_action( 'woocommerce_display_item_meta', $plugin_public, 'woocommerce_display_item_meta', 10, 3 );
 
-
-//woocommerce_before_order_itemmeta
 	}
 
 	/**
