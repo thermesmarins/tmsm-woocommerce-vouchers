@@ -295,7 +295,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				if($settings_recipientlastname):
 					woocommerce_form_field('_recipientlastname['.$variation_id.']', [
 						'type' => 'text',
-						'label' => __( 'Recipient lastname:', 'tmsm-woocommerce-vouchers' ),
+						'label' => __( 'Recipient last name:', 'tmsm-woocommerce-vouchers' ),
 						'description' => '',
 						'required' => $settings_recipientlastnamerequired,
 						'autocomplete' => 'family-name',
@@ -550,75 +550,34 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		$product_id = isset($item['product_id']) ? $item['product_id'] : '';
 
-		// title
-		if(!empty($item['_recipienttitle'])){
-			$data[] = array(
-				'name' => __('Recipient title', 'tmsm-woocommerce-vouchers'),
-				'display' => ($item['_recipienttitle'] == 1 ?__('Miss', 'tmsm-woocommerce-vouchers'):__('Mr', 'tmsm-woocommerce-vouchers')),
-				'hidden' => false,
-				'value' => ''
-			);
-		}
+		switch($item['_recipienttitle'])
+		{
+			case 1: $title = __('Miss', 'tmsm-woocommerce-vouchers'). ' '; break;
+			case 2: $title = __('Mr', 'tmsm-woocommerce-vouchers'). ' '; break;
+			default: $title =''; break;
 
-		// firstname
-		if(!empty($item['_recipientfirstname'])){
-			$data[] = array(
-				'name' => __('Recipient first name', 'tmsm-woocommerce-vouchers'),
-				'display' => $item['_recipientfirstname'],
-				'hidden' => false,
-				'value' => ''
-			);
 		}
+		$recipient = array(
+			'first_name'  => $title.$item['_recipientfirstname'],
+			'last_name'   => $item['_recipientlastname'],
+			'address_1'   => $item['_recipientaddress'],
+			//'address_2'   => '',
+			'city'        => $item['_recipientcity'],
+			'postcode'    => $item['_recipientzipcode'],
+			//'state'    => '',
+			'country'     => $item['_recipientcountry'],
+		);
 
-		// lastname
-		if(!empty($item['_recipientlastname'])){
-			$data[] = array(
-				'name' => __('Recipient last name', 'tmsm-woocommerce-vouchers'),
-				'display' => $item['_recipientlastname'],
-				'hidden' => false,
-				'value' => ''
-			);
-		}
+		$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
+		$data[] = array(
+			'name' => __('Recipient', 'tmsm-woocommerce-vouchers'),
+			'display' => $formatted_recipient,
+			'hidden' => false,
+			'value' => ''
+		);
 
-		// address
-		if(!empty($item['_recipientaddress'])){
-			$data[] = array(
-				'name' => __('Recipient address', 'tmsm-woocommerce-vouchers'),
-				'display' => $item['_recipientaddress'],
-				'hidden' => false,
-				'value' => ''
-			);
-		}
 
-		// zipcode
-		if(!empty($item['_recipientzipcode'])){
-			$data[] = array(
-				'name' => __('Recipient zipcode', 'tmsm-woocommerce-vouchers'),
-				'display' => $item['_recipientzipcode'],
-				'hidden' => false,
-				'value' => ''
-			);
-		}
 
-		// city
-		if(!empty($item['_recipientcity'])){
-			$data[] = array(
-				'name' => __('Recipient city', 'tmsm-woocommerce-vouchers'),
-				'display' => $item['_recipientcity'],
-				'hidden' => false,
-				'value' => ''
-			);
-		}
-
-		// country
-		if(!empty($item['_recipientcountry'])){
-			$data[] = array(
-				'name' => __('Recipient country', 'tmsm-woocommerce-vouchers'),
-				'display' => $item['_recipientcountry'],
-				'hidden' => false,
-				'value' => ''
-			);
-		}
 
 		return $data;
 	}
