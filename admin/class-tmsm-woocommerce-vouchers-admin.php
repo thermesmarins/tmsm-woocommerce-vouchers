@@ -173,6 +173,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	function woocommerce_process_product_save_voucher_options( $post_id ) {
 		$is_voucher = isset( $_POST['_voucher'] ) ? 'yes' : 'no';
 		update_post_meta( $post_id, '_voucher', $is_voucher );
+
 		/*
 		$allow_personal_message = isset( $_POST['_allow_personal_message'] ) ? 'yes' : 'no';
 		update_post_meta( $post_id, '_allow_personal_message', $allow_personal_message );
@@ -334,6 +335,18 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 			// country
 			if($meta->key == '_recipientcountry' && !empty($meta->value)){
 				$meta->display_key = __('Recipient country', 'tmsm-woocommerce-vouchers');
+				$full_country = ( isset( WC()->countries->countries[ $meta->value ] ) ) ? WC()->countries->countries[ $meta->value ] : $meta->value;
+				$meta->display_value = $full_country;
+			}
+
+			// mobilephone
+			if($meta->key == '_recipientmobilephone' && !empty($meta->value)){
+				$meta->display_key = __('Recipient mobile phone', 'tmsm-woocommerce-vouchers');
+			}
+
+			// email
+			if($meta->key == '_recipientemail' && !empty($meta->value)){
+				$meta->display_key = __('Recipient email', 'tmsm-woocommerce-vouchers');
 			}
 
 		}
