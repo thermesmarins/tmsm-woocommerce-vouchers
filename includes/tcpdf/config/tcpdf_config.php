@@ -58,11 +58,11 @@
  * By default it is automatically set but you can also set it as a fixed string to improve performances.
  */
 //define ('K_PATH_FONTS', K_PATH_MAIN.'fonts/');
-$fdir = realpath( WOO_VOU_DIR.'/includes/tcpdf/fonts' );
+/*$fdir = realpath( WOO_VOU_DIR.'/includes/tcpdf/fonts' );
 if (substr($fdir, -1) != '/') {
 	$fdir .= '/';
-}
-define ('K_PATH_FONTS', apply_filters( 'woo_vou_tcpdf_fonts_path', $fdir ) );
+}*/
+//define ('K_PATH_FONTS', apply_filters( 'woo_vou_tcpdf_fonts_path', $fdir ) );
 
 /**
  * Default images directory.
