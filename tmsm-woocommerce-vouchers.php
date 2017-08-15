@@ -29,12 +29,14 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR', plugin_dir_path( __FILE__ ) );
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-tmsm-woocommerce-vouchers-activator.php
  */
 function activate_tmsm_woocommerce_vouchers() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tmsm-woocommerce-vouchers-activator.php';
+	require_once TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/class-tmsm-woocommerce-vouchers-activator.php';
 	Tmsm_Woocommerce_Vouchers_Activator::activate();
 }
 
@@ -43,7 +45,7 @@ function activate_tmsm_woocommerce_vouchers() {
  * This action is documented in includes/class-tmsm-woocommerce-vouchers-deactivator.php
  */
 function deactivate_tmsm_woocommerce_vouchers() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tmsm-woocommerce-vouchers-deactivator.php';
+	require_once TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/class-tmsm-woocommerce-vouchers-deactivator.php';
 	Tmsm_Woocommerce_Vouchers_Deactivator::deactivate();
 }
 
@@ -54,7 +56,7 @@ register_deactivation_hook( __FILE__, 'deactivate_tmsm_woocommerce_vouchers' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-tmsm-woocommerce-vouchers.php';
+require TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/class-tmsm-woocommerce-vouchers.php';
 
 /**
  * Begins execution of the plugin.

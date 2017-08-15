@@ -587,7 +587,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						'tmsm-woocommerce-vouchers' ) . '</p>', 'error' );
 				$valid = false;
 			} elseif ( ! empty( $submit_recipientemail ) && ! is_email( $submit_recipientemail ) ) {
-				wc_add_notice( '<p class="vouchers-fields-error">' . __( 'Please enter valid email', 'woovoucher' ) . '</p>', 'error' );
+				wc_add_notice( '<p class="vouchers-fields-error">' . __( 'Please enter valid email', 'tmsm-woocommerce-vouchers' ) . '</p>', 'error' );
 				$valid = false;
 			}
 
@@ -1213,9 +1213,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 								}
 
 								//Get voucher codes
-								$codes = wc_get_order_item_meta( $item_id, '_codes' );
+								$code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
 
-								if ( ! empty( $download_file_data ) && ! empty( $codes ) ) {//If download exist and code is not empty
+								if ( ! empty( $download_file_data ) && ! empty( $code ) ) {//If download exist and code is not empty
 									foreach ( $download_file_data as $key => $download_file ) {
 
 										//check download key is voucher key or not
@@ -1326,40 +1326,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	public function tmsmvoucher_generate_downloadfile( $email = '', $product_id = '', $download_id = '', $order_id = '', $item_id = '' ) {
 
-		//$order_codes = $this->tmsm_get_order_codes( $order_id, $product_id, $item_id );
-
 		error_log('*** tmsmvoucher_generate_downloadfile');
-
-		$order_codes = [];
-		$this->tmsmvoucher_voucher_html_template( $product_id, $order_id, $item_id, $order_codes );
+		$this->tmsmvoucher_voucher_html_template( $product_id, $order_id, $item_id );
 	}
-
-	/**
-	 * Generate PDF for Voucher
-	 *
-	 * Handles to Generate PDF on run time when
-	 * user will execute the url which is sent to
-	 * user email with purchase receipt
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param        $product_id
-	 * @param        $order_id
-	 * @param string $item_id
-	 * @param array  $order_codes
-	 * @param array  $pdf_args
-	 *
-	 * @return void
-	 */
-	function tmsmvoucher_voucher_html_template( $product_id, $order_id, $item_id = '', $order_codes = [], $pdf_args = [] ) {
-		global $current_user;
-
-		error_log('*** tmsmvoucher_voucher_html_template');
-
-		$voucher_template_html = '<b>Hello</b> World';
-		$this->tmsmvoucher_output_pdf_by_html( $voucher_template_html, $pdf_args );
-	}
-
 
 	/**
 	 * Get variation detail from order and item id
@@ -1541,5 +1510,224 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		return $product_id;
 	}
 
+
+	/**
+	 * Generate PDF for Voucher
+	 *
+	 * Handles to Generate PDF on run time when
+	 * user will execute the url which is sent to
+	 * user email with purchase receipt
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param        $product_id
+	 * @param        $order_id
+	 * @param string $item_id
+	 * @param array  $pdf_args
+	 *
+	 * @return void
+	 */
+	private function tmsmvoucher_voucher_html_template( $product_id, $order_id, $item_id = '', $pdf_args = [] ) {
+		global $current_user;
+
+		error_log('*** tmsmvoucher_voucher_html_template');
+
+		$product = wc_get_product($product_id);
+		$order = wc_get_order($order_id);
+		$code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
+		$recipienttitle	= wc_get_order_item_meta( $item_id, '_recipienttitle', true );
+		$recipientfirstname	= wc_get_order_item_meta( $item_id, '_recipientfirstname', true );
+		$recipientlastname	= wc_get_order_item_meta( $item_id, '_recipientlastname', true );
+		$recipientaddress	= wc_get_order_item_meta( $item_id, '_recipientaddress', true );
+		$recipientzipcode	= wc_get_order_item_meta( $item_id, '_recipientzipcode', true );
+		$recipientcity	= wc_get_order_item_meta( $item_id, '_recipientcity', true );
+		$recipientcountry	= wc_get_order_item_meta( $item_id, '_recipientcountry', true );
+
+		$recipient = '';
+		if ( !empty($recipientfirstname) && !empty($recipientlastname) ) {
+			switch ( $recipienttitle ) {
+				case 1:
+					$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
+					break;
+				case 2:
+					$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
+					break;
+				default:
+					$title = '';
+					break;
+			}
+
+			$recipient = array(
+				'first_name' => $title . $recipientfirstname,
+				'last_name'  => $recipientlastname,
+				'address_1'  => $recipientaddress,
+				//'address_2'   => '',
+				'city'       => $recipientcity,
+				'postcode'   => $recipientzipcode,
+				//'state'    => '',
+				'country'    => $recipientcountry,
+			);
+
+			$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
+			$recipient           =  __( 'Recipient:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $formatted_recipient.'</strong> ';
+		}
+
+
+		$html_top_left = '';
+		$html_top_left .= __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $code.'</strong> ';
+
+		$html_top_right = '';
+		$html_top_right.= $recipient;
+
+		$html_bottom_left = '';
+		$html_bottom_left .= $product->get_image();
+
+		$html_bottom_right = 'bottom right';
+
+		$html = '';
+		$html .= '<table class="tmsmvoucher-main-table" style="height: 1000pt; width: 100%" cellpadding="30" cellspacing="0">';
+		$html .= '
+			<tr>
+			<td style="background-color: #f2f2f2;width: 50%;height: 430pt;">' . $html_top_left . '</td>
+			<td style="background-color: #fff;width: 50%;height: 50%;">' . $html_top_right . '</td>
+			</tr>
+			<tr>
+			<td style="background-color: #fff;width: 50%;height: 430pt">' . $html_bottom_left . '</td>
+			<td style="background-color: #f2f2f2;width: 50%;height: 50%;">' . $html_bottom_right . '</td>
+			</tr>
+			';
+		$html .= '</table>';
+
+		$this->tmsmvoucher_output_mpdf_from_html( $html, $pdf_args );
+	}
+
+
+	/**
+	 * Output a pdf from html content (with TCPDF)
+	 *
+	 * @param $html
+	 * @param $pdf_args
+	 */
+	private function tmsmvoucher_output_tcpdf_from_html ($html, $pdf_args){
+
+		error_log('*** tmsmvoucher_output_tcpdf_from_html');
+
+		if (!class_exists('TCPDF')) { //If class not exist
+			require_once TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/tcpdf/tcpdf.php';
+		}
+
+		$pdf_enable_preview = 'no';
+
+		$pdf_orientation = 'P'; // (P=portrait, L=landscape)
+		$pdf_unit = 'mm'; // [pt=point, mm=millimeter, cm=centimeter, in=inch]
+		$pdf_page_format = 'A4';
+		$pdf_unicode = true;
+		$pdf_charset = 'UTF-8';
+		$pdf_pdfamode = false;
+		$pdf_zoom = 'fullpage'; // [fullpage, fullwidth, real, default]
+
+		$pdf_autopage_break = true;
+		$pdf_margin_header = 0;
+		$pdf_margin_footer = 0;
+		$pdf_margin_top = 0;
+		$pdf_margin_bottom = 0;
+		$pdf_margin_left = 0;
+		$pdf_margin_right = 0;
+
+		$pdf_image_scale_ratio = 1.25;
+		$pdf_bg_image = '';
+
+		$pdf_font_subsetting = true;
+		$pdf_font_size = 12;
+		$pdf_font_monospaced = 'courier';
+		$pdf_font = 'helvetica';
+		if (!empty($pdf_args['char_support'])) { // if character support is checked
+			$pdf_font = 'freeserif';
+		}
+
+		$pdf_save = !empty($pdf_args['save_file']) ? true : false; // Pdf store in a folder or not
+
+
+		$pdf = new TCPDF($pdf_orientation, $pdf_unit, $pdf_page_format, $pdf_unicode, $pdf_charset, $pdf_pdfamode);
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		$pdf->SetDisplayMode($pdf_zoom);
+		$pdf->SetCreator(utf8_decode(__('WooCommerce', 'tmsm-woocommerce-vouchers')));
+		$pdf->SetAuthor(utf8_decode(__('WooCommerce', 'tmsm-woocommerce-vouchers')));
+		$pdf->SetTitle(utf8_decode(__('Voucher', 'tmsm-woocommerce-vouchers')));
+		$pdf->setHeaderFont(Array($pdf_font, '', $pdf_font_size));
+		$pdf->setFooterFont(Array($pdf_font, '', $pdf_font_size));
+		$pdf->SetDefaultMonospacedFont($pdf_font_monospaced);
+		$pdf->SetMargins($pdf_margin_left, $pdf_margin_top, $pdf_margin_right);
+		$pdf->SetHeaderMargin($pdf_margin_header);
+		$pdf->SetFooterMargin($pdf_margin_footer);
+		$pdf->SetAutoPageBreak($pdf_autopage_break, $pdf_margin_bottom);
+		$pdf->setImageScale($pdf_image_scale_ratio);
+		$pdf->setFontSubsetting($pdf_font_subsetting);
+		$pdf->SetFont($pdf_font, '', $pdf_font_size);
+		$pdf->AddPage($pdf_orientation);
+		$pdf->setCellMargins(0, 1, 0, 1);
+		$pdf->SetTextColor(50, 50, 50);
+		$pdf->SetFillColor(238, 238, 238);
+
+
+		$pdf->writeHTML($html, true, 0, true, 0);
+		$pdf->lastPage();
+
+		// ---------------------------------------------------------
+		$order_pdf_name = 'aquatonic-paris-{current_date}';
+		if (!empty($order_pdf_name)) {
+			$order_pdf_name = 'voucher-' . date('Y-m-d');
+		}
+		$pdf_file_name = str_replace("{current_date}", date('Y-m-d'), $order_pdf_name);
+
+		//Get pdf name
+		$pdf_name = isset($pdf_args['pdf_name']) && !empty($pdf_args['pdf_name']) ? $pdf_args['pdf_name'] : $pdf_file_name;
+
+		// clean output just before generate voucher
+		if (ob_get_contents() || ob_get_length())
+			ob_end_clean();
+
+		// Store pdf in a folder
+		if ($pdf_save) {
+			$pdf->Output($pdf_name . '.pdf', 'F');
+		} else if (!empty($pdf_enable_preview) && $pdf_enable_preview == 'yes') {
+			$pdf->Output($pdf_name . '.pdf', 'I');
+			exit;
+		} else {
+			// Close and output PDF document
+			// Second Parameter I that means display direct and D that means ask product or open this file
+			$pdf->Output($pdf_name . '.pdf', 'D');
+		}
+
+	}
+
+	/**
+	 * Output a pdf from html content (with MPDF 6.1.4)
+	 *
+	 * @param $html
+	 * @param $pdf_args
+	 */
+	private function tmsmvoucher_output_mpdf_from_html ($html, $pdf_args){
+
+		error_log('*** tmsmvoucher_output_pdf_from_html');
+
+		if (!class_exists('mPDF')) { //If class not exist
+			require_once TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/mpdf/mpdf.php';
+		}
+		$mpdf = new mPDF('UTF-8', 'A4',  12,  'dejavusans', 0, 0, 0, 0, 0, 0, $orientation = 'P');
+		$mpdf->WriteHTML($html);
+		$mpdf->autoPageBreak = true;
+		$mpdf->setAutoTopMargin = 'pad';
+		$mpdf->setAutoBottomMargin = 'pad';
+		$mpdf->bleedMargin = 0;
+		$mpdf->margBuffer = 0;
+		$mpdf->nonPrintMargin = 0;
+		$mpdf->SetDisplayMode('fullpage', 'single');
+		$mpdf->debug = true;
+		$mpdf->showImageErrors = true;
+		$mpdf->Output();
+
+	}
 
 }
