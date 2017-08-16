@@ -28,7 +28,9 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
-
+$upload_dir		= wp_upload_dir();
+$upload_path	= isset( $upload_dir['basedir'] ) ? $upload_dir['basedir'].'/' : ABSPATH;
+define( 'TMSMWOOCOMMERCEVOUCHERS_UPLOADDIR' , $upload_path . 'woocommerce_uploads/vouchers/' ); // Voucher upload dir
 define( 'TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR', plugin_dir_path( __FILE__ ) );
 
 /**

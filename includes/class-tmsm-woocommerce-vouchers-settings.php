@@ -68,6 +68,15 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 					$settings = array(
 
 						array(
+							'type'     => 'checkbox',
+							'id'       => 'tmsm_woocommerce_vouchers_recipientoptionnal',
+							'name'     => __( 'Recipient optionnal', 'tmsm-woocommerce-vouchers' ),
+							'desc'     => '<p class="description">'.__( 'If checked, the customer is not obliged to set a recipient' ).'</p>',
+							'default'  => 'yes',
+						),
+
+
+						array(
 							'name' => __( 'Recipient fields', 'tmsm-woocommerce-vouchers' ),
 							'type' => 'title',
 							'desc' => '',
@@ -77,26 +86,26 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipientfirstname',
-							'name'     => __( 'Firstname asked', 'tmsm-woocommerce-vouchers' ),
+							'name'     => __( 'First name asked', 'tmsm-woocommerce-vouchers' ),
 							'default'  => 'yes',
 						),
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipientfirstnamerequired',
-							'name'     => __( 'Firstname required', 'tmsm-woocommerce-vouchers' ),
+							'name'     => __( 'First name required', 'tmsm-woocommerce-vouchers' ),
 							'default'  => 'yes',
 						),
 
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipientlastname',
-							'name'     => __( 'Lastname asked', 'tmsm-woocommerce-vouchers' ),
+							'name'     => __( 'Last name asked', 'tmsm-woocommerce-vouchers' ),
 							'default'  => 'yes',
 						),
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipientlastnamerequired',
-							'name'     => __( 'Lastname required', 'tmsm-woocommerce-vouchers' ),
+							'name'     => __( 'Last name required', 'tmsm-woocommerce-vouchers' ),
 							'default'  => 'yes',
 						),
 
@@ -402,9 +411,8 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 
 						array(
 							'type'     => 'checkbox',
-							'id'       => 'tmsm_woocommerce_vouchers_recipientoptionnal',
-							'name'     => __( 'Recipient optionnal', 'tmsm-woocommerce-vouchers' ),
-							'desc'     => '<p class="description">'.__( 'If checked, the customer is not obliged to set a recipient' ).'</p>',
+							'id'       => 'tmsm_woocommerce_vouchers_attachemail',
+							'name'     => __( 'Attach PDF voucher to email notification', 'tmsm-woocommerce-vouchers' ),
 							'default'  => 'yes',
 						),
 
@@ -416,6 +424,43 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'class'		=> 'wc-enhanced-select',
 							'options'	=> $all_schedule_time_options
 						),
+
+						array(
+							'type'     => 'text',
+							'id'       => 'tmsm_woocommerce_vouchers_downloadfilename',
+							'name'     => __( 'Download PDF File Name', 'tmsm-woocommerce-vouchers' ),
+							'desc'     => __( '.pdf', 'tmsm-woocommerce-vouchers' ).
+							              '<p class="description">'.__( 'Enter the PDF file name. This file name will be used when users download a PDF of voucher codes on frontend.', 'tmsm-woocommerce-vouchers'). ' '.
+							              __( 'The available tags are:', 'tmsm-woocommerce-vouchers'). '<br>'.
+							              __( '<code>{item_id}</code> - item ID', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{product_id}</code> - product ID', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{order_id}</code> - order ID', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{unique_string}</code> - unique string', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{current_date}</code> - the current date YYYYMMDD', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              '</p>',
+							'default'  => 'voucher-{current_date}-{unique_string}',
+							'class'  => 'regular-text',
+						),
+						array(
+							'type'     => 'text',
+							'id'       => 'tmsm_woocommerce_vouchers_attachmentfilename',
+							'name'     => __( 'Attachment PDF File Name', 'tmsm-woocommerce-vouchers' ),
+							'desc'     => __( '.pdf', 'tmsm-woocommerce-vouchers' ).
+							              '<p class="description">'.__( 'Enter the PDF file name. This file name will be used when users download a PDF of voucher codes from the email attachment.', 'tmsm-woocommerce-vouchers'). ' '.
+							              __( 'The available tags are:', 'tmsm-woocommerce-vouchers'). '<br>'.
+							              __( '<code>{item_id}</code> - item ID', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{product_id}</code> - product ID', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{order_id}</code> - order ID', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{voucher_code}</code> - voucher code', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{unique_string}</code> - unique string', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{current_date}</code> - the current date YYYYMMDD', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              '</p>',
+							'default'  => 'voucher-{current_date}-{unique_string}',
+							'class'  => 'regular-text',
+						),
+
+
+
 						/*
 						array(
 							'name' => __( 'Important Stuff', 'tmsm-woocommerce-vouchers' ),

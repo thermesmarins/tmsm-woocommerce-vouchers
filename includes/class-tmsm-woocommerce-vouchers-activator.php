@@ -32,8 +32,9 @@ class Tmsm_Woocommerce_Vouchers_Activator {
 	public static function activate() {
 		if ( ! self::compatible_version() ) {
             deactivate_plugins( plugin_basename( __FILE__ ) );
-            wp_die( __( 'My Plugin requires WordPress 3.7 or higher!', 'my-plugin' ) );
+            wp_die( __( 'TMSM WooCommerce Vouchers requires WooCommerce 3.0.0 or higher!', 'tmsm-woocommerce-vouchers' ) );
         }
+        self::create_folders();
 
 	}
 
@@ -48,6 +49,38 @@ class Tmsm_Woocommerce_Vouchers_Activator {
              return false;
          }
         return true;
+    }
+
+
+	/**
+	 * Create folder containing vouchers for attachments
+	 *
+	 * @return bool
+	 */
+    static function create_folders(){
+
+	    $files	= array(
+		    array(
+			    'base' 		=> TMSMWOOCOMMERCEVOUCHERS_UPLOADDIR,
+			    'file' 		=> '.htaccess',
+			    'content' 	=> 'deny from all'
+		    ),
+		    array(
+			    'base' 		=> TMSMWOOCOMMERCEVOUCHERS_UPLOADDIR,
+			    'file' 		=> 'index.html',
+			    'content' 	=> ''
+		    )
+	    );
+
+	    foreach ( $files as $file ) {
+		    if ( wp_mkdir_p( $file['base'] ) && ! file_exists( trailingslashit( $file['base'] ) . $file['file'] ) ) {
+			    if ( $file_handle = @fopen( trailingslashit( $file['base'] ) . $file['file'], 'w' ) ) {
+				    fwrite( $file_handle, $file['content'] );
+				    fclose( $file_handle );
+			    }
+		    }
+	    }
+	    return true;
     }
 
 
