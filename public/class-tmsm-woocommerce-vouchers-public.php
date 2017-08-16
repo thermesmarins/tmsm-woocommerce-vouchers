@@ -1008,7 +1008,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	public function woocommerce_customer_get_downloadable_products( $downloads = [] ) {
 
-		return $downloads;
 
 		error_log( 'bbb' );
 		if ( is_user_logged_in() ) {//If user is logged in
@@ -1034,10 +1033,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 					$order_id = isset( $user_order->ID ) ? $user_order->ID : '';
 
 					if ( ! empty( $order_id ) ) {//Order it not empty
-						global $vou_order;
 
-						//Set global order ID
-						$vou_order = $order_id;
 
 						//Get cart details
 						$order = wc_get_order( $order_id );
@@ -1046,19 +1042,20 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						//$order_date   = date( 'F j, Y', strtotime( $order_date ) );
 
 						if ( ! empty( $order_items ) ) {// Check cart details are not empty
-							foreach ( $order_items as $item_id => $product_data ) {
+							foreach ( $order_items as $item_id => $item ) {
 
-								error_log( 'ccc' );
-								$_product = $order->get_product_from_item( $product_data );
+
+								$_product = $order->get_product_from_item( $item );
 
 								if ( ! $_product ) {//If product deleted
 									$download_file_data = array();
 								} else {
-									$download_file_data = $woo_vou_model->woo_vou_get_item_downloads_from_order( $order, $product_data );
+									//$download_file_data = $woo_vou_model->woo_vou_get_item_downloads_from_order( $order, $item );
+									$download_file_data = $item->get_item_downloads();
 								}
 
 								//Get voucher codes
-								$code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
+								$code = wc_get_order_item_meta( $item_id, '_vouchercode', true );
 
 								if ( ! empty( $download_file_data ) && ! empty( $code ) ) {//If download exist and code is not empty
 									foreach ( $download_file_data as $key => $download_file ) {
@@ -1068,6 +1065,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 										//get voucher number
 										$voucher_number = str_replace( 'tmsmvoucher_pdf_', '', $key );
+
 
 										if ( empty( $voucher_number ) ) {//If empty voucher number
 											$voucher_number = 1;
@@ -1085,15 +1083,33 @@ class Tmsm_Woocommerce_Vouchers_Public {
 											$download_url = add_query_arg( $add_arguments, $download_url );
 											//Get product ID
 											$product_id = $_product->get_id();
-											//get product name
-											$product_name = $_product->get_title();
-											error_log( 'ddd' );
+
+
+											switch ( $item->get_meta('_recipienttitle') ) {
+												case 1:
+													$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
+													break;
+												case 2:
+													$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
+													break;
+												default:
+													$title = '';
+													break;
+											}
+
+											$recipient = array(
+												'first_name' => $title . $item->get_meta( '_recipientfirstname' ),
+												'last_name'  => $item->get_meta( '_recipientlastname' ),
+											);
+
+											$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
+
 											//Download file arguments
 											$download_args = array(
 												'product_id'          => $product_id,
-												'product_name'        => $product_name,
+												'product_name'        => $item->get_name() . ' '. __( 'for', 'tmsm-woocommerce-vouchers' ) . ' ' .$formatted_recipient,
 												'download_url'        => $download_url,
-												'download_name'       => $product_name . ' - ' . $download_file['name'] . ' ' . $voucher_number
+												'download_name'       => $_product->get_title() . $download_file['name'] . ' ' . $voucher_number
 												                         . ' ( ' . $order_date . ' )',
 												'downloads_remaining' => '',
 												'file'                => array(
@@ -1110,8 +1126,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 							}
 						}
 
-						//reset global order ID
-						$vou_order = 0;
 					}
 				}
 			}

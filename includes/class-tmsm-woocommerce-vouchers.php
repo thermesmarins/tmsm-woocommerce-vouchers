@@ -200,7 +200,7 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action( 'woocommerce_checkout_update_order_meta', $plugin_public, 'woocommerce_checkout_update_order_meta', 10, 1 );
 		$this->loader->add_action( 'woocommerce_grant_product_download_permissions', $plugin_public, 'woocommerce_grant_product_download_permissions', 10, 1 );
 		$this->loader->add_action( 'woocommerce_get_item_downloads', $plugin_public, 'woocommerce_get_item_downloads', 10, 3 );
-		//$this->loader->add_action( 'woocommerce_customer_get_downloadable_products', $plugin_public, 'woocommerce_customer_get_downloadable_products', 10, 1 );
+		$this->loader->add_filter( 'woocommerce_customer_get_downloadable_products', $plugin_public, 'woocommerce_customer_get_downloadable_products', 10, 1 );
 		$this->loader->add_action( 'woocommerce_download_product', $plugin_public, 'woocommerce_download_product', 10, 6 );
 		$this->loader->add_filter( 'woocommerce_email_attachments', $plugin_public, 'woocommerce_email_attachments', 10, 3 );
 
