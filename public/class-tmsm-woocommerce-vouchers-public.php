@@ -1297,14 +1297,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						$code = $this->tmsmvoucher_generate_code($product_id, $variation_id);
 
 						if(!empty($code)){
-							$start_date = date('Y-m-d H:i:s', time()); // format start date
-
-							//get days difference
-							$days_diff = 365;
-							$add_days = '+' . $days_diff . ' days';
-							$exp_date = date('Y-m-d H:i:s', strtotime($order_date . $add_days));
-
-							//add voucher codes item meta "Now we store voucher codes in item meta fields"
+							$expiredays = get_option( 'tmsm_woocommerce_vouchers_expiredays' );
+							if(!empty($expiredays)){
+								$expirydate = date('Y-m-d', strtotime($order_date . '+' . $expiredays . ' days'));
+								wc_add_order_item_meta($item_id, '_expirydate', $expirydate);
+							}
 							wc_add_order_item_meta($item_id, '_vouchercode', $code);
 						}
 					}
@@ -1695,6 +1692,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$product = wc_get_product($product_id);
 		$order = wc_get_order($order_id);
 		$code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
+		$expirydate	= wc_get_order_item_meta( $item_id, '_expirydate', true );
 
 		if(!empty($code) && !empty($order) ){
 
@@ -1737,7 +1735,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 
 			$html_top_left = '';
-			$html_top_left .= __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $code.'</strong> ';
+			$html_top_left .= __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $code.'</strong> '.'<br>';
+			if(!empty($expirydate)){
+				$html_top_left .= __( 'Expiry date:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) ).'</strong> '.'<br>';
+			}
 
 			$html_top_right = '';
 			$html_top_right.= $recipient;
