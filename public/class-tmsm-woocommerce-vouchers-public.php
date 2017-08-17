@@ -593,47 +593,47 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		// title
 		$submit_recipienttitle             = isset( $_POST['_recipienttitle'][ $variation_id ] )
-			? wp_filter_nohtml_kses( $_POST['_recipienttitle'][ $variation_id ] ) : '';
+			? trim(wp_filter_nohtml_kses( $_POST['_recipienttitle'][ $variation_id ] )) : '';
 		$cart_item_data['_recipienttitle'] = $submit_recipienttitle;
 
 		// firstname
 		$submit_recipientfirstname             = isset( $_POST['_recipientfirstname'][ $variation_id ] )
-			? wp_filter_nohtml_kses( $_POST['_recipientfirstname'][ $variation_id ] ) : '';
+			? trim(wp_filter_nohtml_kses( $_POST['_recipientfirstname'][ $variation_id ] )) : '';
 		$cart_item_data['_recipientfirstname'] = $submit_recipientfirstname;
 
 		// lastname
 		$submit_recipientlastname             = isset( $_POST['_recipientlastname'][ $variation_id ] )
-			? wp_filter_nohtml_kses( $_POST['_recipientlastname'][ $variation_id ] ) : '';
+			? trim(wp_filter_nohtml_kses( $_POST['_recipientlastname'][ $variation_id ] )) : '';
 		$cart_item_data['_recipientlastname'] = $submit_recipientlastname;
 
 		// address
 		$submit_recipientaddress             = isset( $_POST['_recipientaddress'][ $variation_id ] )
-			? wp_filter_nohtml_kses( $_POST['_recipientaddress'][ $variation_id ] ) : '';
+			? trim(wp_filter_nohtml_kses( $_POST['_recipientaddress'][ $variation_id ] )) : '';
 		$cart_item_data['_recipientaddress'] = $submit_recipientaddress;
 
 		// zipcode
 		$submit_recipientzipcode             = isset( $_POST['_recipientzipcode'][ $variation_id ] )
-			? wp_filter_nohtml_kses( $_POST['_recipientzipcode'][ $variation_id ] ) : '';
+			? trim(wp_filter_nohtml_kses( $_POST['_recipientzipcode'][ $variation_id ] )) : '';
 		$cart_item_data['_recipientzipcode'] = $submit_recipientzipcode;
 
 		// city
 		$submit_recipientcity             = isset( $_POST['_recipientcity'][ $variation_id ] )
-			? wp_filter_nohtml_kses( $_POST['_recipientcity'][ $variation_id ] ) : '';
+			? trim(wp_filter_nohtml_kses( $_POST['_recipientcity'][ $variation_id ] )) : '';
 		$cart_item_data['_recipientcity'] = $submit_recipientcity;
 
 		// country
 		$submit_recipientcountry             = isset( $_POST['_recipientcountry'][ $variation_id ] )
-			? wp_filter_nohtml_kses( $_POST['_recipientcountry'][ $variation_id ] ) : '';
+			? trim(wp_filter_nohtml_kses( $_POST['_recipientcountry'][ $variation_id ] )) : '';
 		$cart_item_data['_recipientcountry'] = $submit_recipientcountry;
 
 		// mobilephone
 		$submit_recipientmobilephone             = isset( $_POST['_recipientmobilephone'][ $variation_id ] )
-			? wp_filter_nohtml_kses( $_POST['_recipientmobilephone'][ $variation_id ] ) : '';
+			? trim(wp_filter_nohtml_kses( $_POST['_recipientmobilephone'][ $variation_id ] )) : '';
 		$cart_item_data['_recipientmobilephone'] = $submit_recipientmobilephone;
 
 		// email
 		$submit_recipientemail             = isset( $_POST['_recipientemail'][ $variation_id ] )
-			? wp_filter_nohtml_kses( $_POST['_recipientemail'][ $variation_id ] ) : '';
+			? trim(wp_filter_nohtml_kses( $_POST['_recipientemail'][ $variation_id ] )) : '';
 		$cart_item_data['_recipientemail'] = $submit_recipientemail;
 
 
@@ -817,78 +817,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	}
 
 
-	/**
-	 * Adds voucher data to order
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param $order_id
-	 *
-	 * @return void
-	 */
-	public function woocommerce_checkout_update_order_meta($order_id){
-
-		error_log('*** woocommerce_checkout_update_order_meta');
-
-		$order = wc_get_order($order_id);
-		$customer_id = $order->get_customer_id();
-		if ( $customer_id ) {
-			$user = get_user_by( 'id', $customer_id );
-			$username = trim( sprintf( _x( '%1$s %2$s', 'full name', 'tmsm-woocommerce-vouchers' ), $order->get_billing_first_name(), $order->get_billing_last_name() ) );
-		}
-		else{
-			$username = __('Guest', 'tmsm-woocommerce-vouchers');
-		}
-
-		$order_items = $order->get_items();
-		$order_date = $order->get_date_created();
-
-		if (is_array($order_items)) {
-
-			// Check cart details
-			foreach ($order_items as $item_id => $item) {
-
-				//get product id
-				$product_id = $item['product_id'];
-
-				// Taking variation id
-				$variation_id = !empty($item['variation_id']) ? $item['variation_id'] : '';
-
-				// If product is variable product take variation id else product id
-				$data_id = (!empty($variation_id) ) ? $variation_id : $product_id;
-
-				//Get voucher code from item meta "Now we store voucher codes in item meta fields"
-				$codes_item_meta = wc_get_order_item_meta($item_id, '_vouchercode');
-
-				if (empty($codes_item_meta)) {// If voucher data are not empty so code get executed once only
-
-					$enable_voucher = $this->tmsmvoucher_product_type_is_voucher($product_id, $variation_id);
-
-					if ( $enable_voucher ) { // if voucher is enable
-
-						$code = $this->tmsmvoucher_generate_code($product_id, $variation_id);
-
-						$start_date = date('Y-m-d H:i:s', time()); // format start date
-
-						//get days difference
-						$days_diff = 365;
-						$add_days = '+' . $days_diff . ' days';
-						$exp_date = date('Y-m-d H:i:s', strtotime($order_date . $add_days));
-
-						//add voucher codes item meta "Now we store voucher codes in item meta fields"
-						wc_add_order_item_meta($item_id, '_vouchercode', $code);
-
-					}
-
-
-				}
-			}
-
-
-		}
-
-	}
-
 
 	/**
 	 * Create download links in /my-account/downloads/ page
@@ -900,6 +828,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @return void
 	 */
 	public function woocommerce_grant_product_download_permissions( $order_id ) {
+
+		$this->tmsmvoucher_update_order_meta($order_id);
 
 		$order = wc_get_order( $order_id );
 
@@ -925,7 +855,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						$downloadable_files = $this->tmsmvoucher_download_key( $order_id, $data_id, $item_id );
 
 						foreach ( array_keys( $downloadable_files ) as $download_id ) {
-							error_log('wc_downloadable_file_permission '.$download_id);
+							//error_log('wc_downloadable_file_permission '.$download_id);
 							wc_downloadable_file_permission( $download_id, $data_id, $order );
 						}
 					}
@@ -1008,10 +938,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	public function woocommerce_customer_get_downloadable_products( $downloads = [] ) {
 
-
-		error_log( 'bbb' );
 		if ( is_user_logged_in() ) {//If user is logged in
-			echo 'ddd';
 			//Get user ID
 			$user_id = get_current_user_id();
 
@@ -1152,15 +1079,15 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	function woocommerce_download_product( $email, $order_key, $product_id, $user_id, $download_id, $order_id ) {
 
 		error_log( '*** woocommerce_download_product' );
-		error_log( '$email: ' . $email );
-		error_log( '$order_key: ' . $order_key );
-		error_log( '$product_id: ' . $product_id );
-		error_log( '$user_id: ' . $user_id );
-		error_log( '$download_id: ' . $download_id );
-		error_log( '$order_id: ' . $order_id );
+		//error_log( '$email: ' . $email );
+		//error_log( '$order_key: ' . $order_key );
+		//error_log( '$product_id: ' . $product_id );
+		//error_log( '$user_id: ' . $user_id );
+		//error_log( '$download_id: ' . $download_id );
+		//error_log( '$order_id: ' . $order_id );
 
 		$item_id = wc_clean( $_GET['item_id'] );
-		error_log( '$item_id: ' . $item_id );
+		//error_log( '$item_id: ' . $item_id );
 
 		$pdf_filename = get_option('tmsm_woocommerce_vouchers_downloadfilename');
 		$pdf_filename = isset($pdf_filename) ? $pdf_filename : 'voucher-{current_date}-{unique_string}';
@@ -1196,7 +1123,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		global $post;
 
 
-		error_log('*** woocommerce_email_attachments');
+		//error_log('*** woocommerce_email_attachments');
 
 		$order_id = '';
 		$order_status = '';
@@ -1223,18 +1150,18 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$settings_attachemail = get_option( 'tmsm_woocommerce_vouchers_attachemail' );
 		$grant_access_after_payment = get_option('woocommerce_downloads_grant_access_after_payment'); // Woocommerce grant access after payment
 
-		error_log('$order_id: '.$order_id);
-		error_log('$settings_attachemail: '.$settings_attachemail);
-		error_log('$order_status: '.$order_status);
-		error_log('!empty($order): '.!empty($order));
-		error_log('!empty($order): '.!empty($order));
-		error_log('(in_array($status, $processing_status) && in_array($order_status, $completed_status)): '.(in_array($status, $processing_status) && in_array($order_status, $completed_status)));
-		error_log('($status == \'customer_processing_order\' && $grant_access_after_payment == \'yes\' && $order_status != \'wc-on-hold\'): '.($status == 'customer_processing_order' && $grant_access_after_payment == 'yes' && $order_status != 'wc-on-hold'));
+		//error_log('$order_id: '.$order_id);
+		//error_log('$settings_attachemail: '.$settings_attachemail);
+		//error_log('$order_status: '.$order_status);
+		//error_log('!empty($order): '.!empty($order));
+		//error_log('!empty($order): '.!empty($order));
+		//error_log('(in_array($status, $processing_status) && in_array($order_status, $completed_status)): '.(in_array($status, $processing_status) && in_array($order_status, $completed_status)));
+		//error_log('($status == \'customer_processing_order\' && $grant_access_after_payment == \'yes\' && $order_status != \'wc-on-hold\'): '.($status == 'customer_processing_order' && $grant_access_after_payment == 'yes' && $order_status != 'wc-on-hold'));
 
 
 		if ($order_id && $settings_attachemail == 'yes' && !empty($order) && ( (in_array($status, $processing_status) && in_array($order_status, $completed_status)) || ($status == 'customer_processing_order' && $grant_access_after_payment == 'yes' && $order_status != 'wc-on-hold') )) {
 
-			error_log('tmsm_woocommerce_vouchers_attachemail');
+			//error_log('tmsm_woocommerce_vouchers_attachemail');
 
 			$cart_details = wc_get_order($order_id);
 			$order_items = $cart_details->get_items();
@@ -1279,7 +1206,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 									// If voucher pdf does not exist in folder
 									if (!file_exists($pdf_filepath)) {
 
-										error_log('file_not_exists 1 '.$pdf_filepath);
+										//error_log('file_not_exists 1 '.$pdf_filepath);
 										$pdf_args = array(
 											'pdf_filepath' => $pdf_filepath,
 											'pdf_save' => true
@@ -1289,16 +1216,16 @@ class Tmsm_Woocommerce_Vouchers_Public {
 										$this->tmsmvoucher_voucher_html_template( $data_id, $order_id, $item_id, $pdf_args);
 									}
 									else{
-										error_log('file_exists 1 '.$pdf_filepath);
+										//error_log('file_exists 1 '.$pdf_filepath);
 									}
 
 									// If voucher pdf exist in folder
 									if (file_exists($pdf_filepath)) {
 										$attachments[] = $pdf_filepath; // Adding the voucher pdf in attachment array
-										error_log('file_exists 2 '.$pdf_filepath);
+										//error_log('file_exists 2 '.$pdf_filepath);
 									}
 									else{
-										error_log('file_not_exists 2 '.$pdf_filepath);
+										//error_log('file_not_exists 2 '.$pdf_filepath);
 									}
 								}
 							}
@@ -1310,6 +1237,82 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		return $attachments;
 	}
 
+
+	/**
+	 * Adds voucher data to order
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param $order_id
+	 *
+	 * @return void
+	 */
+	private function tmsmvoucher_update_order_meta($order_id){
+
+		error_log('*** tmsmvoucher_update_order_meta');
+
+		$order = wc_get_order($order_id);
+		error_log('order status: '.$order->get_status());
+
+		if(!$order->is_paid()){
+			return;
+		}
+		error_log('order paid');
+
+		$customer_id = $order->get_customer_id();
+		if ( $customer_id ) {
+			$user = get_user_by( 'id', $customer_id );
+			$username = trim( sprintf( _x( '%1$s %2$s', 'full name', 'tmsm-woocommerce-vouchers' ), $order->get_billing_first_name(), $order->get_billing_last_name() ) );
+		}
+		else{
+			$username = __('Guest', 'tmsm-woocommerce-vouchers');
+		}
+
+		$order_items = $order->get_items();
+		$order_date = $order->get_date_created();
+
+		if (is_array($order_items)) {
+
+			// Check cart details
+			foreach ($order_items as $item_id => $item) {
+
+				//get product id
+				$product_id = $item['product_id'];
+
+				// Taking variation id
+				$variation_id = !empty($item['variation_id']) ? $item['variation_id'] : '';
+
+				// If product is variable product take variation id else product id
+				$data_id = (!empty($variation_id) ) ? $variation_id : $product_id;
+
+				//Get voucher code from item meta "Now we store voucher codes in item meta fields"
+				$codes_item_meta = wc_get_order_item_meta($item_id, '_vouchercode');
+
+				if (empty($codes_item_meta)) {// If voucher data are not empty so code get executed once only
+
+					$enable_voucher = $this->tmsmvoucher_product_type_is_voucher($product_id, $variation_id);
+
+					if ( $enable_voucher ) { // if voucher is enable
+
+						$code = $this->tmsmvoucher_generate_code($product_id, $variation_id);
+
+						if(!empty($code)){
+							$start_date = date('Y-m-d H:i:s', time()); // format start date
+
+							//get days difference
+							$days_diff = 365;
+							$add_days = '+' . $days_diff . ' days';
+							$exp_date = date('Y-m-d H:i:s', strtotime($order_date . $add_days));
+
+							//add voucher codes item meta "Now we store voucher codes in item meta fields"
+							wc_add_order_item_meta($item_id, '_vouchercode', $code);
+						}
+					}
+				}
+			} // foreach $order_items
+
+		}
+	}
 
 	/**
 	 * Generates a unique string
@@ -1370,11 +1373,31 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @return string
 	 */
-	public function tmsmvoucher_generate_code( $product_id, $variation_id ) {
+	private function tmsmvoucher_generate_code( $product_id, $variation_id ) {
 
 		error_log('*** tmsmvoucher_generate_code');
+		$product = wc_get_product((!empty($variation_id) ? $variation_id : $product_id));
 
-		$code = '555555'; //@TODO function to generate unique codes
+		$is_virtual = get_post_meta( $product->get_id(), '_virtual', true ) == 'yes';
+
+		if($is_virtual){
+			$voucheruses = $product->get_meta('_voucheruses', true );
+			if(empty($voucheruses)){
+				$voucheruses = 0;
+			}
+			$code = $product->get_sku().'-'.str_pad($voucheruses + 1, 5, '0', STR_PAD_LEFT);
+			error_log('productname: '.$product->get_title() );
+			error_log('productid: '.$product->get_id() );
+			error_log('productsku: '.$product->get_sku() );
+			error_log('productvoucheruses: '.$voucheruses);
+			error_log('code: '.$code);
+
+			$product->add_meta_data('_voucheruses' , $voucheruses + 1, true);
+			$product->save();
+		}
+		else{
+			$code = '';
+		}
 
 		return $code;
 	}
@@ -1390,7 +1413,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @return array
 	 */
-	public function tmsmvoucher_download_key( $order_id = '', $product_id = '', $item_id = '' ) {
+	private function tmsmvoucher_download_key( $order_id = '', $product_id = '', $item_id = '' ) {
 
 		error_log('*** tmsmvoucher_download_key');
 
@@ -1427,7 +1450,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @return array
 	 */
-	public function tmsmvoucher_get_multi_voucher_key( $order_id = '', $product_id = '', $item_id = '' ) {
+	private function tmsmvoucher_get_multi_voucher_key( $order_id = '', $product_id = '', $item_id = '' ) {
 
 		error_log('*** tmsmvoucher_get_multi_voucher_key');
 
@@ -1457,7 +1480,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @return array
 	 */
-	public function tmsmvoucher_get_multi_voucher( $order_id = '', $product_id = '', $item_id = '' ) {
+	private function tmsmvoucher_get_multi_voucher( $order_id = '', $product_id = '', $item_id = '' ) {
 
 		error_log('*** tmsmvoucher_get_multi_voucher');
 
@@ -1477,7 +1500,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @return mixed
 	 */
-	public function tmsmvoucher_get_variation_data($order = array(), $item_key = '') {
+	private function tmsmvoucher_get_variation_data($order = array(), $item_key = '') {
 
 		error_log('*** tmsmvoucher_get_variation_data');
 
@@ -1510,7 +1533,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @return array
 	 */
-	public function tmsmvoucher_get_item_data_using_item_key($order_items, $item_key) {
+	private function tmsmvoucher_get_item_data_using_item_key($order_items, $item_key) {
 
 		error_log('*** tmsmvoucher_get_item_data_using_item_key');
 
@@ -1545,7 +1568,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @return mixed
 	 */
-	public function tmsmvoucher_display_product_item_name($item = array(), $product = array()) {
+	private function tmsmvoucher_display_product_item_name($item = array(), $product = array()) {
 
 		error_log('*** tmsmvoucher_display_product_item_name');
 
@@ -1636,7 +1659,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @return mixed
 	 */
-	public function tmsmvoucher_get_item_productid_from_product($product){
+	private function tmsmvoucher_get_item_productid_from_product($product){
 
 		if ( $product->is_type( 'variable' ) || $product->is_type( 'variation' ) ) {
 			$product_id = $product->get_parent_id();
@@ -1672,70 +1695,77 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$product = wc_get_product($product_id);
 		$order = wc_get_order($order_id);
 		$code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
-		$recipienttitle	= wc_get_order_item_meta( $item_id, '_recipienttitle', true );
-		$recipientfirstname	= wc_get_order_item_meta( $item_id, '_recipientfirstname', true );
-		$recipientlastname	= wc_get_order_item_meta( $item_id, '_recipientlastname', true );
-		$recipientaddress	= wc_get_order_item_meta( $item_id, '_recipientaddress', true );
-		$recipientzipcode	= wc_get_order_item_meta( $item_id, '_recipientzipcode', true );
-		$recipientcity	= wc_get_order_item_meta( $item_id, '_recipientcity', true );
-		$recipientcountry	= wc_get_order_item_meta( $item_id, '_recipientcountry', true );
 
-		$recipient = '';
-		if ( !empty($recipientfirstname) && !empty($recipientlastname) ) {
-			switch ( $recipienttitle ) {
-				case 1:
-					$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
-					break;
-				case 2:
-					$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
-					break;
-				default:
-					$title = '';
-					break;
+		if(!empty($code) && !empty($order) ){
+
+			$recipienttitle	= wc_get_order_item_meta( $item_id, '_recipienttitle', true );
+			$recipientfirstname	= wc_get_order_item_meta( $item_id, '_recipientfirstname', true );
+			$recipientlastname	= wc_get_order_item_meta( $item_id, '_recipientlastname', true );
+			$recipientaddress	= wc_get_order_item_meta( $item_id, '_recipientaddress', true );
+			$recipientzipcode	= wc_get_order_item_meta( $item_id, '_recipientzipcode', true );
+			$recipientcity	= wc_get_order_item_meta( $item_id, '_recipientcity', true );
+			$recipientcountry	= wc_get_order_item_meta( $item_id, '_recipientcountry', true );
+
+			$recipient = '';
+			if ( !empty($recipientfirstname) && !empty($recipientlastname) ) {
+				switch ( $recipienttitle ) {
+					case 1:
+						$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
+						break;
+					case 2:
+						$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
+						break;
+					default:
+						$title = '';
+						break;
+				}
+
+				$recipient = array(
+					'first_name' => $title . $recipientfirstname,
+					'last_name'  => $recipientlastname,
+					'address_1'  => $recipientaddress,
+					//'address_2'   => '',
+					'city'       => $recipientcity,
+					'postcode'   => $recipientzipcode,
+					//'state'    => '',
+					'country'    => $recipientcountry,
+				);
+
+				$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
+				$recipient           =  __( 'Recipient:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $formatted_recipient.'</strong> ';
 			}
 
-			$recipient = array(
-				'first_name' => $title . $recipientfirstname,
-				'last_name'  => $recipientlastname,
-				'address_1'  => $recipientaddress,
-				//'address_2'   => '',
-				'city'       => $recipientcity,
-				'postcode'   => $recipientzipcode,
-				//'state'    => '',
-				'country'    => $recipientcountry,
-			);
 
-			$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
-			$recipient           =  __( 'Recipient:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $formatted_recipient.'</strong> ';
+			$html_top_left = '';
+			$html_top_left .= __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $code.'</strong> ';
+
+			$html_top_right = '';
+			$html_top_right.= $recipient;
+
+			$html_bottom_left = '';
+			$html_bottom_left .= $product->get_image();
+
+			$html_bottom_right = 'bottom right';
+
+			$html = '';
+			$html .= '<table class="tmsmvoucher-main-table" style="height: 1000pt; width: 100%" cellpadding="30" cellspacing="0">';
+			$html .= '
+				<tr>
+				<td style="background-color: #f2f2f2;width: 50%;height: 430pt;">' . $html_top_left . '</td>
+				<td style="background-color: #fff;width: 50%;height: 50%;">' . $html_top_right . '</td>
+				</tr>
+				<tr>
+				<td style="background-color: #fff;width: 50%;height: 430pt">' . $html_bottom_left . '</td>
+				<td style="background-color: #f2f2f2;width: 50%;height: 50%;">' . $html_bottom_right . '</td>
+				</tr>
+				';
+			$html .= '</table>';
+
+
+
+
+			$this->tmsmvoucher_output_mpdf_from_html( $html, $pdf_args );
 		}
-
-
-		$html_top_left = '';
-		$html_top_left .= __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $code.'</strong> ';
-
-		$html_top_right = '';
-		$html_top_right.= $recipient;
-
-		$html_bottom_left = '';
-		$html_bottom_left .= $product->get_image();
-
-		$html_bottom_right = 'bottom right';
-
-		$html = '';
-		$html .= '<table class="tmsmvoucher-main-table" style="height: 1000pt; width: 100%" cellpadding="30" cellspacing="0">';
-		$html .= '
-			<tr>
-			<td style="background-color: #f2f2f2;width: 50%;height: 430pt;">' . $html_top_left . '</td>
-			<td style="background-color: #fff;width: 50%;height: 50%;">' . $html_top_right . '</td>
-			</tr>
-			<tr>
-			<td style="background-color: #fff;width: 50%;height: 430pt">' . $html_bottom_left . '</td>
-			<td style="background-color: #f2f2f2;width: 50%;height: 50%;">' . $html_bottom_right . '</td>
-			</tr>
-			';
-		$html .= '</table>';
-
-		$this->tmsmvoucher_output_mpdf_from_html( $html, $pdf_args );
 	}
 
 

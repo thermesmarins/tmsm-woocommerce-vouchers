@@ -354,4 +354,21 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		return $formatted_meta;
 	}
 
+	/**
+	 * Plugin links in plugins list
+	 *
+	 * @param $links
+	 *
+	 * @return array
+	 */
+	function plugin_action_links( $links ) {
+		$plugin_links = [
+			'<a href="' . 'admin.php?page=wc-settings&tab=vouchers' . '">' . __( 'Settings' ) . '</a>',
+			'<a href="' . 'https://github.com/thermesmarins/tmsm-woocommerce-vouchers' . '" target="_blank">' . __( 'Github' ) . '</a>',
+		];
+		return array_merge( $plugin_links, $links );
+	}
+
+
+
 }

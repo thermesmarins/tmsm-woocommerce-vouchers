@@ -68,6 +68,13 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 					$settings = array(
 
 						array(
+							'name' => __( 'Recipient fields', 'tmsm-woocommerce-vouchers' ),
+							'type' => 'title',
+							'desc' => '',
+							'id'   => 'tmsm_woocommerce_vouchers_recipient',
+						),
+
+						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipientoptionnal',
 							'name'     => __( 'Recipient optionnal', 'tmsm-woocommerce-vouchers' ),
@@ -75,13 +82,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'default'  => 'yes',
 						),
 
-
-						array(
-							'name' => __( 'Recipient fields', 'tmsm-woocommerce-vouchers' ),
-							'type' => 'title',
-							'desc' => '',
-							'id'   => 'tmsm_woocommerce_vouchers_recipient',
-						),
 
 						array(
 							'type'     => 'checkbox',
@@ -458,9 +458,14 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'default'  => 'voucher-{current_date}-{unique_string}',
 							'class'  => 'regular-text',
 						),
-
-
-
+						array(
+							'type'     => 'text',
+							'id'       => 'tmsm_woocommerce_vouchers_expiredays',
+							'name'     => __( 'Voucher expires', 'tmsm-woocommerce-vouchers' ),
+							'desc'     => __( 'days', 'tmsm-woocommerce-vouchers' ),
+							'default'  => '365',
+						),
+					    
 						/*
 						array(
 							'name' => __( 'Important Stuff', 'tmsm-woocommerce-vouchers' ),

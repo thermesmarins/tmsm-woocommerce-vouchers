@@ -153,6 +153,7 @@ class Tmsm_Woocommerce_Vouchers {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_filter( 'plugin_action_links_' . plugin_basename( TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'tmsm-woocommerce-vouchers.php'), $plugin_admin, 'plugin_action_links' );
 
 		// Product types
 		$this->loader->add_filter( 'woocommerce_product_data_tabs', $plugin_admin, 'woocommerce_product_data_tabs_voucher' );
@@ -190,6 +191,7 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+
 		$this->loader->add_action( 'woocommerce_before_add_to_cart_button', $plugin_public, 'woocommerce_before_add_to_cart_button' );
 		$this->loader->add_filter( 'woocommerce_add_to_cart_validation', $plugin_public, 'woocommerce_add_to_cart_validation', 10, 6 );
 		$this->loader->add_filter( 'woocommerce_add_cart_item_data', $plugin_public, 'woocommerce_add_cart_item_data', 10, 3 );
@@ -197,7 +199,7 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action( 'woocommerce_checkout_create_order_line_item', $plugin_public, 'woocommerce_checkout_create_order_line_item', 10, 4 );
 		//$this->loader->add_action( 'woocommerce_order_item_meta_start', $plugin_public, 'woocommerce_order_item_meta_start', 10, 3 );
 		$this->loader->add_filter( 'woocommerce_display_item_meta', $plugin_public, 'woocommerce_display_item_meta', 10, 3 );
-		$this->loader->add_action( 'woocommerce_checkout_update_order_meta', $plugin_public, 'woocommerce_checkout_update_order_meta', 10, 1 );
+		//$this->loader->add_action( 'woocommerce_checkout_update_order_meta', $plugin_public, 'woocommerce_checkout_update_order_meta', 10, 1 );
 		$this->loader->add_action( 'woocommerce_grant_product_download_permissions', $plugin_public, 'woocommerce_grant_product_download_permissions', 10, 1 );
 		$this->loader->add_action( 'woocommerce_get_item_downloads', $plugin_public, 'woocommerce_get_item_downloads', 10, 3 );
 		$this->loader->add_filter( 'woocommerce_customer_get_downloadable_products', $plugin_public, 'woocommerce_customer_get_downloadable_products', 10, 1 );
