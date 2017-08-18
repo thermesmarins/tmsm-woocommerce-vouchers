@@ -357,5 +357,45 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	}
 
 
+	/**
+	 * Before save product
+	 *
+	 * @param WC_Product $product
+	 * @param $data
+	 *
+	 * @return void
+	 */
+	public function woocommerce_before_product_object_save($product, $data){
+
+		if(!empty($product) && !empty($product->get_id()) ){
+
+
+			error_log('*** id: '.$product->get_id());
+			if($product->is_type('variable')){
+
+				error_log('variable');
+				$is_voucher = get_post_meta( $product->get_id(), '_voucher', true ) == 'yes';
+				if($is_voucher){
+					$updated = update_post_meta( $product->get_id(), '_sold_individually','yes' );
+				}
+			}
+			if($product->is_type('variation')){
+				$is_voucher = get_post_meta( $product->get_id(), '_voucher', true ) == 'yes';
+				error_log('variation');
+				error_log('parent: '.$product->get_parent_id());
+				if($is_voucher){
+					error_log('is_voucher');
+					$updated = update_post_meta( $product->get_parent_id(), '_sold_individually','yes' );
+				}
+			}
+			error_log('updated: '.$updated);
+		}
+		//error_log('product_id: '.$product->get_id());
+		//
+		//error_log('updated: '. $updated);
+		//$product->save();
+
+	}
+
 
 }
