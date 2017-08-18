@@ -61,18 +61,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Tmsm_Woocommerce_Vouchers_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Tmsm_Woocommerce_Vouchers_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -83,18 +71,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Tmsm_Woocommerce_Vouchers_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Tmsm_Woocommerce_Vouchers_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tmsm-woocommerce-vouchers-admin.js', array( 'jquery' ), $this->version, false );
 
@@ -349,6 +325,17 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 				$meta->display_key = __('Recipient email', 'tmsm-woocommerce-vouchers');
 			}
 
+			// vouchercode
+			if($meta->key == '_vouchercode' && !empty($meta->value)){
+				$meta->display_key = __('Voucher code', 'tmsm-woocommerce-vouchers');
+			}
+
+			// expirydate
+			if($meta->key == '_expirydate' && !empty($meta->value)){
+				$meta->display_key = __('Expiry date', 'tmsm-woocommerce-vouchers');
+				$meta->display_value = date_i18n( get_option( 'date_format' ), strtotime( $meta->value ) );
+			}
+
 		}
 
 		return $formatted_meta;
@@ -363,7 +350,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	 */
 	function plugin_action_links( $links ) {
 		$plugin_links = [
-			'<a href="' . 'admin.php?page=wc-settings&tab=vouchers' . '">' . __( 'Settings' ) . '</a>',
+			'<a href="' . 'admin.php?page=wc-settings&tab=tmsmvouchers">' . __( 'Settings' ) . '</a>',
 			'<a href="' . 'https://github.com/thermesmarins/tmsm-woocommerce-vouchers' . '" target="_blank">' . __( 'Github' ) . '</a>',
 		];
 		return array_merge( $plugin_links, $links );

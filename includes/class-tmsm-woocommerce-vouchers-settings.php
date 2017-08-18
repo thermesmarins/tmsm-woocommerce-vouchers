@@ -28,7 +28,7 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 			 */
 			public function __construct() {
 
-				$this->id    = 'vouchers';
+				$this->id    = 'tmsmvouchers';
 				$this->label = __( 'Vouchers', 'tmsm-woocommerce-vouchers' );
 
 				add_filter( 'woocommerce_settings_tabs_array',        array( $this, 'add_settings_page' ), 20 );
@@ -427,6 +427,20 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 
 						array(
 							'type'     => 'text',
+							'id'       => 'tmsm_woocommerce_vouchers_vouchercodeformat',
+							'name'     => __( 'Voucher code format', 'tmsm-woocommerce-vouchers' ),
+							'desc'     => ''.
+							              '<p class="description">'.
+							              __( 'The available tags are:', 'tmsm-woocommerce-vouchers'). '<br>'.
+							              __( '<code>{sku}</code> - SKU of product or variation of product', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{uses}</code> - number of uses zero filled of 6 characters', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              '</p>',
+							'default'  => '{sku}-{uses}',
+							'class'  => 'regular-text',
+						),
+
+						array(
+							'type'     => 'text',
 							'id'       => 'tmsm_woocommerce_vouchers_downloadfilename',
 							'name'     => __( 'Download PDF File Name', 'tmsm-woocommerce-vouchers' ),
 							'desc'     => __( '.pdf', 'tmsm-woocommerce-vouchers' ).
@@ -441,6 +455,7 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'default'  => 'voucher-{current_date}-{unique_string}',
 							'class'  => 'regular-text',
 						),
+
 						array(
 							'type'     => 'text',
 							'id'       => 'tmsm_woocommerce_vouchers_attachmentfilename',

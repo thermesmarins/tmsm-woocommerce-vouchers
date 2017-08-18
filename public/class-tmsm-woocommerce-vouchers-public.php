@@ -105,6 +105,90 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 
 	/**
+	 * Enable Defer transactional emails
+	 *
+	 * @param bool $enable_defer
+	 *
+	 * @return bool $enable_defer
+	 */
+	public function woocommerce_defer_transactional_emails($enable_defer){
+		$enable_defer = true;
+		return $enable_defer;
+	}
+
+	/**
+	 * Handles order modification after payment
+	 *
+	 * @param $order_id
+	 *
+	 * @return void
+	 */
+	public function woocommerce_payment_complete($order_id){
+		error_log('*** woocommerce_payment_complete');
+
+		$order = wc_get_order($order_id);
+		error_log('order status: '.$order->get_status());
+
+		if(!$order->is_paid()){
+			return;
+		}
+		error_log('order paid');
+
+		$customer_id = $order->get_customer_id();
+		if ( $customer_id ) {
+			$user = get_user_by( 'id', $customer_id );
+			$username = trim( sprintf( _x( '%1$s %2$s', 'full name', 'tmsm-woocommerce-vouchers' ), $order->get_billing_first_name(), $order->get_billing_last_name() ) );
+		}
+		else{
+			$username = __('Guest', 'tmsm-woocommerce-vouchers');
+		}
+
+		$order_items = $order->get_items();
+		$order_date = $order->get_date_created();
+
+		if (is_array($order_items)) {
+
+			// Check cart details
+			foreach ($order_items as $item_id => $item) {
+
+				//get product id
+				$product_id = $item['product_id'];
+
+				// Taking variation id
+				$variation_id = !empty($item['variation_id']) ? $item['variation_id'] : '';
+
+				// If product is variable product take variation id else product id
+				$data_id = (!empty($variation_id) ) ? $variation_id : $product_id;
+
+				//Get voucher code from item meta "Now we store voucher codes in item meta fields"
+				$codes_item_meta = wc_get_order_item_meta($item_id, '_vouchercode');
+
+				if (empty($codes_item_meta)) {// If voucher data are not empty so code get executed once only
+
+					$enable_voucher = $this->tmsmvoucher_product_type_is_voucher($product_id, $variation_id);
+
+					if ( $enable_voucher ) { // if voucher is enable
+
+						$code = $this->tmsmvoucher_generate_code($product_id, $variation_id);
+
+						if(!empty($code)){
+							$expiredays = get_option( 'tmsm_woocommerce_vouchers_expiredays' );
+							if(!empty($expiredays)){
+								$expirydate = date('Y-m-d', strtotime($order_date . '+' . ( $expiredays + 1 ) . ' days'));
+								wc_add_order_item_meta($item_id, '_expirydate', $expirydate);
+							}
+							wc_add_order_item_meta($item_id, '_vouchercode', $code);
+						}
+					}
+				}
+			} // foreach $order_items
+
+		}
+		$order->save();
+		return;
+	}
+
+	/**
 	 * Displays recipient form to single product
 	 *
 	 * @since    1.0.0
@@ -576,6 +660,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 	}
 
+
 	/**
 	 * Add recipient data to cart item meta when product is added to cart
 	 *
@@ -778,9 +863,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	public function woocommerce_display_item_meta( $html, $item, $args ) {
 
+		$this->woocommerce_payment_complete($item->get_order_id());
+
 		$strings = [];
 
-		if ( $item['_recipientlastname'] && $item['_recipientfirstname'] ) {
+		if ( !empty($item['_recipientlastname']) && !empty($item['_recipientfirstname'] )) {
 			switch ( $item['_recipienttitle'] ) {
 				case 1:
 					$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
@@ -809,6 +896,16 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			                       . $formatted_recipient;
 		}
 
+		if ( !empty($item['_vouchercode'])) {
+			$strings[]           = '<strong class="wc-item-meta-label">' . __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) . '</strong> '
+			                       . $item['_vouchercode'];
+		}
+
+		if ( !empty($item['_expirydate'])) {
+			$strings[]           = '<strong class="wc-item-meta-label">' . __( 'Expiry date:', 'tmsm-woocommerce-vouchers' ) . '</strong> '
+			                       . date_i18n( get_option( 'date_format' ), strtotime( $item['_expirydate'] ) );
+		}
+
 		if ( $strings != [] ) {
 			$html = $args['before'] . implode( $args['separator'], $strings ) . $args['after'];
 		}
@@ -829,7 +926,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	public function woocommerce_grant_product_download_permissions( $order_id ) {
 
-		$this->tmsmvoucher_update_order_meta($order_id);
+		$this->woocommerce_payment_complete($order_id);
 
 		$order = wc_get_order( $order_id );
 
@@ -879,6 +976,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @return array $files
 	 */
 	public function woocommerce_get_item_downloads( $files, $item, $order ) {
+
+		$this->woocommerce_payment_complete($order->get_id());
 
 		$product = $item->get_product();
 
@@ -1123,7 +1222,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		global $post;
 
 
-		//error_log('*** woocommerce_email_attachments');
+
+		error_log('*** woocommerce_email_attachments');
 
 		$order_id = '';
 		$order_status = '';
@@ -1160,6 +1260,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 
 		if ($order_id && $settings_attachemail == 'yes' && !empty($order) && ( (in_array($status, $processing_status) && in_array($order_status, $completed_status)) || ($status == 'customer_processing_order' && $grant_access_after_payment == 'yes' && $order_status != 'wc-on-hold') )) {
+
+			$this->woocommerce_payment_complete($order_id);
 
 			//error_log('tmsm_woocommerce_vouchers_attachemail');
 
@@ -1238,78 +1340,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	}
 
 
-	/**
-	 * Adds voucher data to order
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param $order_id
-	 *
-	 * @return void
-	 */
-	private function tmsmvoucher_update_order_meta($order_id){
-
-		error_log('*** tmsmvoucher_update_order_meta');
-
-		$order = wc_get_order($order_id);
-		error_log('order status: '.$order->get_status());
-
-		if(!$order->is_paid()){
-			return;
-		}
-		error_log('order paid');
-
-		$customer_id = $order->get_customer_id();
-		if ( $customer_id ) {
-			$user = get_user_by( 'id', $customer_id );
-			$username = trim( sprintf( _x( '%1$s %2$s', 'full name', 'tmsm-woocommerce-vouchers' ), $order->get_billing_first_name(), $order->get_billing_last_name() ) );
-		}
-		else{
-			$username = __('Guest', 'tmsm-woocommerce-vouchers');
-		}
-
-		$order_items = $order->get_items();
-		$order_date = $order->get_date_created();
-
-		if (is_array($order_items)) {
-
-			// Check cart details
-			foreach ($order_items as $item_id => $item) {
-
-				//get product id
-				$product_id = $item['product_id'];
-
-				// Taking variation id
-				$variation_id = !empty($item['variation_id']) ? $item['variation_id'] : '';
-
-				// If product is variable product take variation id else product id
-				$data_id = (!empty($variation_id) ) ? $variation_id : $product_id;
-
-				//Get voucher code from item meta "Now we store voucher codes in item meta fields"
-				$codes_item_meta = wc_get_order_item_meta($item_id, '_vouchercode');
-
-				if (empty($codes_item_meta)) {// If voucher data are not empty so code get executed once only
-
-					$enable_voucher = $this->tmsmvoucher_product_type_is_voucher($product_id, $variation_id);
-
-					if ( $enable_voucher ) { // if voucher is enable
-
-						$code = $this->tmsmvoucher_generate_code($product_id, $variation_id);
-
-						if(!empty($code)){
-							$expiredays = get_option( 'tmsm_woocommerce_vouchers_expiredays' );
-							if(!empty($expiredays)){
-								$expirydate = date('Y-m-d', strtotime($order_date . '+' . $expiredays . ' days'));
-								wc_add_order_item_meta($item_id, '_expirydate', $expirydate);
-							}
-							wc_add_order_item_meta($item_id, '_vouchercode', $code);
-						}
-					}
-				}
-			} // foreach $order_items
-
-		}
-	}
 
 	/**
 	 * Generates a unique string
@@ -1382,14 +1412,24 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			if(empty($voucheruses)){
 				$voucheruses = 0;
 			}
-			$code = $product->get_sku().'-'.str_pad($voucheruses + 1, 5, '0', STR_PAD_LEFT);
+
+			$settings_vouchercodeformat  = get_option( 'tmsm_woocommerce_vouchers_vouchercodeformat' );
+
+			if(empty($settings_vouchercodeformat)){
+				$settings_vouchercodeformat = '{sku}-{uses}';
+			}
+
+			$settings_vouchercodeformat = str_replace('{sku}', $product->get_sku(), $settings_vouchercodeformat);
+			$settings_vouchercodeformat = str_replace('{uses}', str_pad(($voucheruses + 1), 5, '0', STR_PAD_LEFT), $settings_vouchercodeformat);
+
+			$code = clone $settings_vouchercodeformat;
 			error_log('productname: '.$product->get_title() );
 			error_log('productid: '.$product->get_id() );
 			error_log('productsku: '.$product->get_sku() );
 			error_log('productvoucheruses: '.$voucheruses);
 			error_log('code: '.$code);
 
-			$product->add_meta_data('_voucheruses' , $voucheruses + 1, true);
+			$product->add_meta_data('_voucheruses' , ($voucheruses + 1), true);
 			$product->save();
 		}
 		else{
