@@ -155,6 +155,8 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_filter( 'plugin_action_links_' . plugin_basename( TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'tmsm-woocommerce-vouchers.php'), $plugin_admin, 'plugin_action_links' );
 
+		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post', 10, 1 );
+
 		// Product types
 		$this->loader->add_filter( 'woocommerce_product_data_tabs', $plugin_admin, 'woocommerce_product_data_tabs_voucher' );
 		$this->loader->add_filter( 'woocommerce_product_data_panels', $plugin_admin, 'woocommerce_product_data_panels_voucher' );
@@ -174,8 +176,7 @@ class Tmsm_Woocommerce_Vouchers {
 		// Order
 		$this->loader->add_action( 'woocommerce_hidden_order_itemmeta', $plugin_admin, 'woocommerce_hidden_order_itemmeta', 10, 1 );
 		$this->loader->add_action( 'woocommerce_order_item_get_formatted_meta_data', $plugin_admin, 'woocommerce_order_item_get_formatted_meta_data', 10, 2 );
-		//$this->loader->add_action( 'woocommerce_before_product_object_save', $plugin_admin, 'woocommerce_before_product_object_save', 10, 2 );
-		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post', 10, 1 );
+
 
 
 

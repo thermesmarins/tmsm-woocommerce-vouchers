@@ -1422,7 +1422,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$settings_vouchercodeformat = str_replace('{sku}', $product->get_sku(), $settings_vouchercodeformat);
 			$settings_vouchercodeformat = str_replace('{uses}', str_pad(($voucheruses + 1), 5, '0', STR_PAD_LEFT), $settings_vouchercodeformat);
 
-			$code = clone $settings_vouchercodeformat;
+			$code = $settings_vouchercodeformat;
 			error_log('productname: '.$product->get_title() );
 			error_log('productid: '.$product->get_id() );
 			error_log('productsku: '.$product->get_sku() );
@@ -1776,6 +1776,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$html_top_left = '';
 			$html_top_left .= __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $code.'</strong> '.'<br>';
+
+			$html_top_left .= '<barcode code="978-0-9542246-0" type="ISBN" height="0.8" text="1" />';
+			$html_top_left .= '<barcode code="'.$code.'" type="EAN13" height="0.6" text="1" />';
+
+
 			if(!empty($expirydate)){
 				$html_top_left .= __( 'Expiry date:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) ).'</strong> '.'<br>';
 			}

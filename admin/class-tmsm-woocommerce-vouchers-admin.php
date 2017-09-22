@@ -357,46 +357,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	}
 
 
-	/**
-	 * Before save product
-	 *
-	 * @param WC_Product $product
-	 * @param $data
-	 *
-	 * @return void
-	 */
-	public function woocommerce_before_product_object_save($product, $data){
-
-		if(!empty($product) && !empty($product->get_id()) ){
-
-
-			$updated = 0;
-			error_log('*** id: '.$product->get_id());
-			if($product->is_type('variable')){
-
-				error_log('variable');
-				$is_voucher = get_post_meta( $product->get_id(), '_voucher', true ) == 'yes';
-				if($is_voucher){
-					$updated = update_post_meta( $product->get_id(), '_sold_individually','yes' );
-				}
-			}
-			if($product->is_type('variation')){
-				$is_voucher = get_post_meta( $product->get_id(), '_voucher', true ) == 'yes';
-				error_log('variation');
-				error_log('parent: '.$product->get_parent_id());
-				if($is_voucher){
-					error_log('is_voucher');
-					$updated = update_post_meta( $product->get_parent_id(), '_sold_individually','yes' );
-				}
-			}
-			error_log('updated: '.$updated);
-		}
-		//error_log('product_id: '.$product->get_id());
-		//
-		//error_log('updated: '. $updated);
-		//$product->save();
-
-	}
 
 	/**
 	 * Product Save
@@ -405,44 +365,30 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	 */
 	public function save_post($post_id){
 
-		error_log('save_post');
-
 		$product = wc_get_product($post_id);
 		if($product && $product->is_type('variable')){
-			error_log('variable');
 
 			$variable = new WC_Product_Variable( $product->get_id());
 			$variations = $variable->get_available_variations();
-			//error_log(var_export($variations, true));
 
 			$variable_has_voucher = false;
 			if(is_array($variations)){
-				error_log('variations');
 				foreach($variations as $variation){
-					error_log('variation');
-					error_log($variation['variation_id']);
-					//error_log(var_export($variation, true));
 					$is_voucher = get_post_meta( $variation['variation_id'], '_voucher', true ) == 'yes';
 					if($is_voucher){
 						$variable_has_voucher = true;
-						error_log('is_voucher');
 					}
 				}
 			}
-			error_log('variable_has_voucher');
 			if($variable_has_voucher){
-				error_log($product->get_id().' _sold_individually');
 				$updated = update_post_meta( $product->get_id(), '_sold_individually','yes' );
-				error_log('updated: '.$updated);
 			}
 
 		}
 		else{
 			$is_voucher = get_post_meta($product->get_id(), '_voucher', true ) == 'yes';
 			if($is_voucher){
-				error_log($product->get_id().' _sold_individually');
 				$updated = update_post_meta( $product->get_id(), '_sold_individually','yes' );
-				error_log('updated: '.$updated);
 			}
 		}
 

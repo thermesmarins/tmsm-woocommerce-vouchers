@@ -1,12 +1,9 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: TMSM Golf Features\n"
 "POT-Creation-Date: 2017-08-21 14:59+0200\n"
-"PO-Revision-Date: 2014-10-24 21:08+0100\n"
-"Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
+"PO-Revision-Date: 2017-08-21 15:30+0200\n"
 "Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
-"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,7 +11,9 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;_n:1,2;_x:1,2c;esc_attr__;esc_attr_e;"
 "esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Last-Translator: \n"
+"Language: fr\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
@@ -23,26 +22,26 @@ msgstr ""
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:197
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1873
 msgid "Voucher"
-msgstr ""
+msgstr "Bon cadeau"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:113
 msgid "No options at the moment"
-msgstr ""
+msgstr "Aucune option pour le moment"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:177
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:227
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:32
 msgid "Vouchers"
-msgstr ""
+msgstr "Bons cadeaux"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:282
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:560
 msgid "Recipient title"
-msgstr ""
+msgstr "Civilité du bénéficiaire"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:283
 msgid "Miss"
-msgstr ""
+msgstr "Madame"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:283
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:343
@@ -51,413 +50,421 @@ msgstr ""
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1119
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1754
 msgid "Mr"
-msgstr ""
+msgstr "Monsieur"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:288
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:571
 msgid "Recipient first name"
-msgstr ""
+msgstr "Prénom du bénéficiaire"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:293
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:582
 msgid "Recipient last name"
-msgstr ""
+msgstr "Nom du bénéficiaire"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:298
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:593
 msgid "Recipient address"
-msgstr ""
+msgstr "Adresse du bénéficiaire"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:303
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:604
 msgid "Recipient zipcode"
-msgstr ""
+msgstr "Code postal du bénéficiaire"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:308
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:615
 msgid "Recipient city"
-msgstr ""
+msgstr "Ville"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:313
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:626
 msgid "Recipient country"
-msgstr ""
+msgstr "Pays du bénéficiaire"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:320
 msgid "Recipient mobile phone"
-msgstr ""
+msgstr "Téléphone mobile du bénéficiaire"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:325
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:648
 msgid "Recipient email"
-msgstr ""
+msgstr "Email du bénéficiaire"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:330
 msgid "Voucher code"
-msgstr ""
+msgstr "Code du bon cadeau"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:335
 msgid "Expiry date"
-msgstr ""
+msgstr "Date de validité"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:353
 msgid "Settings"
-msgstr ""
+msgstr "Réglages"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:354
 msgid "Github"
-msgstr ""
+msgstr "Github"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-activator.php:35
-msgid ""
-"TMSM WooCommerce Vouchers requires WooCommerce 3.0.0 or higher!"
+msgid "TMSM WooCommerce Vouchers requires WooCommerce 3.0.0 or higher!"
 msgstr ""
+"L'extension TMSM WooCommerce Vouchers requiert WooCommerce version 3.0.0 "
+"ou supérieur !"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:49
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:393
 msgid "Voucher settings"
-msgstr ""
+msgstr "Réglages de bon cadeau"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:50
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:768
 msgid "Recipient"
-msgstr ""
+msgstr "Bénéficiaires"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:51
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:306
 msgid "Template"
-msgstr ""
+msgstr "Apparence"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:71
 msgid "Recipient fields"
-msgstr ""
+msgstr "Champ de bénéficiaire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:80
 msgid "Recipient optionnal"
-msgstr ""
+msgstr "Bénéficiaire est optionnel"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:81
 msgid "If checked, the customer is not obliged to set a recipient"
-msgstr ""
+msgstr "Si coché, le client n'est pas obligé de définir un bénéficiaire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:89
 msgid "First name asked"
-msgstr ""
+msgstr "Prénom demandé"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:95
 msgid "First name required"
-msgstr ""
+msgstr "Prénom obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:102
 msgid "Last name asked"
-msgstr ""
+msgstr "Nom de famille demandé"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:108
 msgid "Last name required"
-msgstr ""
+msgstr "Nom obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:115
 msgid "Birthdate asked"
-msgstr ""
+msgstr "Date de naissance demandée"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:121
 msgid "Birthdate required"
-msgstr ""
+msgstr "Date de naissance obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:129
 msgid "Title asked"
-msgstr ""
+msgstr "Civilité demandée"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:135
 msgid "Title required"
-msgstr ""
+msgstr "Civilité demandée"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:143
 msgid "Address asked"
-msgstr ""
+msgstr "Adresse demandée"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:149
 msgid "Address required"
-msgstr ""
+msgstr "Adresse demandée"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:156
 msgid "Zipcode asked"
-msgstr ""
+msgstr "Code postal demandé"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:162
 msgid "Zipcode required"
-msgstr ""
+msgstr "Code postal demandé"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:170
 msgid "City asked"
-msgstr ""
+msgstr "Ville demandée"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:176
 msgid "City required"
-msgstr ""
+msgstr "Ville obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:184
 msgid "Country asked"
-msgstr ""
+msgstr "Pays demandé"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:190
 msgid "Country required"
-msgstr ""
+msgstr "Pays obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:198
 msgid "Mobile phone asked"
-msgstr ""
+msgstr "Téléphone mobile demandé"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:204
 msgid "Mobile phone required"
-msgstr ""
+msgstr "Téléphone mobile obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:212
 msgid "Email asked"
-msgstr ""
+msgstr "Email demandé"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:218
 msgid "Email required"
-msgstr ""
+msgstr "Email obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:225
 msgid "Message asked"
-msgstr ""
+msgstr "Message demandé"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:231
 msgid "Message required"
-msgstr ""
+msgstr "Message personnel obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:238
 msgid "Sent date asked"
-msgstr ""
+msgstr "Date d'envoi demandée"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:244
 msgid "Send date required"
-msgstr ""
+msgstr "Date d'envoi obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:364
 msgid "Default"
-msgstr ""
+msgstr "Par défaut"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:365
 msgid "12 AM"
-msgstr ""
+msgstr "Minuit"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:366
 msgid "1 AM"
-msgstr ""
+msgstr "1h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:367
 msgid "2 AM"
-msgstr ""
+msgstr "2h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:368
 msgid "3 AM"
-msgstr ""
+msgstr "3h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:369
 msgid "4 AM"
-msgstr ""
+msgstr "4h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:370
 msgid "5 AM"
-msgstr ""
+msgstr "5h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:371
 msgid "6 AM"
-msgstr ""
+msgstr "6h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:372
 msgid "7 AM"
-msgstr ""
+msgstr "7h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:373
 msgid "8 AM"
-msgstr ""
+msgstr "8h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:374
 msgid "9 AM"
-msgstr ""
+msgstr "9h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:375
 msgid "10 AM"
-msgstr ""
+msgstr "10h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:376
 msgid "11 AM"
-msgstr ""
+msgstr "11h du matin"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:377
 msgid "12 PM"
-msgstr ""
+msgstr "Midi"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:378
 msgid "1 PM"
-msgstr ""
+msgstr "13h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:379
 msgid "2 PM"
-msgstr ""
+msgstr "14h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:380
 msgid "3 PM"
-msgstr ""
+msgstr "15h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:381
 msgid "4 PM"
-msgstr ""
+msgstr "16h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:382
 msgid "5 PM"
-msgstr ""
+msgstr "17h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:383
 msgid "6 PM"
-msgstr ""
+msgstr "18h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:384
 msgid "7 PM"
-msgstr ""
+msgstr "19h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:385
 msgid "8 PM"
-msgstr ""
+msgstr "20h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:386
 msgid "9 PM"
-msgstr ""
+msgstr "21h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:387
 msgid "10 PM"
-msgstr ""
+msgstr "22h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:388
 msgid "11 PM"
-msgstr ""
+msgstr "23h"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:401
 msgid "Available for physical products"
-msgstr ""
+msgstr "Bénéficiaire demandé pour les produits physiques"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:408
 msgid "Available for virtual products"
-msgstr ""
+msgstr "Bénéficiaire demandé pour les produits virtuels"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:415
 msgid "Attach PDF voucher to email notification"
-msgstr ""
+msgstr "Attacher le bon cadeau PDF à l'email de notification"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:421
 msgid "Select Time for Gift Notification Email"
 msgstr ""
+"Sélectionner l'heure d'envoi de la notification email du bon cadeau (pour "
+"les bénéficiaires)"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:422
 msgid "It will send gift notification email at selected time."
 msgstr ""
+"Cela enverra la notification email au bénéficiaire à l'heure sélectionnée."
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:431
 msgid "Voucher code format"
-msgstr ""
+msgstr "Format du code cadeau"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:434
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:448
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:465
 msgid "The available tags are:"
-msgstr ""
+msgstr "Les mots-clés disponibles sont :"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:435
 msgid "<code>{sku}</code> - SKU of product or variation of product"
-msgstr ""
+msgstr "<code>{sku}</code> - Référence produit ou de la variation de produit"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:436
-msgid ""
-"<code>{uses}</code> - number of uses zero filled of 6 characters"
+msgid "<code>{uses}</code> - number of uses zero filled of 6 characters"
 msgstr ""
+"<code>{uses}</code> - nombre d'utilisation, à 6 caractères, rempli de zéros"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:445
 msgid "Download PDF File Name"
-msgstr ""
+msgstr "Nom de fichier du PDF téléchargeable"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:446
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:463
 msgid ".pdf"
-msgstr ""
+msgstr ".pdf"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:447
 msgid ""
-"Enter the PDF file name. This file name will be used when users "
-"download a PDF of voucher codes on frontend."
+"Enter the PDF file name. This file name will be used when users download a "
+"PDF of voucher codes on frontend."
 msgstr ""
+"Saisir le nom de fichier PDF. Ce nom sera utilisé quand les utilisateurs "
+"téléchargent un bon cadeau sur la partie publique."
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:449
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:466
 msgid "<code>{item_id}</code> - item ID"
-msgstr ""
+msgstr "<code>{item_id}</code> - ID de l'item de commande"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:450
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:467
 msgid "<code>{product_id}</code> - product ID"
-msgstr ""
+msgstr "<code>{product_id}</code> - ID de produit"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:451
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:468
 msgid "<code>{order_id}</code> - order ID"
-msgstr ""
+msgstr "<code>{order_id}</code> - ID de commande"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:452
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:470
 msgid "<code>{unique_string}</code> - unique string"
-msgstr ""
+msgstr "<code>{unique_string}</code> - chaîne aléatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:453
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:471
 msgid "<code>{current_date}</code> - the current date YYYYMMDD"
-msgstr ""
+msgstr "<code>{current_date}</code> - la date courante AAAAMMJJ"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:462
 msgid "Attachment PDF File Name"
-msgstr ""
+msgstr "Nom de fichier du PDF attaché aux emails"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:464
 msgid ""
-"Enter the PDF file name. This file name will be used when users "
-"download a PDF of voucher codes from the email attachment."
+"Enter the PDF file name. This file name will be used when users download a "
+"PDF of voucher codes from the email attachment."
 msgstr ""
+"Saisir le nom de fichier PDF. Ce nom sera utilisé quand les utilisateurs "
+"téléchargent un bon cadeau attaché à l'email."
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:469
 msgid "<code>{voucher_code}</code> - voucher code"
-msgstr ""
+msgstr "<code>{voucher_code}</code> - code du bon cadeau"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:479
 msgid "Voucher expires"
-msgstr ""
+msgstr "Validité du bon cadeau"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:480
 msgid "days"
-msgstr ""
+msgstr "jours"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:140
 #, php-format
 msgctxt "full name"
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:143
 msgid "Guest"
-msgstr ""
+msgstr "Invité"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:316
 msgid "Recipient of the voucher"
-msgstr ""
+msgstr "Bénéficiaire du bon cadeau"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:325
 msgid "Set a voucher recipient"
-msgstr ""
+msgstr "Définir un bénéficiaire de bon cadeau"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:335
 msgid "Recipient title:"
-msgstr ""
+msgstr "Civilité :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:342
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:745
@@ -465,39 +472,39 @@ msgstr ""
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1116
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1751
 msgid "Ms"
-msgstr ""
+msgstr "Mme"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:361
 msgid "Recipient first name:"
-msgstr ""
+msgstr "Prénom :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:381
 msgid "Recipient last name:"
-msgstr ""
+msgstr "Nom :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:401
 msgid "Recipient address:"
-msgstr ""
+msgstr "Adresse :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:421
 msgid "Recipient zipcode:"
-msgstr ""
+msgstr "Code postal :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:442
 msgid "Recipient city:"
-msgstr ""
+msgstr "Ville :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:462
 msgid "Recipient country:"
-msgstr ""
+msgstr "Pays :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:478
 msgid "Recipient mobilephone:"
-msgstr ""
+msgstr "Téléphone mobile :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:499
 msgid "Recipient email:"
-msgstr ""
+msgstr "Email :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:560
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:572
@@ -509,40 +516,40 @@ msgstr ""
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:637
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:648
 msgid "is required."
-msgstr ""
+msgstr "est obligatoire."
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:637
 msgid "Recipient phone"
-msgstr ""
+msgstr "téléphone"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:652
 msgid "Please enter valid email"
-msgstr ""
+msgstr "Saisir un email valide"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:895
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1773
 msgid "Recipient:"
-msgstr ""
+msgstr "Bénéficiaire :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:900
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1778
 msgid "Voucher code:"
-msgstr ""
+msgstr "Code de bon cadeau"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:905
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1785
 msgid "Expiry date:"
-msgstr ""
+msgstr "Date de validité"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1136
 msgid "for"
-msgstr ""
+msgstr "pour"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1466
 msgid "Download voucher"
-msgstr ""
+msgstr "Télécharger le bon cadeau"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1871
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1872
 msgid "WooCommerce"
-msgstr ""
+msgstr "WooCommerce"
