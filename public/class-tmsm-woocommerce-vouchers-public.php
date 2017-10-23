@@ -1775,10 +1775,13 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 
 			$html_top_left = '';
-			$html_top_left .= __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $code.'</strong> '.'<br>';
+			$html_top_left .= __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $code.'</strong> '.'<br><br><br>';
 
-			$html_top_left .= '<barcode code="978-0-9542246-0" type="ISBN" height="0.8" text="1" />';
-			$html_top_left .= '<barcode code="'.$code.'" type="EAN13" height="0.6" text="1" />';
+
+			$html_top_left .= 'C128A:<br><barcode code="'.$code.'" type="C128A" height="1" text="2" size="1.3"/>';
+			$html_top_left .= '<br>&nbsp;<br>';
+			$html_top_left .= 'C128B:<br><barcode code="'.$code.'" type="C128B" height="1" text="2" size="1.3"/>';
+			$html_top_left .= '<br>&nbsp;<br>';
 
 
 			if(!empty($expirydate)){

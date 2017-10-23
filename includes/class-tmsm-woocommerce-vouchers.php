@@ -73,6 +73,7 @@ class Tmsm_Woocommerce_Vouchers {
 
 		$this->load_dependencies();
 		$this->set_locale();
+		$this->register_post_types();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
@@ -103,6 +104,12 @@ class Tmsm_Woocommerce_Vouchers {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-tmsm-woocommerce-vouchers-loader.php';
 
 		/**
+		 * The class responsible for defining post types
+		 * of the plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-tmsm-woocommerce-vouchers-posttypes.php';
+
+		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
@@ -120,6 +127,23 @@ class Tmsm_Woocommerce_Vouchers {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-tmsm-woocommerce-vouchers-public.php';
 
 		$this->loader = new Tmsm_Woocommerce_Vouchers_Loader();
+
+	}
+
+	/**
+	 * Define the locale for this plugin for internationalization.
+	 *
+	 * Uses the Tmsm_Woocommerce_Vouchers_i18n class in order to set the domain and to register the hook
+	 * with WordPress.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function register_post_types() {
+
+		$plugin_posttypes = new Tmsm_Woocommerce_Vouchers_Posttypes();
+
+		$this->loader->add_filter( 'init', $plugin_posttypes, 'register_post_type_localbusiness' );
 
 	}
 

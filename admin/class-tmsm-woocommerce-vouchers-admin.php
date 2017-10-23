@@ -385,7 +385,8 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 			}
 
 		}
-		else{
+
+		if($product && !$product->is_type('variable')){
 			$is_voucher = get_post_meta($product->get_id(), '_voucher', true ) == 'yes';
 			if($is_voucher){
 				$updated = update_post_meta( $product->get_id(), '_sold_individually','yes' );
