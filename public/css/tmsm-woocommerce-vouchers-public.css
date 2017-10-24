@@ -12,3 +12,128 @@ table.vouchers-fields .label{
 table.vouchers-fields .value{
   margin-bottom: 1em;
 }
+
+
+/* PDF */
+
+.tmsmvoucher-pdf{
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+}
+
+
+
+.tmsmvoucher-pdf-part{
+  padding: 30px;
+  vertical-align: top;
+  clear: both;
+}
+.tmsmvoucher-pdf-part-1{
+  padding-bottom: 0;
+}
+
+.tmsmvoucher-pdf-product-control{
+  float: left;
+  width: 30%;
+  font-size: 14px;
+}
+.tmsmvoucher-pdf-product-data{
+  float: left;
+  width: 66%;
+  margin-left: 4%;
+}
+
+
+.tmsmvoucher-pdf-part-dotted{
+  border-bottom: 1px dotted #b19263;
+  height: 314px;
+}
+
+.tmsmvoucher-pdf-barcode{
+  padding: 0;
+  margin: 0;
+  margin-left: -10px;
+}
+
+.tmsmvoucher-pdf-barcode-container{
+  text-align: left;
+  vertical-align: top;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tmsmvoucher-pdf-product-image{
+  width: 100%;
+  height: auto;
+}
+
+.tmsmvoucher-pdf-localbusiness-logo{
+  display: block;
+  text-align: center;
+  width: 30%;
+  height: auto;
+  margin-top: 150px;
+
+}
+.tmsmvoucher-pdf-localbusiness-intro{
+  color: #b19263;
+  letter-spacing: 0.1em;
+}
+
+.tmsmvoucher-pdf-product-name{
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 2px 5px;
+  margin-bottom: 20px;
+  background: #b19263;
+  color: white;
+  font-weight: bold;
+}
+.tmsmvoucher-pdf-product-intro{
+  margin-bottom: 20px;
+}
+.tmsmvoucher-pdf-product-description{
+  margin-bottom: 20px;
+  font-size: 10px;
+}
+
+.tmsmvoucher-pdf-recipient{
+  color: #b19263;
+}
+
+.tmsmvoucher-pdf-voucher-graphic{
+  float: left;
+  width: 34%;
+  background: #ede3d5;
+  height: 374px;
+  margin-top: -30px;
+  text-align: center;
+}
+.tmsmvoucher-pdf-voucher-graphic-image{
+  width: 180px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.tmsmvoucher-pdf-localbusiness-header{
+  float: left;
+  width: 66%;
+  text-align: center;
+}
+
+.tmsmvoucher-pdf-recipient-name{
+  color: #b19263;
+}
+
+.tmsmvoucher-pdf-voucher-code{
+  margin-bottom: 20px;
+}
+.tmsmvoucher-pdf-voucher-expirydate{
+  margin-bottom: 20px;
+}
+.tmsmvoucher-pdf-product-image{
+  margin-bottom: 20px;
+}

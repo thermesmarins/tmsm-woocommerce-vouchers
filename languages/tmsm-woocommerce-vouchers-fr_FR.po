@@ -1,26 +1,26 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TMSM Golf Features\n"
-"POT-Creation-Date: 2017-08-21 14:59+0200\n"
-"PO-Revision-Date: 2017-08-21 15:30+0200\n"
-"Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
+"Project-Id-Version: TMSM WooCommerce Vouchers\n"
+"POT-Creation-Date: 2017-10-23 14:19+0200\n"
+"PO-Revision-Date: 2017-10-23 14:23+0200\n"
+"Last-Translator: \n"
+"Language-Team: https://github.com/thermesmarins\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-KeywordsList: _e;__;_n:1,2;_x:1,2c;esc_attr__;esc_attr_e;"
 "esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Last-Translator: \n"
-"Language: fr\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:91
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:176
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:197
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1873
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1876
 msgid "Voucher"
 msgstr "Bon cadeau"
 
@@ -110,8 +110,68 @@ msgstr "Github"
 #: ../includes/class-tmsm-woocommerce-vouchers-activator.php:35
 msgid "TMSM WooCommerce Vouchers requires WooCommerce 3.0.0 or higher!"
 msgstr ""
-"L'extension TMSM WooCommerce Vouchers requiert WooCommerce version 3.0.0 "
-"ou supérieur !"
+"L'extension TMSM WooCommerce Vouchers requiert WooCommerce version 3.0.0 ou "
+"supérieur !"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:29
+msgctxt "Post type general name"
+msgid "Local Businesses"
+msgstr "Entreprises locales"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:30
+msgctxt "Post type singular name"
+msgid "Local Business"
+msgstr "Entreprise locale"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:31
+msgctxt "Admin Menu text"
+msgid "Local Businesses"
+msgstr "Entreprises locales"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:32
+msgctxt "Add New on Toolbar"
+msgid "Local Business"
+msgstr "Entreprise locale"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:33
+msgid "Add New"
+msgstr "Ajouter"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:34
+msgid "Add New Local Business"
+msgstr "Ajouter une nouvelle entreprise locale"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:35
+msgid "New Local Business"
+msgstr "Nouvelle entreprise locale"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:36
+msgid "Edit Local Business"
+msgstr "Modifier l'entreprise locale"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:37
+msgid "View Local Business"
+msgstr "Voir l'entreprise locale"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:38
+msgid "Local Businesses"
+msgstr "Entreprises locales"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:39
+msgid "Search Local Businesses"
+msgstr "Rechercher une entreprise locale"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:40
+msgid "Parent Local Businesses:"
+msgstr "Entreprise locale parente :"
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:41
+msgid "No local Businesses found."
+msgstr "Aucune entreprise locale trouvée."
+
+#: ../includes/class-tmsm-woocommerce-vouchers-posttypes.php:42
+msgid "No local Businesses found in Trash."
+msgstr "Aucune entreprise locale trouvée dans la corbeille."
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:49
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:393
@@ -170,7 +230,7 @@ msgstr "Civilité demandée"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:135
 msgid "Title required"
-msgstr "Civilité demandée"
+msgstr "Civilité obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:143
 msgid "Address asked"
@@ -178,7 +238,7 @@ msgstr "Adresse demandée"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:149
 msgid "Address required"
-msgstr "Adresse demandée"
+msgstr "Adresse obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:156
 msgid "Zipcode asked"
@@ -186,7 +246,7 @@ msgstr "Code postal demandé"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:162
 msgid "Zipcode required"
-msgstr "Code postal demandé"
+msgstr "Code postal obligatoire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:170
 msgid "City asked"
@@ -520,7 +580,7 @@ msgstr "est obligatoire."
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:637
 msgid "Recipient phone"
-msgstr "téléphone"
+msgstr "Téléphone"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:652
 msgid "Please enter valid email"
@@ -534,12 +594,12 @@ msgstr "Bénéficiaire :"
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:900
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1778
 msgid "Voucher code:"
-msgstr "Code de bon cadeau"
+msgstr "Code de bon cadeau :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:905
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1785
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1788
 msgid "Expiry date:"
-msgstr "Date de validité"
+msgstr "Date de validité :"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1136
 msgid "for"
@@ -549,7 +609,7 @@ msgstr "pour"
 msgid "Download voucher"
 msgstr "Télécharger le bon cadeau"
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1871
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1872
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1874
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1875
 msgid "WooCommerce"
 msgstr "WooCommerce"

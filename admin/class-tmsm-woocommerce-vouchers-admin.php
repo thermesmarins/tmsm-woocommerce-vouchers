@@ -86,14 +86,16 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	 *
 	 * @return mixed $tabs
 	 */
-	function woocommerce_product_data_tabs_voucher( $tabs) {
+	function woocommerce_product_data_tabs_voucher( $tabs ) {
 		$tabs['voucher'] = array(
 			'label'		=> __( 'Voucher', 'tmsm-woocommerce-vouchers' ),
 			'target'	=> 'voucher_options',
-			'class'		=> array( 'show_if_simple', 'show_if_variable'  ),
+			'class'		=> array(  'show_if_downloadable', 'show_if_variable', 'show_if_voucher'  ),
 		);
 		return $tabs;
 	}
+
+
 
 	/**
 	 * Tab content of tab "voucher"
@@ -107,11 +109,48 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 
 		// Note the 'id' attribute needs to match the 'target' parameter set above
 		?><div id='voucher_options' class='panel woocommerce_options_panel'><?php
-		?><div class='options_group'>
+		?>
 
-		<p>
-			<?php echo __( 'No options at the moment', 'tmsm-woocommerce-vouchers' ); ?>
-		</p>
+		<div class='options_group'>
+
+			<?php
+			/*woocommerce_wp_checkbox( array(
+				'id'            => '_my_custom_field',
+				'label'         => __( 'My Custom Field Label', 'my_text_domain' ),
+				'description'   => __( 'My Custom Field Description', 'my_text_domain' ),
+				'default'  		=> '0',
+				'desc_tip'    	=> false,
+			) );*/
+			woocommerce_wp_text_input( array(
+				'id'            => '_tmsm_woocommerce_vouchers_expiredays',
+				'wrapper_class' => 'show_if_voucher',
+				'label'     => __( 'Voucher expires', 'tmsm-woocommerce-vouchers' ),
+				'description'     => __( 'days', 'tmsm-woocommerce-vouchers' ),
+				'type'              => 'number',
+				'placeholder'       => get_option('tmsm_woocommerce_vouchers_expiredays'),
+				'default'  		=> '',
+				'desc_tip'    	=> false,
+			) );
+
+			$localbusinesses = get_posts(['post_type' => 'localbusiness', 'numberposts' => -1]);
+			if(is_array($localbusinesses)){
+				$localbusinesses_array = [];
+				foreach($localbusinesses as $localbusiness){
+					$localbusinesses_array[$localbusiness->ID] = $localbusiness->post_title;
+				}
+				woocommerce_wp_select( array(
+						'id'      => '_tmsm_woocommerce_vouchers_localbusiness',
+						'label'   => __( 'Local Business', 'tmsm-woocommerce-vouchers' ),
+						'options' => $localbusinesses_array
+					)
+				);
+		   }
+
+
+
+
+
+			?>
 
 		<?php
 		/*
@@ -149,6 +188,14 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	function woocommerce_process_product_save_voucher_options( $post_id ) {
 		$is_voucher = isset( $_POST['_voucher'] ) ? 'yes' : 'no';
 		update_post_meta( $post_id, '_voucher', $is_voucher );
+
+		if ( isset( $_POST['_tmsm_woocommerce_vouchers_expiredays'] ) ) :
+			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expiredays', absint( $_POST['_tmsm_woocommerce_vouchers_expiredays'] ) );
+		endif;
+
+		if ( isset( $_POST['_tmsm_woocommerce_vouchers_localbusiness'] ) ) :
+			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_localbusiness', absint( $_POST['_tmsm_woocommerce_vouchers_localbusiness'] ) );
+		endif;
 
 		/*
 		$allow_personal_message = isset( $_POST['_allow_personal_message'] ) ? 'yes' : 'no';

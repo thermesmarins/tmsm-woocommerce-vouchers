@@ -1135,8 +1135,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 												'product_id'          => $product_id,
 												'product_name'        => $item->get_name() . ' '. __( 'for', 'tmsm-woocommerce-vouchers' ) . ' ' .$formatted_recipient,
 												'download_url'        => $download_url,
-												'download_name'       => $_product->get_title() . $download_file['name'] . ' ' . $voucher_number
-												                         . ' ( ' . $order_date . ' )',
+												//'download_name'       => $_product->get_title() . $download_file['name'] . ' ' . $voucher_number . ' ( ' . $order_date . ' )',
+												'download_name'       => $download_file['name']. ' '.$item->get_meta( '_vouchercode' ),
+
 												'downloads_remaining' => '',
 												'file'                => array(
 													'name' => $download_file['name'],
@@ -1730,23 +1731,29 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		error_log('*** tmsmvoucher_voucher_html_template');
 
 		$product = wc_get_product($product_id);
+		$product_parent = wc_get_product($product->get_parent_id());
+		if(empty($product_parent)){
+			$product_parent = $product;
+		}
 		$order = wc_get_order($order_id);
-		$code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
-		$expirydate	= wc_get_order_item_meta( $item_id, '_expirydate', true );
+		$voucher_code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
+		$voucher_expirydate	= wc_get_order_item_meta( $item_id, '_expirydate', true );
 
-		if(!empty($code) && !empty($order) ){
+		if(!empty($voucher_code) && !empty($order) ){
 
-			$recipienttitle	= wc_get_order_item_meta( $item_id, '_recipienttitle', true );
-			$recipientfirstname	= wc_get_order_item_meta( $item_id, '_recipientfirstname', true );
-			$recipientlastname	= wc_get_order_item_meta( $item_id, '_recipientlastname', true );
-			$recipientaddress	= wc_get_order_item_meta( $item_id, '_recipientaddress', true );
-			$recipientzipcode	= wc_get_order_item_meta( $item_id, '_recipientzipcode', true );
-			$recipientcity	= wc_get_order_item_meta( $item_id, '_recipientcity', true );
-			$recipientcountry	= wc_get_order_item_meta( $item_id, '_recipientcountry', true );
+			$recipient_title	= wc_get_order_item_meta( $item_id, '_recipienttitle', true );
+			$recipient_firstname	= wc_get_order_item_meta( $item_id, '_recipientfirstname', true );
+			$recipient_lastname	= wc_get_order_item_meta( $item_id, '_recipientlastname', true );
+			$recipient_address	= wc_get_order_item_meta( $item_id, '_recipientaddress', true );
+			$recipient_zipcode	= wc_get_order_item_meta( $item_id, '_recipientzipcode', true );
+			$recipient_city	= wc_get_order_item_meta( $item_id, '_recipientcity', true );
+			$recipient_country	= wc_get_order_item_meta( $item_id, '_recipientcountry', true );
+			$recipient_message	= wc_get_order_item_meta( $item_id, '_recipientmessage', true );
 
-			$recipient = '';
-			if ( !empty($recipientfirstname) && !empty($recipientlastname) ) {
-				switch ( $recipienttitle ) {
+			$recipient = [];
+			$recipient_name = '';
+			if ( !empty($recipient_firstname) && !empty($recipient_lastname) ) {
+				switch ( $recipient_title ) {
 					case 1:
 						$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
 						break;
@@ -1759,56 +1766,134 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				}
 
 				$recipient = array(
-					'first_name' => $title . $recipientfirstname,
-					'last_name'  => $recipientlastname,
-					'address_1'  => $recipientaddress,
+					'first_name' => $title . $recipient_firstname,
+					'last_name'  => strtoupper($recipient_lastname),
+					'address_1'  => $recipient_address,
 					//'address_2'   => '',
-					'city'       => $recipientcity,
-					'postcode'   => $recipientzipcode,
+					'city'       => $recipient_city,
+					'postcode'   => $recipient_zipcode,
 					//'state'    => '',
-					'country'    => $recipientcountry,
+					'country'    => $recipient_country,
 				);
 
 				$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
-				$recipient           =  __( 'Recipient:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $formatted_recipient.'</strong> ';
+				$recipient_name           =  '<div class="tmsmvoucher-pdf-recipient-name"><b>'.__( 'This voucher is reserved to:', 'tmsm-woocommerce-vouchers' ) .  ' '. $formatted_recipient.'</b></div>';
 			}
 
-
-			$html_top_left = '';
-			$html_top_left .= __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. $code.'</strong> '.'<br><br><br>';
-
-
-			$html_top_left .= 'C128A:<br><barcode code="'.$code.'" type="C128A" height="1" text="2" size="1.3"/>';
-			$html_top_left .= '<br>&nbsp;<br>';
-			$html_top_left .= 'C128B:<br><barcode code="'.$code.'" type="C128B" height="1" text="2" size="1.3"/>';
-			$html_top_left .= '<br>&nbsp;<br>';
-
-
-			if(!empty($expirydate)){
-				$html_top_left .= __( 'Expiry date:', 'tmsm-woocommerce-vouchers' ) .  '<br><strong>'. date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) ).'</strong> '.'<br>';
+			if(!empty($recipient_message)){
+				$recipient_message = '<div class="tmsmvoucher-pdf-recipient-message"><b>'.__( 'Personal message:', 'tmsm-woocommerce-vouchers' ) .  '</b><br>'. $recipient_message.'</div>';
 			}
 
-			$html_top_right = '';
-			$html_top_right.= $recipient;
+			$localbusiness_logo = '';
+			$localbusiness_id = $product_parent->get_meta('_localbusiness');
+			$localbusiness = get_post($localbusiness_id);
+			$localbusiness_logo = get_the_post_thumbnail($localbusiness_id, 'full', ['class' => 'tmsmvoucher-pdf-localbusiness-logo']);
 
-			$html_bottom_left = '';
-			$html_bottom_left .= $product->get_image();
-
-			$html_bottom_right = 'bottom right';
+			if(function_exists('get_field')){
+				$localbusiness_intro = get_field('voucher_intro', $localbusiness_id);
+				$localbusiness_info = get_field('voucher_info', $localbusiness_id);
+				$localbusiness_booking = get_field('voucher_booking', $localbusiness_id);
+				$localbusiness_address = get_field('voucher_address', $localbusiness_id);
+				$localbusiness_color = get_field('voucher_color', $localbusiness_id);
+			}
 
 			$html = '';
-			$html .= '<table class="tmsmvoucher-main-table" style="height: 1000pt; width: 100%" cellpadding="30" cellspacing="0">';
+			$html .= '<div class="tmsmvoucher-pdf">';
 			$html .= '
-				<tr>
-				<td style="background-color: #f2f2f2;width: 50%;height: 430pt;">' . $html_top_left . '</td>
-				<td style="background-color: #fff;width: 50%;height: 50%;">' . $html_top_right . '</td>
-				</tr>
-				<tr>
-				<td style="background-color: #fff;width: 50%;height: 430pt">' . $html_bottom_left . '</td>
-				<td style="background-color: #f2f2f2;width: 50%;height: 50%;">' . $html_bottom_right . '</td>
-				</tr>
+				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-1 tmsmvoucher-pdf-part-dotted" >
+					<div class="tmsmvoucher-pdf-voucher-graphic">
+					{voucher_graphic}
+					</div>
+					<div class="tmsmvoucher-pdf-localbusiness-header">
+					{localbusiness_logo}
+					{localbusiness_intro}
+					</div>
+				</div>
+				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-2 tmsmvoucher-pdf-part-dotted" >
+					<div class="tmsmvoucher-pdf-product-control">
+					{product_image}
+					{voucher_code}
+					{voucher_expirydate}
+					{voucher_barcode}
+					</div>
+					<div class="tmsmvoucher-pdf-product-data">
+					{product_name}
+					{product_intro}
+					{product_description}
+					{recipient_name}
+					{recipient_message}
+					</div>
+
+				</div>
+
+				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-3" style="">
+				{localbusiness_booking}
+				{localbusiness_info}
+				{localbusiness_name}
+				{localbusiness_address}
+				</div>
 				';
-			$html .= '</table>';
+			$html .= '</div>';
+
+			if(!empty($localbusiness_intro)){
+				$localbusiness_intro = '<div class="tmsmvoucher-pdf-localbusiness-intro">'.$localbusiness_intro.'</div>';
+			}
+
+			$product_image = $product_parent->get_image('shop_single', ['class' => 'tmsmvoucher-pdf-product-image']);
+			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.$product_parent->get_name().'</div>';
+			$product_intro = '<div class="tmsmvoucher-pdf-product-intro">aaaaaaaaaaaaaaaaaaa bbbbbbb cccc ddddddddddd</div>';
+			$product_description = '<div class="tmsmvoucher-pdf-product-description">'.$product_parent->get_description().'</div>';
+
+			if(!empty($voucher_expirydate)){
+				$voucher_expirydate = '<div class="tmsmvoucher-pdf-voucher-expirydate"><b>'.__( 'Expires:', 'tmsm-woocommerce-vouchers' ) .  '</b> '. date_i18n( get_option( 'date_format' ), strtotime( $voucher_expirydate ) ).'</div>';
+			}
+
+			$voucher_barcode = '<div class="tmsmvoucher-pdf-barcode-container"><barcode class="tmsmvoucher-pdf-barcode" code="'.$voucher_code.'" type="C128A" height="1" text="2" size="0.95"/></div>';
+
+			$voucher_code = '<div class="tmsmvoucher-pdf-voucher-code"><b>'.__( 'N°', 'tmsm-woocommerce-vouchers' ) .  '</b> '. $voucher_code.'</div>';
+
+			$voucher_graphic = '<img src="'.plugin_dir_url( __FILE__ ) . 'img/voucher-graphic.jpg'.'" class="tmsmvoucher-pdf-voucher-graphic-image"/>';
+
+			$items_tags = [
+				'{localbusiness_booking}',
+				'{localbusiness_info}',
+				'{localbusiness_name}',
+				'{localbusiness_address}',
+				'{localbusiness_logo}',
+				'{localbusiness_intro}',
+				'{voucher_graphic}',
+				'{voucher_code}',
+				'{voucher_expirydate}',
+				'{voucher_barcode}',
+				'{product_image}',
+				'{product_name}',
+				'{product_intro}',
+				'{product_description}',
+				'{recipient_name}',
+				'{recipient_message}',
+			];
+
+			$items_values = [
+				$localbusiness_booking,
+				$localbusiness_info,
+				$localbusiness_name,
+				$localbusiness_address,
+				$localbusiness_logo,
+				$localbusiness_intro,
+				$voucher_graphic,
+				$voucher_code,
+				$voucher_expirydate,
+				$voucher_barcode,
+				$product_image,
+				$product_name,
+				$product_intro,
+				$product_description,
+				$recipient_name,
+				$recipient_message,
+			];
+			
+			$html = str_replace($items_tags, $items_values, $html);
+
 
 
 
@@ -1890,6 +1975,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$pdf->SetFillColor(238, 238, 238);
 
 
+
 		$pdf->writeHTML($html, true, 0, true, 0);
 		$pdf->lastPage();
 
@@ -1941,7 +2027,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			require_once TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/mpdf/mpdf.php';
 		}
 		$mpdf = new mPDF('UTF-8', 'A4',  12,  'dejavusans', 0, 0, 0, 0, 0, 0, $orientation = 'P');
-		$mpdf->WriteHTML($html);
+
+		$stylesheet = file_get_contents(plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
+
+		$mpdf->WriteHTML($stylesheet, 1);
+		$mpdf->WriteHTML($html, 2);
 		$mpdf->autoPageBreak = true;
 		$mpdf->setAutoTopMargin = 'pad';
 		$mpdf->setAutoBottomMargin = 'pad';
@@ -1952,6 +2042,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$mpdf->debug = true;
 		$mpdf->showImageErrors = true;
 
+		error_log('*** dpi: '.$mpdf->dpi);
+		error_log('*** img_dpi: '.$mpdf->img_dpi);
 		$mpdf->Output($pdf_filepath, $pdf_save);
 
 	}

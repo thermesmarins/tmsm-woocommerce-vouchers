@@ -144,8 +144,12 @@ class Tmsm_Woocommerce_Vouchers {
 		$plugin_posttypes = new Tmsm_Woocommerce_Vouchers_Posttypes();
 
 		$this->loader->add_filter( 'init', $plugin_posttypes, 'register_post_type_localbusiness' );
+		$this->loader->add_filter( 'acf/settings/path', $plugin_posttypes, 'acf_path' );
+		$this->loader->add_filter( 'acf/settings/dir', $plugin_posttypes, 'acf_dir' );
+		$this->loader->add_filter( 'plugins_loaded', $plugin_posttypes, 'acf_setup' );
 
 	}
+
 
 	/**
 	 * Define the locale for this plugin for internationalization.
@@ -182,7 +186,7 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post', 10, 1 );
 
 		// Product types
-		$this->loader->add_filter( 'woocommerce_product_data_tabs', $plugin_admin, 'woocommerce_product_data_tabs_voucher' );
+		$this->loader->add_filter( 'woocommerce_product_data_tabs', $plugin_admin, 'woocommerce_product_data_tabs_voucher', 98 );
 		$this->loader->add_filter( 'woocommerce_product_data_panels', $plugin_admin, 'woocommerce_product_data_panels_voucher' );
 		$this->loader->add_action( 'woocommerce_process_product_meta_simple', $plugin_admin, 'woocommerce_process_product_save_voucher_options' );
 		$this->loader->add_action( 'woocommerce_process_product_meta_variable', $plugin_admin, 'woocommerce_process_product_save_voucher_options' );
@@ -200,10 +204,6 @@ class Tmsm_Woocommerce_Vouchers {
 		// Order
 		$this->loader->add_action( 'woocommerce_hidden_order_itemmeta', $plugin_admin, 'woocommerce_hidden_order_itemmeta', 10, 1 );
 		$this->loader->add_action( 'woocommerce_order_item_get_formatted_meta_data', $plugin_admin, 'woocommerce_order_item_get_formatted_meta_data', 10, 2 );
-
-
-
-
 
 	}
 
