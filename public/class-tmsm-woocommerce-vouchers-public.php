@@ -1791,7 +1791,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			if(function_exists('get_field')){
 				$localbusiness_intro = get_field('voucher_intro', $localbusiness_id);
-				$localbusiness_info = get_field('voucher_info', $localbusiness_id);
+				$localbusiness_info1 = get_field('voucher_info1', $localbusiness_id);
+				$localbusiness_info2 = get_field('voucher_info2', $localbusiness_id);
 				$localbusiness_booking = get_field('voucher_booking', $localbusiness_id);
 				$localbusiness_address = get_field('voucher_address', $localbusiness_id);
 				$localbusiness_color = get_field('voucher_color', $localbusiness_id);
@@ -1841,8 +1842,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$product_image = $product_parent->get_image('shop_single', ['class' => 'tmsmvoucher-pdf-product-image']);
 			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.$product_parent->get_name().'</div>';
-			$product_intro = '<div class="tmsmvoucher-pdf-product-intro">aaaaaaaaaaaaaaaaaaa bbbbbbb cccc ddddddddddd</div>';
-			$product_description = '<div class="tmsmvoucher-pdf-product-description">'.$product_parent->get_description().'</div>';
+			$product_intro = '';
+			//$product_description = '<div class="tmsmvoucher-pdf-product-description">'.$product_parent->get_description().'</div>';
+			$product_description = str_replace('* ', '<br>* ', '<div class="tmsmvoucher-pdf-product-description">'.$product_parent->get_meta('_tmsm_woocommerce_vouchers_description').'</div>');
 
 			if(!empty($voucher_expirydate)){
 				$voucher_expirydate = '<div class="tmsmvoucher-pdf-voucher-expirydate"><b>'.__( 'Expires:', 'tmsm-woocommerce-vouchers' ) .  '</b> '. date_i18n( get_option( 'date_format' ), strtotime( $voucher_expirydate ) ).'</div>';
@@ -1852,7 +1854,24 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$voucher_code = '<div class="tmsmvoucher-pdf-voucher-code"><b>'.__( 'N°', 'tmsm-woocommerce-vouchers' ) .  '</b> '. $voucher_code.'</div>';
 
-			$voucher_graphic = '<img src="'.plugin_dir_url( __FILE__ ) . 'img/voucher-graphic.jpg'.'" class="tmsmvoucher-pdf-voucher-graphic-image"/>';
+			$voucher_graphic = '<img src="'.plugin_dir_url( __FILE__ ) . 'img/voucher-graphic.png'.'" class="tmsmvoucher-pdf-voucher-graphic-image"/>';
+
+
+			if(!empty($localbusiness_booking)){
+				$localbusiness_booking = '<div class="tmsmvoucher-pdf-localbusiness-booking"><div class="tmsmvoucher-pdf-localbusiness-booking-title">'.__( 'INFO & BOOKING', 'tmsm-woocommerce-vouchers' ) .  '</div><div class="tmsmvoucher-pdf-localbusiness-booking-data">'.$localbusiness_booking.'</div></div>';
+			}
+
+			if(!empty($localbusiness_info1)){
+				$localbusiness_info1 = '<div class="tmsmvoucher-pdf-localbusiness-info1">'.$localbusiness_info1.'</div>';
+			}
+			if(!empty($localbusiness_info2)){
+				$localbusiness_info2 = '<div class="tmsmvoucher-pdf-localbusiness-info2">'.$localbusiness_info2.'</div>';
+			}
+
+			$localbusiness_info = $localbusiness_info1 . $localbusiness_info2;
+			if(!empty($localbusiness_info)) {
+				$localbusiness_info = '<div class="tmsmvoucher-pdf-localbusiness-info">' . $localbusiness_info . '</div>';
+			}
 
 			$items_tags = [
 				'{localbusiness_booking}',

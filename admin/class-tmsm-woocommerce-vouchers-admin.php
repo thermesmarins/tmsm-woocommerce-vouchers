@@ -144,6 +144,12 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 						'options' => $localbusinesses_array
 					)
 				);
+				woocommerce_wp_textarea_input( array(
+						'id'      => '_tmsm_woocommerce_vouchers_description',
+						'label'   => __( 'Product description', 'tmsm-woocommerce-vouchers' ),
+					)
+				);
+
 		   }
 
 
@@ -195,6 +201,10 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 
 		if ( isset( $_POST['_tmsm_woocommerce_vouchers_localbusiness'] ) ) :
 			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_localbusiness', absint( $_POST['_tmsm_woocommerce_vouchers_localbusiness'] ) );
+		endif;
+
+		if ( isset( $_POST['_tmsm_woocommerce_vouchers_description'] ) ) :
+			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_description', wc_clean( $_POST['_tmsm_woocommerce_vouchers_description'] ) );
 		endif;
 
 		/*

@@ -17,11 +17,13 @@ table.vouchers-fields .value{
 /* PDF */
 
 .tmsmvoucher-pdf{
-  font-size: 12px;
+  font-size: 11px;
   font-family: Arial, Helvetica, sans-serif;
   color: #333;
 }
-
+.tmsmvoucher-pdf a{
+  color: #000
+}
 
 
 .tmsmvoucher-pdf-part{
@@ -36,7 +38,7 @@ table.vouchers-fields .value{
 .tmsmvoucher-pdf-product-control{
   float: left;
   width: 30%;
-  font-size: 14px;
+  font-size: 13px;
 }
 .tmsmvoucher-pdf-product-data{
   float: left;
@@ -71,9 +73,10 @@ table.vouchers-fields .value{
 .tmsmvoucher-pdf-localbusiness-logo{
   display: block;
   text-align: center;
-  width: 30%;
+  width: 35%;
   height: auto;
   margin-top: 150px;
+  margin-bottom: 20px;
 
 }
 .tmsmvoucher-pdf-localbusiness-intro{
@@ -111,11 +114,11 @@ table.vouchers-fields .value{
   text-align: center;
 }
 .tmsmvoucher-pdf-voucher-graphic-image{
-  width: 180px;
+  width: 90%;
   display: block;
   margin: 0 auto;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .tmsmvoucher-pdf-localbusiness-header{
@@ -129,11 +132,49 @@ table.vouchers-fields .value{
 }
 
 .tmsmvoucher-pdf-voucher-code{
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .tmsmvoucher-pdf-voucher-expirydate{
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .tmsmvoucher-pdf-product-image{
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+.tmsmvoucher-pdf-recipient-message{
+  font-size: 14px;
+}
+
+.tmsmvoucher-pdf-localbusiness-booking-title{
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: -20px;
+  font-weight: bold;
+}
+.tmsmvoucher-pdf-localbusiness-booking-data{
+  margin-top: -10px;
+}
+
+.tmsmvoucher-pdf-localbusiness-booking{
+  text-align: center;
+  font-size: 10px;
+}
+
+.tmsmvoucher-pdf-localbusiness-booking, .tmsmvoucher-pdf-localbusiness-info {
+  color: #555;
+}
+.tmsmvoucher-pdf-localbusiness-info{
+  border: 1px solid #b19263;
+  padding: 0 20px;
+}
+
+.tmsmvoucher-pdf-localbusiness-info1, .tmsmvoucher-pdf-localbusiness-info2{
+  float: left;
+  width: 48%;
+  vertical-align: top;
+  font-size: 9px;
+}
+.tmsmvoucher-pdf-localbusiness-info2{
+  margin-left: 4%;
 }
