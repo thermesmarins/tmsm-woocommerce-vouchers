@@ -1341,6 +1341,85 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	}
 
 
+	/**
+	 *  Single product display voucher expire in meta
+	 */
+	public function woocommerce_product_meta_end(){
+		global $product;
+		if(!empty($product) ){
+
+			$has_variations = sizeof( $product->get_children() );
+
+			$has_voucher = false;
+			$expiredays = 0;
+
+			if($has_variations) {
+				$variations = $product->get_available_variations();
+
+				if(!empty($variations)){
+					//print_r($variations);
+					foreach($variations as $variation){
+
+						$variation_id = $variation['variation_id'];
+						if(!empty($variation_id)){
+							$variation_product = wc_get_product($variation_id);
+							if(!empty($variation_product)){
+								//print_r($variation_product);
+								$voucher      = get_post_meta( $variation_product->get_id(), '_voucher', true );
+								if($voucher === 'yes'){
+									//echo '<br>'.$variation_product->get_name(). ' is voucher';
+									$has_voucher = true;
+								}
+							}
+
+						}
+
+					}
+
+				}
+			}
+			else{
+				$voucher      = get_post_meta( $product->get_id(), '_voucher', true );
+
+				if($voucher === 'yes'){
+					//echo '<br>'.$product->get_name(). ' is voucher';
+					$has_voucher = true;
+				}
+			}
+
+			$expiredays   = get_post_meta( $product->get_id(), '_tmsm_woocommerce_vouchers_expiredays', true );
+			if(empty($expiredays)){
+				$expiredays = get_option( 'tmsm_woocommerce_vouchers_expiredays' );
+			}
+
+			if($has_voucher){
+				$expireduration = null;
+				//echo '$expiredays:'.$expiredays;
+				switch($expiredays){
+					case 0:
+						$expireduration = null;
+						break;
+					case 90:
+						$expireduration = __('3 months', 'tmsm-woocommerce-vouchers');
+						break;
+					case 180:
+					case 182:
+					case 185:
+						$expireduration = __('6 months', 'tmsm-woocommerce-vouchers');
+						break;
+					case 365:
+					case 366:
+						$expireduration = __('1 year', 'tmsm-woocommerce-vouchers');
+						break;
+				}
+				if(!empty($expireduration)){
+					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift"></span> '.sprintf(__('Voucher valid %s', 'tmsm-woocommerce-vouchers'), $expireduration).'</p>';
+				}
+			}
+		}
+
+	}
+
 
 	/**
 	 * Generates a unique string
@@ -1847,7 +1926,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$product_description = str_replace('* ', '<br>* ', '<div class="tmsmvoucher-pdf-product-description">'.$product_parent->get_meta('_tmsm_woocommerce_vouchers_description').'</div>');
 
 			if(!empty($voucher_expirydate)){
-				$voucher_expirydate = '<div class="tmsmvoucher-pdf-voucher-expirydate"><b>'.__( 'Expires:', 'tmsm-woocommerce-vouchers' ) .  '</b> '. date_i18n( get_option( 'date_format' ), strtotime( $voucher_expirydate ) ).'</div>';
+				$voucher_expirydate = '<div class="tmsmvoucher-pdf-voucher-expirydate"><b>'._x( 'Expires:', 'Voucher PDF', 'tmsm-woocommerce-vouchers' ) .  '</b> '. date_i18n( get_option( 'date_format' ), strtotime( $voucher_expirydate ) ).'</div>';
 			}
 
 			$voucher_barcode = '<div class="tmsmvoucher-pdf-barcode-container"><barcode class="tmsmvoucher-pdf-barcode" code="'.$voucher_code.'" type="C128A" height="1" text="2" size="0.95"/></div>';

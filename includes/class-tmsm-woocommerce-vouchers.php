@@ -205,6 +205,8 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action( 'woocommerce_hidden_order_itemmeta', $plugin_admin, 'woocommerce_hidden_order_itemmeta', 10, 1 );
 		$this->loader->add_action( 'woocommerce_order_item_get_formatted_meta_data', $plugin_admin, 'woocommerce_order_item_get_formatted_meta_data', 10, 2 );
 
+
+
 	}
 
 	/**
@@ -239,6 +241,9 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_action('woocommerce_payment_complete_order_status_completed', $plugin_public, 'woocommerce_payment_complete', 10, 1);
 
 		$this->loader->add_filter('woocommerce_defer_transactional_emails', $plugin_public, 'woocommerce_defer_transactional_emails', 10, 1);
+
+		// Single Product
+		$this->loader->add_action( 'woocommerce_product_meta_end', $plugin_public, 'woocommerce_product_meta_end', 50 );
 
 	}
 

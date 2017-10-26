@@ -90,7 +90,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		$tabs['voucher'] = array(
 			'label'		=> __( 'Voucher', 'tmsm-woocommerce-vouchers' ),
 			'target'	=> 'voucher_options',
-			'class'		=> array(  'show_if_downloadable', 'show_if_variable', 'show_if_voucher'  ),
 		);
 		return $tabs;
 	}
@@ -195,9 +194,11 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		$is_voucher = isset( $_POST['_voucher'] ) ? 'yes' : 'no';
 		update_post_meta( $post_id, '_voucher', $is_voucher );
 
-		if ( isset( $_POST['_tmsm_woocommerce_vouchers_expiredays'] ) ) :
-			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expiredays', absint( $_POST['_tmsm_woocommerce_vouchers_expiredays'] ) );
-		endif;
+		$_tmsm_woocommerce_vouchers_expiredays = null;
+		if(!empty( $_POST['_tmsm_woocommerce_vouchers_expiredays'])){
+			$_tmsm_woocommerce_vouchers_expiredays = absint( $_POST['_tmsm_woocommerce_vouchers_expiredays'] );
+		}
+		update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expiredays', $_tmsm_woocommerce_vouchers_expiredays );
 
 		if ( isset( $_POST['_tmsm_woocommerce_vouchers_localbusiness'] ) ) :
 			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_localbusiness', absint( $_POST['_tmsm_woocommerce_vouchers_localbusiness'] ) );
