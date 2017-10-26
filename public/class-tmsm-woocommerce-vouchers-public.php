@@ -129,7 +129,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$order = wc_get_order($order_id);
 		error_log('order status: '.$order->get_status());
 
-		if(!$order->is_paid()){
+		$voucher_processed = get_post_meta( $order_id, '_voucherprocessed', true );
+
+		if(!$order->is_paid() || $voucher_processed === 'yes'){
 			return;
 		}
 		error_log('order paid');
@@ -190,6 +192,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			} // foreach $order_items
 
 		}
+
+		add_post_meta($order_id, '_voucherprocessed', 'yes', true);
+
 		$order->save();
 		return;
 	}
@@ -1313,7 +1318,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 									// If voucher pdf does not exist in folder
 									if (!file_exists($pdf_filepath)) {
 
-										//error_log('file_not_exists 1 '.$pdf_filepath);
+										error_log('file_not_exists 1 '.$pdf_filepath);
 										$pdf_args = array(
 											'pdf_filepath' => $pdf_filepath,
 											'pdf_save' => true
@@ -1323,7 +1328,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 										$this->tmsmvoucher_voucher_html_template( $data_id, $order_id, $item_id, $pdf_args);
 									}
 									else{
-										//error_log('file_exists 1 '.$pdf_filepath);
+										error_log('file_exists 1 '.$pdf_filepath);
 									}
 
 									// If voucher pdf exist in folder
@@ -1834,10 +1839,13 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		error_log('*** tmsmvoucher_voucher_html_template');
 
 		$product = wc_get_product($product_id);
-		$product_parent = wc_get_product($product->get_parent_id());
-		if(empty($product_parent)){
-			$product_parent = $product;
+
+		error_log('$product_id: '.$product_id);
+		error_log('$product->get_parent_id(): '.$product->get_parent_id());
+		if(!empty($product->get_parent_id())){
+			$product = wc_get_product($product->get_parent_id());
 		}
+
 		$order = wc_get_order($order_id);
 		$voucher_code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
 		$voucher_expirydate	= wc_get_order_item_meta( $item_id, '_expirydate', true );
@@ -1888,9 +1896,16 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			}
 
 			$localbusiness_logo = '';
-			$localbusiness_id = $product_parent->get_meta('_localbusiness');
+			$localbusiness_id = $product->get_meta('_tmsm_woocommerce_vouchers_localbusiness');
 			$localbusiness = get_post($localbusiness_id);
 			$localbusiness_logo = get_the_post_thumbnail($localbusiness_id, 'full', ['class' => 'tmsmvoucher-pdf-localbusiness-logo']);
+			$localbusiness_info1 = null;
+			$localbusiness_info2 = null;
+			$localbusiness_intro = null;
+			$localbusiness_booking = null;
+			$localbusiness_color = null;
+			$localbusiness_address = null;
+			$localbusiness_name = null;
 
 			if(function_exists('get_field')){
 				$localbusiness_name = $localbusiness->post_title;
@@ -1934,7 +1949,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-3" style="">
 				{localbusiness_booking}
 				{localbusiness_info}
-				{localbusiness_name}
 				{localbusiness_address}
 				</div>
 				';
@@ -1944,17 +1958,17 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$localbusiness_intro = '<div class="tmsmvoucher-pdf-localbusiness-intro">'.$localbusiness_intro.'</div>';
 			}
 
-			$product_image = $product_parent->get_image('shop_single', ['class' => 'tmsmvoucher-pdf-product-image']);
-			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.$product_parent->get_name().'</div>';
+			$product_image = $product->get_image('shop_single', ['class' => 'tmsmvoucher-pdf-product-image']);
+			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.$product->get_name().'</div>';
 			$product_intro = '';
-			//$product_description = '<div class="tmsmvoucher-pdf-product-description">'.$product_parent->get_description().'</div>';
-			$product_description = str_replace('* ', '<br>* ', '<div class="tmsmvoucher-pdf-product-description">'.$product_parent->get_meta('_tmsm_woocommerce_vouchers_description').'</div>');
+			//$product_description = '<div class="tmsmvoucher-pdf-product-description">'.$product->get_description().'</div>';
+			$product_description = str_replace('* ', '<br>* ', '<div class="tmsmvoucher-pdf-product-description">'.$product->get_meta('_tmsm_woocommerce_vouchers_description').'</div>');
 
 			if(!empty($voucher_expirydate)){
 				$voucher_expirydate = '<div class="tmsmvoucher-pdf-voucher-expirydate"><b>'._x( 'Expires:', 'Voucher PDF', 'tmsm-woocommerce-vouchers' ) .  '</b> '. date_i18n( get_option( 'date_format' ), strtotime( $voucher_expirydate ) ).'</div>';
 			}
 
-			$voucher_barcode = '<div class="tmsmvoucher-pdf-barcode-container"><barcode class="tmsmvoucher-pdf-barcode" code="'.$voucher_code.'" type="C128A" height="1" text="2" size="0.93"/></div>';
+			$voucher_barcode = '<div class="tmsmvoucher-pdf-barcode-container"><barcode class="tmsmvoucher-pdf-barcode" code="'.$voucher_code.'" type="C128A" height="1" text="2" size="0.94"/></div>';
 
 			$voucher_code = '<div class="tmsmvoucher-pdf-voucher-code"><b>'.__( 'N°', 'tmsm-woocommerce-vouchers' ) .  '</b> '. $voucher_code.'</div>';
 
@@ -1965,11 +1979,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$localbusiness_booking = '<div class="tmsmvoucher-pdf-localbusiness-booking"><div class="tmsmvoucher-pdf-localbusiness-booking-title">'.__( 'INFO & BOOKING', 'tmsm-woocommerce-vouchers' ) .  '</div><div class="tmsmvoucher-pdf-localbusiness-booking-data">'.$localbusiness_booking.'</div></div>';
 			}
 
-			$localbusiness_info1 = null;
 			if(!empty($localbusiness_info1)){
 				$localbusiness_info1 = '<div class="tmsmvoucher-pdf-localbusiness-info1">'.$localbusiness_info1.'</div>';
 			}
-			$localbusiness_info2 = null;
 			if(!empty($localbusiness_info2)){
 				$localbusiness_info2 = '<div class="tmsmvoucher-pdf-localbusiness-info2">'.$localbusiness_info2.'</div>';
 			}
@@ -2037,7 +2049,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @param $html
 	 * @param $pdf_args
 	 */
-	private function tmsmvoucher_output_tcpdf_from_html ($html, $pdf_args){
+	private function tmsmvoucher_output_tcpdf_from_html($html, $pdf_args){
 
 		error_log('*** tmsmvoucher_output_tcpdf_from_html');
 
@@ -2138,7 +2150,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @param string $html
 	 * @param array $pdf_args
 	 */
-	private function tmsmvoucher_output_mpdf_from_html ($html, $pdf_args){
+	private function tmsmvoucher_output_mpdf_from_html($html, $pdf_args){
 
 		error_log('*** tmsmvoucher_output_mpdf_from_html');
 
@@ -2167,8 +2179,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$mpdf->debug = true;
 		$mpdf->showImageErrors = true;
 
-		error_log('*** dpi: '.$mpdf->dpi);
-		error_log('*** img_dpi: '.$mpdf->img_dpi);
 		$mpdf->Output($pdf_filepath, $pdf_save);
 
 	}

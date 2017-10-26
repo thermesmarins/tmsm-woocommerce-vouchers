@@ -61,13 +61,14 @@ table.vouchers-fields .value{
 .tmsmvoucher-pdf-barcode-container{
   text-align: left;
   vertical-align: top;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .tmsmvoucher-pdf-product-image{
   width: 100%;
   height: auto;
+  margin-bottom: 10px;
 }
 
 .tmsmvoucher-pdf-localbusiness-logo{
