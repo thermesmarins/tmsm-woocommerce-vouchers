@@ -163,23 +163,29 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				//Get voucher code from item meta "Now we store voucher codes in item meta fields"
 				$codes_item_meta = wc_get_order_item_meta($item_id, '_vouchercode');
 
+				if($this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id) || $this->tmsmvoucher_product_type_is_voucher_physical($product_id, $variation_id)){
+					$expiredays   = get_post_meta( $product_id, '_tmsm_woocommerce_vouchers_expiredays', true );
+					if(empty($expiredays)){
+						$expiredays = get_option( 'tmsm_woocommerce_vouchers_expiredays' );
+					}
+
+					if(!empty($expiredays)){
+						$expirydate = date('Y-m-d', strtotime($order_date . '+' . ( $expiredays + 1 ) . ' days'));
+						wc_add_order_item_meta($item_id, '_expirydate', $expirydate);
+					}
+				}
+
 				if (empty($codes_item_meta)) {// If voucher data are not empty so code get executed once only
 
-					$enable_voucher = $this->tmsmvoucher_product_type_is_voucher($product_id, $variation_id);
-
-					if ( $enable_voucher ) { // if voucher is enable
-
+					if($this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id)){
 						$code = $this->tmsmvoucher_generate_code($product_id, $variation_id);
 
 						if(!empty($code)){
-							$expiredays = get_option( 'tmsm_woocommerce_vouchers_expiredays' );
-							if(!empty($expiredays)){
-								$expirydate = date('Y-m-d', strtotime($order_date . '+' . ( $expiredays + 1 ) . ' days'));
-								wc_add_order_item_meta($item_id, '_expirydate', $expirydate);
-							}
+
 							wc_add_order_item_meta($item_id, '_vouchercode', $code);
 						}
 					}
+
 				}
 			} // foreach $order_items
 
@@ -229,10 +235,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$variation_id = $product->get_id();
 			}
 
-			$enable_voucher = $this->tmsmvoucher_product_type_is_voucher($product_id, $variation_id);
+			$enable_voucher = $this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id) || $this->tmsmvoucher_product_type_is_voucher_physical($product_id, $variation_id);
 
 			if ( $enable_voucher ) { // if voucher is enable
-
 
 				$settings_recipientoptionnal         = get_option( 'tmsm_woocommerce_vouchers_recipientoptionnal' ) == 'yes';
 
@@ -401,7 +406,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						'label'        => __( 'Recipient address:', 'tmsm-woocommerce-vouchers' ),
 						'description'  => '',
 						'required'     => $settings_recipientaddressrequired,
-						'autocomplete' => 'street-address',
+						'autocomplete' => 'address-line1',
 						'id'           => '_recipientaddress[' . $variation_id . ']',
 						'class'        => [
 							'form-row-wide',
@@ -442,7 +447,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						'label'        => __( 'Recipient city:', 'tmsm-woocommerce-vouchers' ),
 						'description'  => '',
 						'required'     => $settings_recipientcityrequired,
-						'autocomplete' => 'locality',
+						'autocomplete' => 'address-level2',
 						'id'           => '_recipientcity[' . $variation_id . ']',
 						'class'        => [
 							'form-row-wide',
@@ -545,7 +550,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$variation_id = $variation_id ? $variation_id : $product_id;
 		$product      = wc_get_product( $variation_id );
 
-		$enable_voucher = $this->tmsmvoucher_product_type_is_voucher($product_id, $variation_id);
+		$enable_voucher = $this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id) || $this->tmsmvoucher_product_type_is_voucher_physical($product_id, $variation_id);
 
 		if ( $enable_voucher ) {
 
@@ -946,7 +951,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 					$product_id = $product->get_id();
 					$data_id    = ( ! empty( $variation_id ) ) ? $variation_id : $product_id;
 
-					$enable_voucher = $this->tmsmvoucher_product_type_is_voucher($product_id, $variation_id);
+					$enable_voucher = $this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id);
 					if ( $enable_voucher ) {
 
 						$downloadable_files = $this->tmsmvoucher_download_key( $order_id, $data_id, $item_id );
@@ -956,7 +961,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 							wc_downloadable_file_permission( $download_id, $data_id, $order );
 						}
 					}
-
 				}
 			}
 		}
@@ -1280,7 +1284,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 					$data_id = !empty($variation_id) ? $variation_id : $product_id;
 
 					//Check voucher enable or not
-					$enable_voucher = $this->tmsmvoucher_product_type_is_voucher($product_id, $variation_id);
+					$enable_voucher = $this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id);
 
 					if ($enable_voucher) {
 
@@ -1407,6 +1411,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 					case 185:
 						$expireduration = __('6 months', 'tmsm-woocommerce-vouchers');
 						break;
+					case 360:
 					case 365:
 					case 366:
 						$expireduration = __('1 year', 'tmsm-woocommerce-vouchers');
@@ -1439,14 +1444,37 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	}
 
 	/**
-	 * Check if product/variation has voucher enabled
+	 * Check if product/variation has voucher physical enabled
 	 *
 	 * @param $product_id
 	 * @param $variation_id
 	 *
 	 * @return bool $enable_voucher
 	 */
-	private function tmsmvoucher_product_type_is_voucher( $product_id, $variation_id ) {
+	private function tmsmvoucher_product_type_is_voucher_physical( $product_id, $variation_id ) {
+		$enable_voucher = false;
+
+		$data_id = ( ! empty( $variation_id ) ? $variation_id : $product_id );
+
+		$voucher      = get_post_meta( $data_id, '_voucher', true );
+		$settings_physical = get_option( 'tmsm_woocommerce_vouchers_physical' );
+
+		if ( $voucher =='yes' && $settings_physical == 'yes' ) {
+			$enable_voucher = true;
+		}
+
+		return $enable_voucher;
+	}
+
+	/**
+	 * Check if product/variation has voucher virtual enabled
+	 *
+	 * @param $product_id
+	 * @param $variation_id
+	 *
+	 * @return bool $enable_voucher
+	 */
+	private function tmsmvoucher_product_type_is_voucher_virtual( $product_id, $variation_id ) {
 		$enable_voucher = false;
 
 		$data_id = ( ! empty( $variation_id ) ? $variation_id : $product_id );
@@ -1455,16 +1483,12 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$virtual      = get_post_meta( $data_id, '_virtual', true );
 		$downloadable = get_post_meta( $data_id, '_downloadable', true );
 
-		$settings_physical = get_option( 'tmsm_woocommerce_vouchers_physical' );
 		$settings_virtual  = get_option( 'tmsm_woocommerce_vouchers_virtual' );
 
 		$enable_voucher = ( $voucher == 'yes' );
 
-		if ( $virtual == 'yes' && $settings_virtual != 'yes' ) {
-			$enable_voucher = false;
-		}
-		if ( $virtual != 'yes' && $settings_physical != 'yes' ) {
-			$enable_voucher = false;
+		if ( $voucher == 'yes' && $virtual == 'yes' && $downloadable == 'yes' && $settings_virtual == 'yes' ) {
+			$enable_voucher = true;
 		}
 
 		return $enable_voucher;
@@ -1847,12 +1871,12 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$recipient = array(
 					'first_name' => $title . $recipient_firstname,
 					'last_name'  => strtoupper($recipient_lastname),
-					'address_1'  => $recipient_address,
+					//'address_1'  => $recipient_address,
 					//'address_2'   => '',
-					'city'       => $recipient_city,
-					'postcode'   => $recipient_zipcode,
+					//'city'       => $recipient_city,
+					//'postcode'   => $recipient_zipcode,
 					//'state'    => '',
-					'country'    => $recipient_country,
+					//'country'    => $recipient_country,
 				);
 
 				$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
@@ -1869,6 +1893,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$localbusiness_logo = get_the_post_thumbnail($localbusiness_id, 'full', ['class' => 'tmsmvoucher-pdf-localbusiness-logo']);
 
 			if(function_exists('get_field')){
+				$localbusiness_name = $localbusiness->post_title;
 				$localbusiness_intro = get_field('voucher_intro', $localbusiness_id);
 				$localbusiness_info1 = get_field('voucher_info1', $localbusiness_id);
 				$localbusiness_info2 = get_field('voucher_info2', $localbusiness_id);
@@ -1929,7 +1954,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$voucher_expirydate = '<div class="tmsmvoucher-pdf-voucher-expirydate"><b>'._x( 'Expires:', 'Voucher PDF', 'tmsm-woocommerce-vouchers' ) .  '</b> '. date_i18n( get_option( 'date_format' ), strtotime( $voucher_expirydate ) ).'</div>';
 			}
 
-			$voucher_barcode = '<div class="tmsmvoucher-pdf-barcode-container"><barcode class="tmsmvoucher-pdf-barcode" code="'.$voucher_code.'" type="C128A" height="1" text="2" size="0.95"/></div>';
+			$voucher_barcode = '<div class="tmsmvoucher-pdf-barcode-container"><barcode class="tmsmvoucher-pdf-barcode" code="'.$voucher_code.'" type="C128A" height="1" text="2" size="0.93"/></div>';
 
 			$voucher_code = '<div class="tmsmvoucher-pdf-voucher-code"><b>'.__( 'N°', 'tmsm-woocommerce-vouchers' ) .  '</b> '. $voucher_code.'</div>';
 
@@ -1940,9 +1965,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$localbusiness_booking = '<div class="tmsmvoucher-pdf-localbusiness-booking"><div class="tmsmvoucher-pdf-localbusiness-booking-title">'.__( 'INFO & BOOKING', 'tmsm-woocommerce-vouchers' ) .  '</div><div class="tmsmvoucher-pdf-localbusiness-booking-data">'.$localbusiness_booking.'</div></div>';
 			}
 
+			$localbusiness_info1 = null;
 			if(!empty($localbusiness_info1)){
 				$localbusiness_info1 = '<div class="tmsmvoucher-pdf-localbusiness-info1">'.$localbusiness_info1.'</div>';
 			}
+			$localbusiness_info2 = null;
 			if(!empty($localbusiness_info2)){
 				$localbusiness_info2 = '<div class="tmsmvoucher-pdf-localbusiness-info2">'.$localbusiness_info2.'</div>';
 			}
