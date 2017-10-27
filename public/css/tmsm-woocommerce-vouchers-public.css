@@ -13,6 +13,20 @@ table.vouchers-fields .value{
   margin-bottom: 1em;
 }
 
+.vouchers-fields-wrapper-variation .title-field input, .vouchers-fields-wrapper-variation .title-field label {
+  display: inline-block;
+}
+.vouchers-fields-wrapper-variation .title-field .input-radio  {
+  margin-left: 20px;
+}
+.vouchers-fields-wrapper-variation .title-field label.radio  {
+  margin-left: 5px;
+}
+.vouchers-fields-wrapper-variation .title-field .required{
+  border: none;
+  text-decoration: none;
+}
+
 
 /* PDF */
 

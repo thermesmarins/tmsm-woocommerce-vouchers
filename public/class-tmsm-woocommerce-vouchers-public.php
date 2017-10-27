@@ -341,14 +341,13 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				// title
 				if ( $settings_recipienttitle ):
 					woocommerce_form_field( '_recipienttitle[' . $variation_id . ']', [
-						'type'         => 'select',
+						'type'         => 'radio',
 						'label'        => __( 'Recipient title:', 'tmsm-woocommerce-vouchers' ),
 						'description'  => '',
 						'required'     => $settings_recipienttitlerequired,
 						'autocomplete' => 'honorific-prefix',
 						'id'           => '_recipienttitle[' . $variation_id . ']',
 						'options'      => [
-							'' => '',
 							1  => __( 'Ms', 'tmsm-woocommerce-vouchers' ),
 							2  => __( 'Mr', 'tmsm-woocommerce-vouchers' ),
 						],
@@ -357,8 +356,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 							'title-field',
 							'formfield-text',
 							'form-group',
-							( $settings_recipienttitlerequired && isset( $_POST['_recipienttitle'][ $variation_id ] )
-							  && empty( $submit_recipienttitle ) ? 'has-error' : '' ),
+							( $settings_recipienttitlerequired && $_POST && empty( $submit_recipienttitle ) ? 'has-error' : '' ),
 						],
 					], $submit_recipienttitle );
 
