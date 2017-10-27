@@ -320,11 +320,15 @@ class Tmsm_Woocommerce_Vouchers_Public {
 					? wp_filter_nohtml_kses( $_POST['_recipientsenddate'][ $variation_id ] ) : '';
 
 
-				echo '<div class="vouchers-fields-wrapper' . ( $product->is_type( 'variation' ) ? '-variation' : '' )
+				echo '<div class="well vouchers-fields-wrapper' . ( $product->is_type( 'variation' ) ? '-variation' : '' )
 				     . '" id="vouchers-fields-wrapper-' . $variation_id . '" >';
-				echo '<p class="h4 vouchers-fields-title">';
-				echo __( 'Recipient of the voucher', 'tmsm-woocommerce-vouchers' );
+				echo '<p class="h3 first-heading vouchers-fields-title">';
+				echo __( 'Who to give this voucher to?', 'tmsm-woocommerce-vouchers' );
 				echo '</p>';
+				echo '<p>';
+				echo __( 'Vouchers are nominative, <b>please fill the details of the recipient</b>.', 'tmsm-woocommerce-vouchers' );
+				echo '</p>';
+
 				echo '<div class="vouchers-fields">';
 
 

@@ -13,16 +13,18 @@ table.vouchers-fields .value{
   margin-bottom: 1em;
 }
 
-.vouchers-fields-wrapper-variation .title-field input, .vouchers-fields-wrapper-variation .title-field label {
+
+.vouchers-fields .title-field input, .vouchers-fields .title-field label {
   display: inline-block;
 }
-.vouchers-fields-wrapper-variation .title-field .input-radio  {
+.vouchers-fields .title-field .input-radio  {
   margin-left: 20px;
 }
-.vouchers-fields-wrapper-variation .title-field label.radio  {
+.vouchers-fields .title-field label.radio  {
   margin-left: 5px;
+  font-weight: normal;
 }
-.vouchers-fields-wrapper-variation .title-field .required{
+.vouchers-fields .title-field .required{
   border: none;
   text-decoration: none;
 }
