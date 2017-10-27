@@ -1,3 +1,7 @@
+table.variations .radio input[type="radio"]{
+  margin-left: 0;
+}
+
 table.vouchers-fields th, table.vouchers-fields td{
   display: list-item;
   padding: 0;

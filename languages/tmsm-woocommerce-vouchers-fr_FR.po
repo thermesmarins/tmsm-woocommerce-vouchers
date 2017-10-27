@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TMSM WooCommerce Vouchers\n"
 "POT-Creation-Date: 2017-10-27 13:55+0200\n"
-"PO-Revision-Date: 2017-10-27 13:57+0200\n"
+"PO-Revision-Date: 2017-10-27 14:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: https://github.com/thermesmarins\n"
 "Language: fr\n"
@@ -2084,7 +2084,7 @@ msgstr "Réglages de bon cadeau"
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:50
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:780
 msgid "Recipient"
-msgstr "Bénéficiaires"
+msgstr "Bénéficiaire"
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:51
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:306
@@ -2411,7 +2411,7 @@ msgstr "Invité"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:326
 msgid "Who to give this voucher to?"
-msgstr "À qui allez-vous offir ce cadeau ?"
+msgstr "À qui allez-vous offrir ce cadeau ?"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:329
 msgid ""
@@ -2517,10 +2517,9 @@ msgid "1 year"
 msgstr "1 an"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1428
-#, fuzzy, php-format
-#| msgid "Vouchers"
+#, php-format
 msgid "Voucher valid %s"
-msgstr "Bons cadeaux"
+msgstr "Bons cadeaux %s"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1577
 msgid "Download voucher"

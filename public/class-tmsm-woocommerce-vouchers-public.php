@@ -1425,7 +1425,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						break;
 				}
 				if(!empty($expireduration)){
-					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift"></span> '.sprintf(__('Voucher valid %s', 'tmsm-woocommerce-vouchers'), $expireduration).'</p>';
+					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift"></span>'.sprintf(__('Voucher valid %s', 'tmsm-woocommerce-vouchers'), $expireduration).'</p>';
 				}
 			}
 		}
