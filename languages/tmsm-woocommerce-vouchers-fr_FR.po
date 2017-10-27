@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TMSM WooCommerce Vouchers\n"
-"POT-Creation-Date: 2017-10-27 13:55+0200\n"
-"PO-Revision-Date: 2017-10-27 14:59+0200\n"
+"POT-Creation-Date: 2017-10-27 16:19+0200\n"
+"PO-Revision-Date: 2017-10-27 16:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: https://github.com/thermesmarins\n"
 "Language: fr\n"
@@ -2519,7 +2519,7 @@ msgstr "1 an"
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1428
 #, php-format
 msgid "Voucher valid %s"
-msgstr "Bons cadeaux %s"
+msgstr "Bon cadeau valable %s"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1577
 msgid "Download voucher"
