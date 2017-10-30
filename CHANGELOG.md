@@ -1,3 +1,6 @@
+### 1.0.3: October 30th, 2017
+* Github updater compatibility
+
 ### 1.0.2: October 30th, 2017
 * Update FR translation
 

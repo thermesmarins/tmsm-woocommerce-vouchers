@@ -15,7 +15,7 @@
  * Plugin Name:       TMSM WooCommerce Vouchers
  * Plugin URI:        https://github.com/thermesmarins/tmsm-woocommerce-vouchers/
  * Description:       WooCommerce Vouchers for Thermes Marins de Saint-Malo
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            Nicolas MOLLET
  * Author URI:        https://github.com/thermesmarins/
  * Requires PHP:      5.6
