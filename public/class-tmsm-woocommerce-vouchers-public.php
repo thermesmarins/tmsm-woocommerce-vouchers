@@ -352,8 +352,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						'autocomplete' => 'honorific-prefix',
 						'id'           => '_recipienttitle[' . $variation_id . ']',
 						'options'      => [
-							1  => __( 'Ms', 'tmsm-woocommerce-vouchers' ),
-							2  => __( 'Mr', 'tmsm-woocommerce-vouchers' ),
+							1  => __( 'Miss', 'tmsm-woocommerce-vouchers' ),
+							2  => __( 'Mister', 'tmsm-woocommerce-vouchers' ),
 						],
 						'class'        => [
 							'form-row-wide',

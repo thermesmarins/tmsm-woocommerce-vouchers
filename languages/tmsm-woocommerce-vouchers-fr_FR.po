@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TMSM WooCommerce Vouchers\n"
-"POT-Creation-Date: 2017-10-27 16:19+0200\n"
-"PO-Revision-Date: 2017-10-27 16:20+0200\n"
+"POT-Creation-Date: 2017-10-27 16:23+0200\n"
+"PO-Revision-Date: 2017-10-27 16:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: https://github.com/thermesmarins\n"
 "Language: fr\n"
@@ -57,11 +57,11 @@ msgid "Recipient title"
 msgstr "Civilité du bénéficiaire"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:343
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:355
 msgid "Miss"
 msgstr "Madame"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:343
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:356
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:760
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:888
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1130
@@ -2428,13 +2428,9 @@ msgstr "Définir un bénéficiaire de bon cadeau"
 msgid "Recipient title:"
 msgstr "Civilité :"
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:355
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:757
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:885
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1127
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1871
-msgid "Ms"
-msgstr "Mme"
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:356
+msgid "Mister"
+msgstr "Monsieur"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:373
 msgid "Recipient first name:"
@@ -2487,6 +2483,13 @@ msgstr "Téléphone"
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:664
 msgid "Please enter valid email"
 msgstr "Saisir un email valide"
+
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:757
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:885
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1127
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1871
+msgid "Ms"
+msgstr "Mme"
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:907
 msgid "Recipient:"

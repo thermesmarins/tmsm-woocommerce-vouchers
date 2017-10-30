@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TMSM WooCommerce Vouchers\n"
-"POT-Creation-Date: 2017-10-27 16:19+0200\n"
+"POT-Creation-Date: 2017-10-27 16:23+0200\n"
 "PO-Revision-Date: 2014-10-24 21:08+0100\n"
 "Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
@@ -55,11 +55,11 @@ msgid "Recipient title"
 msgstr ""
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:343
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:355
 msgid "Miss"
 msgstr ""
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:343
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:356
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:760
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:888
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1130
@@ -2406,12 +2406,8 @@ msgstr ""
 msgid "Recipient title:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:355
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:757
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:885
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1127
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1871
-msgid "Ms"
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:356
+msgid "Mister"
 msgstr ""
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:373
@@ -2464,6 +2460,13 @@ msgstr ""
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:664
 msgid "Please enter valid email"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:757
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:885
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1127
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1871
+msgid "Ms"
 msgstr ""
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:907
