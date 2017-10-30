@@ -18,10 +18,13 @@
  * Version:           1.0.2
  * Author:            Nicolas MOLLET
  * Author URI:        https://github.com/thermesmarins/
+ * Requires PHP:      5.6
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       tmsm-woocommerce-vouchers
  * Domain Path:       /languages
+ * Github Plugin URI: https://github.com/thermesmarins/tmsm-woocommerce-vouchers/
+ * Github Branch:     master
  */
 
 // If this file is called directly, abort.
