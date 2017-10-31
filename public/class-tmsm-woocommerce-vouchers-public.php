@@ -1151,12 +1151,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 											$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
 
-											//$download->set_access_expires( strtotime( $from_date . ' + ' . $expiry . ' DAY' ) );
 
 											// Download file arguments
 											$download_args = array(
 												'product_id'          => $product_id,
-												'product_name'        => $item->get_name() . ' '. __( 'for', 'tmsm-woocommerce-vouchers' ) . ' ' .$formatted_recipient. ' * '.$from_date,
+												'product_name'        => $item->get_name() . ' '. __( 'for', 'tmsm-woocommerce-vouchers' ) . ' ' .$formatted_recipient,
 												'download_url'        => $download_url,
 												//'download_name'       => $_product->get_title() . $download_file['name'] . ' ' . $voucher_number . ' ( ' . $order_date . ' )',
 												'download_name'       => $download_file['name']. ' '.$item->get_meta( '_vouchercode' ),
