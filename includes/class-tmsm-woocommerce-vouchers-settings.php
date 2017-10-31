@@ -475,10 +475,10 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 						),
 						array(
 							'type'     => 'text',
-							'id'       => 'tmsm_woocommerce_vouchers_expiredays',
+							'id'       => 'tmsm_woocommerce_vouchers_expiremonths',
 							'name'     => __( 'Voucher expires', 'tmsm-woocommerce-vouchers' ),
-							'desc'     => __( 'days', 'tmsm-woocommerce-vouchers' ),
-							'default'  => '365',
+							'desc'     => __( 'months', 'tmsm-woocommerce-vouchers' ),
+							'default'  => '12',
 						),
 					    
 						/*

@@ -121,12 +121,12 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 				'desc_tip'    	=> false,
 			) );*/
 			woocommerce_wp_text_input( array(
-				'id'            => '_tmsm_woocommerce_vouchers_expiredays',
+				'id'            => '_tmsm_woocommerce_vouchers_expiremonths',
 				'wrapper_class' => 'show_if_voucher',
 				'label'     => __( 'Voucher expires', 'tmsm-woocommerce-vouchers' ),
-				'description'     => __( 'days', 'tmsm-woocommerce-vouchers' ),
+				'description'     => __( 'months', 'tmsm-woocommerce-vouchers' ),
 				'type'              => 'number',
-				'placeholder'       => get_option('tmsm_woocommerce_vouchers_expiredays'),
+				'placeholder'       => get_option('tmsm_woocommerce_vouchers_expiremonths'),
 				'default'  		=> '',
 				'desc_tip'    	=> false,
 			) );
@@ -194,12 +194,12 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		$is_voucher = isset( $_POST['_voucher'] ) ? 'yes' : 'no';
 		update_post_meta( $post_id, '_voucher', $is_voucher );
 
-		$_tmsm_woocommerce_vouchers_expiredays = null;
-		if(!empty( $_POST['_tmsm_woocommerce_vouchers_expiredays'])){
-			$_tmsm_woocommerce_vouchers_expiredays = absint( $_POST['_tmsm_woocommerce_vouchers_expiredays'] );
+		$_tmsm_woocommerce_vouchers_expiremonths = null;
+		if(!empty( $_POST['_tmsm_woocommerce_vouchers_expiremonths'])){
+			$_tmsm_woocommerce_vouchers_expiremonths = absint( $_POST['_tmsm_woocommerce_vouchers_expiremonths'] );
 		}
-		if ( isset( $_POST['_tmsm_woocommerce_vouchers_expiredays'] ) ) :
-			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expiredays', $_tmsm_woocommerce_vouchers_expiredays );
+		if ( isset( $_POST['_tmsm_woocommerce_vouchers_expiremonths'] ) ) :
+			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expiremonths', $_tmsm_woocommerce_vouchers_expiremonths );
 		endif;
 
 		if ( isset( $_POST['_tmsm_woocommerce_vouchers_localbusiness'] ) ) :
