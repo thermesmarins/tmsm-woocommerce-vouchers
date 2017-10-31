@@ -1,3 +1,9 @@
+### 1.0.4: October 31st, 2017
+* Specify expiry date option, overriding expiry duration for products
+* Expiry duration in months instead of days
+* Display expiry date in downloads page
+* Update FR translation
+
 ### 1.0.3: October 30th, 2017
 * Github updater compatibility
 
