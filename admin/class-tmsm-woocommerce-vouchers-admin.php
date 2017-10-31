@@ -130,6 +130,16 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 				'default'  		=> '',
 				'desc_tip'    	=> false,
 			) );
+			woocommerce_wp_text_input( array(
+				'id'            => '_tmsm_woocommerce_vouchers_expirydate',
+				'wrapper_class' => 'show_if_voucher',
+				'label'     => __( 'Voucher date expiry', 'tmsm-woocommerce-vouchers' ),
+				'description'     => __( 'Format: YYYY-MM-DD, leave empty for default duration', 'tmsm-woocommerce-vouchers' ),
+				'type'              => 'text',
+				'placeholder'       => __( 'YYYY-MM-DD', 'tmsm-woocommerce-vouchers' ),
+				'default'  		=> '',
+				'desc_tip'    	=> false,
+			) );
 
 			$localbusinesses = get_posts(['post_type' => 'localbusiness', 'numberposts' => -1]);
 			if(is_array($localbusinesses)){
@@ -199,7 +209,11 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 			$_tmsm_woocommerce_vouchers_expiremonths = absint( $_POST['_tmsm_woocommerce_vouchers_expiremonths'] );
 		}
 		if ( isset( $_POST['_tmsm_woocommerce_vouchers_expiremonths'] ) ) :
-			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expiremonths', $_tmsm_woocommerce_vouchers_expiremonths );
+			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expiremonths', wc_clean($_tmsm_woocommerce_vouchers_expiremonths) );
+		endif;
+
+		if ( isset( $_POST['_tmsm_woocommerce_vouchers_expirydate'] ) ) :
+			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expirydate', wc_clean( $_POST['_tmsm_woocommerce_vouchers_expirydate'] ) );
 		endif;
 
 		if ( isset( $_POST['_tmsm_woocommerce_vouchers_localbusiness'] ) ) :

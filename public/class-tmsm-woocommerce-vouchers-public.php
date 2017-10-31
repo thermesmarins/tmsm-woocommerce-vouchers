@@ -166,15 +166,20 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$codes_item_meta = wc_get_order_item_meta($item_id, '_vouchercode');
 
 				if($this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id) || $this->tmsmvoucher_product_type_is_voucher_physical($product_id, $variation_id)){
-					$expiremonths   = get_post_meta( $product_id, '_tmsm_woocommerce_vouchers_expiremonths', true );
-					if(empty($expiremonths)){
-						$expiremonths = get_option( 'tmsm_woocommerce_vouchers_expiremonths' );
-					}
 
-					if(!empty($expiremonths)){
-						$expirydate = date('Y-m-d', strtotime($order_date . '+' . ( $expiremonths ) . ' months'));
-						wc_add_order_item_meta($item_id, '_expirydate', $expirydate);
+					$expirydate   = get_post_meta( $product_id, '_tmsm_woocommerce_vouchers_expirydate', true );
+					if(empty($expirydate)){
+						$expiremonths   = get_post_meta( $product_id, '_tmsm_woocommerce_vouchers_expiremonths', true );
+						if(empty($expiremonths)){
+							$expiremonths = get_option( 'tmsm_woocommerce_vouchers_expiremonths' );
+						}
+
+						if(!empty($expiremonths)){
+							$expirydate = date('Y-m-d', strtotime($order_date . '+' . ( $expiremonths ) . ' months'));
+
+						}
 					}
+					wc_add_order_item_meta($item_id, '_expirydate', $expirydate);
 				}
 
 				if (empty($codes_item_meta)) {// If voucher data are not empty so code get executed once only
@@ -1372,7 +1377,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		if(!empty($product) ){
 
 			$has_variations = sizeof( $product->get_children() );
-
 			$has_voucher = false;
 			$expiremonths = 0;
 
@@ -1380,43 +1384,43 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$variations = $product->get_available_variations();
 
 				if(!empty($variations)){
-					//print_r($variations);
 					foreach($variations as $variation){
 
 						$variation_id = $variation['variation_id'];
 						if(!empty($variation_id)){
 							$variation_product = wc_get_product($variation_id);
 							if(!empty($variation_product)){
-								//print_r($variation_product);
 								$voucher      = get_post_meta( $variation_product->get_id(), '_voucher', true );
 								if($voucher === 'yes'){
-									//echo '<br>'.$variation_product->get_name(). ' is voucher';
 									$has_voucher = true;
 								}
 							}
-
 						}
-
 					}
-
 				}
 			}
 			else{
 				$voucher      = get_post_meta( $product->get_id(), '_voucher', true );
 
 				if($voucher === 'yes'){
-					//echo '<br>'.$product->get_name(). ' is voucher';
 					$has_voucher = true;
 				}
 			}
 
 			$expiremonths   = get_post_meta( $product->get_id(), '_tmsm_woocommerce_vouchers_expiremonths', true );
+			$expirydate   = get_post_meta( $product->get_id(), '_tmsm_woocommerce_vouchers_expirydate', true );
+
 			if(empty($expiremonths)){
 				$expiremonths = get_option( 'tmsm_woocommerce_vouchers_expiremonths' );
 			}
 
-			if($has_voucher && !empty($expiremonths)){
-				echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift"></span>'.sprintf( _n( 'Voucher valid %s month', 'Voucher valid %s months', $expiremonths, 'tmsm-woocommerce-vouchers' ), $expiremonths ).'</p>';
+			if($has_voucher ){
+				if(!empty($expirydate)){
+					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift"></span><time datetime="'.date( 'Y-m-d', strtotime( $expirydate ) ).'" title="'.esc_attr( strtotime( $expirydate ) ).'">'. sprintf( __( 'Voucher valid until %s', 'tmsm-woocommerce-vouchers' ), date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) )).'</time></p>';
+				}
+				else{
+					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift"></span>'.sprintf( _n( 'Voucher valid %s month', 'Voucher valid %s months', $expiremonths, 'tmsm-woocommerce-vouchers' ), $expiremonths ).'</p>';
+				}
 			}
 
 		}
