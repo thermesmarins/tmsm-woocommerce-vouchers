@@ -988,6 +988,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	public function woocommerce_get_item_downloads( $files, $item, $order ) {
 
+		//echo 'woocommerce_get_item_downloads tmsm';
 		$this->woocommerce_payment_complete($order->get_id());
 
 		$product = $item->get_product();
@@ -1001,11 +1002,13 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$pdf_downloadable_files = $this->tmsmvoucher_download_key( $order->get_id(), $variation_id, $item->get_id() );
 
 		if ( ! empty( $pdf_downloadable_files ) ) {
-
+			//print_r('not empty $pdf_downloadable_files');
 			foreach ( $pdf_downloadable_files as $pdf_key => $pdf_file_array ) {
 
 				// Add download url to voucher downlodable files
 				$pdf_downloadable_files[ $pdf_key ]['download_url'] = $item->get_item_download_url( $pdf_key );
+				$pdf_downloadable_files[ $pdf_key ]['test'] = $item->get_item_download_url( $pdf_key );
+				$pdf_downloadable_files[ $pdf_key ]['access_expires'] = 'bbb';
 
 				// Merge downlodable file to files
 				$files = array_merge( $files, array( $pdf_key => $pdf_downloadable_files[ $pdf_key ] ) );
@@ -1014,8 +1017,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		// Add item id in download pdf url
 		if ( ! empty( $files ) ) { //If files not empty
+			//print_r('not empty $files');
 			foreach ( $files as $file_key => $file_data ) {
 
+				//print_r($file_data);
 				//Check key is for pdf voucher
 				$check_key = strpos( $file_key, 'tmsmvoucher' );
 
@@ -1029,9 +1034,13 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 					//Store download URL agaiin
 					$files[ $file_key ]['download_url'] = $download_url;
+					$files[ $file_key ]['access_expires'] = 'bbb';
 				}
 			}
 		}
+
+		//print_r($files);
+
 
 		return $files;
 
@@ -1093,6 +1102,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 								//Get voucher codes
 								$code = wc_get_order_item_meta( $item_id, '_vouchercode', true );
+								$expirydate = wc_get_order_item_meta( $item_id, '_expirydate', true );
 
 								if ( ! empty( $download_file_data ) && ! empty( $code ) ) {//If download exist and code is not empty
 									foreach ( $download_file_data as $key => $download_file ) {
@@ -1141,15 +1151,18 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 											$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
 
-											//Download file arguments
+											//$download->set_access_expires( strtotime( $from_date . ' + ' . $expiry . ' DAY' ) );
+
+											// Download file arguments
 											$download_args = array(
 												'product_id'          => $product_id,
-												'product_name'        => $item->get_name() . ' '. __( 'for', 'tmsm-woocommerce-vouchers' ) . ' ' .$formatted_recipient,
+												'product_name'        => $item->get_name() . ' '. __( 'for', 'tmsm-woocommerce-vouchers' ) . ' ' .$formatted_recipient. ' * '.$from_date,
 												'download_url'        => $download_url,
 												//'download_name'       => $_product->get_title() . $download_file['name'] . ' ' . $voucher_number . ' ( ' . $order_date . ' )',
 												'download_name'       => $download_file['name']. ' '.$item->get_meta( '_vouchercode' ),
+												'access_expires'       => $expirydate,
 
-												'downloads_remaining' => '',
+												'downloads_remaining' => $from_date,
 												'file'                => array(
 													'name' => $download_file['name'],
 													'file' => $download_file['file'],

@@ -107,7 +107,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		global $post;
 
 		// Note the 'id' attribute needs to match the 'target' parameter set above
-		?><div id='voucher_options' class='panel woocommerce_options_panel'><?php
+		?><div id='voucher_options' class='panel woocommerce_options_panel hidden'><?php
 		?>
 
 		<div class='options_group'>

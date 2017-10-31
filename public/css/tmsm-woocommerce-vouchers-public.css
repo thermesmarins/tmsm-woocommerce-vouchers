@@ -59,11 +59,13 @@ table.vouchers-fields .value{
   float: left;
   width: 30%;
   font-size: 13px;
+  vertical-align: top;
 }
 .tmsmvoucher-pdf-product-data{
   float: left;
   width: 66%;
   margin-left: 4%;
+  vertical-align: top;
 }
 
 
