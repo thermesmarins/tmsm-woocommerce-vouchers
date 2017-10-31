@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TMSM WooCommerce Vouchers\n"
-"POT-Creation-Date: 2017-10-27 16:23+0200\n"
+"POT-Creation-Date: 2017-10-31 15:18+0100\n"
 "PO-Revision-Date: 2014-10-24 21:08+0100\n"
 "Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:91
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:236
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:257
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:2100
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:2090
 msgid "Voucher"
 msgstr ""
 
@@ -32,7 +32,7 @@ msgstr ""
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:127
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:480
-msgid "days"
+msgid "months"
 msgstr ""
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:142
@@ -62,8 +62,8 @@ msgstr ""
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:343
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:760
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:888
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1130
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1874
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1140
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1864
 msgid "Mr"
 msgstr ""
 
@@ -2464,8 +2464,8 @@ msgstr ""
 
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:757
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:885
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1127
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1871
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1137
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1861
 msgid "Ms"
 msgstr ""
 
@@ -2481,53 +2481,43 @@ msgstr ""
 msgid "Expiry date:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1147
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1158
 msgid "for"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1414
-msgid "3 months"
-msgstr ""
-
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:1419
-msgid "6 months"
-msgstr ""
-
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1424
-msgid "1 year"
-msgstr ""
-
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1428
 #, php-format
-msgid "Voucher valid %s"
-msgstr ""
+msgid "Voucher valid %s month"
+msgid_plural "Voucher valid %s months"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1577
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1567
 msgid "Download voucher"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1893
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1883
 msgid "This voucher is reserved to:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1897
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1887
 msgid "Personal message:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1970
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1960
 msgctxt "Voucher PDF"
 msgid "Expires:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1975
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1965
 msgid "N°"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1981
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1971
 msgid "INFO & BOOKING"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:2098
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:2099
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:2088
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:2089
 msgid "WooCommerce"
 msgstr ""
