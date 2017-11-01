@@ -924,7 +924,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		}
 
 		if ( $strings != [] ) {
-			$html = $args['before'] . implode( $args['separator'], $strings ) . $args['after'];
+			$html .= $args['before'] . implode( $args['separator'], $strings ) . $args['after'];
 		}
 
 		return $html;
@@ -1397,6 +1397,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 							}
 						}
 					}
+
 				}
 			}
 			else{
