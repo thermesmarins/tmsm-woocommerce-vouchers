@@ -128,7 +128,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 				'type'              => 'number',
 				'placeholder'       => get_option('tmsm_woocommerce_vouchers_expiremonths'),
 				'default'  		=> '',
-				'desc_tip'    	=> false,
+				'desc_tip'    	=> true,
 			) );
 			woocommerce_wp_text_input( array(
 				'id'            => '_tmsm_woocommerce_vouchers_expirydate',
@@ -138,7 +138,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 				'type'              => 'text',
 				'placeholder'       => __( 'YYYY-MM-DD', 'tmsm-woocommerce-vouchers' ),
 				'default'  		=> '',
-				'desc_tip'    	=> false,
+				'desc_tip'    	=> true,
 			) );
 
 			$localbusinesses = get_posts(['post_type' => 'localbusiness', 'numberposts' => -1]);

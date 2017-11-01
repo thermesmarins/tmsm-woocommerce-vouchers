@@ -96,10 +96,11 @@ table.vouchers-fields .value{
 .tmsmvoucher-pdf-localbusiness-logo{
   display: block;
   text-align: center;
-  width: 35%;
+  /*width: 50%;*/
   height: auto;
-  margin-top: 150px;
-  margin-bottom: 20px;
+  max-width: 250px;
+  margin-top: 80px;
+  /*margin-bottom: 20px;*/
 
 }
 .tmsmvoucher-pdf-localbusiness-intro{
