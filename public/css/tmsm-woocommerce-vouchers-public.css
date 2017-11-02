@@ -1,3 +1,5 @@
+
+
 table.variations .radio input[type="radio"]{
   margin-left: 0;
 }
@@ -17,6 +19,9 @@ table.vouchers-fields .value{
   margin-bottom: 1em;
 }
 
+.vouchers-fields-wrapper-variation{
+  display: none;
+}
 
 .vouchers-fields .title-field input, .vouchers-fields .title-field label {
   display: inline-block;
@@ -63,7 +68,7 @@ table.vouchers-fields .value{
 }
 .tmsmvoucher-pdf-product-data{
   float: left;
-  width: 66%;
+  width: 70%;
   margin-left: 4%;
   vertical-align: top;
 }
@@ -106,6 +111,13 @@ table.vouchers-fields .value{
 .tmsmvoucher-pdf-localbusiness-intro{
   color: #b19263;
   letter-spacing: 0.1em;
+}
+
+.tmsmvoucher-pdf-voucher-code{
+  margin-bottom: 15px;
+}
+.tmsmvoucher-pdf-voucher-expirydate{
+  margin-bottom: 15px;
 }
 
 .tmsmvoucher-pdf-product-name{
@@ -155,15 +167,7 @@ table.vouchers-fields .value{
   color: #b19263;
 }
 
-.tmsmvoucher-pdf-voucher-code{
-  margin-bottom: 15px;
-}
-.tmsmvoucher-pdf-voucher-expirydate{
-  margin-bottom: 15px;
-}
-.tmsmvoucher-pdf-product-image{
-  margin-bottom: 15px;
-}
+
 
 .tmsmvoucher-pdf-recipient-message{
   font-size: 14px;
