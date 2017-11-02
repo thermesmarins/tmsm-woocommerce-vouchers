@@ -18,7 +18,7 @@
  * @since      1.0.0
  * @package    Tmsm_Woocommerce_Vouchers
  * @subpackage Tmsm_Woocommerce_Vouchers/includes
- * @author     Nicolas MOLLET <nmollet@thalassotherapie.com>
+ * @author     Nicolas Mollet <nmollet@thalassotherapie.com>
  */
 class Tmsm_Woocommerce_Vouchers_Activator {
 
