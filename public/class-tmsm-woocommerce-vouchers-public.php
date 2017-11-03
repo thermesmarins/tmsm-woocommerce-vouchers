@@ -1300,6 +1300,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 									$pdf_filename = str_replace('{order_id}', $order_id, $pdf_filename);
 									$pdf_filename = str_replace('{voucher_code}', $order_codes_val, $pdf_filename);
 									$pdf_filename = str_replace('{current_date}',  date('Ymd'), $pdf_filename);
+									$pdf_filename = str_replace('{purchase_date}',  $order->get_date_paid(), $pdf_filename);
 									$pdf_filename = str_replace('{unique_string}',  $this->tmsmvoucher_generate_uniquestring(), $pdf_filename);
 
 									// Voucher pdf path and voucher name
@@ -1883,8 +1884,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$product_image = strip_tags($product->get_image('shop_single', ['data-no-lazy'=> 1, 'class' => 'tmsmvoucher-pdf-product-image']), '<img>');
 			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.$product->get_name().'</div>';
 			$product_intro = '';
-			//$product_description = '<div class="tmsmvoucher-pdf-product-description">'.$product->get_description().'</div>';
-			$product_description = str_replace('* ', '<br>* ', '<div class="tmsmvoucher-pdf-product-description">'.$product->get_meta('_tmsm_woocommerce_vouchers_description').'</div>');
+			$product_description = '<div class="tmsmvoucher-pdf-product-description">'.$product->get_meta('_tmsm_woocommerce_vouchers_description').'</div>';
 
 			if(!empty($voucher_expirydate)){
 				$voucher_expirydate = '<div class="tmsmvoucher-pdf-voucher-expirydate"><b>'._x( 'Expires:', 'Voucher PDF', 'tmsm-woocommerce-vouchers' ) .  '</b> '. date_i18n( get_option( 'date_format' ), strtotime( $voucher_expirydate ) ).'</div>';
@@ -1958,109 +1958,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$this->tmsmvoucher_output_mpdf_from_html( $html, $pdf_args );
 		}
-	}
-
-
-	/**
-	 * Output a pdf from html content (with TCPDF)
-	 *
-	 * @deprecated 1.0.0
-	 * @deprecated Unused TCPDF library
-	 *
-	 * @param $html
-	 * @param $pdf_args
-	 */
-	private function tmsmvoucher_output_tcpdf_from_html($html, $pdf_args){
-
-		if (!class_exists('TCPDF')) { //If class not exist
-			require_once TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/tcpdf/tcpdf.php';
-		}
-
-		$pdf_enable_preview = 'no';
-
-		$pdf_orientation = 'P'; // (P=portrait, L=landscape)
-		$pdf_unit = 'mm'; // [pt=point, mm=millimeter, cm=centimeter, in=inch]
-		$pdf_page_format = 'A4';
-		$pdf_unicode = true;
-		$pdf_charset = 'UTF-8';
-		$pdf_pdfamode = false;
-		$pdf_zoom = 'fullpage'; // [fullpage, fullwidth, real, default]
-
-		$pdf_autopage_break = true;
-		$pdf_margin_header = 0;
-		$pdf_margin_footer = 0;
-		$pdf_margin_top = 0;
-		$pdf_margin_bottom = 0;
-		$pdf_margin_left = 0;
-		$pdf_margin_right = 0;
-
-		$pdf_image_scale_ratio = 1.25;
-		$pdf_bg_image = '';
-
-		$pdf_font_subsetting = true;
-		$pdf_font_size = 12;
-		$pdf_font_monospaced = 'courier';
-		$pdf_font = 'helvetica';
-		if (!empty($pdf_args['char_support'])) { // if character support is checked
-			$pdf_font = 'freeserif';
-		}
-
-		$pdf_save = !empty($pdf_args['pdf_save']) ? true : false; // Pdf store in a folder or not
-
-
-		$pdf = new TCPDF($pdf_orientation, $pdf_unit, $pdf_page_format, $pdf_unicode, $pdf_charset, $pdf_pdfamode);
-		$pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->SetDisplayMode($pdf_zoom);
-		$pdf->SetCreator(utf8_decode(__('WooCommerce', 'tmsm-woocommerce-vouchers')));
-		$pdf->SetAuthor(utf8_decode(__('WooCommerce', 'tmsm-woocommerce-vouchers')));
-		$pdf->SetTitle(utf8_decode(__('Voucher', 'tmsm-woocommerce-vouchers')));
-		$pdf->setHeaderFont(Array($pdf_font, '', $pdf_font_size));
-		$pdf->setFooterFont(Array($pdf_font, '', $pdf_font_size));
-		$pdf->SetDefaultMonospacedFont($pdf_font_monospaced);
-		$pdf->SetMargins($pdf_margin_left, $pdf_margin_top, $pdf_margin_right);
-		$pdf->SetHeaderMargin($pdf_margin_header);
-		$pdf->SetFooterMargin($pdf_margin_footer);
-		$pdf->SetAutoPageBreak($pdf_autopage_break, $pdf_margin_bottom);
-		$pdf->setImageScale($pdf_image_scale_ratio);
-		$pdf->setFontSubsetting($pdf_font_subsetting);
-		$pdf->SetFont($pdf_font, '', $pdf_font_size);
-		$pdf->AddPage($pdf_orientation);
-		$pdf->setCellMargins(0, 1, 0, 1);
-		$pdf->SetTextColor(50, 50, 50);
-		$pdf->SetFillColor(238, 238, 238);
-
-
-
-		$pdf->writeHTML($html, true, 0, true, 0);
-		$pdf->lastPage();
-
-		// ---------------------------------------------------------
-		$order_pdf_name = 'aquatonic-paris-{current_date}';
-		if (!empty($order_pdf_name)) {
-			$order_pdf_name = 'voucher-' . date('Y-m-d');
-		}
-		$pdf_file_name = str_replace("{current_date}", date('Y-m-d'), $order_pdf_name);
-
-		//Get pdf name
-		$pdf_name = isset($pdf_args['pdf_name']) && !empty($pdf_args['pdf_name']) ? $pdf_args['pdf_name'] : $pdf_file_name;
-
-		// clean output just before generate voucher
-		if (ob_get_contents() || ob_get_length())
-			ob_end_clean();
-
-		// Store pdf in a folder
-		if ($pdf_save) {
-			$pdf->Output($pdf_name . '.pdf', 'F');
-		} else if (!empty($pdf_enable_preview) && $pdf_enable_preview == 'yes') {
-			$pdf->Output($pdf_name . '.pdf', 'I');
-			exit;
-		} else {
-			// Close and output PDF document
-			// Second Parameter I that means display direct and D that means ask product or open this file
-			$pdf->Output($pdf_name . '.pdf', 'D');
-		}
-
 	}
 
 	/**

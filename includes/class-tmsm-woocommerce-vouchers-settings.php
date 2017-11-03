@@ -469,6 +469,7 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							              __( '<code>{voucher_code}</code> - voucher code', 'tmsm-woocommerce-vouchers' ). '<br>'.
 							              __( '<code>{unique_string}</code> - unique string', 'tmsm-woocommerce-vouchers' ). '<br>'.
 							              __( '<code>{current_date}</code> - the current date YYYYMMDD', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{purchase_date}</code> - the date of the payment YYYYMMDD', 'tmsm-woocommerce-vouchers' ). '<br>'.
 							              '</p>',
 							'default'  => 'voucher-{current_date}-{unique_string}',
 							'class'  => 'regular-text',
