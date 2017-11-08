@@ -425,7 +425,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	function plugin_action_links( $links ) {
 		$plugin_links = [
 			'<a href="' . 'admin.php?page=wc-settings&tab=tmsmvouchers">' . __( 'Settings' ) . '</a>',
-			'<a href="' . 'https://github.com/thermesmarins/tmsm-woocommerce-vouchers' . '" target="_blank">' . __( 'Github' ) . '</a>',
+			'<a href="' . 'https://github.com/thermesmarins/tmsm-woocommerce-vouchers' . '" target="_blank">' . __( 'Github', 'tmsm-woocommerce-vouchers' ) . '</a>',
 		];
 		return array_merge( $plugin_links, $links );
 	}
@@ -467,6 +467,30 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 			}
 		}
 
+	}
+
+	/**
+	 * "Virtual only" column content
+	 *
+	 * @param $column
+	 * @param $post_id
+	 */
+	function shop_order_posts_custom_column_virtualonly( $column, $post_id )
+	{
+		global $post, $the_order;
+
+		if ( empty( $the_order ) || $the_order->get_id() !== $post->ID ) {
+			$the_order = wc_get_order( $post->ID );
+		}
+
+		switch ( $column ) {
+			case 'shipping_address':
+				if ( !($address = $the_order->get_formatted_shipping_address() )) {
+					echo ' <span style="color: #73a724"><span class="dashicons dashicons-download" style="margin-left: -17px;"></span>'.__( 'Virtual only', 'tmsm-woocommerce-vouchers' ).'</span>';
+				}
+				break;
+
+		}
 	}
 
 }

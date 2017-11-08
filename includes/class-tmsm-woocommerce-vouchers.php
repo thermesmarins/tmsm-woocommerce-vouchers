@@ -69,7 +69,7 @@ class Tmsm_Woocommerce_Vouchers {
 	public function __construct() {
 
 		$this->plugin_name = 'tmsm-woocommerce-vouchers';
-		$this->version = '1.0.4';
+		$this->version = '1.0.5';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -203,9 +203,10 @@ class Tmsm_Woocommerce_Vouchers {
 
 		// Order
 		$this->loader->add_action( 'woocommerce_hidden_order_itemmeta', $plugin_admin, 'woocommerce_hidden_order_itemmeta', 10, 1 );
-		$this->loader->add_action( 'woocommerce_order_item_get_formatted_meta_data', $plugin_admin, 'woocommerce_order_item_get_formatted_meta_data', 10, 2 );
 
-
+		// Virtual only Column
+		//$this->loader->add_action( 'manage_edit-shop_order_columns', $plugin_admin, 'shop_order_columns_virtualonly', 10 );
+		$this->loader->add_action( 'manage_shop_order_posts_custom_column', $plugin_admin, 'shop_order_posts_custom_column_virtualonly', 50, 2 );
 
 	}
 

@@ -60,6 +60,14 @@ table.vouchers-fields .value{
   padding-bottom: 0;
 }
 
+.tmsmvoucher-pdf-part-3 h1,
+.tmsmvoucher-pdf-part-3 h2,
+.tmsmvoucher-pdf-part-3 h3
+{
+  margin-bottom: 0px;
+  margin-top: 0;
+}
+
 .tmsmvoucher-pdf-product-control{
   float: left;
   width: 30%;

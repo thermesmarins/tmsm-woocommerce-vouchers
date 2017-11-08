@@ -1897,7 +1897,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$voucher_graphic = '<img src="'.plugin_dir_url( __FILE__ ) . 'img/voucher-graphic.png'.'" class="tmsmvoucher-pdf-voucher-graphic-image"/>';
 
 			if(!empty($localbusiness_booking)){
-				$localbusiness_booking = '<div class="tmsmvoucher-pdf-localbusiness-booking"><div class="tmsmvoucher-pdf-localbusiness-booking-title">'.__( 'INFO & BOOKING', 'tmsm-woocommerce-vouchers' ) .  '</div><div class="tmsmvoucher-pdf-localbusiness-booking-data">'.$localbusiness_booking.'</div></div>';
+				$localbusiness_booking = '<div class="tmsmvoucher-pdf-localbusiness-booking"><div class="tmsmvoucher-pdf-localbusiness-booking-data">'.$localbusiness_booking.'</div></div>';
 			}
 
 			if(!empty($localbusiness_info1)){
