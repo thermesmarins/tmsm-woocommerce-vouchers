@@ -455,7 +455,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 				}
 			}
 			if($variable_has_voucher){
-				$updated = update_post_meta( $product->get_id(), '_sold_individually','yes' );
+				//$updated = update_post_meta( $product->get_id(), '_sold_individually','yes' );
 			}
 
 		}
@@ -463,7 +463,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		if($product && !$product->is_type('variable')){
 			$is_voucher = get_post_meta($product->get_id(), '_voucher', true ) == 'yes';
 			if($is_voucher){
-				$updated = update_post_meta( $product->get_id(), '_sold_individually','yes' );
+				//$updated = update_post_meta( $product->get_id(), '_sold_individually','yes' );
 			}
 		}
 

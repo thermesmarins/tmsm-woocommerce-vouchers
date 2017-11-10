@@ -434,6 +434,7 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							              __( 'The available tags are:', 'tmsm-woocommerce-vouchers'). '<br>'.
 							              __( '<code>{sku}</code> - SKU of product or variation of product', 'tmsm-woocommerce-vouchers' ). '<br>'.
 							              __( '<code>{uses}</code> - number of uses zero filled of 6 characters', 'tmsm-woocommerce-vouchers' ). '<br>'.
+							              __( '<code>{order_id}</code> - order ID', 'tmsm-woocommerce-vouchers' ). '<br>'.
 							              '</p>',
 							'default'  => '{sku}-{uses}',
 							'class'  => 'regular-text',

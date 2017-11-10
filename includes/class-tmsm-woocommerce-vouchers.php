@@ -150,7 +150,6 @@ class Tmsm_Woocommerce_Vouchers {
 
 	}
 
-
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
@@ -203,9 +202,9 @@ class Tmsm_Woocommerce_Vouchers {
 
 		// Order
 		$this->loader->add_action( 'woocommerce_hidden_order_itemmeta', $plugin_admin, 'woocommerce_hidden_order_itemmeta', 10, 1 );
+		$this->loader->add_action( 'woocommerce_order_item_get_formatted_meta_data', $plugin_admin, 'woocommerce_order_item_get_formatted_meta_data', 10, 2 );
 
 		// Virtual only Column
-		//$this->loader->add_action( 'manage_edit-shop_order_columns', $plugin_admin, 'shop_order_columns_virtualonly', 10 );
 		$this->loader->add_action( 'manage_shop_order_posts_custom_column', $plugin_admin, 'shop_order_posts_custom_column_virtualonly', 50, 2 );
 
 	}
@@ -223,7 +222,6 @@ class Tmsm_Woocommerce_Vouchers {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 
 		$this->loader->add_action( 'woocommerce_before_add_to_cart_button', $plugin_public, 'woocommerce_before_add_to_cart_button' );
 		$this->loader->add_filter( 'woocommerce_add_to_cart_validation', $plugin_public, 'woocommerce_add_to_cart_validation', 10, 6 );
