@@ -1,3 +1,7 @@
+### 1.0.6: November 10th, 2017
+* Allow multiple vouchers for same product
+* Update FR translation
+
 ### 1.0.5: November 8th, 2017
 * Highlight virtual only orders
 * Fix local business logo size 

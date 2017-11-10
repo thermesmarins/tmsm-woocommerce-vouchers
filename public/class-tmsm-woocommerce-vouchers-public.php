@@ -1044,7 +1044,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 					//Store download URL agaiin
 					$files[ $file_key ]['download_url'] = $download_url;
-					$files[ $file_key ]['access_expires'] = 'bbb';
 				}
 			}
 		}
@@ -1216,6 +1215,22 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	function woocommerce_download_product( $email, $order_key, $product_id, $user_id, $download_id, $order_id ) {
 
+		$order = wc_get_order_id_by_order_key($order_key);
+		error_log('*** woocommerce_download_product');
+		error_log('$order_key: '.$order_key);
+		error_log('$order_id: '.$order_id);
+		if(empty($order_key)){
+			error_log('$order_key empty');
+		}
+		if(empty($order)){
+			error_log('$order empty');
+		}
+
+		if(empty($order_key) || empty($order)){
+			error_log('You are not allowed to download this file');
+			die(__( 'You are not allowed to download this file', 'tmsm-woocommerce-vouchers' ));
+		}
+
 		error_log('*** woocommerce_download_product');
 		$item_id = wc_clean( $_GET['item_id'] );
 		error_log('$item_id: '.$item_id);
@@ -1229,10 +1244,15 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$pdf_filename = str_replace('{unique_string}',  $this->tmsmvoucher_generate_uniquestring(), $pdf_filename);
 		$pdf_filename .= '.pdf';
 
-
 		$download_key = wc_clean( $_GET['key'] );
 		$download_key = str_replace('tmsmvoucher_pdf_'.$item_id.'_','',$download_key);
-
+		$download_key = absint( $download_key );
+		error_log('$download_key: '.$download_key);
+		error_log( 'absint($download_key): ' . absint( $download_key ) );
+		if ( !is_int( $download_key) || !$download_key ){
+		     error_log( '$download_key not int' );
+			die( __( 'You are not allowed to download this file', 'tmsm-woocommerce-vouchers' ) );
+		}
 		error_log('$download_key: '.$download_key);
 
 		$pdf_args = [
@@ -1290,6 +1310,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$this->woocommerce_payment_complete($order_id);
 
+			error_log('*** woocommerce_email_attachments continue');
 
 			$cart_details = wc_get_order($order_id);
 			$order_items = $cart_details->get_items();
@@ -1317,6 +1338,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						if (!empty($order_codes)) {
 
 							foreach ($order_codes as $order_codes_key => $order_codes_val) {
+								error_log('$order_codes_key: '.$order_codes_key);
+								error_log('$order_codes_val: '.$order_codes_val);
 
 								if (!empty($order_codes_key)) {
 
@@ -1333,12 +1356,15 @@ class Tmsm_Woocommerce_Vouchers_Public {
 									// Voucher pdf path and voucher name
 									$pdf_filepath = TMSMWOOCOMMERCEVOUCHERS_UPLOADDIR . $pdf_filename . '.pdf'; // Voucher pdf path
 
+									$download_key = str_replace('tmsmvoucher_pdf_'.$item_id.'_','',$order_codes_key);
+
 									// If voucher pdf does not exist in folder
 									if (!file_exists($pdf_filepath)) {
 
 										$pdf_args = array(
 											'pdf_filepath' => $pdf_filepath,
-											'pdf_save' => true
+											'pdf_save' => true,
+											'download_key' => $download_key,
 										);
 
 										//Generating pdf

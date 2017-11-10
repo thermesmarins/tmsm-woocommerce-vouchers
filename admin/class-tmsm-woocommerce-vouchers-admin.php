@@ -190,7 +190,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		</div><?php
 	}
 
-
 	/**
 	 * Save options for tab "voucher"
 	 *
@@ -253,7 +252,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		);
 		return $product_type_options;
 	}
-
 
 	/**
 	 * Checkbox for product variation type "voucher"
