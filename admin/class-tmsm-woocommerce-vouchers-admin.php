@@ -220,7 +220,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		endif;
 
 		if ( isset( $_POST['_tmsm_woocommerce_vouchers_description'] ) ) :
-			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_description', wc_clean( $_POST['_tmsm_woocommerce_vouchers_description'] ) );
+			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_description', esc_html( $_POST['_tmsm_woocommerce_vouchers_description'] ) );
 		endif;
 
 		/*
