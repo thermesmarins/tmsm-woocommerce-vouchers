@@ -1,3 +1,7 @@
+### 1.0.7: November 17th, 2017
+* Tweak - Allow line breaks for product descriptions
+* New - Empty fields in recipient form, if added to cart successful
+
 ### 1.0.6: November 10th, 2017
 * Allow multiple vouchers for same product
 * Update FR translation
