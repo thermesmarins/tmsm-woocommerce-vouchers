@@ -1,3 +1,6 @@
+### Unreleased
+* Title Checkbox layout on mobile
+
 ### 1.0.7: November 17th, 2017
 * Tweak - Allow line breaks for product descriptions
 * New - Empty fields in recipient form, if added to cart successful

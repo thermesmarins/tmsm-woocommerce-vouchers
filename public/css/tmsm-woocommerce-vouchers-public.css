@@ -23,15 +23,27 @@ table.vouchers-fields .value{
   display: none;
 }
 
+.vouchers-fields-wrapper .title-field > label:first-child{
+  margin-right: 20px;
+}
+
+@media (max-width: 500px){
+  .vouchers-fields-wrapper .title-field > label:first-child{
+    display: block;
+  }
+}
+
+
 .vouchers-fields .title-field input, .vouchers-fields .title-field label {
   display: inline-block;
 }
 .vouchers-fields .title-field .input-radio  {
-  margin-left: 20px;
+//margin-left: 20px;
 }
 .vouchers-fields .title-field label.radio  {
   margin-left: 5px;
   font-weight: normal;
+  margin-right: 20px;
 }
 .vouchers-fields .title-field .required{
   border: none;
