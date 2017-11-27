@@ -125,7 +125,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	public function woocommerce_payment_complete($order_id){
 
-		error_log('*** woocommerce_payment_complete ');
 		$order = wc_get_order($order_id);
 
 		$voucher_processed = get_post_meta( $order_id, '_voucherprocessed', true );
@@ -133,7 +132,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		if(!$order->is_paid() || $voucher_processed === 'yes'){
 			return;
 		}
-		error_log('not processed ');
 
 		$customer_id = $order->get_customer_id();
 		if ( $customer_id ) {
@@ -164,7 +162,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				//Get voucher code from item meta "Now we store voucher codes in item meta fields"
 				$codes_item_meta = wc_get_order_item_meta($item_id, '_vouchercode');
 
-				error_log('$codes_item_meta: '.$codes_item_meta);
 
 				if($this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id) || $this->tmsmvoucher_product_type_is_voucher_physical($product_id, $variation_id)){
 
@@ -186,7 +183,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				if (empty($codes_item_meta)) {// If voucher data are not empty so code get executed once only
 
 					if($this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id)){
-						error_log('tmsmvoucher_product_type_is_voucher_virtual');
 
 						$codes = [];
 						if (isset($item['qty'])) {
@@ -1262,24 +1258,17 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	function woocommerce_download_product( $email, $order_key, $product_id, $user_id, $download_id, $order_id ) {
 
 		$order = wc_get_order_id_by_order_key($order_key);
-		error_log('*** woocommerce_download_product');
-		error_log('$order_key: '.$order_key);
-		error_log('$order_id: '.$order_id);
+
 		if(empty($order_key)){
-			error_log('$order_key empty');
 		}
 		if(empty($order)){
-			error_log('$order empty');
 		}
 
 		if(empty($order_key) || empty($order)){
-			error_log('You are not allowed to download this file');
 			die(__( 'You are not allowed to download this file', 'tmsm-woocommerce-vouchers' ));
 		}
 
-		error_log('*** woocommerce_download_product');
 		$item_id = wc_clean( $_GET['item_id'] );
-		error_log('$item_id: '.$item_id);
 
 		$pdf_filename = get_option('tmsm_woocommerce_vouchers_downloadfilename');
 		$pdf_filename = isset($pdf_filename) ? $pdf_filename : 'voucher-{current_date}-{unique_string}';
@@ -1293,13 +1282,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$download_key = wc_clean( $_GET['key'] );
 		$download_key = str_replace('tmsmvoucher_pdf_'.$item_id.'_','',$download_key);
 		$download_key = absint( $download_key );
-		error_log('$download_key: '.$download_key);
-		error_log( 'absint($download_key): ' . absint( $download_key ) );
+
 		if ( !is_int( $download_key) || !$download_key ){
-		     error_log( '$download_key not int' );
 			die( __( 'You are not allowed to download this file', 'tmsm-woocommerce-vouchers' ) );
 		}
-		error_log('$download_key: '.$download_key);
 
 		$pdf_args = [
 			'pdf_filepath' => $pdf_filename,
@@ -1326,7 +1312,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	public function woocommerce_email_attachments($attachments, $status, $order){
 		global $post;
 
-		error_log('*** woocommerce_email_attachments');
 		$order_id = '';
 		$order_status = '';
 
@@ -1356,8 +1341,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$this->woocommerce_payment_complete($order_id);
 
-			error_log('*** woocommerce_email_attachments continue');
-
 			$cart_details = wc_get_order($order_id);
 			$order_items = $cart_details->get_items();
 
@@ -1379,13 +1362,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						$order_codes = [];
 
 						$order_codes = $this->tmsmvoucher_get_multi_voucher($order_id, $data_id, $item_id);
-						error_log('$order_codes: '.var_export($order_codes, true));
 
 						if (!empty($order_codes)) {
 
 							foreach ($order_codes as $order_codes_key => $order_codes_val) {
-								error_log('$order_codes_key: '.$order_codes_key);
-								error_log('$order_codes_val: '.$order_codes_val);
 
 								if (!empty($order_codes_key)) {
 
@@ -1570,10 +1550,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	private function tmsmvoucher_generate_code( $order_id, $product_id, $variation_id ) {
 
-		error_log('*** tmsmvoucher_generate_code');
-		error_log('$order_id: '.$order_id);
-		error_log('$product_id: '.$product_id);
-		error_log('$variation_id: '.$variation_id);
 
 		$product = wc_get_product((!empty($variation_id) ? $variation_id : $product_id));
 
@@ -1683,12 +1659,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	private function tmsmvoucher_get_multi_voucher( $order_id = '', $product_id = '', $item_id = '' ) {
 
-		error_log('*** tmsmvoucher_get_multi_voucher');
 		$codes = wc_get_order_item_meta( $item_id, '_vouchercode' );
 		$codes = ! empty( $codes ) ? explode( ', ', $codes ) : array();
 		$vouchers = [];
-
-		error_log('$codes:'. var_export($codes, true));
 
 		if( !empty( $codes ) ) {
 
@@ -1699,8 +1672,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$key++;
 			}
 		}
-		error_log('$vouchers:'. var_export($vouchers, true));
-		//$vouchers['tmsmvoucher_pdf_'.$item_id]	= $code;
 		return $vouchers;
 	}
 
@@ -1898,8 +1869,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	private function tmsmvoucher_voucher_html_template( $product_id, $order_id, $item_id = '', $pdf_args = [] ) {
 		global $current_user;
 
-
-		error_log('*** tmsmvoucher_voucher_html_template');
 		$product = wc_get_product($product_id);
 
 		if(!empty($product->get_parent_id())){
@@ -1908,15 +1877,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		$order = wc_get_order($order_id);
 		$voucher_code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
-		error_log('$voucher_code: '.$voucher_code);
 
 		$voucher_codes = explode(', ', $voucher_code);
-		error_log('$voucher_codes: '.var_export($voucher_codes, true));
-		error_log('$pdf_args[download_key]: '.$pdf_args['download_key']);
 
 		if( isset( $voucher_codes[($pdf_args['download_key'] - 1)] ) ) {
 			$voucher_code = $voucher_codes[($pdf_args['download_key'] - 1)];
-			error_log('$voucher_code found: '.$voucher_code);
 		}
 
 		$voucher_expirydate	= wc_get_order_item_meta( $item_id, '_expirydate', true );
