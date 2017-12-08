@@ -1,7 +1,7 @@
 ### Unreleased
 
 ### 1.0.8: December 8th, 2017
-* Display item meta above product description in PDF voucher Nico Mollet 08/12/2017 15:47 
+* Display item meta above product description in PDF voucher
 * Title Checkbox layout on mobile
 
 ### 1.0.7: November 17th, 2017
