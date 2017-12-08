@@ -1,5 +1,8 @@
 ### Unreleased
 
+### 1.0.9: December 8th, 2017
+* Fix version number
+
 ### 1.0.8: December 8th, 2017
 * Display item meta above product description in PDF voucher
 * Title Checkbox layout on mobile
