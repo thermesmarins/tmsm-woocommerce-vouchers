@@ -1878,6 +1878,31 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$order = wc_get_order($order_id);
 		$voucher_code	= wc_get_order_item_meta( $item_id, '_vouchercode', true );
 
+		// Item meta
+		$item = WC_Order_Factory::get_order_item( $item_id );
+		//$item_meta = wc_display_item_meta($item, ['echo' => false]);
+		$item_meta = '';
+
+		$args    = array(
+			'before'    => '',
+			'after'		=> '<br><br>',
+			'separator'	=> '<br>',
+			'autop'		=> true,
+		);
+		$strings = [];
+		foreach ( $item->get_formatted_meta_data() as $meta_id => $meta ) {
+
+			$value = wp_kses( $meta->display_value, '' );
+			if(trim($meta->value) != 'e-bon-cadeau' && !(strpos($value,'Sans') !== false) ){
+				$strings[] = '<strong class="wc-item-meta-label">' . wp_kses( $meta->display_key, '' ) . ':</strong> ' . $value;
+			}
+		}
+		if ( $strings ) {
+			$item_meta .= $args['before'] . implode( $args['separator'], $strings ) . $args['after'];
+		}
+
+
+
 		$voucher_codes = explode(', ', $voucher_code);
 
 		if( isset( $voucher_codes[($pdf_args['download_key'] - 1)] ) ) {
@@ -1982,7 +2007,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$product_image = strip_tags($product->get_image('shop_single', ['data-no-lazy'=> 1, 'class' => 'tmsmvoucher-pdf-product-image']), '<img>');
 			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.$product->get_name().'</div>';
 			$product_intro = '';
-			$product_description = '<div class="tmsmvoucher-pdf-product-description">'.nl2br($product->get_meta('_tmsm_woocommerce_vouchers_description')).'</div>';
+			$product_description = $item_meta.'<div class="tmsmvoucher-pdf-product-description">'.nl2br($product->get_meta('_tmsm_woocommerce_vouchers_description')).'</div>';
 
 			if(!empty($voucher_expirydate)){
 				$voucher_expirydate = '<div class="tmsmvoucher-pdf-voucher-expirydate"><b>'._x( 'Expires:', 'Voucher PDF', 'tmsm-woocommerce-vouchers' ) .  '</b> '. date_i18n( get_option( 'date_format' ), strtotime( $voucher_expirydate ) ).'</div>';
