@@ -1,5 +1,8 @@
 ### Unreleased
 
+### 1.1.0: December 18th, 2017
+* Fix variations attributes missing in new order email
+
 ### 1.0.9: December 8th, 2017
 * Fix version number
 
