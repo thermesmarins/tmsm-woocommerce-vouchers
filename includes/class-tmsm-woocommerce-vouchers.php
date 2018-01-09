@@ -144,6 +144,9 @@ class Tmsm_Woocommerce_Vouchers {
 		$plugin_posttypes = new Tmsm_Woocommerce_Vouchers_Posttypes();
 
 		$this->loader->add_filter( 'init', $plugin_posttypes, 'register_post_type_localbusiness' );
+		$this->loader->add_filter( 'init', $plugin_posttypes, 'register_post_status_processed' );
+		$this->loader->add_filter( 'wc_order_statuses', $plugin_posttypes, 'wc_order_statuses_processed' );
+
 		$this->loader->add_filter( 'acf/settings/path', $plugin_posttypes, 'acf_path' );
 		$this->loader->add_filter( 'acf/settings/dir', $plugin_posttypes, 'acf_dir' );
 		$this->loader->add_filter( 'plugins_loaded', $plugin_posttypes, 'acf_setup' );

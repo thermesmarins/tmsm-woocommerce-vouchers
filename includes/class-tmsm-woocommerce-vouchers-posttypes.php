@@ -20,6 +20,44 @@
  */
 class Tmsm_Woocommerce_Vouchers_Posttypes {
 
+
+	/**
+	 * Register post status: processed
+	 */
+	public function register_post_status_processed() {
+		register_post_status( 'wc-processed', array(
+			'label'                     => __('Processed', 'tmsm-woocommerce-vouchers'),
+			'public'                    => true,
+			'show_in_admin_status_list' => true,
+			'show_in_admin_all_list'    => true,
+			'exclude_from_search'       => false,
+			'label_count'               => _n_noop( 'Processed <span class="count">(%s)</span>',
+				'Processed <span class="count">(%s)</span>', 'tmsm-woocommerce-vouchers' ),
+		) );
+	}
+
+	/**
+	 * WooCommerce adds news order status
+	 *
+	 * @param $order_statuses
+	 *
+	 * @return array
+	 */
+	function wc_order_statuses_processed( $order_statuses ) {
+		$new_order_statuses = array();
+
+		foreach ( $order_statuses as $key => $status ) {
+
+			$new_order_statuses[ $key ] = $status;
+
+			if ( 'wc-processing' === $key ) {
+				$new_order_statuses['wc-processed'] = __('Processed', 'tmsm-woocommerce-vouchers');
+			}
+		}
+
+		return $new_order_statuses;
+	}
+
 	/**
 	 * Register post type: Local Businesses
 	 *
