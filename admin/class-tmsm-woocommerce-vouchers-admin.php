@@ -78,6 +78,50 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 
 
 	/**
+	 * Add your custom bulk action in dropdown
+	 *
+	 * @param $bulk_actions
+	 *
+	 * @return mixed
+	 */
+	function bulk_actions_processed( $bulk_actions ) {
+		$bulk_actions['mark_processed'] = __('Mark as processed', 'tmsm-woocommerce-vouchers');
+		return $bulk_actions;
+	}
+
+
+	/**
+	 * Bulk action handler
+	 */
+	function admin_action_mark_processed() {
+
+		// if an array with order IDs is not presented, exit the function
+		if( !isset( $_REQUEST['post'] ) && !is_array( $_REQUEST['post'] ) )
+			return;
+
+		foreach( $_REQUEST['post'] as $order_id ) {
+
+			$order = new WC_Order( $order_id );
+			$order_note = 'That\'s what happened by bulk edit:';
+			$order->update_status( 'processed', $order_note, true );
+
+		}
+
+		// of course using add_query_arg() is not required, you can build your URL inline
+		$location = add_query_arg( array(
+			'post_type' => 'shop_order',
+			'marked_processed' => 1, // markED_awaiting_shipment=1 is just the $_GET variable for notices
+			'changed' => count( $_REQUEST['post'] ), // number of changed orders
+			'ids' => join( $_REQUEST['post'], ',' ),
+			'post_status' => 'all'
+		), 'edit.php' );
+
+		wp_redirect( admin_url( $location ) );
+		exit;
+
+	}
+
+	/**
 	 * Add a custom product tab "voucher"
 	 *
 	 * @since 1.0.0

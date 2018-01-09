@@ -181,6 +181,9 @@ class Tmsm_Woocommerce_Vouchers {
 
 		$plugin_admin = new Tmsm_Woocommerce_Vouchers_Admin( $this->get_plugin_name(), $this->get_version() );
 
+		$this->loader->add_filter( 'bulk_actions-edit-shop_order', $plugin_admin, 'bulk_actions_processed' );
+		$this->loader->add_filter( 'admin_action_mark_processed', $plugin_admin, 'admin_action_mark_processed' );
+
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_filter( 'plugin_action_links_' . plugin_basename( TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'tmsm-woocommerce-vouchers.php'), $plugin_admin, 'plugin_action_links' );
