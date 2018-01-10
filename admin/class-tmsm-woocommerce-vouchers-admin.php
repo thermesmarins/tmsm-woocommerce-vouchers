@@ -100,11 +100,9 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 			return;
 
 		foreach( $_REQUEST['post'] as $order_id ) {
-
 			$order = new WC_Order( $order_id );
-			$order_note = 'That\'s what happened by bulk edit:';
+			$order_note = __('Status changed to Processed', 'tmsm-woocommerce-vouchers');
 			$order->update_status( 'processed', $order_note, true );
-
 		}
 
 		// of course using add_query_arg() is not required, you can build your URL inline
@@ -119,6 +117,55 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		wp_redirect( admin_url( $location ) );
 		exit;
 
+	}
+
+
+	/**
+	 * Action when order goes from processing to processed
+	 *
+	 * @param $order_id int
+	 * @param $order WC_Order
+	 */
+	function status_processing_to_processed($order_id, $order){
+		error_log('status_processing_to_processed');
+		do_action('woocommerce_order_status_processing_to_completed');
+	}
+
+	/**
+	 * Action when order goes from completed to processed
+	 *
+	 * @param $order_id int
+	 * @param $order WC_Order
+	 */
+	function status_completed_to_processed($order_id, $order){
+		error_log('status_completed_to_processed');
+	}
+
+	/**
+	 * Get list of statuses which are consider 'paid'.
+	 *
+	 * @param $statuses array
+	 * @return array
+	 */
+	function woocommerce_order_is_paid_statuses($statuses){
+		$statuses[] = 'processed';
+		return $statuses;
+	}
+
+	/**
+	 * WooCommerce reports with custom statuts processed as paid status
+	 *
+	 * @param $statuses array
+	 *
+	 * @return array
+	 */
+	function woocommerce_reports_order_statuses($statuses){
+		if(isset($statuses)){
+			if(in_array('completed', $statuses) || in_array('processing', $statuses)){
+				array_push( $statuses, 'processed');
+			}
+		}
+		return $statuses;
 	}
 
 	/**
