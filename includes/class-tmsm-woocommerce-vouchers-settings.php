@@ -82,7 +82,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'default'  => 'yes',
 						),
 
-
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipientfirstname',
@@ -122,7 +121,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'default'  => 'yes',
 						),
 
-
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipienttitle',
@@ -135,7 +133,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'name'     => __( 'Title required', 'tmsm-woocommerce-vouchers' ),
 							'default'  => 'yes',
 						),
-
 
 						array(
 							'type'     => 'checkbox',
@@ -163,7 +160,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'default'  => 'yes',
 						),
 
-
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_recipientcity',
@@ -176,7 +172,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'name'     => __( 'City required', 'tmsm-woocommerce-vouchers' ),
 							'default'  => 'yes',
 						),
-
 
 						array(
 							'type'     => 'checkbox',
@@ -204,7 +199,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'name'     => __( 'Mobile phone required', 'tmsm-woocommerce-vouchers' ),
 							'default'  => 'yes',
 						),
-
 
 						array(
 							'type'     => 'checkbox',
@@ -245,51 +239,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'default'  => 'yes',
 						),
 
-
-
-
-						/*
-												array(
-													'name' => __( 'Group 1', 'tmsm-woocommerce-vouchers' ),
-													'type' => 'title',
-													'desc' => '',
-													'id'   => 'tmsm_woocommerce_vouchers_group1_options',
-												),
-
-												array(
-													'type'     => 'checkbox',
-													'id'       => 'tmsm_woocommerce_vouchers_checkbox_1',
-													'name'     => __( 'Do a thing?', 'tmsm-woocommerce-vouchers' ),
-													'desc'     => __( 'Enable to do something', 'tmsm-woocommerce-vouchers' ),
-													'default'  => 'no',
-												),
-
-												array(
-													'type' => 'sectionend',
-													'id'   => 'tmsm_woocommerce_vouchers_group1_options'
-												),
-
-												array(
-													'name' => __( 'Group 2', 'tmsm-woocommerce-vouchers' ),
-													'type' => 'title',
-													'desc' => '',
-													'id'   => 'tmsm_woocommerce_vouchers_group2_options',
-												),
-
-												array(
-													'type'     => 'select',
-													'id'       => 'tmsm_woocommerce_vouchers_select_1',
-													'name'     => __( 'What should happen?', 'tmsm-woocommerce-vouchers' ),
-													'options'  => array(
-														'something' => __( 'Something', 'tmsm-woocommerce-vouchers' ),
-														'nothing' 	=> __( 'Nothing', 'tmsm-woocommerce-vouchers' ),
-														'idk'    	=> __( 'IDK', 'tmsm-woocommerce-vouchers' ),
-													),
-													'class'    => 'wc-enhanced-select',
-													'desc_tip' => __( 'Don\'t ask me!', 'tmsm-woocommerce-vouchers' ),
-													'default'  => 'idk',
-												),
-						*/
 						array(
 							'type' => 'sectionend',
 							'id'   => 'tmsm_woocommerce_vouchers_template'
@@ -309,48 +258,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'id'   => 'tmsm_woocommerce_vouchers_template',
 						),
 
-/*
-						array(
-							'name' => __( 'Group 1', 'tmsm-woocommerce-vouchers' ),
-							'type' => 'title',
-							'desc' => '',
-							'id'   => 'tmsm_woocommerce_vouchers_group1_options',
-						),
-
-						array(
-							'type'     => 'checkbox',
-							'id'       => 'tmsm_woocommerce_vouchers_checkbox_1',
-							'name'     => __( 'Do a thing?', 'tmsm-woocommerce-vouchers' ),
-							'desc'     => __( 'Enable to do something', 'tmsm-woocommerce-vouchers' ),
-							'default'  => 'no',
-						),
-
-						array(
-							'type' => 'sectionend',
-							'id'   => 'tmsm_woocommerce_vouchers_group1_options'
-						),
-
-						array(
-							'name' => __( 'Group 2', 'tmsm-woocommerce-vouchers' ),
-							'type' => 'title',
-							'desc' => '',
-							'id'   => 'tmsm_woocommerce_vouchers_group2_options',
-						),
-
-						array(
-							'type'     => 'select',
-							'id'       => 'tmsm_woocommerce_vouchers_select_1',
-							'name'     => __( 'What should happen?', 'tmsm-woocommerce-vouchers' ),
-							'options'  => array(
-								'something' => __( 'Something', 'tmsm-woocommerce-vouchers' ),
-								'nothing' 	=> __( 'Nothing', 'tmsm-woocommerce-vouchers' ),
-								'idk'    	=> __( 'IDK', 'tmsm-woocommerce-vouchers' ),
-							),
-							'class'    => 'wc-enhanced-select',
-							'desc_tip' => __( 'Don\'t ask me!', 'tmsm-woocommerce-vouchers' ),
-							'default'  => 'idk',
-						),
-*/
 						array(
 							'type' => 'sectionend',
 							'id'   => 'tmsm_woocommerce_vouchers_template'
@@ -395,6 +302,15 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'desc' => '',
 							'id'   => 'tmsm_woocommerce_vouchers_settings',
 						),
+
+						array(
+							'type'     => 'checkbox',
+							'id'       => 'tmsm_woocommerce_vouchers_shippedstatus',
+							'name'     => __( 'Enable shipped status', 'tmsm-woocommerce-vouchers' ),
+							'desc'     => '<p class="description">'.__( 'If checked, the status shipped will be active (processing > shipped > complete)' ).'</p>',
+							'default'  => 'no',
+						),
+
 						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_physical',

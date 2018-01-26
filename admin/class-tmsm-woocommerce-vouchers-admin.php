@@ -85,7 +85,9 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	 * @return mixed
 	 */
 	function bulk_actions_processed( $bulk_actions ) {
+
 		$bulk_actions['mark_processed'] = __('Mark as processed', 'tmsm-woocommerce-vouchers');
+
 		return $bulk_actions;
 	}
 
@@ -108,7 +110,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		// of course using add_query_arg() is not required, you can build your URL inline
 		$location = add_query_arg( array(
 			'post_type' => 'shop_order',
-			'marked_processed' => 1, // markED_awaiting_shipment=1 is just the $_GET variable for notices
+			'marked_processed' => 1, // marked_processed=1 is just the $_GET variable for notices
 			'changed' => count( $_REQUEST['post'] ), // number of changed orders
 			'ids' => join( $_REQUEST['post'], ',' ),
 			'post_status' => 'all'
@@ -119,7 +121,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 
 	}
 
-
 	/**
 	 * Action when order goes from processing to processed
 	 *
@@ -127,8 +128,33 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	 * @param $order WC_Order
 	 */
 	function status_processing_to_processed($order_id, $order){
-		error_log('status_processing_to_processed');
-		do_action('woocommerce_order_status_processing_to_completed');
+		$order->update_status( 'completed');
+		$order->update_status( 'processed');
+	}
+
+	/**
+	 * Order actions for processed
+	 *
+	 * @param $actions
+	 * @param $order
+	 *
+	 * @return mixed
+	 */
+	function woocommerce_admin_order_actions($actions, $order){
+		//print_r($actions);
+		if ( $order->has_status( array( 'processing', 'completed' ) ) ) {
+
+			// Get Order ID (compatibility all WC versions)
+			$order_id = method_exists( $order, 'get_id' ) ? $order->get_id() : $order->id;
+			// Set the action button
+			$actions['processed'] = array(
+				'url'    => wp_nonce_url( admin_url( 'admin-ajax.php?action=woocommerce_mark_order_status&status=processed&order_id=' . $order_id ),
+					'woocommerce-mark-order-status' ),
+				'name'   => __( 'Mark as processed', 'tmsm-woocommerce-vouchers' ),
+				'action' => "view processed", // keep "view" class for a clean button CSS
+			);
+		}
+		return $actions;
 	}
 
 	/**
@@ -138,7 +164,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	 * @param $order WC_Order
 	 */
 	function status_completed_to_processed($order_id, $order){
-		error_log('status_completed_to_processed');
+
 	}
 
 	/**
