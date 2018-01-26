@@ -1,5 +1,8 @@
 ### Unreleased
 
+### 1.1.1: January 26th, 2017
+* Added an option for status processed
+
 ### 1.1.0: December 18th, 2017
 * Fix variations attributes missing in new order email
 
