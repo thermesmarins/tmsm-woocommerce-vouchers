@@ -77,122 +77,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	}
 
 
-	/**
-	 * Add your custom bulk action in dropdown
-	 *
-	 * @param $bulk_actions
-	 *
-	 * @return mixed
-	 */
-	function bulk_actions_processed( $bulk_actions ) {
-
-		$bulk_actions['mark_processed'] = __('Mark as processed', 'tmsm-woocommerce-vouchers');
-
-		return $bulk_actions;
-	}
-
-
-	/**
-	 * Bulk action handler
-	 */
-	function admin_action_mark_processed() {
-
-		// if an array with order IDs is not presented, exit the function
-		if( !isset( $_REQUEST['post'] ) && !is_array( $_REQUEST['post'] ) )
-			return;
-
-		foreach( $_REQUEST['post'] as $order_id ) {
-			$order = new WC_Order( $order_id );
-			$order_note = __('Status changed to Processed', 'tmsm-woocommerce-vouchers');
-			$order->update_status( 'processed', $order_note, true );
-		}
-
-		// of course using add_query_arg() is not required, you can build your URL inline
-		$location = add_query_arg( array(
-			'post_type' => 'shop_order',
-			'marked_processed' => 1, // marked_processed=1 is just the $_GET variable for notices
-			'changed' => count( $_REQUEST['post'] ), // number of changed orders
-			'ids' => join( $_REQUEST['post'], ',' ),
-			'post_status' => 'all'
-		), 'edit.php' );
-
-		wp_redirect( admin_url( $location ) );
-		exit;
-
-	}
-
-	/**
-	 * Action when order goes from processing to processed
-	 *
-	 * @param $order_id int
-	 * @param $order WC_Order
-	 */
-	function status_processing_to_processed($order_id, $order){
-		$order->update_status( 'completed');
-		$order->update_status( 'processed');
-	}
-
-	/**
-	 * Order actions for processed
-	 *
-	 * @param $actions
-	 * @param $order
-	 *
-	 * @return mixed
-	 */
-	function woocommerce_admin_order_actions($actions, $order){
-		//print_r($actions);
-		if ( $order->has_status( array( 'processing', 'completed' ) ) ) {
-
-			// Get Order ID (compatibility all WC versions)
-			$order_id = method_exists( $order, 'get_id' ) ? $order->get_id() : $order->id;
-			// Set the action button
-			$actions['processed'] = array(
-				'url'    => wp_nonce_url( admin_url( 'admin-ajax.php?action=woocommerce_mark_order_status&status=processed&order_id=' . $order_id ),
-					'woocommerce-mark-order-status' ),
-				'name'   => __( 'Mark as processed', 'tmsm-woocommerce-vouchers' ),
-				'action' => "view processed", // keep "view" class for a clean button CSS
-			);
-		}
-		return $actions;
-	}
-
-	/**
-	 * Action when order goes from completed to processed
-	 *
-	 * @param $order_id int
-	 * @param $order WC_Order
-	 */
-	function status_completed_to_processed($order_id, $order){
-
-	}
-
-	/**
-	 * Get list of statuses which are consider 'paid'.
-	 *
-	 * @param $statuses array
-	 * @return array
-	 */
-	function woocommerce_order_is_paid_statuses($statuses){
-		$statuses[] = 'processed';
-		return $statuses;
-	}
-
-	/**
-	 * WooCommerce reports with custom statuts processed as paid status
-	 *
-	 * @param $statuses array
-	 *
-	 * @return array
-	 */
-	function woocommerce_reports_order_statuses($statuses){
-		if(isset($statuses)){
-			if(in_array('completed', $statuses) || in_array('processing', $statuses)){
-				array_push( $statuses, 'processed');
-			}
-		}
-		return $statuses;
-	}
 
 	/**
 	 * Add a custom product tab "voucher"
@@ -601,7 +485,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		switch ( $column ) {
 			case 'shipping_address':
 				if ( !($address = $the_order->get_formatted_shipping_address() ) && $the_order->is_paid()) {
-					echo ' <span style="color: #73a724"><span class="dashicons dashicons-download" style="margin-left: -17px;"></span>'.__( 'Virtual only', 'tmsm-woocommerce-vouchers' ).'</span>';
+					echo '<span class="description" style="display: inline-block; margin-top: -10px; margin-left: -5px;"><span class="dashicons dashicons-download" style=""></span>'.__( 'Virtual only', 'tmsm-woocommerce-vouchers' ).'</span>';
 				}
 				break;
 
