@@ -1,6 +1,9 @@
 ### Unreleased
 
-### 1.1.1: January 26th, 2017
+### 1.1.2: January 31st, 2018
+* Moved processed functions to customeradmin plugin
+
+### 1.1.1: January 26th, 2018
 * Added an option for status processed
 
 ### 1.1.0: December 18th, 2017
