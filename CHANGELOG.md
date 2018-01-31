@@ -1,5 +1,8 @@
 ### Unreleased
 
+### 1.1.3: January 31st, 2018
+* Update version number
+
 ### 1.1.2: January 31st, 2018
 * Moved processed functions to customeradmin plugin
 
