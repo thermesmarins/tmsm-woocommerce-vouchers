@@ -1,5 +1,9 @@
 ### Unreleased
 
+
+### 1.1.4: February 14th, 2018
+* Fix processed status for vouchers attached to emails 
+
 ### 1.1.3: January 31st, 2018
 * Update version number
 
