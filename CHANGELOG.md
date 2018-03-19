@@ -1,6 +1,9 @@
 ### Unreleased
 
 
+### 1.1.5: March 19th, 2018
+* New filter to alter booking info
+
 ### 1.1.4: February 14th, 2018
 * Fix processed status for vouchers attached to emails 
 
