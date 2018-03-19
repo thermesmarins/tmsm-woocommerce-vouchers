@@ -2023,13 +2023,17 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$voucher_graphic = '<img src="'.plugin_dir_url( __FILE__ ) . 'img/voucher-graphic.png'.'" class="tmsmvoucher-pdf-voucher-graphic-image"/>';
 
 			if(!empty($localbusiness_booking)){
+				$localbusiness_booking = apply_filters('tmsm_woocommerce_vouchers_booking', $localbusiness_booking, $product, $order );
 				$localbusiness_booking = '<div class="tmsmvoucher-pdf-localbusiness-booking"><div class="tmsmvoucher-pdf-localbusiness-booking-data">'.$localbusiness_booking.'</div></div>';
+
 			}
 
 			if(!empty($localbusiness_info1)){
+				$localbusiness_info1 = apply_filters('tmsm_woocommerce_vouchers_info1', $localbusiness_info1, $product, $order );
 				$localbusiness_info1 = '<div class="tmsmvoucher-pdf-localbusiness-info1">'.$localbusiness_info1.'</div>';
 			}
 			if(!empty($localbusiness_info2)){
+				$localbusiness_info2 = apply_filters('tmsm_woocommerce_vouchers_info2', $localbusiness_info2, $product, $order );
 				$localbusiness_info2 = '<div class="tmsmvoucher-pdf-localbusiness-info2">'.$localbusiness_info2.'</div>';
 			}
 
