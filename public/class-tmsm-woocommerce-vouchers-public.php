@@ -1316,7 +1316,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$order_status = '';
 
 		$processing_status = ['customer_processing_order', 'customer_completed_order', 'customer_invoice'];
-		$completed_status = ['wc-completed', 'completed', 'processed'];
+		$completed_status = ['wc-completed', 'completed', 'wc-processed', 'processed'];
 
 		if (is_array($order)) { // If order is an array
 			if (isset($order['order_id'])) { // If order_id is set in order array ( Happens when order is created through REST )

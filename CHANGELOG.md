@@ -1,5 +1,5 @@
 ### Unreleased
-
+* Update FR localization
 
 ### 1.1.5: March 19th, 2018
 * New filter to alter booking info
