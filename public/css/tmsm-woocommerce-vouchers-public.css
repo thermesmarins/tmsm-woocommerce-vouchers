@@ -23,6 +23,7 @@ table.vouchers-fields .value{
   display: none;
 }
 
+.vouchers-fields-wrapper-variation .title-field > label:first-child,
 .vouchers-fields-wrapper .title-field > label:first-child{
   margin-right: 20px;
 }

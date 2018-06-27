@@ -162,10 +162,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 
 		   }
 
-
-
-
-
 			?>
 
 		<?php
