@@ -1,5 +1,6 @@
 ### Unreleased
 * Update FR localization
+* Fix title field margins
 
 ### 1.1.5: March 19th, 2018
 * New filter to alter booking info
