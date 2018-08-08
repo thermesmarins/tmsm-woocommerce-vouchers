@@ -1,6 +1,7 @@
-### Unreleased
+### 1.1.6: August 8th, 2018
 * Update FR localization
 * Fix title field margins
+* Do not set cart data items if they are empty
 
 ### 1.1.5: March 19th, 2018
 * New filter to alter booking info
