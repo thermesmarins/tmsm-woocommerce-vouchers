@@ -746,48 +746,65 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		// title
 		$submit_recipienttitle             = isset( $_POST['_recipienttitle'][ $variation_id ] )
 			? trim(sanitize_text_field( $_POST['_recipienttitle'][ $variation_id ] )) : '';
-		$cart_item_data['_recipienttitle'] = $submit_recipienttitle;
+		if(!empty($submit_recipienttitle)){
+			$cart_item_data['_recipienttitle'] = $submit_recipienttitle;
+		}
 
 		// firstname
 		$submit_recipientfirstname             = isset( $_POST['_recipientfirstname'][ $variation_id ] )
 			? trim(sanitize_text_field( $_POST['_recipientfirstname'][ $variation_id ] )) : '';
-		$cart_item_data['_recipientfirstname'] = $submit_recipientfirstname;
+		if(!empty($submit_recipientfirstname)){
+			$cart_item_data['_recipientfirstname'] = $submit_recipientfirstname;
+		}
 
 		// lastname
 		$submit_recipientlastname             = isset( $_POST['_recipientlastname'][ $variation_id ] )
 			? trim(sanitize_text_field( $_POST['_recipientlastname'][ $variation_id ] )) : '';
-		$cart_item_data['_recipientlastname'] = $submit_recipientlastname;
+		if(!empty($submit_recipientlastname)){
+			$cart_item_data['_recipientlastname'] = $submit_recipientlastname;
+		}
 
 		// address
 		$submit_recipientaddress             = isset( $_POST['_recipientaddress'][ $variation_id ] )
 			? trim(sanitize_text_field( $_POST['_recipientaddress'][ $variation_id ] )) : '';
-		$cart_item_data['_recipientaddress'] = $submit_recipientaddress;
+		if(!empty($submit_recipientaddress)){
+			$cart_item_data['_recipientaddress'] = $submit_recipientaddress;
+		}
 
 		// zipcode
 		$submit_recipientzipcode             = isset( $_POST['_recipientzipcode'][ $variation_id ] )
 			? trim(sanitize_text_field( $_POST['_recipientzipcode'][ $variation_id ] )) : '';
-		$cart_item_data['_recipientzipcode'] = $submit_recipientzipcode;
+		if(!empty($submit_recipientzipcode)){
+			$cart_item_data['_recipientzipcode'] = $submit_recipientzipcode;
+		}
 
 		// city
 		$submit_recipientcity             = isset( $_POST['_recipientcity'][ $variation_id ] )
 			? trim(sanitize_text_field( $_POST['_recipientcity'][ $variation_id ] )) : '';
-		$cart_item_data['_recipientcity'] = $submit_recipientcity;
+		if(!empty($submit_recipientcity)){
+			$cart_item_data['_recipientcity'] = $submit_recipientcity;
+		}
 
 		// country
 		$submit_recipientcountry             = isset( $_POST['_recipientcountry'][ $variation_id ] )
 			? trim(sanitize_text_field( $_POST['_recipientcountry'][ $variation_id ] )) : '';
-		$cart_item_data['_recipientcountry'] = $submit_recipientcountry;
+		if(!empty($submit_recipientcountry)){
+			$cart_item_data['_recipientcountry'] = $submit_recipientcountry;
+		}
 
 		// mobilephone
 		$submit_recipientmobilephone             = isset( $_POST['_recipientmobilephone'][ $variation_id ] )
 			? trim(sanitize_text_field( $_POST['_recipientmobilephone'][ $variation_id ] )) : '';
-		$cart_item_data['_recipientmobilephone'] = $submit_recipientmobilephone;
+		if(!empty($submit_recipientmobilephone)){
+			$cart_item_data['_recipientmobilephone'] = $submit_recipientmobilephone;
+		}
 
 		// email
 		$submit_recipientemail             = isset( $_POST['_recipientemail'][ $variation_id ] )
 			? trim(sanitize_text_field( $_POST['_recipientemail'][ $variation_id ] )) : '';
-		$cart_item_data['_recipientemail'] = $submit_recipientemail;
-
+		if(!empty($submit_recipientemail)){
+			$cart_item_data['_recipientemail'] = $submit_recipientemail;
+		}
 
 		return $cart_item_data;
 	}
