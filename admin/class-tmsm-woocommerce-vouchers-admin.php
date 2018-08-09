@@ -281,7 +281,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		update_post_meta( $post_id , '_voucher', $is_voucher );
 	}
 
-
 	/**
 	 * Settings section
 	 *
@@ -425,8 +424,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		return array_merge( $plugin_links, $links );
 	}
 
-
-
 	/**
 	 * Product Save
 	 *
@@ -484,7 +481,6 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 					echo '<span class="description" style="display: inline-block; margin-top: -10px; margin-left: -5px;"><span class="dashicons dashicons-download" style=""></span>'.__( 'Virtual only', 'tmsm-woocommerce-vouchers' ).'</span>';
 				}
 				break;
-
 		}
 	}
 

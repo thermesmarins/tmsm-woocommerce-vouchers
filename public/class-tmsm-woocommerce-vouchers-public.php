@@ -807,7 +807,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		$product_id = isset( $item['product_id'] ) ? $item['product_id'] : '';
 
-		if ( $item['_recipientlastname'] && $item['_recipientfirstname'] ) {
+		if ( !empty($item['_recipientlastname']) && !empty($item['_recipientfirstname']) ) {
 			switch ( $item['_recipienttitle'] ) {
 				case 1:
 					$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
