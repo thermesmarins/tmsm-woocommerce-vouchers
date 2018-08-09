@@ -137,8 +137,15 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$data_id = (!empty($variation_id) ) ? $variation_id : $product_id;
 
 				//Get voucher code from item meta "Now we store voucher codes in item meta fields"
-				$codes_item_meta = wc_get_order_item_meta($item_id, '_vouchercode');
 
+				// No recipient, no voucher
+				$has_recipient = !empty(wc_get_order_item_meta($item_id, '_recipientlastname'));
+				if($has_recipient === false){
+					continue;
+				}
+
+				// Check if codes already have been generated
+				$codes_item_meta = wc_get_order_item_meta($item_id, '_vouchercode');
 
 				if($this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id) || $this->tmsmvoucher_product_type_is_voucher_physical($product_id, $variation_id)){
 

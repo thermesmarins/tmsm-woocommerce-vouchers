@@ -1,3 +1,5 @@
+* Prevent voucher to be generated if recipient (lastname) is empty
+
 ### 1.1.6: August 8th, 2018
 * Update FR localization
 * Fix title field margins
@@ -13,7 +15,7 @@
 * Update version number
 
 ### 1.1.2: January 31st, 2018
-* Moved processed functions to customeradmin plugin
+* Moved processed functions to custom plugin
 
 ### 1.1.1: January 26th, 2018
 * Added an option for status processed
