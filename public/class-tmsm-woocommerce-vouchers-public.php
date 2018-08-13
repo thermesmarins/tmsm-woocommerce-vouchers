@@ -2110,6 +2110,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$stylesheet = file_get_contents(plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
 
 		$mpdf->WriteHTML($stylesheet, 1);
+		$mpdf->dpi = 96;
+		$mpdf->img_dpi = 96;
 		$mpdf->WriteHTML($html, 2);
 		$mpdf->autoPageBreak = true;
 		$mpdf->setAutoTopMargin = 'pad';
