@@ -1,5 +1,6 @@
 * Prevent voucher to be generated if recipient (lastname) is empty
 * Gift icon compatible with Font Awesome (if loaded)
+* H3 on voucher form heading
 
 ### 1.1.6: August 8th, 2018
 * Update FR localization
