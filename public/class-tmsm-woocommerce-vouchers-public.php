@@ -1460,10 +1460,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			if($has_voucher ){
 				if(!empty($expirydate)){
-					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift"></span><time datetime="'.date( 'Y-m-d', strtotime( $expirydate ) ).'" title="'.esc_attr( strtotime( $expirydate ) ).'">'. sprintf( __( 'Voucher valid until %s', 'tmsm-woocommerce-vouchers' ), date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) )).'</time></p>';
+					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift fa fa-gift"></span> <time datetime="'.date( 'Y-m-d', strtotime( $expirydate ) ).'" title="'.esc_attr( strtotime( $expirydate ) ).'">'. sprintf( __( 'Voucher valid until %s', 'tmsm-woocommerce-vouchers' ), date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) )).'</time></p>';
 				}
 				else{
-					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift"></span>'.sprintf( _n( 'Voucher valid %s month', 'Voucher valid %s months', $expiremonths, 'tmsm-woocommerce-vouchers' ), $expiremonths ).'</p>';
+					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift fa fa-gift"></span> '.sprintf( _n( 'Voucher valid %s month', 'Voucher valid %s months', $expiremonths, 'tmsm-woocommerce-vouchers' ), $expiremonths ).'</p>';
 				}
 			}
 
