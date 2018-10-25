@@ -1,3 +1,5 @@
+* Check recipient address fields
+
 ### 1.1.7: October 25th, 2018
 * Prevent voucher to be generated if recipient (lastname) is empty
 * Gift icon compatible with Font Awesome (if loaded)
