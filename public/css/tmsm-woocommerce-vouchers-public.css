@@ -21,6 +21,7 @@ table.vouchers-fields .value{
 
 .vouchers-fields-wrapper-variation{
   display: none;
+  margin-bottom: 20px;
 }
 
 .vouchers-fields-wrapper-variation .title-field > label:first-child,
