@@ -807,7 +807,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		$product_id = isset( $item['product_id'] ) ? $item['product_id'] : '';
 
-		if ( !empty($item['_recipientlastname']) && !empty($item['_recipientfirstname']) ) {
+		if ( ! empty( $item['_recipientlastname'] ) && ! empty( $item['_recipientfirstname'] ) ) {
 			switch ( $item['_recipienttitle'] ) {
 				case 1:
 					$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
@@ -822,13 +822,13 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			}
 			$recipient = array(
 				'first_name' => $title . $item['_recipientfirstname'],
-				'last_name'  => $item['_recipientlastname'],
-				'address_1'  => $item['_recipientaddress'],
+				'last_name'  => ( ! empty( $item['_recipientlastname'] ) ? $item['_recipientlastname'] : '' ),
+				'address_1'  => ( ! empty( $item['_recipientaddress'] ) ? $item['_recipientaddress'] : '' ),
 				//'address_2'   => '',
-				'city'       => $item['_recipientcity'],
-				'postcode'   => $item['_recipientzipcode'],
+				'city'       => ( ! empty( $item['_recipientcity'] ) ? $item['_recipientcity'] : '' ),
+				'postcode'   => ( ! empty( $item['_recipientzipcode'] ) ? $item['_recipientzipcode'] : '' ),
 				//'state'    => '',
-				'country'    => $item['_recipientcountry'],
+				'country'    => ( ! empty( $item['_recipientcountry'] ) ? $item['_recipientcountry'] : '' ),
 			);
 
 			$formatted_recipient = WC()->countries->get_formatted_address( $recipient );
@@ -836,7 +836,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				'name'    => __( 'Recipient', 'tmsm-woocommerce-vouchers' ),
 				'display' => $formatted_recipient,
 				'hidden'  => false,
-				'value'   => ''
+				'value'   => '',
 			);
 		}
 
