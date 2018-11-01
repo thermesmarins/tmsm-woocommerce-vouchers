@@ -1,3 +1,4 @@
+### 1.1.8: November 1st, 2018
 * Check recipient address fields
 * Display order item name instead of product name in PDF voucher
 
