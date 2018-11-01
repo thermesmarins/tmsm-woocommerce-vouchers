@@ -1,4 +1,5 @@
 * Check recipient address fields
+* Display order item name instead of product name in PDF voucher
 
 ### 1.1.7: October 25th, 2018
 * Prevent voucher to be generated if recipient (lastname) is empty
@@ -18,7 +19,7 @@
 
 ### 1.1.3: January 31st, 2018
 * Update version number
-
+ssayre
 ### 1.1.2: January 31st, 2018
 * Moved processed functions to custom plugin
 
