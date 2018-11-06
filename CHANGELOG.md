@@ -1,3 +1,4 @@
+### 1.1.9: November 6th, 2018
 * CSS radio buttons alignment for honorific title on mobile
 * Fix product name when name your price is on a variation
 
