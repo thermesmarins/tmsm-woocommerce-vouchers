@@ -30,18 +30,26 @@ table.vouchers-fields .value{
 }
 
 @media (max-width: 500px){
-  .vouchers-fields-wrapper .title-field > label:first-child{
+  .vouchers-fields-wrapper-variation .title-field > label:first-child{
     display: block;
   }
 }
 
-
 .vouchers-fields .title-field input, .vouchers-fields .title-field label {
   display: inline-block;
 }
-.vouchers-fields .title-field .input-radio  {
-//margin-left: 20px;
+
+@media (max-width: 500px){
+  .vouchers-fields .title-field .input-radio  {
+    float: left;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  .vouchers-fields .title-field label.radio{
+    display: block;
+  }
 }
+
 .vouchers-fields .title-field label.radio  {
   margin-left: 5px;
   font-weight: normal;
