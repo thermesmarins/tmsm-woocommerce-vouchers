@@ -2006,7 +2006,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			}
 
 			$product_image = strip_tags($product->get_image('shop_single', ['data-no-lazy'=> 1, 'class' => 'tmsmvoucher-pdf-product-image']), '<img>');
-			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.($product->get_type() === 'simple' ? $item->get_name() : $product->get_name() ).'</div>';
+			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.($product->get_meta('_alg_wc_product_open_pricing_enabled') === 'yes' ? $item->get_name() : $product->get_name() ).'</div>';
 			$product_intro = '';
 			$product_description = nl2br($product->get_meta('_tmsm_woocommerce_vouchers_description'));
 			$product_description = apply_filters('tmsm_woocommerce_vouchers_description', $product_description, $product, $order );

@@ -1,4 +1,5 @@
 * CSS radio buttons alignment for honorific title on mobile
+* Fix product name when name your price is on a variation
 
 ### 1.1.8: November 1st, 2018
 * Check recipient address fields
