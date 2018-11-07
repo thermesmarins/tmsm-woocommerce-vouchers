@@ -1061,7 +1061,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				// Add download url to voucher downlodable files
 				$pdf_downloadable_files[ $pdf_key ]['download_url'] = $item->get_item_download_url( $pdf_key );
 				$pdf_downloadable_files[ $pdf_key ]['test'] = $item->get_item_download_url( $pdf_key );
-				$pdf_downloadable_files[ $pdf_key ]['access_expires'] = 'bbb';
+				$pdf_downloadable_files[ $pdf_key ]['downloads_remaining'] = 'unlimited';
 
 				// Merge downlodable file to files
 				$files = array_merge( $files, array( $pdf_key => $pdf_downloadable_files[ $pdf_key ] ) );
@@ -1218,7 +1218,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 												'download_name'       => $download_file['name']. ' '.$voucher_code,
 												'access_expires'       => $expirydate,
 
-												'downloads_remaining' => '',
+												'downloads_remaining' => 'unlimited',
 												'file'                => array(
 													'name' => $download_file['name'],
 													'file' => $download_file['file'],
