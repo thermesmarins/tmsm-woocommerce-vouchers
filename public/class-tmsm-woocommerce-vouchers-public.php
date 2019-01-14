@@ -1214,6 +1214,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 												'product_id'          => $product_id,
 												'product_name'        => $item->get_name() . ' '. __( 'for', 'tmsm-woocommerce-vouchers' ) . ' ' .$formatted_recipient,
 												'download_url'        => $download_url,
+												'product_url'        => '',
 												//'download_name'       => $_product->get_title() . $download_file['name'] . ' ' . $voucher_number . ' ( ' . $order_date . ' )',
 												'download_name'       => $download_file['name']. ' '.$voucher_code,
 												'access_expires'       => $expirydate,
