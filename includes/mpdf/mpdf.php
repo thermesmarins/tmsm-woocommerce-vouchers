@@ -916,32 +916,32 @@ class mPDF
 		//SVG color names array
 		//http://www.w3schools.com/css/css_colornames.asp
 		$this->SVGcolors = array('antiquewhite' => '#FAEBD7', 'aqua' => '#00FFFF', 'aquamarine' => '#7FFFD4', 'beige' => '#F5F5DC', 'black' => '#000000',
-			'blue' => '#0000FF', 'brown' => '#A52A2A', 'cadetblue' => '#5F9EA0', 'chocolate' => '#D2691E', 'cornflowerblue' => '#6495ED', 'crimson' => '#DC143C',
-			'darkblue' => '#00008B', 'darkgoldenrod' => '#B8860B', 'darkgreen' => '#006400', 'darkmagenta' => '#8B008B', 'darkorange' => '#FF8C00',
-			'darkred' => '#8B0000', 'darkseagreen' => '#8FBC8F', 'darkslategray' => '#2F4F4F', 'darkviolet' => '#9400D3', 'deepskyblue' => '#00BFFF',
-			'dodgerblue' => '#1E90FF', 'firebrick' => '#B22222', 'forestgreen' => '#228B22', 'fuchsia' => '#FF00FF', 'gainsboro' => '#DCDCDC', 'gold' => '#FFD700',
-			'gray' => '#808080', 'green' => '#008000', 'greenyellow' => '#ADFF2F', 'hotpink' => '#FF69B4', 'indigo' => '#4B0082', 'khaki' => '#F0E68C',
-			'lavenderblush' => '#FFF0F5', 'lemonchiffon' => '#FFFACD', 'lightcoral' => '#F08080', 'lightgoldenrodyellow' => '#FAFAD2', 'lightgreen' => '#90EE90',
-			'lightsalmon' => '#FFA07A', 'lightskyblue' => '#87CEFA', 'lightslategray' => '#778899', 'lightyellow' => '#FFFFE0', 'lime' => '#00FF00', 'limegreen' => '#32CD32',
-			'magenta' => '#FF00FF', 'maroon' => '#800000', 'mediumaquamarine' => '#66CDAA', 'mediumorchid' => '#BA55D3', 'mediumseagreen' => '#3CB371',
-			'mediumspringgreen' => '#00FA9A', 'mediumvioletred' => '#C71585', 'midnightblue' => '#191970', 'mintcream' => '#F5FFFA', 'moccasin' => '#FFE4B5', 'navy' => '#000080',
-			'olive' => '#808000', 'orange' => '#FFA500', 'orchid' => '#DA70D6', 'palegreen' => '#98FB98',
-			'palevioletred' => '#D87093', 'peachpuff' => '#FFDAB9', 'pink' => '#FFC0CB', 'powderblue' => '#B0E0E6', 'purple' => '#800080',
-			'red' => '#FF0000', 'royalblue' => '#4169E1', 'salmon' => '#FA8072', 'seagreen' => '#2E8B57', 'sienna' => '#A0522D', 'silver' => '#C0C0C0', 'skyblue' => '#87CEEB',
-			'slategray' => '#708090', 'springgreen' => '#00FF7F', 'steelblue' => '#4682B4', 'tan' => '#D2B48C', 'teal' => '#008080', 'thistle' => '#D8BFD8', 'turquoise' => '#40E0D0',
-			'violetred' => '#D02090', 'white' => '#FFFFFF', 'yellow' => '#FFFF00',
-			'aliceblue' => '#f0f8ff', 'azure' => '#f0ffff', 'bisque' => '#ffe4c4', 'blanchedalmond' => '#ffebcd', 'blueviolet' => '#8a2be2', 'burlywood' => '#deb887',
-			'chartreuse' => '#7fff00', 'coral' => '#ff7f50', 'cornsilk' => '#fff8dc', 'cyan' => '#00ffff', 'darkcyan' => '#008b8b', 'darkgray' => '#a9a9a9',
-			'darkgrey' => '#a9a9a9', 'darkkhaki' => '#bdb76b', 'darkolivegreen' => '#556b2f', 'darkorchid' => '#9932cc', 'darksalmon' => '#e9967a',
-			'darkslateblue' => '#483d8b', 'darkslategrey' => '#2f4f4f', 'darkturquoise' => '#00ced1', 'deeppink' => '#ff1493', 'dimgray' => '#696969',
-			'dimgrey' => '#696969', 'floralwhite' => '#fffaf0', 'ghostwhite' => '#f8f8ff', 'goldenrod' => '#daa520', 'grey' => '#808080', 'honeydew' => '#f0fff0',
-			'indianred' => '#cd5c5c', 'ivory' => '#fffff0', 'lavender' => '#e6e6fa', 'lawngreen' => '#7cfc00', 'lightblue' => '#add8e6', 'lightcyan' => '#e0ffff',
-			'lightgray' => '#d3d3d3', 'lightgrey' => '#d3d3d3', 'lightpink' => '#ffb6c1', 'lightseagreen' => '#20b2aa', 'lightslategrey' => '#778899',
-			'lightsteelblue' => '#b0c4de', 'linen' => '#faf0e6', 'mediumblue' => '#0000cd', 'mediumpurple' => '#9370db', 'mediumslateblue' => '#7b68ee',
-			'mediumturquoise' => '#48d1cc', 'mistyrose' => '#ffe4e1', 'navajowhite' => '#ffdead', 'oldlace' => '#fdf5e6', 'olivedrab' => '#6b8e23', 'orangered' => '#ff4500',
-			'palegoldenrod' => '#eee8aa', 'paleturquoise' => '#afeeee', 'papayawhip' => '#ffefd5', 'peru' => '#cd853f', 'plum' => '#dda0dd', 'rosybrown' => '#bc8f8f',
-			'saddlebrown' => '#8b4513', 'sandybrown' => '#f4a460', 'seashell' => '#fff5ee', 'slateblue' => '#6a5acd', 'slategrey' => '#708090', 'snow' => '#fffafa',
-			'tomato' => '#ff6347', 'violet' => '#ee82ee', 'wheat' => '#f5deb3', 'whitesmoke' => '#f5f5f5', 'yellowgreen' => '#9acd32');
+		                         'blue' => '#0000FF', 'brown' => '#A52A2A', 'cadetblue' => '#5F9EA0', 'chocolate' => '#D2691E', 'cornflowerblue' => '#6495ED', 'crimson' => '#DC143C',
+		                         'darkblue' => '#00008B', 'darkgoldenrod' => '#B8860B', 'darkgreen' => '#006400', 'darkmagenta' => '#8B008B', 'darkorange' => '#FF8C00',
+		                         'darkred' => '#8B0000', 'darkseagreen' => '#8FBC8F', 'darkslategray' => '#2F4F4F', 'darkviolet' => '#9400D3', 'deepskyblue' => '#00BFFF',
+		                         'dodgerblue' => '#1E90FF', 'firebrick' => '#B22222', 'forestgreen' => '#228B22', 'fuchsia' => '#FF00FF', 'gainsboro' => '#DCDCDC', 'gold' => '#FFD700',
+		                         'gray' => '#808080', 'green' => '#008000', 'greenyellow' => '#ADFF2F', 'hotpink' => '#FF69B4', 'indigo' => '#4B0082', 'khaki' => '#F0E68C',
+		                         'lavenderblush' => '#FFF0F5', 'lemonchiffon' => '#FFFACD', 'lightcoral' => '#F08080', 'lightgoldenrodyellow' => '#FAFAD2', 'lightgreen' => '#90EE90',
+		                         'lightsalmon' => '#FFA07A', 'lightskyblue' => '#87CEFA', 'lightslategray' => '#778899', 'lightyellow' => '#FFFFE0', 'lime' => '#00FF00', 'limegreen' => '#32CD32',
+		                         'magenta' => '#FF00FF', 'maroon' => '#800000', 'mediumaquamarine' => '#66CDAA', 'mediumorchid' => '#BA55D3', 'mediumseagreen' => '#3CB371',
+		                         'mediumspringgreen' => '#00FA9A', 'mediumvioletred' => '#C71585', 'midnightblue' => '#191970', 'mintcream' => '#F5FFFA', 'moccasin' => '#FFE4B5', 'navy' => '#000080',
+		                         'olive' => '#808000', 'orange' => '#FFA500', 'orchid' => '#DA70D6', 'palegreen' => '#98FB98',
+		                         'palevioletred' => '#D87093', 'peachpuff' => '#FFDAB9', 'pink' => '#FFC0CB', 'powderblue' => '#B0E0E6', 'purple' => '#800080',
+		                         'red' => '#FF0000', 'royalblue' => '#4169E1', 'salmon' => '#FA8072', 'seagreen' => '#2E8B57', 'sienna' => '#A0522D', 'silver' => '#C0C0C0', 'skyblue' => '#87CEEB',
+		                         'slategray' => '#708090', 'springgreen' => '#00FF7F', 'steelblue' => '#4682B4', 'tan' => '#D2B48C', 'teal' => '#008080', 'thistle' => '#D8BFD8', 'turquoise' => '#40E0D0',
+		                         'violetred' => '#D02090', 'white' => '#FFFFFF', 'yellow' => '#FFFF00',
+		                         'aliceblue' => '#f0f8ff', 'azure' => '#f0ffff', 'bisque' => '#ffe4c4', 'blanchedalmond' => '#ffebcd', 'blueviolet' => '#8a2be2', 'burlywood' => '#deb887',
+		                         'chartreuse' => '#7fff00', 'coral' => '#ff7f50', 'cornsilk' => '#fff8dc', 'cyan' => '#00ffff', 'darkcyan' => '#008b8b', 'darkgray' => '#a9a9a9',
+		                         'darkgrey' => '#a9a9a9', 'darkkhaki' => '#bdb76b', 'darkolivegreen' => '#556b2f', 'darkorchid' => '#9932cc', 'darksalmon' => '#e9967a',
+		                         'darkslateblue' => '#483d8b', 'darkslategrey' => '#2f4f4f', 'darkturquoise' => '#00ced1', 'deeppink' => '#ff1493', 'dimgray' => '#696969',
+		                         'dimgrey' => '#696969', 'floralwhite' => '#fffaf0', 'ghostwhite' => '#f8f8ff', 'goldenrod' => '#daa520', 'grey' => '#808080', 'honeydew' => '#f0fff0',
+		                         'indianred' => '#cd5c5c', 'ivory' => '#fffff0', 'lavender' => '#e6e6fa', 'lawngreen' => '#7cfc00', 'lightblue' => '#add8e6', 'lightcyan' => '#e0ffff',
+		                         'lightgray' => '#d3d3d3', 'lightgrey' => '#d3d3d3', 'lightpink' => '#ffb6c1', 'lightseagreen' => '#20b2aa', 'lightslategrey' => '#778899',
+		                         'lightsteelblue' => '#b0c4de', 'linen' => '#faf0e6', 'mediumblue' => '#0000cd', 'mediumpurple' => '#9370db', 'mediumslateblue' => '#7b68ee',
+		                         'mediumturquoise' => '#48d1cc', 'mistyrose' => '#ffe4e1', 'navajowhite' => '#ffdead', 'oldlace' => '#fdf5e6', 'olivedrab' => '#6b8e23', 'orangered' => '#ff4500',
+		                         'palegoldenrod' => '#eee8aa', 'paleturquoise' => '#afeeee', 'papayawhip' => '#ffefd5', 'peru' => '#cd853f', 'plum' => '#dda0dd', 'rosybrown' => '#bc8f8f',
+		                         'saddlebrown' => '#8b4513', 'sandybrown' => '#f4a460', 'seashell' => '#fff5ee', 'slateblue' => '#6a5acd', 'slategrey' => '#708090', 'snow' => '#fffafa',
+		                         'tomato' => '#ff6347', 'violet' => '#ee82ee', 'wheat' => '#f5deb3', 'whitesmoke' => '#f5f5f5', 'yellowgreen' => '#9acd32');
 
 		// Uppercase alternatives (for Small Caps)
 		if (empty($this->upperCase)) {
@@ -1232,14 +1232,14 @@ class mPDF
 		@mb_regex_encoding('UTF-8'); // required only for mb_ereg... and mb_split functions
 		// Adobe CJK fonts
 		$this->available_CJK_fonts = array('gb', 'big5', 'sjis', 'uhc', 'gbB', 'big5B', 'sjisB', 'uhcB', 'gbI', 'big5I', 'sjisI', 'uhcI',
-			'gbBI', 'big5BI', 'sjisBI', 'uhcBI');
+		                                   'gbBI', 'big5BI', 'sjisBI', 'uhcBI');
 
 
 		//Standard fonts
 		$this->CoreFonts = array('ccourier' => 'Courier', 'ccourierB' => 'Courier-Bold', 'ccourierI' => 'Courier-Oblique', 'ccourierBI' => 'Courier-BoldOblique',
-			'chelvetica' => 'Helvetica', 'chelveticaB' => 'Helvetica-Bold', 'chelveticaI' => 'Helvetica-Oblique', 'chelveticaBI' => 'Helvetica-BoldOblique',
-			'ctimes' => 'Times-Roman', 'ctimesB' => 'Times-Bold', 'ctimesI' => 'Times-Italic', 'ctimesBI' => 'Times-BoldItalic',
-			'csymbol' => 'Symbol', 'czapfdingbats' => 'ZapfDingbats');
+		                         'chelvetica' => 'Helvetica', 'chelveticaB' => 'Helvetica-Bold', 'chelveticaI' => 'Helvetica-Oblique', 'chelveticaBI' => 'Helvetica-BoldOblique',
+		                         'ctimes' => 'Times-Roman', 'ctimesB' => 'Times-Bold', 'ctimesI' => 'Times-Italic', 'ctimesBI' => 'Times-BoldItalic',
+		                         'csymbol' => 'Symbol', 'czapfdingbats' => 'ZapfDingbats');
 		$this->fontlist = array("ctimes", "ccourier", "chelvetica", "csymbol", "czapfdingbats");
 
 		// Substitutions
@@ -1416,229 +1416,229 @@ class mPDF
 	{
 		switch (strtoupper($format)) {
 			case '4A0': {
-					$format = array(4767.87, 6740.79);
-					break;
-				}
+				$format = array(4767.87, 6740.79);
+				break;
+			}
 			case '2A0': {
-					$format = array(3370.39, 4767.87);
-					break;
-				}
+				$format = array(3370.39, 4767.87);
+				break;
+			}
 			case 'A0': {
-					$format = array(2383.94, 3370.39);
-					break;
-				}
+				$format = array(2383.94, 3370.39);
+				break;
+			}
 			case 'A1': {
-					$format = array(1683.78, 2383.94);
-					break;
-				}
+				$format = array(1683.78, 2383.94);
+				break;
+			}
 			case 'A2': {
-					$format = array(1190.55, 1683.78);
-					break;
-				}
+				$format = array(1190.55, 1683.78);
+				break;
+			}
 			case 'A3': {
-					$format = array(841.89, 1190.55);
-					break;
-				}
+				$format = array(841.89, 1190.55);
+				break;
+			}
 			case 'A4': {
-					$format = array(595.28, 841.89);
-					break;
-				}
+				$format = array(595.28, 841.89);
+				break;
+			}
 			case 'A5': {
-					$format = array(419.53, 595.28);
-					break;
-				}
+				$format = array(419.53, 595.28);
+				break;
+			}
 			case 'A6': {
-					$format = array(297.64, 419.53);
-					break;
-				}
+				$format = array(297.64, 419.53);
+				break;
+			}
 			case 'A7': {
-					$format = array(209.76, 297.64);
-					break;
-				}
+				$format = array(209.76, 297.64);
+				break;
+			}
 			case 'A8': {
-					$format = array(147.40, 209.76);
-					break;
-				}
+				$format = array(147.40, 209.76);
+				break;
+			}
 			case 'A9': {
-					$format = array(104.88, 147.40);
-					break;
-				}
+				$format = array(104.88, 147.40);
+				break;
+			}
 			case 'A10': {
-					$format = array(73.70, 104.88);
-					break;
-				}
+				$format = array(73.70, 104.88);
+				break;
+			}
 			case 'B0': {
-					$format = array(2834.65, 4008.19);
-					break;
-				}
+				$format = array(2834.65, 4008.19);
+				break;
+			}
 			case 'B1': {
-					$format = array(2004.09, 2834.65);
-					break;
-				}
+				$format = array(2004.09, 2834.65);
+				break;
+			}
 			case 'B2': {
-					$format = array(1417.32, 2004.09);
-					break;
-				}
+				$format = array(1417.32, 2004.09);
+				break;
+			}
 			case 'B3': {
-					$format = array(1000.63, 1417.32);
-					break;
-				}
+				$format = array(1000.63, 1417.32);
+				break;
+			}
 			case 'B4': {
-					$format = array(708.66, 1000.63);
-					break;
-				}
+				$format = array(708.66, 1000.63);
+				break;
+			}
 			case 'B5': {
-					$format = array(498.90, 708.66);
-					break;
-				}
+				$format = array(498.90, 708.66);
+				break;
+			}
 			case 'B6': {
-					$format = array(354.33, 498.90);
-					break;
-				}
+				$format = array(354.33, 498.90);
+				break;
+			}
 			case 'B7': {
-					$format = array(249.45, 354.33);
-					break;
-				}
+				$format = array(249.45, 354.33);
+				break;
+			}
 			case 'B8': {
-					$format = array(175.75, 249.45);
-					break;
-				}
+				$format = array(175.75, 249.45);
+				break;
+			}
 			case 'B9': {
-					$format = array(124.72, 175.75);
-					break;
-				}
+				$format = array(124.72, 175.75);
+				break;
+			}
 			case 'B10': {
-					$format = array(87.87, 124.72);
-					break;
-				}
+				$format = array(87.87, 124.72);
+				break;
+			}
 			case 'C0': {
-					$format = array(2599.37, 3676.54);
-					break;
-				}
+				$format = array(2599.37, 3676.54);
+				break;
+			}
 			case 'C1': {
-					$format = array(1836.85, 2599.37);
-					break;
-				}
+				$format = array(1836.85, 2599.37);
+				break;
+			}
 			case 'C2': {
-					$format = array(1298.27, 1836.85);
-					break;
-				}
+				$format = array(1298.27, 1836.85);
+				break;
+			}
 			case 'C3': {
-					$format = array(918.43, 1298.27);
-					break;
-				}
+				$format = array(918.43, 1298.27);
+				break;
+			}
 			case 'C4': {
-					$format = array(649.13, 918.43);
-					break;
-				}
+				$format = array(649.13, 918.43);
+				break;
+			}
 			case 'C5': {
-					$format = array(459.21, 649.13);
-					break;
-				}
+				$format = array(459.21, 649.13);
+				break;
+			}
 			case 'C6': {
-					$format = array(323.15, 459.21);
-					break;
-				}
+				$format = array(323.15, 459.21);
+				break;
+			}
 			case 'C7': {
-					$format = array(229.61, 323.15);
-					break;
-				}
+				$format = array(229.61, 323.15);
+				break;
+			}
 			case 'C8': {
-					$format = array(161.57, 229.61);
-					break;
-				}
+				$format = array(161.57, 229.61);
+				break;
+			}
 			case 'C9': {
-					$format = array(113.39, 161.57);
-					break;
-				}
+				$format = array(113.39, 161.57);
+				break;
+			}
 			case 'C10': {
-					$format = array(79.37, 113.39);
-					break;
-				}
+				$format = array(79.37, 113.39);
+				break;
+			}
 			case 'RA0': {
-					$format = array(2437.80, 3458.27);
-					break;
-				}
+				$format = array(2437.80, 3458.27);
+				break;
+			}
 			case 'RA1': {
-					$format = array(1729.13, 2437.80);
-					break;
-				}
+				$format = array(1729.13, 2437.80);
+				break;
+			}
 			case 'RA2': {
-					$format = array(1218.90, 1729.13);
-					break;
-				}
+				$format = array(1218.90, 1729.13);
+				break;
+			}
 			case 'RA3': {
-					$format = array(864.57, 1218.90);
-					break;
-				}
+				$format = array(864.57, 1218.90);
+				break;
+			}
 			case 'RA4': {
-					$format = array(609.45, 864.57);
-					break;
-				}
+				$format = array(609.45, 864.57);
+				break;
+			}
 			case 'SRA0': {
-					$format = array(2551.18, 3628.35);
-					break;
-				}
+				$format = array(2551.18, 3628.35);
+				break;
+			}
 			case 'SRA1': {
-					$format = array(1814.17, 2551.18);
-					break;
-				}
+				$format = array(1814.17, 2551.18);
+				break;
+			}
 			case 'SRA2': {
-					$format = array(1275.59, 1814.17);
-					break;
-				}
+				$format = array(1275.59, 1814.17);
+				break;
+			}
 			case 'SRA3': {
-					$format = array(907.09, 1275.59);
-					break;
-				}
+				$format = array(907.09, 1275.59);
+				break;
+			}
 			case 'SRA4': {
-					$format = array(637.80, 907.09);
-					break;
-				}
+				$format = array(637.80, 907.09);
+				break;
+			}
 			case 'LETTER': {
-					$format = array(612.00, 792.00);
-					break;
-				}
+				$format = array(612.00, 792.00);
+				break;
+			}
 			case 'LEGAL': {
-					$format = array(612.00, 1008.00);
-					break;
-				}
+				$format = array(612.00, 1008.00);
+				break;
+			}
 			case 'LEDGER': {
-					$format = array(1224.00, 792.00);
-					break;
-				}
+				$format = array(1224.00, 792.00);
+				break;
+			}
 			case 'TABLOID': {
-					$format = array(792.00, 1224.00);
-					break;
-				}
+				$format = array(792.00, 1224.00);
+				break;
+			}
 			case 'EXECUTIVE': {
-					$format = array(521.86, 756.00);
-					break;
-				}
+				$format = array(521.86, 756.00);
+				break;
+			}
 			case 'FOLIO': {
-					$format = array(612.00, 936.00);
-					break;
-				}
+				$format = array(612.00, 936.00);
+				break;
+			}
 			case 'B': {
-					$format = array(362.83, 561.26);
-					break;
-				}  //	'B' format paperback size 128x198mm
+				$format = array(362.83, 561.26);
+				break;
+			}  //	'B' format paperback size 128x198mm
 			case 'A': {
-					$format = array(314.65, 504.57);
-					break;
-				}  //	'A' format paperback size 111x178mm
+				$format = array(314.65, 504.57);
+				break;
+			}  //	'A' format paperback size 111x178mm
 			case 'DEMY': {
-					$format = array(382.68, 612.28);
-					break;
-				}  //	'Demy' format paperback size 135x216mm
+				$format = array(382.68, 612.28);
+				break;
+			}  //	'Demy' format paperback size 135x216mm
 			case 'ROYAL': {
-					$format = array(433.70, 663.30);
-					break;
-				} //	'Royal' format paperback size 153x234mm
+				$format = array(433.70, 663.30);
+				break;
+			} //	'Royal' format paperback size 153x234mm
 			default: {
-					$format = array(595.28, 841.89);
-					break;
-				}
+				$format = array(595.28, 841.89);
+				break;
+			}
 		}
 		return $format;
 	}
@@ -4171,76 +4171,76 @@ class mPDF
 				}
 				// Test to see if requested font/style is available - or substitute
 				else
-				/* -- END CJK-FONTS -- */
-				if (!in_array($fontkey, $this->available_unifonts)) {
-					// If font[nostyle] exists - set it
-					if (in_array($family, $this->available_unifonts)) {
-						$style = '';
-					}
-
-					// elseif only one font available - set it (assumes if only one font available it will not have a style)
-					elseif (count($this->available_unifonts) == 1) {
-						$family = $this->available_unifonts[0];
-						$style = '';
-					} else {
-						$found = 0;
-						// else substitute font of similar type
-						if (in_array($family, $this->sans_fonts)) {
-							$i = array_intersect($this->sans_fonts, $this->available_unifonts);
-							if (count($i)) {
-								$i = array_values($i);
-								// with requested style if possible
-								if (!in_array(($i[0] . $style), $this->available_unifonts)) {
-									$style = '';
-								}
-								$family = $i[0];
-								$found = 1;
-							}
-						} elseif (in_array($family, $this->serif_fonts)) {
-							$i = array_intersect($this->serif_fonts, $this->available_unifonts);
-							if (count($i)) {
-								$i = array_values($i);
-								// with requested style if possible
-								if (!in_array(($i[0] . $style), $this->available_unifonts)) {
-									$style = '';
-								}
-								$family = $i[0];
-								$found = 1;
-							}
-						} elseif (in_array($family, $this->mono_fonts)) {
-							$i = array_intersect($this->mono_fonts, $this->available_unifonts);
-							if (count($i)) {
-								$i = array_values($i);
-								// with requested style if possible
-								if (!in_array(($i[0] . $style), $this->available_unifonts)) {
-									$style = '';
-								}
-								$family = $i[0];
-								$found = 1;
-							}
+					/* -- END CJK-FONTS -- */
+					if (!in_array($fontkey, $this->available_unifonts)) {
+						// If font[nostyle] exists - set it
+						if (in_array($family, $this->available_unifonts)) {
+							$style = '';
 						}
 
-						if (!$found) {
-							// set first available font
-							$fs = $this->available_unifonts[0];
-							preg_match('/^([a-z_0-9\-]+)([BI]{0,2})$/', $fs, $fas); // Allow "-"
-							// with requested style if possible
-							$ws = $fas[1] . $style;
-							if (in_array($ws, $this->available_unifonts)) {
-								$family = $fas[1]; // leave $style as is
-							} elseif (in_array($fas[1], $this->available_unifonts)) {
-								// or without style
-								$family = $fas[1];
-								$style = '';
-							} else {
-								// or with the style specified
-								$family = $fas[1];
-								$style = $fas[2];
+						// elseif only one font available - set it (assumes if only one font available it will not have a style)
+						elseif (count($this->available_unifonts) == 1) {
+							$family = $this->available_unifonts[0];
+							$style = '';
+						} else {
+							$found = 0;
+							// else substitute font of similar type
+							if (in_array($family, $this->sans_fonts)) {
+								$i = array_intersect($this->sans_fonts, $this->available_unifonts);
+								if (count($i)) {
+									$i = array_values($i);
+									// with requested style if possible
+									if (!in_array(($i[0] . $style), $this->available_unifonts)) {
+										$style = '';
+									}
+									$family = $i[0];
+									$found = 1;
+								}
+							} elseif (in_array($family, $this->serif_fonts)) {
+								$i = array_intersect($this->serif_fonts, $this->available_unifonts);
+								if (count($i)) {
+									$i = array_values($i);
+									// with requested style if possible
+									if (!in_array(($i[0] . $style), $this->available_unifonts)) {
+										$style = '';
+									}
+									$family = $i[0];
+									$found = 1;
+								}
+							} elseif (in_array($family, $this->mono_fonts)) {
+								$i = array_intersect($this->mono_fonts, $this->available_unifonts);
+								if (count($i)) {
+									$i = array_values($i);
+									// with requested style if possible
+									if (!in_array(($i[0] . $style), $this->available_unifonts)) {
+										$style = '';
+									}
+									$family = $i[0];
+									$found = 1;
+								}
+							}
+
+							if (!$found) {
+								// set first available font
+								$fs = $this->available_unifonts[0];
+								preg_match('/^([a-z_0-9\-]+)([BI]{0,2})$/', $fs, $fas); // Allow "-"
+								// with requested style if possible
+								$ws = $fas[1] . $style;
+								if (in_array($ws, $this->available_unifonts)) {
+									$family = $fas[1]; // leave $style as is
+								} elseif (in_array($fas[1], $this->available_unifonts)) {
+									// or without style
+									$family = $fas[1];
+									$style = '';
+								} else {
+									// or with the style specified
+									$family = $fas[1];
+									$style = $fas[2];
+								}
 							}
 						}
+						$fontkey = $family . $style;
 					}
-					$fontkey = $family . $style;
-				}
 			}
 			// try to add font (if not already added)
 			$this->AddFont($family, $style);
@@ -4811,7 +4811,7 @@ class mPDF
 			$bottom = 0;
 		}
 		if (!$this->tableLevel && (($this->y + $this->divheight > $this->PageBreakTrigger) || ($this->y + $h > $this->PageBreakTrigger) ||
-			($this->y + ($h * 2) + $bottom > $this->PageBreakTrigger && $this->blk[$this->blklvl]['page_break_after_avoid'])) and ! $this->InFooter and $this->AcceptPageBreak()) { // mPDF 5.7.2
+		                           ($this->y + ($h * 2) + $bottom > $this->PageBreakTrigger && $this->blk[$this->blklvl]['page_break_after_avoid'])) and ! $this->InFooter and $this->AcceptPageBreak()) { // mPDF 5.7.2
 			$x = $this->x; //Current X position
 			// WORD SPACING
 			$ws = $this->ws; //Word Spacing
@@ -6709,7 +6709,7 @@ class mPDF
 				$CJKoverflow = false;
 			}
 			if ((((($contentWidth + $lastitalic) > $maxWidth) && ($content[(count($chunkorder) - 1)] != ' ') ) ||
-				(!$endofblock && $align == 'J' && ($next == 'image' || $next == 'select' || $next == 'input' || $next == 'textarea' || ($next == 'br' && $this->justifyB4br)))) && !($CJKoverflow && $this->allowCJKoverflow)) {
+			     (!$endofblock && $align == 'J' && ($next == 'image' || $next == 'select' || $next == 'input' || $next == 'textarea' || ($next == 'br' && $this->justifyB4br)))) && !($CJKoverflow && $this->allowCJKoverflow)) {
 				// WORD SPACING
 				list($jcharspacing, $jws, $jkashida) = $this->GetJspacing($nb_carac, $nb_spaces, ($maxWidth - $lastitalic - $contentWidth - $WidthCorrection - (($this->cMarginL + $this->cMarginR) * _MPDFK) - ($paddingL + $paddingR + (($fpaddingL + $fpaddingR) * _MPDFK) )), $inclCursive, $cOTLdata);
 			}
@@ -7231,12 +7231,12 @@ class mPDF
 				if (isset($objattr['itype']) && $objattr['itype'] == 'wmf') {
 					$outstring = sprintf('q ' . $tr . $tr2 . '%.3F 0 0 %.3F %.3F %.3F cm /FO%d Do Q', $sx, -$sy, $objattr['INNER-X'] * _MPDFK - $sx * $objattr['wmf_x'], (($this->h - $objattr['INNER-Y']) * _MPDFK) + $sy * $objattr['wmf_y'], $objattr['ID']); // mPDF 5.7.3 TRANSFORMS
 				} else
-				/* -- END IMAGES-WMF -- */
-				if (isset($objattr['itype']) && $objattr['itype'] == 'svg') {
-					$outstring = sprintf('q ' . $tr . $tr2 . '%.3F 0 0 %.3F %.3F %.3F cm /FO%d Do Q', $sx, -$sy, $objattr['INNER-X'] * _MPDFK - $sx * $objattr['wmf_x'], (($this->h - $objattr['INNER-Y']) * _MPDFK) + $sy * $objattr['wmf_y'], $objattr['ID']); // mPDF 5.7.3 TRANSFORMS
-				} else {
-					$outstring = sprintf("q " . $tr . $tr2 . "%.3F 0 0 %.3F %.3F %.3F cm " . $gradmask . "/I%d Do Q", $obiw * _MPDFK, $obih * _MPDFK, $objattr['INNER-X'] * _MPDFK, ($this->h - ($objattr['INNER-Y'] + $obih )) * _MPDFK, $objattr['ID']); // mPDF 5.7.3 TRANSFORMS
-				}
+					/* -- END IMAGES-WMF -- */
+					if (isset($objattr['itype']) && $objattr['itype'] == 'svg') {
+						$outstring = sprintf('q ' . $tr . $tr2 . '%.3F 0 0 %.3F %.3F %.3F cm /FO%d Do Q', $sx, -$sy, $objattr['INNER-X'] * _MPDFK - $sx * $objattr['wmf_x'], (($this->h - $objattr['INNER-Y']) * _MPDFK) + $sy * $objattr['wmf_y'], $objattr['ID']); // mPDF 5.7.3 TRANSFORMS
+					} else {
+						$outstring = sprintf("q " . $tr . $tr2 . "%.3F 0 0 %.3F %.3F %.3F cm " . $gradmask . "/I%d Do Q", $obiw * _MPDFK, $obih * _MPDFK, $objattr['INNER-X'] * _MPDFK, ($this->h - ($objattr['INNER-Y'] + $obih )) * _MPDFK, $objattr['ID']); // mPDF 5.7.3 TRANSFORMS
+					}
 				$this->_out($outstring);
 				// LINK
 				if (isset($objattr['link']))
@@ -7841,9 +7841,9 @@ class mPDF
 					/////////////////////
 					// NB otherwise it move lastchar(s) to next line to keep $c company = Oidashi, which is done below in standard way
 					elseif (preg_match("/[" . $this->pregCJKchars . "]/u", $checkchar) && $this->allowCJKorphans &&
-						(preg_match("/[" . $this->CJKleading . "]/u", $followingchar) || preg_match("/[" . $this->CJKfollowing . "]/u", $checkchar)) &&
-						!preg_match("/[" . $this->CJKleading . "]/u", $checkchar) && !preg_match("/[" . $this->CJKfollowing . "]/u", $followingchar) &&
-						!(preg_match("/[0-9\x{ff10}-\x{ff19}]/u", $followingchar) && preg_match("/[0-9\x{ff10}-\x{ff19}]/u", $checkchar))) {
+					        (preg_match("/[" . $this->CJKleading . "]/u", $followingchar) || preg_match("/[" . $this->CJKfollowing . "]/u", $checkchar)) &&
+					        !preg_match("/[" . $this->CJKleading . "]/u", $checkchar) && !preg_match("/[" . $this->CJKfollowing . "]/u", $followingchar) &&
+					        !(preg_match("/[0-9\x{ff10}-\x{ff19}]/u", $followingchar) && preg_match("/[0-9\x{ff10}-\x{ff19}]/u", $checkchar))) {
 						// add character onto this line
 						$currContent .= $c;
 						$contentWidth += $cw;
@@ -7950,8 +7950,8 @@ class mPDF
 					// CJK Avoiding line break in the middle of numerals
 					/////////////////////
 					elseif (!$this->usingCoreFont && $this->checkCJK && preg_match("/[" . $this->pregCJKchars . "]/u", $checkchar) &&
-						!preg_match("/[" . $this->CJKfollowing . "]/u", $checkchar) && !preg_match("/[" . $this->CJKleading . "]/u", $prevchar) &&
-						!(preg_match("/[0-9\x{ff10}-\x{ff19}]/u", $prevchar) && preg_match("/[0-9\x{ff10}-\x{ff19}]/u", $checkchar))) {
+					        !preg_match("/[" . $this->CJKfollowing . "]/u", $checkchar) && !preg_match("/[" . $this->CJKleading . "]/u", $prevchar) &&
+					        !(preg_match("/[0-9\x{ff10}-\x{ff19}]/u", $prevchar) && preg_match("/[0-9\x{ff10}-\x{ff19}]/u", $checkchar))) {
 						$breakfound = array($cutcontentctr, $cutcharctr, $cutcontentctr, $cutcharctr, 'cut');
 					}
 					/* -- END CJK-FONTS -- */
@@ -8666,17 +8666,17 @@ class mPDF
 				$w = abs($info['w']) / (20 * _MPDFK);
 				$h = abs($info['h']) / (20 * _MPDFK);
 			} else
-			/* -- END IMAGES-WMF -- */
-			if ($info['type'] == 'svg') {
-				// returned SVG units are pts
-				// divide by k to get user units (mm)
-				$w = abs($info['w']) / _MPDFK;
-				$h = abs($info['h']) / _MPDFK;
-			} else {
-				//Put image at default image dpi
-				$w = ($info['w'] / _MPDFK) * (72 / $this->img_dpi);
-				$h = ($info['h'] / _MPDFK) * (72 / $this->img_dpi);
-			}
+				/* -- END IMAGES-WMF -- */
+				if ($info['type'] == 'svg') {
+					// returned SVG units are pts
+					// divide by k to get user units (mm)
+					$w = abs($info['w']) / _MPDFK;
+					$h = abs($info['h']) / _MPDFK;
+				} else {
+					//Put image at default image dpi
+					$w = ($info['w'] / _MPDFK) * (72 / $this->img_dpi);
+					$h = ($info['h'] / _MPDFK) * (72 / $this->img_dpi);
+				}
 		}
 		if ($w == 0)
 			$w = abs($h * $info['w'] / $info['h']);
@@ -8758,14 +8758,14 @@ class mPDF
 				$sy = -$h * _MPDFK / $info['h'];
 				$outstring = sprintf('q %.3F 0 0 %.3F %.3F %.3F cm /FO%d Do Q', $sx, $sy, $x * _MPDFK - $sx * $info['x'], (($this->h - $y) * _MPDFK) - $sy * $info['y'], $info['i']);
 			} else
-			/* -- END IMAGES-WMF -- */
-			if ($info['type'] == 'svg') {
-				$sx = $w * _MPDFK / $info['w'];
-				$sy = -$h * _MPDFK / $info['h'];
-				$outstring = sprintf('q %.3F 0 0 %.3F %.3F %.3F cm /FO%d Do Q', $sx, $sy, $x * _MPDFK - $sx * $info['x'], (($this->h - $y) * _MPDFK) - $sy * $info['y'], $info['i']);
-			} else {
-				$outstring = sprintf("q %.3F 0 0 %.3F %.3F %.3F cm /I%d Do Q", $w * _MPDFK, $h * _MPDFK, $x * _MPDFK, ($this->h - ($y + $h)) * _MPDFK, $info['i']);
-			}
+				/* -- END IMAGES-WMF -- */
+				if ($info['type'] == 'svg') {
+					$sx = $w * _MPDFK / $info['w'];
+					$sy = -$h * _MPDFK / $info['h'];
+					$outstring = sprintf('q %.3F 0 0 %.3F %.3F %.3F cm /FO%d Do Q', $sx, $sy, $x * _MPDFK - $sx * $info['x'], (($this->h - $y) * _MPDFK) - $sy * $info['y'], $info['i']);
+				} else {
+					$outstring = sprintf("q %.3F 0 0 %.3F %.3F %.3F cm /I%d Do Q", $w * _MPDFK, $h * _MPDFK, $x * _MPDFK, ($this->h - ($y + $h)) * _MPDFK, $info['i']);
+				}
 
 			if ($this->watermarkImgBehind) {
 				$outstring = $this->watermarkImgAlpha . "\n" . $outstring . "\n" . $this->SetAlpha(1, 'Normal', true) . "\n";
@@ -8832,14 +8832,14 @@ class mPDF
 			$sy = -$h * _MPDFK / $info['h'];
 			$outstring = sprintf('q %.3F 0 0 %.3F %.3F %.3F cm /FO%d Do Q', $sx, $sy, $x * _MPDFK - $sx * $info['x'], (($this->h - $y) * _MPDFK) - $sy * $info['y'], $info['i']);
 		} else
-		/* -- END IMAGES-WMF -- */
-		if ($info['type'] == 'svg') {
-			$sx = $w * _MPDFK / $info['w'];
-			$sy = -$h * _MPDFK / $info['h'];
-			$outstring = sprintf('q %.3F 0 0 %.3F %.3F %.3F cm /FO%d Do Q', $sx, $sy, $x * _MPDFK - $sx * $info['x'], (($this->h - $y) * _MPDFK) - $sy * $info['y'], $info['i']);
-		} else {
-			$outstring = sprintf("q %.3F 0 0 %.3F %.3F %.3F cm /I%d Do Q", $w * _MPDFK, $h * _MPDFK, $x * _MPDFK, ($this->h - ($y + $h)) * _MPDFK, $info['i']);
-		}
+			/* -- END IMAGES-WMF -- */
+			if ($info['type'] == 'svg') {
+				$sx = $w * _MPDFK / $info['w'];
+				$sy = -$h * _MPDFK / $info['h'];
+				$outstring = sprintf('q %.3F 0 0 %.3F %.3F %.3F cm /FO%d Do Q', $sx, $sy, $x * _MPDFK - $sx * $info['x'], (($this->h - $y) * _MPDFK) - $sy * $info['y'], $info['i']);
+			} else {
+				$outstring = sprintf("q %.3F 0 0 %.3F %.3F %.3F cm /I%d Do Q", $w * _MPDFK, $h * _MPDFK, $x * _MPDFK, ($this->h - ($y + $h)) * _MPDFK, $info['i']);
+			}
 
 		if ($paint) {
 			$this->_out($outstring);
@@ -8906,7 +8906,7 @@ class mPDF
 		}
 		// For Images
 		if (isset($objattr['border_left'])) {
-			$extraWidth = ($objattr['border_left']['w'] + $objattr['border_right']['w'] + $objattr['margin_left'] + $objattr['margin_right']) / $k;
+			$extraWidth = ((is_numeric($objattr['border_left']['w'])?$objattr['border_left']['w']:0)+ (is_numeric($objattr['border_right']['w'])?$objattr['border_right']['w']:0) + (is_numeric($objattr['margin_left'])?$objattr['margin_left']:0) + (is_numeric($objattr['margin_right'])?$objattr['margin_right']:0)) / $k;
 			$extraHeight = ($objattr['border_top']['w'] + $objattr['border_bottom']['w'] + $objattr['margin_top'] + $objattr['margin_bottom']) / $k;
 
 			if ($type == 'image' || $type == 'barcode' || $type == 'textcircle') {
@@ -9000,11 +9000,11 @@ class mPDF
 
 			$objattr['BORDER-WIDTH'] = $img_w + $objattr['padding_left'] / $k + $objattr['padding_right'] / $k + (($objattr['border_left']['w'] / $k + $objattr['border_right']['w'] / $k) / 2);
 			$objattr['BORDER-HEIGHT'] = $img_h + $objattr['padding_top'] / $k + $objattr['padding_bottom'] / $k + (($objattr['border_top']['w'] / $k + $objattr['border_bottom']['w'] / $k) / 2);
-			$objattr['BORDER-X'] = $x + $objattr['margin_left'] / $k + (($objattr['border_left']['w'] / $k) / 2);
+			$objattr['BORDER-X'] = $x + (is_numeric($objattr['margin_left']?$objattr['margin_left']:0)) / $k + (((is_numeric($objattr['border_left']['w'])?$objattr['border_left']['w']:0) / $k) / 2);
 			$objattr['BORDER-Y'] = $y + $objattr['margin_top'] / $k + (($objattr['border_top']['w'] / $k) / 2);
 			$objattr['INNER-WIDTH'] = $img_w;
 			$objattr['INNER-HEIGHT'] = $img_h;
-			$objattr['INNER-X'] = $x + $objattr['padding_left'] / $k + $objattr['margin_left'] / $k + ($objattr['border_left']['w'] / $k);
+			$objattr['INNER-X'] = $x + (is_numeric($objattr['padding_left'])?$objattr['padding_left']:0) / $k + (is_numeric($objattr['margin_left'])?$objattr['margin_left']:0) / $k + ((is_numeric($objattr['border_left']['w'])?$objattr['border_left']['w']:0) / $k);
 			$objattr['INNER-Y'] = $y + $objattr['padding_top'] / $k + $objattr['margin_top'] / $k + ($objattr['border_top']['w'] / $k);
 			$objattr['ID'] = $info['i'];
 		}
@@ -10330,103 +10330,197 @@ class mPDF
 				$this->_out('<</Type /Font');
 				$this->_putType0($font);
 			} else
-			/* -- END CJK-FONTS -- */
-			if ($type == 'core') {
-				//Standard font
-				$this->fonts[$k]['n'] = $this->n + 1;
-				if ($this->PDFA || $this->PDFX) {
-					throw new MpdfException('Core fonts are not allowed in PDF/A1-b or PDFX/1-a files (Times, Helvetica, Courier etc.)');
-				}
-				$this->_newobj();
-				$this->_out('<</Type /Font');
-				$this->_out('/BaseFont /' . $name);
-				$this->_out('/Subtype /Type1');
-				if ($name != 'Symbol' && $name != 'ZapfDingbats') {
-					$this->_out('/Encoding /WinAnsiEncoding');
-				}
-				$this->_out('>>');
-				$this->_out('endobj');
-			}
-			// TrueType embedded SUBSETS for SIP (CJK extB containing Supplementary Ideographic Plane 2)
-			// Or Unicode Plane 1 - Supplementary Multilingual Plane
-			elseif ($type == 'TTF' && ($font['sip'] || $font['smp'])) {
-				if (!$font['used']) {
-					continue;
-				}
-				$ssfaid = "AA";
-				if (!class_exists('TTFontFile', false)) {
-					include(_MPDF_PATH . 'classes/ttfontsuni.php');
-				}
-				$ttf = new TTFontFile();
-				for ($sfid = 0; $sfid < count($font['subsetfontids']); $sfid++) {
-					$this->fonts[$k]['n'][$sfid] = $this->n + 1;  // NB an array for subset
-					$subsetname = 'MPDF' . $ssfaid . '+' . $font['name'];
-					$ssfaid++;
-
-					/* For some strange reason a subset ($sfid > 0) containing less than 97 characters causes an error
-					  so fill up the array */
-					for ($j = count($font['subsets'][$sfid]); $j < 98; $j++) {
-						$font['subsets'][$sfid][$j] = 0;
+				/* -- END CJK-FONTS -- */
+				if ($type == 'core') {
+					//Standard font
+					$this->fonts[$k]['n'] = $this->n + 1;
+					if ($this->PDFA || $this->PDFX) {
+						throw new MpdfException('Core fonts are not allowed in PDF/A1-b or PDFX/1-a files (Times, Helvetica, Courier etc.)');
 					}
-
-					$subset = $font['subsets'][$sfid];
-					unset($subset[0]);
-					$ttfontstream = $ttf->makeSubsetSIP($font['ttffile'], $subset, $font['TTCfontID'], $this->debugfonts, $font['useOTL']); // mPDF 5.7.1
-					$ttfontsize = strlen($ttfontstream);
-					$fontstream = gzcompress($ttfontstream);
-					$widthstring = '';
-					$toUnistring = '';
-
-
-					foreach ($font['subsets'][$sfid] AS $cp => $u) {
-						$w = $this->_getCharWidth($font['cw'], $u);
-						if ($w !== false) {
-							$widthstring .= $w . ' ';
-						} else {
-							$widthstring .= round($ttf->defaultWidth) . ' ';
-						}
-						if ($u > 65535) {
-							$utf8 = chr(($u >> 18) + 240) . chr((($u >> 12) & 63) + 128) . chr((($u >> 6) & 63) + 128) . chr(($u & 63) + 128);
-							$utf16 = mb_convert_encoding($utf8, 'UTF-16BE', 'UTF-8');
-							$l1 = ord($utf16[0]);
-							$h1 = ord($utf16[1]);
-							$l2 = ord($utf16[2]);
-							$h2 = ord($utf16[3]);
-							$toUnistring .= sprintf("<%02s> <%02s%02s%02s%02s>\n", strtoupper(dechex($cp)), strtoupper(dechex($l1)), strtoupper(dechex($h1)), strtoupper(dechex($l2)), strtoupper(dechex($h2)));
-						} else {
-							$toUnistring .= sprintf("<%02s> <%04s>\n", strtoupper(dechex($cp)), strtoupper(dechex($u)));
-						}
-					}
-
-					//Additional Type1 or TrueType font
 					$this->_newobj();
 					$this->_out('<</Type /Font');
-					$this->_out('/BaseFont /' . $subsetname);
-					$this->_out('/Subtype /TrueType');
-					$this->_out('/FirstChar 0 /LastChar ' . (count($font['subsets'][$sfid]) - 1));
-					$this->_out('/Widths ' . ($this->n + 1) . ' 0 R');
-					$this->_out('/FontDescriptor ' . ($this->n + 2) . ' 0 R');
-					$this->_out('/ToUnicode ' . ($this->n + 3) . ' 0 R');
+					$this->_out('/BaseFont /' . $name);
+					$this->_out('/Subtype /Type1');
+					if ($name != 'Symbol' && $name != 'ZapfDingbats') {
+						$this->_out('/Encoding /WinAnsiEncoding');
+					}
+					$this->_out('>>');
+					$this->_out('endobj');
+				}
+				// TrueType embedded SUBSETS for SIP (CJK extB containing Supplementary Ideographic Plane 2)
+				// Or Unicode Plane 1 - Supplementary Multilingual Plane
+				elseif ($type == 'TTF' && ($font['sip'] || $font['smp'])) {
+					if (!$font['used']) {
+						continue;
+					}
+					$ssfaid = "AA";
+					if (!class_exists('TTFontFile', false)) {
+						include(_MPDF_PATH . 'classes/ttfontsuni.php');
+					}
+					$ttf = new TTFontFile();
+					for ($sfid = 0; $sfid < count($font['subsetfontids']); $sfid++) {
+						$this->fonts[$k]['n'][$sfid] = $this->n + 1;  // NB an array for subset
+						$subsetname = 'MPDF' . $ssfaid . '+' . $font['name'];
+						$ssfaid++;
+
+						/* For some strange reason a subset ($sfid > 0) containing less than 97 characters causes an error
+						  so fill up the array */
+						for ($j = count($font['subsets'][$sfid]); $j < 98; $j++) {
+							$font['subsets'][$sfid][$j] = 0;
+						}
+
+						$subset = $font['subsets'][$sfid];
+						unset($subset[0]);
+						$ttfontstream = $ttf->makeSubsetSIP($font['ttffile'], $subset, $font['TTCfontID'], $this->debugfonts, $font['useOTL']); // mPDF 5.7.1
+						$ttfontsize = strlen($ttfontstream);
+						$fontstream = gzcompress($ttfontstream);
+						$widthstring = '';
+						$toUnistring = '';
+
+
+						foreach ($font['subsets'][$sfid] AS $cp => $u) {
+							$w = $this->_getCharWidth($font['cw'], $u);
+							if ($w !== false) {
+								$widthstring .= $w . ' ';
+							} else {
+								$widthstring .= round($ttf->defaultWidth) . ' ';
+							}
+							if ($u > 65535) {
+								$utf8 = chr(($u >> 18) + 240) . chr((($u >> 12) & 63) + 128) . chr((($u >> 6) & 63) + 128) . chr(($u & 63) + 128);
+								$utf16 = mb_convert_encoding($utf8, 'UTF-16BE', 'UTF-8');
+								$l1 = ord($utf16[0]);
+								$h1 = ord($utf16[1]);
+								$l2 = ord($utf16[2]);
+								$h2 = ord($utf16[3]);
+								$toUnistring .= sprintf("<%02s> <%02s%02s%02s%02s>\n", strtoupper(dechex($cp)), strtoupper(dechex($l1)), strtoupper(dechex($h1)), strtoupper(dechex($l2)), strtoupper(dechex($h2)));
+							} else {
+								$toUnistring .= sprintf("<%02s> <%04s>\n", strtoupper(dechex($cp)), strtoupper(dechex($u)));
+							}
+						}
+
+						//Additional Type1 or TrueType font
+						$this->_newobj();
+						$this->_out('<</Type /Font');
+						$this->_out('/BaseFont /' . $subsetname);
+						$this->_out('/Subtype /TrueType');
+						$this->_out('/FirstChar 0 /LastChar ' . (count($font['subsets'][$sfid]) - 1));
+						$this->_out('/Widths ' . ($this->n + 1) . ' 0 R');
+						$this->_out('/FontDescriptor ' . ($this->n + 2) . ' 0 R');
+						$this->_out('/ToUnicode ' . ($this->n + 3) . ' 0 R');
+						$this->_out('>>');
+						$this->_out('endobj');
+
+						//Widths
+						$this->_newobj();
+						$this->_out('[' . $widthstring . ']');
+						$this->_out('endobj');
+
+						//Descriptor
+						$this->_newobj();
+						$s = '<</Type /FontDescriptor /FontName /' . $subsetname . "\n";
+						foreach ($font['desc'] as $kd => $v) {
+							if ($kd == 'Flags') {
+								$v = $v | 4;
+								$v = $v & ~32;
+							} // SYMBOLIC font flag
+							$s.=' /' . $kd . ' ' . $v . "\n";
+						}
+						$s.='/FontFile2 ' . ($this->n + 2) . ' 0 R';
+						$this->_out($s . '>>');
+						$this->_out('endobj');
+
+						// ToUnicode
+						$this->_newobj();
+						$toUni = "/CIDInit /ProcSet findresource begin\n";
+						$toUni .= "12 dict begin\n";
+						$toUni .= "begincmap\n";
+						$toUni .= "/CIDSystemInfo\n";
+						$toUni .= "<</Registry (Adobe)\n";
+						$toUni .= "/Ordering (UCS)\n";
+						$toUni .= "/Supplement 0\n";
+						$toUni .= ">> def\n";
+						$toUni .= "/CMapName /Adobe-Identity-UCS def\n";
+						$toUni .= "/CMapType 2 def\n";
+						$toUni .= "1 begincodespacerange\n";
+						$toUni .= "<00> <FF>\n";
+						//$toUni .= sprintf("<00> <%02s>\n", strtoupper(dechex(count($font['subsets'][$sfid])-1)));
+						$toUni .= "endcodespacerange\n";
+						$toUni .= count($font['subsets'][$sfid]) . " beginbfchar\n";
+						$toUni .= $toUnistring;
+						$toUni .= "endbfchar\n";
+						$toUni .= "endcmap\n";
+						$toUni .= "CMapName currentdict /CMap defineresource pop\n";
+						$toUni .= "end\n";
+						$toUni .= "end\n";
+						$this->_out('<</Length ' . (strlen($toUni)) . '>>');
+						$this->_putstream($toUni);
+						$this->_out('endobj');
+
+						//Font file
+						$this->_newobj();
+						$this->_out('<</Length ' . strlen($fontstream));
+						$this->_out('/Filter /FlateDecode');
+						$this->_out('/Length1 ' . $ttfontsize);
+						$this->_out('>>');
+						$this->_putstream($fontstream);
+						$this->_out('endobj');
+					} // foreach subset
+					unset($ttf);
+				}
+				// TrueType embedded SUBSETS or FULL
+				elseif ($type == 'TTF') {
+					$this->fonts[$k]['n'] = $this->n + 1;
+					if ($asSubset) {
+						$ssfaid = "A";
+						if (!class_exists('TTFontFile', false)) {
+							include(_MPDF_PATH . 'classes/ttfontsuni.php');
+						}
+						$ttf = new TTFontFile();
+						$fontname = 'MPDFA' . $ssfaid . '+' . $font['name'];
+						$subset = $font['subset'];
+						unset($subset[0]);
+						$ttfontstream = $ttf->makeSubset($font['ttffile'], $subset, $font['TTCfontID'], $this->debugfonts, $font['useOTL']);
+						$ttfontsize = strlen($ttfontstream);
+						$fontstream = gzcompress($ttfontstream);
+						$codeToGlyph = $ttf->codeToGlyph;
+						unset($codeToGlyph[0]);
+					} else {
+						$fontname = $font['name'];
+					}
+					// Type0 Font
+					// A composite font - a font composed of other fonts, organized hierarchically
+					$this->_newobj();
+					$this->_out('<</Type /Font');
+					$this->_out('/Subtype /Type0');
+					$this->_out('/BaseFont /' . $fontname . '');
+					$this->_out('/Encoding /Identity-H');
+					$this->_out('/DescendantFonts [' . ($this->n + 1) . ' 0 R]');
+					$this->_out('/ToUnicode ' . ($this->n + 2) . ' 0 R');
 					$this->_out('>>');
 					$this->_out('endobj');
 
-					//Widths
+					// CIDFontType2
+					// A CIDFont whose glyph descriptions are based on TrueType font technology
 					$this->_newobj();
-					$this->_out('[' . $widthstring . ']');
-					$this->_out('endobj');
-
-					//Descriptor
-					$this->_newobj();
-					$s = '<</Type /FontDescriptor /FontName /' . $subsetname . "\n";
-					foreach ($font['desc'] as $kd => $v) {
-						if ($kd == 'Flags') {
-							$v = $v | 4;
-							$v = $v & ~32;
-						} // SYMBOLIC font flag
-						$s.=' /' . $kd . ' ' . $v . "\n";
+					$this->_out('<</Type /Font');
+					$this->_out('/Subtype /CIDFontType2');
+					$this->_out('/BaseFont /' . $fontname . '');
+					$this->_out('/CIDSystemInfo ' . ($this->n + 2) . ' 0 R');
+					$this->_out('/FontDescriptor ' . ($this->n + 3) . ' 0 R');
+					if (isset($font['desc']['MissingWidth'])) {
+						$this->_out('/DW ' . $font['desc']['MissingWidth'] . '');
 					}
-					$s.='/FontFile2 ' . ($this->n + 2) . ' 0 R';
-					$this->_out($s . '>>');
+
+					if (!$asSubset && file_exists(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cw')) {
+						$w = '';
+						$w = file_get_contents(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cw');
+						$this->_out($w);
+					} else {
+						$this->_putTTfontwidths($font, $asSubset, ($asSubset ? $ttf->maxUni : 0));
+					}
+
+					$this->_out('/CIDToGIDMap ' . ($this->n + 4) . ' 0 R');
+					$this->_out('>>');
 					$this->_out('endobj');
 
 					// ToUnicode
@@ -10442,12 +10536,11 @@ class mPDF
 					$toUni .= "/CMapName /Adobe-Identity-UCS def\n";
 					$toUni .= "/CMapType 2 def\n";
 					$toUni .= "1 begincodespacerange\n";
-					$toUni .= "<00> <FF>\n";
-					//$toUni .= sprintf("<00> <%02s>\n", strtoupper(dechex(count($font['subsets'][$sfid])-1)));
+					$toUni .= "<0000> <FFFF>\n";
 					$toUni .= "endcodespacerange\n";
-					$toUni .= count($font['subsets'][$sfid]) . " beginbfchar\n";
-					$toUni .= $toUnistring;
-					$toUni .= "endbfchar\n";
+					$toUni .= "1 beginbfrange\n";
+					$toUni .= "<0000> <FFFF> <0000>\n";
+					$toUni .= "endbfrange\n";
 					$toUni .= "endcmap\n";
 					$toUni .= "CMapName currentdict /CMap defineresource pop\n";
 					$toUni .= "end\n";
@@ -10456,191 +10549,98 @@ class mPDF
 					$this->_putstream($toUni);
 					$this->_out('endobj');
 
-					//Font file
+
+					// CIDSystemInfo dictionary
 					$this->_newobj();
-					$this->_out('<</Length ' . strlen($fontstream));
-					$this->_out('/Filter /FlateDecode');
-					$this->_out('/Length1 ' . $ttfontsize);
+					$this->_out('<</Registry (Adobe)');
+					$this->_out('/Ordering (UCS)');
+					$this->_out('/Supplement 0');
 					$this->_out('>>');
-					$this->_putstream($fontstream);
 					$this->_out('endobj');
-				} // foreach subset
-				unset($ttf);
-			}
-			// TrueType embedded SUBSETS or FULL
-			elseif ($type == 'TTF') {
-				$this->fonts[$k]['n'] = $this->n + 1;
-				if ($asSubset) {
-					$ssfaid = "A";
-					if (!class_exists('TTFontFile', false)) {
-						include(_MPDF_PATH . 'classes/ttfontsuni.php');
+
+					// Font descriptor
+					$this->_newobj();
+					$this->_out('<</Type /FontDescriptor');
+					$this->_out('/FontName /' . $fontname);
+					foreach ($font['desc'] as $kd => $v) {
+						if ($asSubset && $kd == 'Flags') {
+							$v = $v | 4;
+							$v = $v & ~32;
+						} // SYMBOLIC font flag
+						$this->_out(' /' . $kd . ' ' . $v);
 					}
-					$ttf = new TTFontFile();
-					$fontname = 'MPDFA' . $ssfaid . '+' . $font['name'];
-					$subset = $font['subset'];
-					unset($subset[0]);
-					$ttfontstream = $ttf->makeSubset($font['ttffile'], $subset, $font['TTCfontID'], $this->debugfonts, $font['useOTL']);
-					$ttfontsize = strlen($ttfontstream);
-					$fontstream = gzcompress($ttfontstream);
-					$codeToGlyph = $ttf->codeToGlyph;
-					unset($codeToGlyph[0]);
-				} else {
-					$fontname = $font['name'];
-				}
-				// Type0 Font
-				// A composite font - a font composed of other fonts, organized hierarchically
-				$this->_newobj();
-				$this->_out('<</Type /Font');
-				$this->_out('/Subtype /Type0');
-				$this->_out('/BaseFont /' . $fontname . '');
-				$this->_out('/Encoding /Identity-H');
-				$this->_out('/DescendantFonts [' . ($this->n + 1) . ' 0 R]');
-				$this->_out('/ToUnicode ' . ($this->n + 2) . ' 0 R');
-				$this->_out('>>');
-				$this->_out('endobj');
-
-				// CIDFontType2
-				// A CIDFont whose glyph descriptions are based on TrueType font technology
-				$this->_newobj();
-				$this->_out('<</Type /Font');
-				$this->_out('/Subtype /CIDFontType2');
-				$this->_out('/BaseFont /' . $fontname . '');
-				$this->_out('/CIDSystemInfo ' . ($this->n + 2) . ' 0 R');
-				$this->_out('/FontDescriptor ' . ($this->n + 3) . ' 0 R');
-				if (isset($font['desc']['MissingWidth'])) {
-					$this->_out('/DW ' . $font['desc']['MissingWidth'] . '');
-				}
-
-				if (!$asSubset && file_exists(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cw')) {
-					$w = '';
-					$w = file_get_contents(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cw');
-					$this->_out($w);
-				} else {
-					$this->_putTTfontwidths($font, $asSubset, ($asSubset ? $ttf->maxUni : 0));
-				}
-
-				$this->_out('/CIDToGIDMap ' . ($this->n + 4) . ' 0 R');
-				$this->_out('>>');
-				$this->_out('endobj');
-
-				// ToUnicode
-				$this->_newobj();
-				$toUni = "/CIDInit /ProcSet findresource begin\n";
-				$toUni .= "12 dict begin\n";
-				$toUni .= "begincmap\n";
-				$toUni .= "/CIDSystemInfo\n";
-				$toUni .= "<</Registry (Adobe)\n";
-				$toUni .= "/Ordering (UCS)\n";
-				$toUni .= "/Supplement 0\n";
-				$toUni .= ">> def\n";
-				$toUni .= "/CMapName /Adobe-Identity-UCS def\n";
-				$toUni .= "/CMapType 2 def\n";
-				$toUni .= "1 begincodespacerange\n";
-				$toUni .= "<0000> <FFFF>\n";
-				$toUni .= "endcodespacerange\n";
-				$toUni .= "1 beginbfrange\n";
-				$toUni .= "<0000> <FFFF> <0000>\n";
-				$toUni .= "endbfrange\n";
-				$toUni .= "endcmap\n";
-				$toUni .= "CMapName currentdict /CMap defineresource pop\n";
-				$toUni .= "end\n";
-				$toUni .= "end\n";
-				$this->_out('<</Length ' . (strlen($toUni)) . '>>');
-				$this->_putstream($toUni);
-				$this->_out('endobj');
-
-
-				// CIDSystemInfo dictionary
-				$this->_newobj();
-				$this->_out('<</Registry (Adobe)');
-				$this->_out('/Ordering (UCS)');
-				$this->_out('/Supplement 0');
-				$this->_out('>>');
-				$this->_out('endobj');
-
-				// Font descriptor
-				$this->_newobj();
-				$this->_out('<</Type /FontDescriptor');
-				$this->_out('/FontName /' . $fontname);
-				foreach ($font['desc'] as $kd => $v) {
-					if ($asSubset && $kd == 'Flags') {
-						$v = $v | 4;
-						$v = $v & ~32;
-					} // SYMBOLIC font flag
-					$this->_out(' /' . $kd . ' ' . $v);
-				}
-				if ($font['panose']) {
-					$this->_out(' /Style << /Panose <' . $font['panose'] . '> >>');
-				}
-				if ($asSubset) {
-					$this->_out('/FontFile2 ' . ($this->n + 2) . ' 0 R');
-				} elseif ($font['fontkey']) {
-					// obj ID of a stream containing a TrueType font program
-					$this->_out('/FontFile2 ' . $this->FontFiles[$font['fontkey']]['n'] . ' 0 R');
-				}
-				$this->_out('>>');
-				$this->_out('endobj');
-
-				// Embed CIDToGIDMap
-				// A specification of the mapping from CIDs to glyph indices
-				if ($asSubset) {
-					$cidtogidmap = '';
-					$cidtogidmap = str_pad('', 256 * 256 * 2, "\x00");
-					foreach ($codeToGlyph as $cc => $glyph) {
-						$cidtogidmap[$cc * 2] = chr($glyph >> 8);
-						$cidtogidmap[$cc * 2 + 1] = chr($glyph & 0xFF);
+					if ($font['panose']) {
+						$this->_out(' /Style << /Panose <' . $font['panose'] . '> >>');
 					}
-					$cidtogidmap = gzcompress($cidtogidmap);
-				} else {
-					// First see if there is a cached CIDToGIDMapfile
-					$cidtogidmap = '';
-					if (file_exists(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cgm')) {
-						$f = fopen(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cgm', 'rb');
-						while (!feof($f)) {
-							$cidtogidmap .= fread($f, 2048);
-						}
-						fclose($f);
-					} else {
-						if (!class_exists('TTFontFile', false)) {
-							include(_MPDF_PATH . 'classes/ttfontsuni.php');
-						}
-						$ttf = new TTFontFile();
-						$charToGlyph = $ttf->getCTG($font['ttffile'], $font['TTCfontID'], $this->debugfonts, $font['useOTL']);
+					if ($asSubset) {
+						$this->_out('/FontFile2 ' . ($this->n + 2) . ' 0 R');
+					} elseif ($font['fontkey']) {
+						// obj ID of a stream containing a TrueType font program
+						$this->_out('/FontFile2 ' . $this->FontFiles[$font['fontkey']]['n'] . ' 0 R');
+					}
+					$this->_out('>>');
+					$this->_out('endobj');
+
+					// Embed CIDToGIDMap
+					// A specification of the mapping from CIDs to glyph indices
+					if ($asSubset) {
+						$cidtogidmap = '';
 						$cidtogidmap = str_pad('', 256 * 256 * 2, "\x00");
-						foreach ($charToGlyph as $cc => $glyph) {
+						foreach ($codeToGlyph as $cc => $glyph) {
 							$cidtogidmap[$cc * 2] = chr($glyph >> 8);
 							$cidtogidmap[$cc * 2 + 1] = chr($glyph & 0xFF);
 						}
-						unset($ttf);
 						$cidtogidmap = gzcompress($cidtogidmap);
-						if (is_writable(dirname(_MPDF_TTFONTDATAPATH . 'x'))) {
-							$fh = fopen(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cgm', "wb");
-							fwrite($fh, $cidtogidmap, strlen($cidtogidmap));
-							fclose($fh);
+					} else {
+						// First see if there is a cached CIDToGIDMapfile
+						$cidtogidmap = '';
+						if (file_exists(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cgm')) {
+							$f = fopen(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cgm', 'rb');
+							while (!feof($f)) {
+								$cidtogidmap .= fread($f, 2048);
+							}
+							fclose($f);
+						} else {
+							if (!class_exists('TTFontFile', false)) {
+								include(_MPDF_PATH . 'classes/ttfontsuni.php');
+							}
+							$ttf = new TTFontFile();
+							$charToGlyph = $ttf->getCTG($font['ttffile'], $font['TTCfontID'], $this->debugfonts, $font['useOTL']);
+							$cidtogidmap = str_pad('', 256 * 256 * 2, "\x00");
+							foreach ($charToGlyph as $cc => $glyph) {
+								$cidtogidmap[$cc * 2] = chr($glyph >> 8);
+								$cidtogidmap[$cc * 2 + 1] = chr($glyph & 0xFF);
+							}
+							unset($ttf);
+							$cidtogidmap = gzcompress($cidtogidmap);
+							if (is_writable(dirname(_MPDF_TTFONTDATAPATH . 'x'))) {
+								$fh = fopen(_MPDF_TTFONTDATAPATH . $font['fontkey'] . '.cgm', "wb");
+								fwrite($fh, $cidtogidmap, strlen($cidtogidmap));
+								fclose($fh);
+							}
 						}
 					}
-				}
-				$this->_newobj();
-				$this->_out('<</Length ' . strlen($cidtogidmap) . '');
-				$this->_out('/Filter /FlateDecode');
-				$this->_out('>>');
-				$this->_putstream($cidtogidmap);
-				$this->_out('endobj');
-
-				//Font file
-				if ($asSubset) {
 					$this->_newobj();
-					$this->_out('<</Length ' . strlen($fontstream));
+					$this->_out('<</Length ' . strlen($cidtogidmap) . '');
 					$this->_out('/Filter /FlateDecode');
-					$this->_out('/Length1 ' . $ttfontsize);
 					$this->_out('>>');
-					$this->_putstream($fontstream);
+					$this->_putstream($cidtogidmap);
 					$this->_out('endobj');
-					unset($ttf);
+
+					//Font file
+					if ($asSubset) {
+						$this->_newobj();
+						$this->_out('<</Length ' . strlen($fontstream));
+						$this->_out('/Filter /FlateDecode');
+						$this->_out('/Length1 ' . $ttfontsize);
+						$this->_out('>>');
+						$this->_putstream($fontstream);
+						$this->_out('endobj');
+						unset($ttf);
+					}
+				} else {
+					throw new MpdfException('Unsupported font type: ' . $type . ' (' . $name . ')');
 				}
-			} else {
-				throw new MpdfException('Unsupported font type: ' . $type . ' (' . $name . ')');
-			}
 		}
 	}
 
@@ -12865,14 +12865,14 @@ class mPDF
 
 			$imgdata = gzcompress($imgdata);
 			$info = array('w' => $w, 'h' => $h, 'cs' => $targetcs, 'bpc' => 8, 'f' => 'FlateDecode', 'data' => $imgdata, 'type' => 'png',
-				'parms' => '/DecodeParms <</Colors ' . $ncols . ' /BitsPerComponent 8 /Columns ' . $w . '>>');
+			              'parms' => '/DecodeParms <</Colors ' . $ncols . ' /BitsPerComponent 8 /Columns ' . $w . '>>');
 			if ($dpi) {
 				$info['set-dpi'] = $dpi;
 			}
 			if ($mask) {
 				$mimgdata = gzcompress($mimgdata);
 				$minfo = array('w' => $w, 'h' => $h, 'cs' => 'DeviceGray', 'bpc' => 8, 'f' => 'FlateDecode', 'data' => $mimgdata, 'type' => 'png',
-					'parms' => '/DecodeParms <</Colors ' . $ncols . ' /BitsPerComponent 8 /Columns ' . $w . '>>');
+				               'parms' => '/DecodeParms <</Colors ' . $ncols . ' /BitsPerComponent 8 /Columns ' . $w . '>>');
 				if ($dpi) {
 					$minfo['set-dpi'] = $dpi;
 				}
@@ -12985,8 +12985,8 @@ class mPDF
 		}
 
 		$getstring = "GET " . $file . " HTTP/1.0 \r\n" .
-			"Host: " . $p['host'] . " \r\n" .
-			"Connection: close\r\n\r\n";
+		             "Host: " . $p['host'] . " \r\n" .
+		             "Connection: close\r\n\r\n";
 		fwrite($fh, $getstring);
 		// Get rid of HTTP header
 		$s = fgets($fh, 1024);
@@ -13446,7 +13446,7 @@ class mPDF
 	{
 		if ($this->checkSIP && preg_match("/([\x{20000}-\x{2FFFF}])/u", $str)) {
 			if (!in_array($this->currentfontfamily, array('gb', 'big5', 'sjis', 'uhc', 'gbB', 'big5B', 'sjisB', 'uhcB', 'gbI', 'big5I', 'sjisI', 'uhcI',
-					'gbBI', 'big5BI', 'sjisBI', 'uhcBI'))) {
+			                                              'gbBI', 'big5BI', 'sjisBI', 'uhcBI'))) {
 				$str = preg_replace("/[\x{20000}-\x{2FFFF}]/u", chr(0), $str);
 			}
 		}
@@ -13463,7 +13463,7 @@ class mPDF
 
 	// ====================================================
 	// ====================================================
-		/* -- CJK-FONTS -- */
+	/* -- CJK-FONTS -- */
 
 	// from class PDF_Chinese CJK EXTENSIONS
 	function AddCIDFont($family, $style, $name, &$cw, $CMap, $registry, $desc)
@@ -18103,16 +18103,16 @@ class mPDF
 					$w = abs($info['w']) / (20 * _MPDFK);
 					$h = abs($info['h']) / (20 * _MPDFK);
 				} else
-				/* -- END IMAGES-WMF -- */
-				if ($info['type'] == 'svg') {
-					// SVG units are pixels
-					$w = abs($info['w']) / _MPDFK;
-					$h = abs($info['h']) / _MPDFK;
-				} else {
-					//Put image at default image dpi
-					$w = ($info['w'] / _MPDFK) * (72 / $this->img_dpi);
-					$h = ($info['h'] / _MPDFK) * (72 / $this->img_dpi);
-				}
+					/* -- END IMAGES-WMF -- */
+					if ($info['type'] == 'svg') {
+						// SVG units are pixels
+						$w = abs($info['w']) / _MPDFK;
+						$h = abs($info['h']) / _MPDFK;
+					} else {
+						//Put image at default image dpi
+						$w = ($info['w'] / _MPDFK) * (72 / $this->img_dpi);
+						$h = ($info['h'] / _MPDFK) * (72 / $this->img_dpi);
+					}
 			}
 			// IF WIDTH OR HEIGHT SPECIFIED
 			if ($w == 0)
@@ -18139,11 +18139,11 @@ class mPDF
 				$objattr['wmf_x'] = $info['x'];
 				$objattr['wmf_y'] = $info['y'];
 			} else
-			/* -- END IMAGES-WMF -- */
-			if ($info['type'] == 'svg') {
-				$objattr['wmf_x'] = $info['x'];
-				$objattr['wmf_y'] = $info['y'];
-			}
+				/* -- END IMAGES-WMF -- */
+				if ($info['type'] == 'svg') {
+					$objattr['wmf_x'] = $info['x'];
+					$objattr['wmf_y'] = $info['y'];
+				}
 			$objattr['height'] = $h;
 			$objattr['width'] = $w;
 			$objattr['image_height'] = $h;
@@ -18701,9 +18701,9 @@ class mPDF
 		}
 		for ($i = 1; $i < $array_size; $i++) {
 			if (isset($arrayaux[$i][16]) && $arrayaux[$i][16] == $lastspanborder &&
-				((!isset($arrayaux[$i][9]['bord-decoration']) && !isset($arrayaux[$i - 1][9]['bord-decoration'])) ||
-				(isset($arrayaux[$i][9]['bord-decoration']) && isset($arrayaux[$i - 1][9]['bord-decoration']) && $arrayaux[$i][9]['bord-decoration'] == $arrayaux[$i - 1][9]['bord-decoration'])
-				)
+			    ((!isset($arrayaux[$i][9]['bord-decoration']) && !isset($arrayaux[$i - 1][9]['bord-decoration'])) ||
+			     (isset($arrayaux[$i][9]['bord-decoration']) && isset($arrayaux[$i - 1][9]['bord-decoration']) && $arrayaux[$i][9]['bord-decoration'] == $arrayaux[$i - 1][9]['bord-decoration'])
+			    )
 			) {
 				if (isset($arrayaux[$i][16]['R'])) {
 					$lastspanborder = $arrayaux[$i][16];
@@ -19263,10 +19263,10 @@ class mPDF
 			if ($this->tableLevel) {
 				$this->SetLineHeight('', $this->table[1][1]['cellLineHeight']); // *TABLES*
 			} else
-			/* -- END TABLES -- */
-			if (isset($this->blk[$this->blklvl]['line_height']) && $this->blk[$this->blklvl]['line_height']) {
-				$this->SetLineHeight('', $this->blk[$this->blklvl]['line_height']); // sets default line height
-			}
+				/* -- END TABLES -- */
+				if (isset($this->blk[$this->blklvl]['line_height']) && $this->blk[$this->blklvl]['line_height']) {
+					$this->SetLineHeight('', $this->blk[$this->blklvl]['line_height']); // sets default line height
+				}
 			$this->ResetStyles();
 			$this->lSpacingCSS = '';
 			$this->wSpacingCSS = '';
@@ -19563,12 +19563,12 @@ class mPDF
 				if ($brTR_H && $brTR_V) {
 					$s .= ($this->_EllipseArc($x0 + $w - $brTR_H, $y0 + $brTR_V, $brTR_H - $border_top / 2, $brTR_V - $border_top / 2, 1, 2, true)) . "\n";
 				} else
-				/* -- END BORDER-RADIUS -- */
-				if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
-					$s .= (sprintf('%.3F %.3F m ', ($x0 + $w) * _MPDFK, ($this->h - ($y0 + ($border_top / 2))) * _MPDFK)) . "\n";
-				} else {
-					$s .= (sprintf('%.3F %.3F m ', ($x0 + $w - ($border_top / 2)) * _MPDFK, ($this->h - ($y0 + ($border_top / 2))) * _MPDFK)) . "\n";
-				}
+					/* -- END BORDER-RADIUS -- */
+					if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
+						$s .= (sprintf('%.3F %.3F m ', ($x0 + $w) * _MPDFK, ($this->h - ($y0 + ($border_top / 2))) * _MPDFK)) . "\n";
+					} else {
+						$s .= (sprintf('%.3F %.3F m ', ($x0 + $w - ($border_top / 2)) * _MPDFK, ($this->h - ($y0 + ($border_top / 2))) * _MPDFK)) . "\n";
+					}
 				/* -- BORDER-RADIUS -- */
 				if ($brTL_H && $brTL_V) {
 					if ($legend) {
@@ -19659,23 +19659,23 @@ class mPDF
 				if ($brBL_H && $brBL_V) {
 					$s .= ($this->_EllipseArc($x0 + $brBL_H, $y0 + $h - $brBL_V, $brBL_H - $border_bottom / 2, $brBL_V - $border_bottom / 2, 3, 2, true)) . "\n";
 				} else
-				/* -- END BORDER-RADIUS -- */
-				if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
-					$s .= (sprintf('%.3F %.3F m ', ($x0) * _MPDFK, ($this->h - ($y0 + $h - ($border_bottom / 2))) * _MPDFK)) . "\n";
-				} else {
-					$s .= (sprintf('%.3F %.3F m ', ($x0 + ($border_bottom / 2)) * _MPDFK, ($this->h - ($y0 + $h - ($border_bottom / 2))) * _MPDFK)) . "\n";
-				}
+					/* -- END BORDER-RADIUS -- */
+					if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
+						$s .= (sprintf('%.3F %.3F m ', ($x0) * _MPDFK, ($this->h - ($y0 + $h - ($border_bottom / 2))) * _MPDFK)) . "\n";
+					} else {
+						$s .= (sprintf('%.3F %.3F m ', ($x0 + ($border_bottom / 2)) * _MPDFK, ($this->h - ($y0 + $h - ($border_bottom / 2))) * _MPDFK)) . "\n";
+					}
 				/* -- BORDER-RADIUS -- */
 				if ($brBR_H && $brBR_V) {
 					$s .= (sprintf('%.3F %.3F l ', ($x0 + $w - ($border_bottom / 2) - $brBR_H ) * _MPDFK, ($this->h - ($y0 + $h - ($border_bottom / 2))) * _MPDFK)) . "\n";
 					$s .= ($this->_EllipseArc($x0 + $w - $brBR_H, $y0 + $h - $brBR_V, $brBR_H - $border_bottom / 2, $brBR_V - $border_bottom / 2, 4, 1)) . "\n";
 				} else
-				/* -- END BORDER-RADIUS -- */
-				if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
-					$s .= (sprintf('%.3F %.3F l ', ($x0 + $w) * _MPDFK, ($this->h - ($y0 + $h - ($border_bottom / 2))) * _MPDFK)) . "\n";
-				} else {
-					$s .= (sprintf('%.3F %.3F l ', ($x0 + $w - ($border_bottom / 2)) * _MPDFK, ($this->h - ($y0 + $h - ($border_bottom / 2))) * _MPDFK)) . "\n";
-				}
+					/* -- END BORDER-RADIUS -- */
+					if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
+						$s .= (sprintf('%.3F %.3F l ', ($x0 + $w) * _MPDFK, ($this->h - ($y0 + $h - ($border_bottom / 2))) * _MPDFK)) . "\n";
+					} else {
+						$s .= (sprintf('%.3F %.3F l ', ($x0 + $w - ($border_bottom / 2)) * _MPDFK, ($this->h - ($y0 + $h - ($border_bottom / 2))) * _MPDFK)) . "\n";
+					}
 				$s .= 'S' . "\n";
 				$this->_out($s);
 
@@ -19725,23 +19725,23 @@ class mPDF
 				if ($brTL_V && $brTL_H) {
 					$s .= ($this->_EllipseArc($x0 + $brTL_H, $y0 + $brTL_V, $brTL_H - $border_left / 2, $brTL_V - $border_left / 2, 2, 2, true)) . "\n";
 				} else
-				/* -- END BORDER-RADIUS -- */
-				if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
-					$s .= (sprintf('%.3F %.3F m ', ($x0 + ($border_left / 2)) * _MPDFK, ($this->h - ($y0)) * _MPDFK)) . "\n";
-				} else {
-					$s .= (sprintf('%.3F %.3F m ', ($x0 + ($border_left / 2)) * _MPDFK, ($this->h - ($y0 + ($border_left / 2))) * _MPDFK)) . "\n";
-				}
+					/* -- END BORDER-RADIUS -- */
+					if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
+						$s .= (sprintf('%.3F %.3F m ', ($x0 + ($border_left / 2)) * _MPDFK, ($this->h - ($y0)) * _MPDFK)) . "\n";
+					} else {
+						$s .= (sprintf('%.3F %.3F m ', ($x0 + ($border_left / 2)) * _MPDFK, ($this->h - ($y0 + ($border_left / 2))) * _MPDFK)) . "\n";
+					}
 				/* -- BORDER-RADIUS -- */
 				if ($brBL_V && $brBL_H) {
 					$s .= (sprintf('%.3F %.3F l ', ($x0 + ($border_left / 2)) * _MPDFK, ($this->h - ($y0 + $h - ($border_left / 2) - $brBL_V) ) * _MPDFK)) . "\n";
 					$s .= ($this->_EllipseArc($x0 + $brBL_H, $y0 + $h - $brBL_V, $brBL_H - $border_left / 2, $brBL_V - $border_left / 2, 3, 1)) . "\n";
 				} else
-				/* -- END BORDER-RADIUS -- */
-				if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
-					$s .= (sprintf('%.3F %.3F l ', ($x0 + ($border_left / 2)) * _MPDFK, ($this->h - ($y0 + $h) ) * _MPDFK)) . "\n";
-				} else {
-					$s .= (sprintf('%.3F %.3F l ', ($x0 + ($border_left / 2)) * _MPDFK, ($this->h - ($y0 + $h - ($border_left / 2)) ) * _MPDFK)) . "\n";
-				}
+					/* -- END BORDER-RADIUS -- */
+					if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
+						$s .= (sprintf('%.3F %.3F l ', ($x0 + ($border_left / 2)) * _MPDFK, ($this->h - ($y0 + $h) ) * _MPDFK)) . "\n";
+					} else {
+						$s .= (sprintf('%.3F %.3F l ', ($x0 + ($border_left / 2)) * _MPDFK, ($this->h - ($y0 + $h - ($border_left / 2)) ) * _MPDFK)) . "\n";
+					}
 				$s .= 'S' . "\n";
 				$this->_out($s);
 
@@ -19787,23 +19787,23 @@ class mPDF
 				if ($brBR_V && $brBR_H) {
 					$s .= ($this->_EllipseArc($x0 + $w - $brBR_H, $y0 + $h - $brBR_V, $brBR_H - $border_right / 2, $brBR_V - $border_right / 2, 4, 2, true)) . "\n";
 				} else
-				/* -- END BORDER-RADIUS -- */
-				if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
-					$s .= (sprintf('%.3F %.3F m ', ($x0 + $w - ($border_right / 2)) * _MPDFK, ($this->h - ($y0 + $h)) * _MPDFK)) . "\n";
-				} else {
-					$s .= (sprintf('%.3F %.3F m ', ($x0 + $w - ($border_right / 2)) * _MPDFK, ($this->h - ($y0 + $h - ($border_right / 2))) * _MPDFK)) . "\n";
-				}
+					/* -- END BORDER-RADIUS -- */
+					if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
+						$s .= (sprintf('%.3F %.3F m ', ($x0 + $w - ($border_right / 2)) * _MPDFK, ($this->h - ($y0 + $h)) * _MPDFK)) . "\n";
+					} else {
+						$s .= (sprintf('%.3F %.3F m ', ($x0 + $w - ($border_right / 2)) * _MPDFK, ($this->h - ($y0 + $h - ($border_right / 2))) * _MPDFK)) . "\n";
+					}
 				/* -- BORDER-RADIUS -- */
 				if ($brTR_V && $brTR_H) {
 					$s .= (sprintf('%.3F %.3F l ', ($x0 + $w - ($border_right / 2)) * _MPDFK, ($this->h - ($y0 + ($border_right / 2) + $brTR_V) ) * _MPDFK)) . "\n";
 					$s .= ($this->_EllipseArc($x0 + $w - $brTR_H, $y0 + $brTR_V, $brTR_H - $border_right / 2, $brTR_V - $border_right / 2, 1, 1)) . "\n";
 				} else
-				/* -- END BORDER-RADIUS -- */
-				if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
-					$s .= (sprintf('%.3F %.3F l ', ($x0 + $w - ($border_right / 2)) * _MPDFK, ($this->h - ($y0) ) * _MPDFK)) . "\n";
-				} else {
-					$s .= (sprintf('%.3F %.3F l ', ($x0 + $w - ($border_right / 2)) * _MPDFK, ($this->h - ($y0 + ($border_right / 2)) ) * _MPDFK)) . "\n";
-				}
+					/* -- END BORDER-RADIUS -- */
+					if ($tbd['style'] == 'solid' || $tbd['style'] == 'double') {
+						$s .= (sprintf('%.3F %.3F l ', ($x0 + $w - ($border_right / 2)) * _MPDFK, ($this->h - ($y0) ) * _MPDFK)) . "\n";
+					} else {
+						$s .= (sprintf('%.3F %.3F l ', ($x0 + $w - ($border_right / 2)) * _MPDFK, ($this->h - ($y0 + ($border_right / 2)) ) * _MPDFK)) . "\n";
+					}
 				$s .= 'S' . "\n";
 				$this->_out($s);
 
@@ -20023,10 +20023,10 @@ class mPDF
 				$shadow .= sprintf('%.3F %.3F %.3F %.3F %.3F %.3F c ', ($p1c2x) * _MPDFK, ($this->h - ($p1y)) * _MPDFK, ($p4x) * _MPDFK, ($this->h - ($p4c2y)) * _MPDFK, ($p4x) * _MPDFK, ($this->h - ($p4y)) * _MPDFK);
 				$patch_array[0]['f'] = 0;
 				$patch_array[0]['points'] = array($p1x, $p1y, $p1x, $p1y,
-					$p2x, $p2c1y, $p2x, $p2y, $p2c2x, $p2y,
-					$p3x, $p3c1y, $p3x, $p3y, $p3c2x, $p3y,
-					$p4x, $p4y, $p4x, $p4y, $p4x, $p4c2y,
-					$p1c2x, $p1y);
+				                                  $p2x, $p2c1y, $p2x, $p2y, $p2c2x, $p2y,
+				                                  $p3x, $p3c1y, $p3x, $p3y, $p3c2x, $p3y,
+				                                  $p4x, $p4y, $p4x, $p4y, $p4x, $p4c2y,
+				                                  $p1c2x, $p1y);
 				$patch_array[0]['colors'] = array($col1, $col2, $col2, $col1);
 
 
@@ -20052,9 +20052,9 @@ class mPDF
 				$shadow .= sprintf('%.3F %.3F l ', ($p3x ) * _MPDFK, ($this->h - ($p3y )) * _MPDFK);
 				$patch_array[1]['f'] = 2;
 				$patch_array[1]['points'] = array($p2x, $p2y,
-					$p3x, $p3y, $p3x, $p3y, $p3x, $p3y,
-					$p4c1x, $p4y, $p4x, $p4y, $p4x, $p4y,
-					$p1x, $p1y);
+				                                  $p3x, $p3y, $p3x, $p3y, $p3x, $p3y,
+				                                  $p4c1x, $p4y, $p4x, $p4y, $p4x, $p4y,
+				                                  $p1x, $p1y);
 				$patch_array[1]['colors'] = array($col1, $col2);
 
 
@@ -20087,9 +20087,9 @@ class mPDF
 				$shadow .= sprintf('%.3F %.3F %.3F %.3F %.3F %.3F c ', ($p1x) * _MPDFK, ($this->h - ($p1c2y)) * _MPDFK, ($p4c2x) * _MPDFK, ($this->h - ($p4y)) * _MPDFK, ($p4x) * _MPDFK, ($this->h - ($p4y)) * _MPDFK);
 				$patch_array[2]['f'] = 2;
 				$patch_array[2]['points'] = array($p2x, $p2c2y,
-					$p3c1x, $p3y, $p3x, $p3y, $p3x, $p3c2y,
-					$p4x, $p4y, $p4x, $p4y, $p4c2x, $p4y,
-					$p1x, $p1c2y);
+				                                  $p3c1x, $p3y, $p3x, $p3y, $p3x, $p3c2y,
+				                                  $p4x, $p4y, $p4x, $p4y, $p4c2x, $p4y,
+				                                  $p1x, $p1c2y);
 				$patch_array[2]['colors'] = array($col2, $col1);
 
 
@@ -20117,9 +20117,9 @@ class mPDF
 				$shadow .= sprintf('%.3F %.3F l ', ($p3x ) * _MPDFK, ($this->h - ($p3y )) * _MPDFK);
 				$patch_array[3]['f'] = 2;
 				$patch_array[3]['points'] = array($p2x, $p2y,
-					$p3x, $p3y, $p3x, $p3y, $p3x, $p3y,
-					$p4x, $p4c1y, $p4x, $p4y, $p4x, $p4y,
-					$p1x, $p1y);
+				                                  $p3x, $p3y, $p3x, $p3y, $p3x, $p3y,
+				                                  $p4x, $p4c1y, $p4x, $p4y, $p4x, $p4y,
+				                                  $p1x, $p1y);
 				$patch_array[3]['colors'] = array($col1, $col2);
 
 				// BOTTOM LEFT corner
@@ -20150,9 +20150,9 @@ class mPDF
 				$shadow .= sprintf('%.3F %.3F %.3F %.3F %.3F %.3F c ', ($p1c2x) * _MPDFK, ($this->h - ($p1y)) * _MPDFK, ($p4x) * _MPDFK, ($this->h - ($p4c2y)) * _MPDFK, ($p4x) * _MPDFK, ($this->h - ($p4y)) * _MPDFK);
 				$patch_array[4]['f'] = 2;
 				$patch_array[4]['points'] = array($p2c2x, $p2y,
-					$p3x, $p3c1y, $p3x, $p3y, $p3c2x, $p3y,
-					$p4x, $p4y, $p4x, $p4y, $p4x, $p4c2y,
-					$p1c2x, $p1y);
+				                                  $p3x, $p3c1y, $p3x, $p3y, $p3c2x, $p3y,
+				                                  $p4x, $p4y, $p4x, $p4y, $p4x, $p4c2y,
+				                                  $p1c2x, $p1y);
 				$patch_array[4]['colors'] = array($col2, $col1);
 
 
@@ -20178,9 +20178,9 @@ class mPDF
 				$shadow .= sprintf('%.3F %.3F l ', ($p3x ) * _MPDFK, ($this->h - ($p3y )) * _MPDFK);
 				$patch_array[5]['f'] = 2;
 				$patch_array[5]['points'] = array($p2x, $p2y,
-					$p3x, $p3y, $p3x, $p3y, $p3x, $p3y,
-					$p4c1x, $p4y, $p4x, $p4y, $p4x, $p4y,
-					$p1x, $p1y);
+				                                  $p3x, $p3y, $p3x, $p3y, $p3x, $p3y,
+				                                  $p4c1x, $p4y, $p4x, $p4y, $p4x, $p4y,
+				                                  $p1x, $p1y);
 				$patch_array[5]['colors'] = array($col1, $col2);
 
 				// TOP LEFT corner
@@ -20212,9 +20212,9 @@ class mPDF
 				$shadow .= sprintf('%.3F %.3F %.3F %.3F %.3F %.3F c ', ($p1x) * _MPDFK, ($this->h - ($p1c2y)) * _MPDFK, ($p4c2x) * _MPDFK, ($this->h - ($p4y)) * _MPDFK, ($p4x) * _MPDFK, ($this->h - ($p4y)) * _MPDFK);
 				$patch_array[6]['f'] = 2;
 				$patch_array[6]['points'] = array($p2x, $p2c2y,
-					$p3c1x, $p3y, $p3x, $p3y, $p3x, $p3c2y,
-					$p4x, $p4y, $p4x, $p4y, $p4c2x, $p4y,
-					$p1x, $p1c2y);
+				                                  $p3c1x, $p3y, $p3x, $p3y, $p3x, $p3c2y,
+				                                  $p4x, $p4y, $p4x, $p4y, $p4c2x, $p4y,
+				                                  $p1x, $p1c2y);
 				$patch_array[6]['colors'] = array($col2, $col1);
 
 
@@ -20240,9 +20240,9 @@ class mPDF
 				$shadow .= sprintf('%.3F %.3F l ', ($p3x ) * _MPDFK, ($this->h - ($p3y )) * _MPDFK);
 				$patch_array[7]['f'] = 2;
 				$patch_array[7]['points'] = array($p2x, $p2y,
-					$p3x, $p3y, $p3x, $p3y, $p3x, $p3y,
-					$p4x, $p4c1y, $p4x, $p4y, $p4x, $p4y,
-					$p1x, $p1y);
+				                                  $p3x, $p3y, $p3x, $p3y, $p3x, $p3y,
+				                                  $p4x, $p4c1y, $p4x, $p4y, $p4x, $p4y,
+				                                  $p1x, $p1y);
 				$patch_array[7]['colors'] = array($col1, $col2);
 
 				$shadow .= ' h f Q ' . "\n"; // Close path and Fill the inner solid shadow
@@ -20657,10 +20657,10 @@ class mPDF
 		if ($this->tableLevel && isset($this->table[1][1]['cellLineHeight'])) {
 			$this->SetLineHeight('', $this->table[1][1]['cellLineHeight']); // *TABLES*
 		} else
-		/* -- END TABLES -- */
-		if (isset($this->blk[$this->blklvl]['line_height']) && $this->blk[$this->blklvl]['line_height']) {
-			$this->SetLineHeight('', $this->blk[$this->blklvl]['line_height']); // sets default line height
-		}
+			/* -- END TABLES -- */
+			if (isset($this->blk[$this->blklvl]['line_height']) && $this->blk[$this->blklvl]['line_height']) {
+				$this->SetLineHeight('', $this->blk[$this->blklvl]['line_height']); // sets default line height
+			}
 
 		$this->lSpacingCSS = '';
 		$this->wSpacingCSS = '';
@@ -20799,9 +20799,9 @@ class mPDF
 					$v = $this->fonttrans[$v];
 				}
 				if ((!$this->onlyCoreFonts && in_array($v, $this->available_unifonts)) ||
-					in_array($v, array('ccourier', 'ctimes', 'chelvetica')) ||
-					($this->onlyCoreFonts && in_array($v, array('courier', 'times', 'helvetica', 'arial'))) ||
-					in_array($v, array('sjis', 'uhc', 'big5', 'gb'))) {
+				    in_array($v, array('ccourier', 'ctimes', 'chelvetica')) ||
+				    ($this->onlyCoreFonts && in_array($v, array('courier', 'times', 'helvetica', 'arial'))) ||
+				    in_array($v, array('sjis', 'uhc', 'big5', 'gb'))) {
 					$fonttype = $v;
 					$found = 1;
 					break;
@@ -22137,7 +22137,7 @@ class mPDF
 		// ADDED table['l'][colno]
 		// = total length of text approx (using $c['s']) in that column - used to approximately distribute col widths in _tableWidth
 		//
-	for ($j = 0; $j < $nc; $j++) { //columns
+		for ($j = 0; $j < $nc; $j++) { //columns
 			$wc = &$table['wc'][$j];
 			for ($i = 0; $i < $nr; $i++) { //rows
 				if (isset($cs[$i][$j]) && $cs[$i][$j]) {
@@ -22441,7 +22441,7 @@ class mPDF
 			if ($sumpc >= 100 && $notset) {
 				for ($i = 0; $i < $nc; $i++) {
 					if ((!isset($table['wc'][$i]['wpercent']) || !$table['wc'][$i]['wpercent']) &&
-						(!isset($table['wc'][$i]['w']) || !$table['wc'][$i]['w'])) {
+					    (!isset($table['wc'][$i]['w']) || !$table['wc'][$i]['w'])) {
 						$table['wc'][$i]['wpercent'] = 1;
 					}
 				}
@@ -25860,7 +25860,7 @@ class mPDF
 					$this->_out('>>');
 				}
 				if (isset($this->_res['tpl'][$tplidx]['images']) && count($this->_res['tpl'][$tplidx]['images']) ||
-					isset($this->_res['tpl'][$tplidx]['tpls']) && count($this->_res['tpl'][$tplidx]['tpls'])) {
+				    isset($this->_res['tpl'][$tplidx]['tpls']) && count($this->_res['tpl'][$tplidx]['tpls'])) {
 					$this->_out('/XObject <<');
 					if (isset($this->_res['tpl'][$tplidx]['images']) && count($this->_res['tpl'][$tplidx]['images'])) {
 						foreach ($this->_res['tpl'][$tplidx]['images'] as $image)
@@ -26499,7 +26499,7 @@ class mPDF
 		}
 		$this->last_rc4_key = '';
 		$this->padding = "\x28\xBF\x4E\x5E\x4E\x75\x8A\x41\x64\x00\x4E\x56\xFF\xFA\x01\x08" .
-			"\x2E\x2E\x00\xB6\xD0\x68\x3E\x80\x2F\x0C\xA9\xFE\x64\x53\x69\x7A";
+		                 "\x2E\x2E\x00\xB6\xD0\x68\x3E\x80\x2F\x0C\xA9\xFE\x64\x53\x69\x7A";
 
 		$options = array(
 			'print' => 4, // bit 3
@@ -26828,7 +26828,7 @@ class mPDF
 	/* -- END BOOKMARKS -- */
 
 	//======================================================
-		/* -- TOC -- */
+	/* -- TOC -- */
 	// ToC TABLE OF CONTENTS
 	// Initiate, and Mark a place for the Table of Contents to be inserted
 	function TOC($tocfont = '', $tocfontsize = 0, $tocindent = 0, $resetpagenum = '', $pagenumstyle = '', $suppress = '', $toc_orientation = '', $TOCusePaging = true, $TOCuseLinking = false, $toc_id = 0, $tocoutdent = '')
@@ -27397,7 +27397,7 @@ class mPDF
 	}
 
 	//======================================================
-		/* -- INDEX -- */
+	/* -- INDEX -- */
 	// FROM class PDF_Ref == INDEX
 
 	function IndexEntry($txt, $xref = '')
@@ -28152,10 +28152,10 @@ class mPDF
 				// Only process output data
 				$t = $s['s'];
 				if ($t == 'ACROFORM' || (preg_match('/BT \d+\.\d\d+ (\d+\.\d\d+) Td/', $t)) || (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ [\-]{0,1}\d+\.\d\d+ re/', $t)) ||
-					(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) l/', $t)) ||
-					(preg_match('/q \d+\.\d\d+ 0 0 \d+\.\d\d+ \d+\.\d\d+ (\d+\.\d\d+) cm \/(I|FO)\d+ Do Q/', $t)) ||
-					(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) m/', $t)) ||
-					(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ c/', $t))) {
+				    (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) l/', $t)) ||
+				    (preg_match('/q \d+\.\d\d+ 0 0 \d+\.\d\d+ \d+\.\d\d+ (\d+\.\d\d+) cm \/(I|FO)\d+ Do Q/', $t)) ||
+				    (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) m/', $t)) ||
+				    (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ c/', $t))) {
 
 					$clb = $s['y'] + $s['h'];
 					if ((isset($this->ColDetails[$s['col']]['max_bottom']) && $clb > $this->ColDetails[$s['col']]['max_bottom']) || !isset($this->ColDetails[$s['col']]['max_bottom'])) {
@@ -28268,10 +28268,10 @@ class mPDF
 					// Only process output data
 					$t = $s['s'];
 					if ($t == 'ACROFORM' || (preg_match('/BT \d+\.\d\d+ (\d+\.\d\d+) Td/', $t)) || (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ [\-]{0,1}\d+\.\d\d+ re/', $t)) ||
-						(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) l/', $t)) ||
-						(preg_match('/q \d+\.\d\d+ 0 0 \d+\.\d\d+ \d+\.\d\d+ (\d+\.\d\d+) cm \/(I|FO)\d+ Do Q/', $t)) ||
-						(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) m/', $t)) ||
-						(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ c/', $t))) {
+					    (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) l/', $t)) ||
+					    (preg_match('/q \d+\.\d\d+ 0 0 \d+\.\d\d+ \d+\.\d\d+ (\d+\.\d\d+) cm \/(I|FO)\d+ Do Q/', $t)) ||
+					    (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) m/', $t)) ||
+					    (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ c/', $t))) {
 
 						$clb = $s['y'] + $s['h'];
 						if ($clb > $this->ColDetails[$s['col']]['max_bottom']) {
@@ -29445,7 +29445,7 @@ class mPDF
 	}
 
 	// ====================================================
-		/* -- BARCODES -- */
+	/* -- BARCODES -- */
 	// UPC/EAN barcode
 	// EAN13, EAN8, UPCA, UPCE, ISBN, ISSN
 	// Accepts 12 or 13 digits with or without - hyphens
@@ -30644,8 +30644,12 @@ class mPDF
 			} else {
 				$size *= $maxsize * 2;
 			}
-		} else
-			$size *= (25.4 / $this->dpi); //nothing == px
+		} else{
+			if(is_numeric($size)){
+				$size *= (25.4 / $this->dpi); //nothing == px
+			}
+		}
+
 
 		return $size;
 	}
@@ -30919,8 +30923,8 @@ class mPDF
 		//and glyph list initially be the list of additive tuples.
 		$additive_nums = array(400, 300, 200, 100, 90, 80, 70, 60, 50, 40, 30, 20, 19, 18, 17, 16, 15, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
 		$additive_glyphs = array(0x05EA, 0x05E9, 0x05E8, 0x05E7, 0x05E6, 0x05E4, 0x05E2, 0x05E1, 0x05E0, 0x05DE, 0x05DC, 0x05DB,
-			array(0x05D9, 0x05D8), array(0x05D9, 0x05D7), array(0x05D9, 0x05D6), array(0x05D8, 0x05D6), array(0x05D8, 0x05D5), 0x05D9,
-			0x05D8, 0x05D7, 0x05D6, 0x05D5, 0x05D4, 0x05D3, 0x05D2, 0x05D1, 0x05D0);
+		                         array(0x05D9, 0x05D8), array(0x05D9, 0x05D7), array(0x05D9, 0x05D6), array(0x05D8, 0x05D6), array(0x05D8, 0x05D5), 0x05D9,
+		                         0x05D8, 0x05D7, 0x05D6, 0x05D5, 0x05D4, 0x05D3, 0x05D2, 0x05D1, 0x05D0);
 		/* NB This system manually specifies the values for 19-15 to force the correct display of 15 and 16, which are commonly
 		  rewritten to avoid a close resemblance to the Tetragrammaton. */
 		// This function only works up to 1,000
@@ -31066,18 +31070,18 @@ class mPDF
 	{
 		switch ($value[0]) {
 
-	        case pdf_parser::TYPE_TOKEN:
-	            $this->_out($value[1] . ' ', false);
-	        break;
+			case pdf_parser::TYPE_TOKEN:
+				$this->_out($value[1] . ' ', false);
+				break;
 
-	        case pdf_parser::TYPE_NUMERIC:
-	        case pdf_parser::TYPE_REAL:
-	            if (is_float($value[1]) && $value[1] != 0) {
-	                $this->_out(rtrim(rtrim(sprintf('%F', $value[1]), '0'), '.') . ' ', false);
-	            } else {
-	                $this->_out($value[1] . ' ', false);
-	            }
-	        break;
+			case pdf_parser::TYPE_NUMERIC:
+			case pdf_parser::TYPE_REAL:
+				if (is_float($value[1]) && $value[1] != 0) {
+					$this->_out(rtrim(rtrim(sprintf('%F', $value[1]), '0'), '.') . ' ', false);
+				} else {
+					$this->_out($value[1] . ' ', false);
+				}
+				break;
 
 			case pdf_parser::TYPE_ARRAY :
 				// An array. Output the proper
@@ -31087,7 +31091,7 @@ class mPDF
 					$this->pdf_write_value($value[1][$i]);
 				}
 				$this->_out("]");
-			break;
+				break;
 
 			case pdf_parser::TYPE_DICTIONARY :
 				// A dictionary.
@@ -31098,7 +31102,7 @@ class mPDF
 					$this->pdf_write_value($v);
 				}
 				$this->_out(">>");
-			break;
+				break;
 
 			case pdf_parser::TYPE_OBJREF :
 				// An indirect object reference
@@ -31111,7 +31115,7 @@ class mPDF
 				}
 				$objid = $this->_don_obj_stack[$cpfn][$value[1]][0];
 				$this->_out("{$objid} 0 R"); //{$value[2]}
-			break;
+				break;
 
 			case pdf_parser::TYPE_STRING :
 				if ($this->encrypted) {
@@ -31120,7 +31124,7 @@ class mPDF
 				}
 				// A string.
 				$this->_out('(' . $value[1] . ')');
-			break;
+				break;
 
 			case pdf_parser::TYPE_STREAM :
 				// A stream. First, output the
@@ -31133,7 +31137,7 @@ class mPDF
 				$this->_out("stream");
 				$this->_out($value[2][1]);
 				$this->_out("endstream");
-			break;
+				break;
 
 			case pdf_parser::TYPE_HEX :
 				if ($this->encrypted) {
@@ -31143,16 +31147,16 @@ class mPDF
 					$value[1] = $this->str2hex($value[1]);
 				}
 				$this->_out("<" . $value[1] . ">");
-			break;
+				break;
 
-	        case pdf_parser::TYPE_BOOLEAN :
-	            $this->_out($value[1] ? 'true' : 'false');
-	        break;
+			case pdf_parser::TYPE_BOOLEAN :
+				$this->_out($value[1] ? 'true' : 'false');
+				break;
 
 			case pdf_parser::TYPE_NULL :
 				// The null object.
 				$this->_out("null");
-			break;
+				break;
 
 		}
 	}

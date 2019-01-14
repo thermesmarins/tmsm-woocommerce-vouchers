@@ -471,9 +471,9 @@ class Tag
 				}
 				// Any change in headers/footers (may need to _getHtmlHeight), or page size/orientation, @page selector, or margins - force cloneall
 				else if ($mgr !== '' || $mgl !== '' || $mgt !== '' || $mgb !== '' || $mgh !== '' || $mgf !== '' ||
-					$ohname !== '' || $ehname !== '' || $ofname !== '' || $efname !== '' ||
-					$ohvalue || $ehvalue || $ofvalue || $efvalue ||
-					$orient != $this->mpdf->CurOrientation || $newformat || $pagesel) {
+				         $ohname !== '' || $ehname !== '' || $ofname !== '' || $efname !== '' ||
+				         $ohvalue || $ehvalue || $ofvalue || $efvalue ||
+				         $orient != $this->mpdf->CurOrientation || $newformat || $pagesel) {
 					$pagebreaktype = 'cloneall';
 				}
 
@@ -2018,7 +2018,7 @@ class Tag
 					$currblk['outer_right_margin'] = $prevblk['outer_right_margin'] + $currblk['margin_right'] + $prevblk['border_right']['w'] + $prevblk['padding_right'];
 					$currblk['width'] = $this->mpdf->pgwidth - ($currblk['outer_right_margin'] + $currblk['outer_left_margin']);
 					$currblk['inner_width'] = $this->mpdf->pgwidth - ($currblk['outer_right_margin'] + $currblk['outer_left_margin'] + $currblk['border_left']['w'] + $currblk['padding_left'] + $currblk['border_right']['w'] + $currblk['padding_right']);
-//		if ($currblk['inner_width'] < $mw) { throw new MpdfException("DIV is too narrow for text to fit!"); }
+					//		if ($currblk['inner_width'] < $mw) { throw new MpdfException("DIV is too narrow for text to fit!"); }
 				}
 
 				$this->mpdf->x = $this->mpdf->lMargin + $currblk['outer_left_margin'];
@@ -3237,7 +3237,7 @@ class Tag
 						}
 					}
 					$extraheight = $objattr['padding_top'] + $objattr['padding_bottom'] + $objattr['margin_top'] + $objattr['margin_bottom'] + $objattr['border_top']['w'] + $objattr['border_bottom']['w'];
-					$extrawidth = $objattr['padding_left'] + $objattr['padding_right'] + $objattr['margin_left'] + $objattr['margin_right'] + $objattr['border_left']['w'] + $objattr['border_right']['w'];
+					$extrawidth = (is_numeric($objattr['padding_left'])?$objattr['padding_left']:0) + (is_numeric($objattr['padding_right'])?$objattr['padding_right']:0) + (is_numeric($objattr['margin_left'])?$objattr['margin_left']:0) + (is_numeric($objattr['margin_right'])?$objattr['margin_right']:0) + (is_numeric($objattr['border_left']['w'])?$objattr['border_left']['w']:0) + (is_numeric($objattr['border_right']['w'])?$objattr['border_right']['w']:0);
 
 					// mPDF 5.7.3 TRANSFORMS
 					if (isset($properties['BACKGROUND-COLOR']) && $properties['BACKGROUND-COLOR'] != '') {
@@ -4321,14 +4321,14 @@ class Tag
 				$table = &$this->mpdf->table[$this->mpdf->tableLevel][$this->mpdf->tbctr[$this->mpdf->tableLevel]];
 
 				$c = array('a' => false,
-					'R' => false,
-					'nowrap' => false,
-					'bgcolor' => false,
-					'padding' => array('L' => false,
-						'R' => false,
-						'T' => false,
-						'B' => false
-					)
+				           'R' => false,
+				           'nowrap' => false,
+				           'bgcolor' => false,
+				           'padding' => array('L' => false,
+				                              'R' => false,
+				                              'T' => false,
+				                              'B' => false
+				           )
 				);
 
 				if ($this->mpdf->simpleTables && $this->mpdf->row == 0 && $this->mpdf->col == 0) {
