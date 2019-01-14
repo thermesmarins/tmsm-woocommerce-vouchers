@@ -1,4 +1,6 @@
+### 1.2.0: January 14th, 2018
 * Force value of downloads_remaining in files
+* Avoid PHP notices and warnings
 
 ### 1.1.9: November 6th, 2018
 * CSS radio buttons alignment for honorific title on mobile
