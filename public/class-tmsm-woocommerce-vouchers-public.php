@@ -1896,6 +1896,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$value = wp_kses( $meta->display_value, '' );
 			if(trim($meta->value) != 'e-bon-cadeau' && !(strpos($value,'Sans') !== false) ){
+
+				// Contains Aquatonic
+				if(strpos($value,'Aquatonic') !== false){
+					$value .= ' '.__('(Come one hour before your treatments to enjoy)', 'tmsm-woocommerce-vouchers');
+				}
 				$strings[] = '<strong class="wc-item-meta-label">' . wp_kses( $meta->display_key, '' ) . ':</strong> ' . $value;
 			}
 		}
