@@ -1062,7 +1062,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$pdf_downloadable_files[ $pdf_key ]['download_url'] = $item->get_item_download_url( $pdf_key );
 				$pdf_downloadable_files[ $pdf_key ]['test'] = $item->get_item_download_url( $pdf_key );
 				$pdf_downloadable_files[ $pdf_key ]['downloads_remaining'] = 'unlimited';
-				$pdf_downloadable_files[ $pdf_key ]['access_expire'] = null;
+				$pdf_downloadable_files[ $pdf_key ]['access_expires'] = null;
 				$pdf_downloadable_files[ $pdf_key ]['id'] = $item->get_id();
 
 				// Merge downlodable file to files
