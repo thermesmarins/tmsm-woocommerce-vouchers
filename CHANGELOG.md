@@ -1,5 +1,6 @@
 * Inform customers to come 1 hour early to enjoy Aquatonic
 * Avoid PHP notices and warnings
+* Fix customer not able to see all downloads (processed status)
 
 ### 1.2.0: January 14th, 2018
 * Force value of downloads_remaining in files

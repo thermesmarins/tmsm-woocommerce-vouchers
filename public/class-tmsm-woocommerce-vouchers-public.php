@@ -1108,6 +1108,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @param array $downloads
 	 *
 	 * @return array $downloads
+	 * @throws Exception
 	 */
 	public function woocommerce_customer_get_downloadable_products( $downloads = [] ) {
 
@@ -1120,8 +1121,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				'numberposts' => - 1,
 				'meta_key'    => '_customer_user',
 				'meta_value'  => $user_id,
-				'post_type'   => 'shop_order',
-				'post_status' => array( 'wc-completed' ),
+				'post_type'   => wc_get_order_types( 'view-orders' ),
+				'post_status' => wc_get_order_statuses(),
 			);
 
 			//user orders

@@ -2003,7 +2003,7 @@ class Tag
 				$currblk['outer_right_margin'] = $prevblk['outer_right_margin'] + $currblk['margin_right'] + $prevblk['border_right']['w'] + $prevblk['padding_right'];
 
 				$currblk['width'] = $this->mpdf->pgwidth - ($currblk['outer_right_margin'] + $currblk['outer_left_margin']);
-				$currblk['inner_width'] = $currblk['width'] - ($currblk['border_left']['w'] + $currblk['padding_left'] + $currblk['border_right']['w'] + $currblk['padding_right']);
+				$currblk['inner_width'] = (float)$currblk['width'] - ((float)$currblk['border_left']['w'] + (float)$currblk['padding_left'] + (float)$currblk['border_right']['w'] + (float)$currblk['padding_right']);
 
 				// Check DIV is not now too narrow to fit text
 				$mw = 2 * $this->mpdf->GetCharWidth('W', false);
