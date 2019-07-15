@@ -1,3 +1,4 @@
+### 1.2.1: July 15th, 2019
 * Inform customers to come 1 hour early to enjoy Aquatonic
 * Avoid PHP notices and warnings
 * Fix customer not able to see all downloads (processed status)
