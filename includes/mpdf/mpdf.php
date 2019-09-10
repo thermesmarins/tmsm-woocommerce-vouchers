@@ -6381,10 +6381,10 @@ class mPDF
 			$paddingR = 0;
 		} else {
 			/* -- END TABLES -- */
-			$ipaddingL = $this->blk[$this->blklvl]['padding_left'];
-			$ipaddingR = $this->blk[$this->blklvl]['padding_right'];
-			$paddingL = ($ipaddingL * _MPDFK);
-			$paddingR = ($ipaddingR * _MPDFK);
+			$ipaddingL = @$this->blk[$this->blklvl]['padding_left'];
+			$ipaddingR = @$this->blk[$this->blklvl]['padding_right'];
+			$paddingL = (is_numeric($ipaddingL) ? (@$ipaddingL * _MPDFK) : 0) ;
+			$paddingR = (is_numeric($ipaddingR) ? (@$ipaddingR * _MPDFK) : 0) ;
 			$this->cMarginL = $this->blk[$this->blklvl]['border_left']['w'];
 			$this->cMarginR = $this->blk[$this->blklvl]['border_right']['w'];
 

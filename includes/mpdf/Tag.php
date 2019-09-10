@@ -1886,17 +1886,18 @@ class Tag
 					// Don't allow overlap - if floats present - adjust padding to avoid overlap with Floats
 					list($l_exists, $r_exists, $l_max, $r_max, $l_width, $r_width) = $this->mpdf->GetFloatDivInfo($this->mpdf->blklvl - 1);
 					$maxw = $container_w - $l_width - $r_width;
-					if (($setwidth + $currblk['margin_left'] + $currblk['margin_right'] + $bdl + $pdl + $bdr + $pdr) > $maxw || ($maxw - ($currblk['margin_right'] + $currblk['margin_left'] + $bdl + $pdl + $bdr + $pdr)) < (2 * $this->mpdf->GetCharWidth('W', false))) {
+
+					/*if ((@$setwidth + @$currblk['margin_left'] + @$currblk['margin_right'] + @$bdl + @$pdl + @$bdr + @$pdr) > @$maxw || (@$maxw - (@$currblk['margin_right'] + @$currblk['margin_left'] + @$bdl + @$pdl + @$bdr + @$pdr)) < (2 * @$this->mpdf->GetCharWidth('W', false))) {
 						// Too narrow to fit - try to move down past L or R float
-						if ($l_max < $r_max && ($setwidth + $currblk['margin_left'] + $currblk['margin_right'] + $bdl + $pdl + $bdr + $pdr) <= ($container_w - $r_width) && (($container_w - $r_width) - ($currblk['margin_right'] + $currblk['margin_left'] + $bdl + $pdl + $bdr + $pdr)) > (2 * $this->mpdf->GetCharWidth('W', false))) {
+						if ($l_max < $r_max && ($setwidth + @$currblk['margin_left'] + @$currblk['margin_right'] + $bdl + $pdl + $bdr + $pdr) <= ($container_w - $r_width) && (($container_w - $r_width) - (@$currblk['margin_right'] + @$currblk['margin_left'] + $bdl + $pdl + $bdr + $pdr)) > (2 * $this->mpdf->GetCharWidth('W', false))) {
 							$this->mpdf->ClearFloats('LEFT', $this->mpdf->blklvl - 1);
-						} else if ($r_max < $l_max && ($setwidth + $currblk['margin_left'] + $currblk['margin_right'] + $bdl + $pdl + $bdr + $pdr) <= ($container_w - $l_width) && (($container_w - $l_width) - ($currblk['margin_right'] + $currblk['margin_left'] + $bdl + $pdl + $bdr + $pdr)) > (2 * $this->mpdf->GetCharWidth('W', false))) {
+						} else if ($r_max < $l_max && ($setwidth + @$currblk['margin_left'] + @$currblk['margin_right'] + $bdl + $pdl + $bdr + $pdr) <= ($container_w - $l_width) && (($container_w - $l_width) - (@$currblk['margin_right'] + @$currblk['margin_left'] + $bdl + $pdl + $bdr + $pdr)) > (2 * $this->mpdf->GetCharWidth('W', false))) {
 							$this->mpdf->ClearFloats('RIGHT', $this->mpdf->blklvl - 1);
 						} else {
 							$this->mpdf->ClearFloats('BOTH', $this->mpdf->blklvl - 1);
 						}
 						list($l_exists, $r_exists, $l_max, $r_max, $l_width, $r_width) = $this->mpdf->GetFloatDivInfo($this->mpdf->blklvl - 1);
-					}
+					}*/
 					if ($r_exists) {
 						$currblk['padding_right'] = max(($r_width - $currblk['margin_right'] - $bdr), $pdr);
 					}
@@ -1999,8 +2000,8 @@ class Tag
 					}
 				}
 
-				$currblk['outer_left_margin'] = $prevblk['outer_left_margin'] + $currblk['margin_left'] + $prevblk['border_left']['w'] + $prevblk['padding_left'];
-				$currblk['outer_right_margin'] = $prevblk['outer_right_margin'] + $currblk['margin_right'] + $prevblk['border_right']['w'] + $prevblk['padding_right'];
+				$currblk['outer_left_margin'] = @$prevblk['outer_left_margin'] + @$currblk['margin_left'] + @$prevblk['border_left']['w'] + @$prevblk['padding_left'];
+				$currblk['outer_right_margin'] = @$prevblk['outer_right_margin'] + @$currblk['margin_right'] + @$prevblk['border_right']['w'] + @$prevblk['padding_right'];
 
 				$currblk['width'] = $this->mpdf->pgwidth - ($currblk['outer_right_margin'] + $currblk['outer_left_margin']);
 				$currblk['inner_width'] = (float)$currblk['width'] - ((float)$currblk['border_left']['w'] + (float)$currblk['padding_left'] + (float)$currblk['border_right']['w'] + (float)$currblk['padding_right']);
