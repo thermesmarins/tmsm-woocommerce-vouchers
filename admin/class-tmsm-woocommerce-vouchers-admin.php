@@ -209,7 +209,13 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		endif;
 
 		if ( isset( $_POST['_tmsm_woocommerce_vouchers_expirydate'] ) ) :
-			update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expirydate', wc_clean( $_POST['_tmsm_woocommerce_vouchers_expirydate'] ) );
+			if($_POST['_tmsm_woocommerce_vouchers_expirydate'] > date('Y-m-d')){
+				update_post_meta( $post_id, '_tmsm_woocommerce_vouchers_expirydate', wc_clean( $_POST['_tmsm_woocommerce_vouchers_expirydate'] ) );
+
+			}
+			else{
+				delete_post_meta($post_id, '_tmsm_woocommerce_vouchers_expirydate');
+			}
 		endif;
 
 		if ( isset( $_POST['_tmsm_woocommerce_vouchers_localbusiness'] ) ) :

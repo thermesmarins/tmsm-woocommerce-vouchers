@@ -150,6 +150,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				if($this->tmsmvoucher_product_type_is_voucher_virtual($product_id, $variation_id) || $this->tmsmvoucher_product_type_is_voucher_physical($product_id, $variation_id)){
 
 					$expirydate   = get_post_meta( $product_id, '_tmsm_woocommerce_vouchers_expirydate', true );
+					// Expiry Date has to be in the future
+					if(!empty($expirydate) && $expirydate < date('Y-m-d')){
+						$expirydate = null;
+					}
+
 					if(empty($expirydate)){
 						$expiremonths   = get_post_meta( $product_id, '_tmsm_woocommerce_vouchers_expiremonths', true );
 						if(empty($expiremonths)){
@@ -1458,6 +1463,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$expiremonths   = get_post_meta( $product->get_id(), '_tmsm_woocommerce_vouchers_expiremonths', true );
 			$expirydate   = get_post_meta( $product->get_id(), '_tmsm_woocommerce_vouchers_expirydate', true );
 
+			// Expiry Date has to be in the future
+			if(!empty($expirydate) && $expirydate < date('Y-m-d')){
+				$expirydate = null;
+			}
 			if(empty($expiremonths)){
 				$expiremonths = get_option( 'tmsm_woocommerce_vouchers_expiremonths' );
 			}
