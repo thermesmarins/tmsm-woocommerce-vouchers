@@ -75,8 +75,16 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tmsm-woocommerce-vouchers-public.js', array( 'jquery' ),
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tmsm-woocommerce-vouchers-public.js', array( 'jquery', 'jquery-mask' ),
 			$this->version, true );
+
+		wp_enqueue_script( 'jquery-mask', plugin_dir_url( __FILE__ ) . 'js/jquery.mask.min.js', array( 'jquery' ), null, true );
+
+		// Localize the script with new data
+		$translation_array = array(
+			'birthdateformat' => _x( 'mm/dd/yyyy', 'birth date format', 'tmsm-woocommerce-vouchers' ),
+		);
+		wp_localize_script( $this->plugin_name, 'tmsm_woocommerce_vouchers_i18n', $translation_array );
 
 	}
 
@@ -345,6 +353,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						$has_error = true;
 					}
 				}
+				if($settings_recipientbirthdaterequired){
+					if(!$submit_recipientbirthdate){
+						$has_error = true;
+					}
+				}
 				if($settings_recipientaddress){
 					if(!$submit_recipientaddress){
 						$has_error = true;
@@ -448,6 +461,27 @@ class Tmsm_Woocommerce_Vouchers_Public {
 							  && empty( $submit_recipientlastname ) ? 'has-error' : '' ),
 						],
 					], ($has_error ? $submit_recipientlastname:'') );
+				endif;
+
+				// birthdate
+				if ( $settings_recipientbirthdate ):
+					woocommerce_form_field( '_recipientbirthdate[' . $variation_id . ']', [
+						'type'         => 'text',
+						'label'        => __( 'Recipient birth date:', 'tmsm-woocommerce-vouchers' ),
+						'description'  => '',
+						'required'     => $settings_recipientbirthdaterequired,
+						'autocomplete' => 'birthdate',
+						'id'           => '_recipientbirthdate[' . $variation_id . ']',
+						'class'        => [
+							'tmsm-woocommerce-vouchers-maskedinput-birthdate',
+							'form-row-wide',
+							'birthdate-field',
+							'formfield-text',
+							'form-group',
+							( $settings_recipientbirthdaterequired && isset( $_POST['_recipientbirthdate'][ $variation_id ] )
+							  && empty( $submit_recipientbirthdate ) ? 'has-error' : '' ),
+						],
+					], ($has_error ? $submit_recipientbirthdate:'') );
 				endif;
 
 				// address
@@ -640,6 +674,17 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$valid = false;
 			}
 
+			// birthdate
+			$settings_recipientbirthdate         = get_option( 'tmsm_woocommerce_vouchers_recipientbirthdate' ) == 'yes';
+			$settings_recipientbirthdaterequired = get_option( 'tmsm_woocommerce_vouchers_recipientbirthdaterequired' ) == 'yes';
+			$submit_recipientbirthdate           = isset( $_POST['_recipientbirthdate'][ $variation_id ] )
+				? sanitize_text_field( $_POST['_recipientbirthdate'][ $variation_id ] ) : '';
+			if ( ! $settings_recipientoptionnal && $settings_recipientbirthdaterequired && empty( $submit_recipientbirthdate ) ) {
+				wc_add_notice( '<p class="vouchers-fields-error">' . __( 'Recipient birth date', 'tmsm-woocommerce-vouchers' ) . ' '
+				               . __( 'is required.', 'tmsm-woocommerce-vouchers' ) . '</p>', 'error' );
+				$valid = false;
+			}
+
 			// address
 			$settings_recipientaddress         = get_option( 'tmsm_woocommerce_vouchers_recipientaddress' ) == 'yes';
 			$settings_recipientaddressrequired = get_option( 'tmsm_woocommerce_vouchers_recipientaddressrequired' ) == 'yes';
@@ -751,6 +796,13 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			? trim(sanitize_text_field( $_POST['_recipientlastname'][ $variation_id ] )) : '';
 		if(!empty($submit_recipientlastname)){
 			$cart_item_data['_recipientlastname'] = $submit_recipientlastname;
+		}
+
+		// birthdate
+		$submit_recipientbirthdate            = isset( $_POST['_recipientbirthdate'][ $variation_id ] )
+			? trim(sanitize_text_field( $_POST['_recipientbirthdate'][ $variation_id ] )) : '';
+		if(!empty($submit_recipientbirthdate)){
+			$cart_item_data['_recipientbirthdate'] = $submit_recipientbirthdate;
 		}
 
 		// address
@@ -893,6 +945,16 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$item->add_meta_data( '_recipientlastname', $values['_recipientlastname'], true );
 		}
 
+		if ( ! empty( $values['_recipientbirthdate'] ) ) {
+			if( method_exists('DateTime', 'createFromFormat') ){
+				$objdate = DateTime::createFromFormat( _x( 'm/d/Y', 'birth date format conversion', 'tmsm-woocommerce-vouchers' ),
+					sanitize_text_field( $values['_recipientbirthdate'] ) );
+				if( $objdate instanceof DateTime ){
+					$item->add_meta_data( '_recipientbirthdate', sanitize_text_field( $objdate->format('Y-m-d') ), true );
+				}
+			}
+		}
+
 		if ( ! empty( $values['_recipientaddress'] ) ) {
 			$item->add_meta_data( '_recipientaddress', $values['_recipientaddress'], true );
 		}
@@ -922,7 +984,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 
 	/**
-	 * Displays hidden delivery date for order item in order view (frontend)
+	 * Displays recipient data date for order item in order view (frontend)
 	 * /my-account/view-order/$order_id/
 	 * /checkout/order-received/$order_id/
 	 *
@@ -969,10 +1031,16 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			                       . $formatted_recipient;
 		}
 
+		if ( !empty($item['_recipientbirthdate'])) {
+			$strings[]           = '<strong class="wc-item-meta-label">' . __( 'Birth date:', 'tmsm-woocommerce-vouchers' ) . '</strong> '
+			                       . date_i18n( get_option( 'date_format' ), strtotime( $item['_recipientbirthdate'] ) );
+		}
+
 		if ( !empty($item['_vouchercode'])) {
 			$strings[]           = '<strong class="wc-item-meta-label">' . __( 'Voucher code:', 'tmsm-woocommerce-vouchers' ) . '</strong> '
 			                       . $item['_vouchercode'];
 		}
+
 
 		if ( !empty($item['_expirydate'])) {
 			$strings[]           = '<strong class="wc-item-meta-label">' . __( 'Expiry date:', 'tmsm-woocommerce-vouchers' ) . '</strong> '
@@ -1263,16 +1331,12 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @param $user_id
 	 * @param $download_id
 	 * @param $order_id
-	 *
+	 * @throws Exception
 	 */
 	function woocommerce_download_product( $email, $order_key, $product_id, $user_id, $download_id, $order_id ) {
 
 		$order = wc_get_order_id_by_order_key($order_key);
 
-		if(empty($order_key)){
-		}
-		if(empty($order)){
-		}
 
 		if(empty($order_key) || empty($order)){
 			die(__( 'You are not allowed to download this file', 'tmsm-woocommerce-vouchers' ));
@@ -1318,6 +1382,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @param WC_Order $order
 	 *
 	 * @return array $attachments
+	 * @throws Exception
 	 */
 	public function woocommerce_email_attachments($attachments, $status, $order){
 		global $post;
@@ -1656,7 +1721,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		return $voucher_keys;
 	}
 
-
 	/**
 	 * Get Vouchers
 	 *
@@ -1670,6 +1734,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @param string $item_id
 	 *
 	 * @return array
+	 * @throws Exception
 	 */
 	private function tmsmvoucher_get_multi_voucher( $order_id = '', $product_id = '', $item_id = '' ) {
 
@@ -1709,7 +1774,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$item_id = isset($item_array['item_id']) ? $item_array['item_id'] : array();
 
 		//Get product from Item ( It is required otherwise multipdf voucher link not work and global $woo_vou_item_id will not work )
-		$_product = $order->get_product_from_item($item);
+		//$_product = $order->get_product_from_item($item); // obsolete
+		$_product = $item->get_product();
 
 		//Get variation data without recipient fields
 		$variation_data = $this->tmsmvoucher_display_product_item_name($item, $_product);
@@ -1730,10 +1796,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @return array
 	 */
-	private function tmsmvoucher_get_item_data_using_item_key($order_items, $item_key) {
+	private function tmsmvoucher_get_item_data_using_item_key( $order_items, $item_key ) {
 
 		//initilize item
-		$return_item = array('item_id' => '', 'item_data' => array());
+		$return_item = array( 'item_id' => '', 'item_data' => array() );
 
 		if (!empty($order_items)) {//if items are not empty
 			foreach ($order_items as $item_id => $item) {
@@ -1879,6 +1945,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @param array  $pdf_args
 	 *
 	 * @return void
+	 * @throws Exception
 	 */
 	private function tmsmvoucher_voucher_html_template( $product_id, $order_id, $item_id = '', $pdf_args = [] ) {
 		global $current_user;
@@ -1906,14 +1973,14 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$strings = [];
 		foreach ( $item->get_formatted_meta_data() as $meta_id => $meta ) {
 
-			$value = wp_kses( $meta->display_value, '' );
+			$value = wp_kses( $meta->display_value, [] );
 			if(trim($meta->value) != 'e-bon-cadeau' && !(strpos($value,'Sans') !== false) ){
 
 				// Contains Aquatonic
 				if(strpos($value,'Aquatonic') !== false){
 					$value .= ' '.__('(Come one hour before your treatments to enjoy)', 'tmsm-woocommerce-vouchers');
 				}
-				$strings[] = '<strong class="wc-item-meta-label">' . wp_kses( $meta->display_key, '' ) . ':</strong> ' . $value;
+				$strings[] = '<strong class="wc-item-meta-label">' . wp_kses( $meta->display_key, [] ) . ':</strong> ' . $value;
 			}
 		}
 		if ( $strings ) {
@@ -1935,6 +2002,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$recipient_title	= wc_get_order_item_meta( $item_id, '_recipienttitle', true );
 			$recipient_firstname	= wc_get_order_item_meta( $item_id, '_recipientfirstname', true );
 			$recipient_lastname	= wc_get_order_item_meta( $item_id, '_recipientlastname', true );
+			$recipient_birthdate	= wc_get_order_item_meta( $item_id, '_recipientbirthdate', true );
 			$recipient_address	= wc_get_order_item_meta( $item_id, '_recipientaddress', true );
 			$recipient_zipcode	= wc_get_order_item_meta( $item_id, '_recipientzipcode', true );
 			$recipient_city	= wc_get_order_item_meta( $item_id, '_recipientcity', true );
@@ -2114,6 +2182,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 *
 	 * @param string $html
 	 * @param array $pdf_args
+	 * @throws MpdfException
 	 */
 	private function tmsmvoucher_output_mpdf_from_html($html, $pdf_args){
 

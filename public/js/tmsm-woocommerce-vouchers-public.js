@@ -11,5 +11,7 @@ jQuery( document ).ready( function( $ ) {
     $(".vouchers-fields-wrapper-variation").hide();
   });
 
+  $('.tmsm-woocommerce-vouchers-maskedinput-birthdate input').mask("99/99/9999", {placeholder: tmsm_woocommerce_vouchers_i18n.birthdateformat});
+
 
 });

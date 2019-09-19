@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TMSM WooCommerce Vouchers\n"
-"POT-Creation-Date: 2019-02-04 15:19+0100\n"
+"POT-Creation-Date: 2019-09-19 16:35+0200\n"
 "PO-Revision-Date: 2014-10-24 21:08+0100\n"
 "Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
@@ -19,8 +19,8 @@ msgstr ""
 "X-Poedit-SearchPath-1: ..\n"
 
 #: ../admin/class-tmsm-woocommerce-vouchers-admin.php:92
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:246
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:266
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:252
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:272
 msgid "Voucher"
 msgstr ""
 
@@ -54,86 +54,91 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:247
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:295
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:253
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:301
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:32
 msgid "Vouchers"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:350
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:611
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:356
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:650
 msgid "Recipient title"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:351
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:394
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:357
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:412
 msgid "Miss"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:351
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:816
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:944
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1192
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1940
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:357
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:873
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1011
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1268
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:2020
 msgid "Mr"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:356
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:622
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:362
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:661
 msgid "Recipient first name"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:361
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:633
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:367
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:672
 msgid "Recipient last name"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:366
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:644
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:372
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:683
+msgid "Recipient birth date"
+msgstr ""
+
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:378
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:694
 msgid "Recipient address"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:371
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:655
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:383
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:705
 msgid "Recipient zipcode"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:376
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:666
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:388
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:716
 msgid "Recipient city"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:381
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:677
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:393
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:727
 msgid "Recipient country"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:388
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:400
 msgid "Recipient mobile phone"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:393
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:699
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:405
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:749
 msgid "Recipient email"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:398
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:410
 msgid "Voucher code"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:403
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:415
 msgid "Expiry date"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:421
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:433
 msgid "Settings"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:422
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:434
 msgid "Github"
 msgstr ""
 
-#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:481
+#: ../admin/class-tmsm-woocommerce-vouchers-admin.php:493
 msgid "Virtual only"
 msgstr ""
 
@@ -2083,7 +2088,7 @@ msgid "Voucher settings"
 msgstr ""
 
 #: ../includes/class-tmsm-woocommerce-vouchers-settings.php:50
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:836
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:893
 msgid "Recipient"
 msgstr ""
 
@@ -2409,151 +2414,170 @@ msgid ""
 "<code>{purchase_date}</code> - the date of the payment YYYYMMDD"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:116
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:85
+msgctxt "birth date format"
+msgid "mm/dd/yyyy"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:124
 #, php-format
 msgctxt "full name"
 msgid "%1$s %2$s"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:119
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:127
 msgid "Guest"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:319
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:332
 msgid "Who to give this voucher to?"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:322
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:335
 msgid ""
 "Vouchers are nominative, <b>please fill the details of the "
 "recipient</b>."
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:378
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:396
 msgid "Set a voucher recipient"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:388
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:406
 msgid "Recipient title:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:395
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:413
 msgid "Mister"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:412
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:430
 msgid "Recipient first name:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:432
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:450
 msgid "Recipient last name:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:452
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:470
+msgid "Recipient birth date:"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:491
 msgid "Recipient address:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:472
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:511
 msgid "Recipient zipcode:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:493
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:532
 msgid "Recipient city:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:513
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:552
 msgid "Recipient country:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:529
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:568
 msgid "Recipient mobilephone:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:550
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:589
 msgid "Recipient email:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:611
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:623
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:634
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:645
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:656
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:666
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:678
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:688
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:699
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:650
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:662
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:673
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:684
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:695
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:706
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:716
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:728
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:738
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:749
 msgid "is required."
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:688
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:738
 msgid "Recipient phone"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:703
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:753
 msgid "Please enter valid email"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:813
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:941
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1189
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1937
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:870
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1008
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1265
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:2017
 msgid "Ms"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:963
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:950
+msgctxt "birth date format conversion"
+msgid "m/d/Y"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1030
 msgid "Recipient:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:968
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1035
+msgid "Birth date:"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1040
 msgid "Voucher code:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:973
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1046
 msgid "Expiry date:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1215
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1291
 msgid "for"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1270
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1289
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1342
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1361
 msgid "You are not allowed to download this file"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1464
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1541
 #, php-format
 msgid "Voucher valid until %s"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1467
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1544
 #, php-format
 msgid "Voucher valid %s month"
 msgid_plural "Voucher valid %s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1610
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1687
 msgid "Download voucher"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1902
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:1981
 msgid "(Come one hour before your treatments to enjoy)"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1959
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:2039
 msgid "This voucher is reserved to:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:1963
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:2043
 msgid "Personal message:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:2023
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:2103
 msgctxt "Voucher PDF"
 msgid "Expires:"
 msgstr ""
 
-#: ../public/class-tmsm-woocommerce-vouchers-public.php:2028
+#: ../public/class-tmsm-woocommerce-vouchers-public.php:2108
 msgid "N°"
 msgstr ""

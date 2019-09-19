@@ -367,6 +367,12 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 				$meta->display_key = __('Recipient last name', 'tmsm-woocommerce-vouchers');
 			}
 
+			// birthdate
+			if($meta->key == '_recipientbirthdate' && !empty($meta->value)){
+				$meta->display_key = __('Recipient birth date', 'tmsm-woocommerce-vouchers');
+				$meta->display_value = date_i18n( get_option( 'date_format' ), strtotime( $meta->value ) );
+			}
+
 			// address
 			if($meta->key == '_recipientaddress' && !empty($meta->value)){
 				$meta->display_key = __('Recipient address', 'tmsm-woocommerce-vouchers');

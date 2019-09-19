@@ -1,5 +1,6 @@
 * Expiry date has to be in the future
 * Compatibility with PHP 7.1
+* Handle birth date field on frontend and display value on emails and backend
 
 ### 1.2.1: July 15th, 2019
 * Inform customers to come 1 hour early to enjoy Aquatonic
