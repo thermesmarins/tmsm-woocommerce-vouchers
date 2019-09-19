@@ -1,3 +1,4 @@
+### 1.2.2: September 19th, 2019
 * Expiry date has to be in the future
 * Compatibility with PHP 7.1
 * Handle birth date field on frontend and display value on emails and backend
