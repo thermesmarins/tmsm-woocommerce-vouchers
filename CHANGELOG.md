@@ -1,4 +1,5 @@
 * Removed each() obsolete function from the code, replace by foreach
+* Compatibility with PHP 7.3
 
 ### 1.2.2: September 19th, 2019
 * Expiry date has to be in the future
