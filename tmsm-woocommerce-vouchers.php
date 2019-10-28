@@ -36,6 +36,10 @@ $upload_path	= isset( $upload_dir['basedir'] ) ? $upload_dir['basedir'].'/' : AB
 define( 'TMSMWOOCOMMERCEVOUCHERS_UPLOADDIR' , $upload_path . 'woocommerce_uploads/vouchers/' ); // Voucher upload dir
 define( 'TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR', plugin_dir_path( __FILE__ ) );
 
+define( 'TMSMWOOCOMMERCEVOUCHERS_ACF_PATH', plugin_dir_path( __FILE__ ) . 'includes/advanced-custom-fields/' );
+define( 'TMSMWOOCOMMERCEVOUCHERS_ACF_URL', plugin_dir_url( __FILE__ ) . 'includes/advanced-custom-fields/' );
+include_once( TMSMWOOCOMMERCEVOUCHERS_ACF_PATH . 'acf.php' );
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-tmsm-woocommerce-vouchers-activator.php
@@ -62,6 +66,9 @@ register_deactivation_hook( __FILE__, 'deactivate_tmsm_woocommerce_vouchers' );
  * admin-specific hooks, and public-facing site hooks.
  */
 require TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/class-tmsm-woocommerce-vouchers.php';
+
+// Autoloading via composer
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Begins execution of the plugin.

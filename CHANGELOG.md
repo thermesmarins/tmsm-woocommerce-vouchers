@@ -1,3 +1,6 @@
+* Upgraded Mpdf to version 8.x
+* Upgraded Advanced Custom Fields to version 5.x
+
 ### 1.2.3: October 25th, 2019
 * Removed each() obsolete function from the code, replace by foreach
 * Compatibility with PHP 7.3

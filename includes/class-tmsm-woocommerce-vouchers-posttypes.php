@@ -72,10 +72,9 @@ class Tmsm_Woocommerce_Vouchers_Posttypes {
 
 		register_post_type( 'localbusiness', $args );
 
-
-		if(function_exists("register_field_group"))
+		if(function_exists("acf_add_local_field_group"))
 		{
-			register_field_group(array (
+			acf_add_local_field_group(array (
 				'id' => 'acf_local-business-fields',
 				'title' => 'Local Business fields',
 				'fields' => array (
@@ -184,6 +183,28 @@ class Tmsm_Woocommerce_Vouchers_Posttypes {
 		// return
 		return $dir;
 
+	}
+
+	/**
+	 * ACF url
+	 *
+	 * @param $url
+	 *
+	 * @return string
+	 */
+	function acf_url( $url ) {
+		return TMSMWOOCOMMERCEVOUCHERS_ACF_URL;
+	}
+
+	/**
+	 * ACF show admin or not
+	 *
+	 * @param bool $show_admin
+	 *
+	 * @return bool
+	 */
+	function acf_show_admin( $show_admin ) {
+		return true;
 	}
 
 	/**

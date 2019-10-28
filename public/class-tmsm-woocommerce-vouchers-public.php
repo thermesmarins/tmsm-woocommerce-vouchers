@@ -2173,7 +2173,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 
 
-			$this->tmsmvoucher_output_mpdf_from_html( $html, $pdf_args );
+			//$this->tmsmvoucher_output_mpdf6_from_html( $html, $pdf_args );
+			$this->tmsmvoucher_output_mpdf8_from_html( $html, $pdf_args );
 		}
 	}
 
@@ -2184,15 +2185,69 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @param array $pdf_args
 	 * @throws MpdfException
 	 */
-	private function tmsmvoucher_output_mpdf_from_html($html, $pdf_args){
-
+	private function tmsmvoucher_output_mpdf6_from_html($html, $pdf_args){
 		$pdf_save = !empty($pdf_args['pdf_save']) ? 'F' : 'I'; // Pdf store in a folder or not
 		$pdf_filepath = !empty($pdf_args['pdf_filepath']) ? $pdf_args['pdf_filepath'] : '';
-
 		if (!class_exists('mPDF')) { //If class not exist
 			require_once TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/mpdf/mpdf.php';
 		}
 		$mpdf = new mPDF('UTF-8', 'A4',  12,  'dejavusans', 0, 0, 0, 0, 0, 0, $orientation = 'P');
+		$stylesheet = file_get_contents(plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
+		$mpdf->WriteHTML($stylesheet, 1);
+		$mpdf->dpi = 96;
+		$mpdf->img_dpi = 96;
+		$mpdf->WriteHTML($html, 2);
+		$mpdf->autoPageBreak = true;
+		$mpdf->setAutoTopMargin = 'pad';
+		$mpdf->setAutoBottomMargin = 'pad';
+		$mpdf->bleedMargin = 0;
+		$mpdf->margBuffer = 0;
+		$mpdf->nonPrintMargin = 0;
+		$mpdf->SetDisplayMode('fullpage', 'single');
+		$mpdf->debug = true;
+		$mpdf->showImageErrors = true;
+		$mpdf->Output($pdf_filepath, $pdf_save);
+	}
+
+	/**
+	 * Output a pdf from html content (with MPDF 8.0.2)
+	 *
+	 * @param $html
+	 * @param $pdf_args
+	 *
+	 * @throws MpdfException
+	 * @throws \Mpdf\MpdfException
+	 */
+	private function tmsmvoucher_output_mpdf8_from_html($html, $pdf_args){
+
+		$pdf_save = !empty($pdf_args['pdf_save']) ? 'F' : 'I'; // Pdf store in a folder or not
+		$pdf_filepath = !empty($pdf_args['pdf_filepath']) ? $pdf_args['pdf_filepath'] : '';
+
+		$mpdf = new \Mpdf\Mpdf([
+			'mode' => 'UTF-8',
+			'format' => 'A4',
+			'default_font_size' => 12,
+			'default_font'=> 'dejavusans',
+			'mgl' => 0,
+			'mgr' => 0,
+			'mgt' => 0,
+			'mgb' => 0,
+			'mgh' => 0,
+			'mgf' => 0,
+			'orientation' => 'P',
+			'tempDir' => get_temp_dir(),
+			'bleedMargin' => 0,
+			'crossMarkMargin' => 0,
+			'cropMarkMargin' => 0,
+			'cropMarkLength' => 0,
+			'nonPrintMargin' => 0,
+			'margin_header' => 0,
+			'margin_footer' => 0,
+			'margin_right' => 0,
+			'margin_left' => 0,
+			'margin_top' => 0,
+			'margin_bottom' => 0
+		]);
 
 		$stylesheet = file_get_contents(plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
 
@@ -2208,6 +2263,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$mpdf->nonPrintMargin = 0;
 		$mpdf->SetDisplayMode('fullpage', 'single');
 		$mpdf->debug = true;
+		$mpdf->SetMargins(0, 0, 0);
 		$mpdf->showImageErrors = true;
 
 		$mpdf->Output($pdf_filepath, $pdf_save);
