@@ -1,5 +1,13 @@
 {
-    "require": {
-        "mpdf/mpdf": "^8.0"
-    }
+  "name": "thermesmarins/tmsm-woocommerce-vouchers",
+  "description": "WooCommerce Vouchers for Thermes Marins de Saint-Malo",
+  "homepage": "https://github.com/thermesmarins/tmsm-woocommerce-vouchers",
+  "type": "wordpress-plugin",
+  "license": "GNU General Public License v3.0",
+  "support": {
+    "issues": "https://github.com/thermesmarins/tmsm-woocommerce-vouchers/issues"
+  },
+  "require": {
+    "mpdf/mpdf": "^8.0"
+  }
 }
