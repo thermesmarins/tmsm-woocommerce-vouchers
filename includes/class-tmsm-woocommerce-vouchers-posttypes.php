@@ -204,7 +204,7 @@ class Tmsm_Woocommerce_Vouchers_Posttypes {
 	 * @return bool
 	 */
 	function acf_show_admin( $show_admin ) {
-		return true;
+		return false;
 	}
 
 	/**
