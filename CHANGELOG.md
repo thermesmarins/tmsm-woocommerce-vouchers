@@ -1,4 +1,6 @@
 * Hide ACF admin menu
+* Fix cache filepath and change to specific tmp folder for mpdf
+* Update mpdf to 8.0.3
 
 ### 1.2.4: October 28th, 2019
 * Upgraded Mpdf to version 8.x

@@ -2235,7 +2235,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			'mgh' => 0,
 			'mgf' => 0,
 			'orientation' => 'P',
-			'tempDir' => get_temp_dir(),
+			'tempDir' => get_temp_dir().'/mpdf/',
 			'bleedMargin' => 0,
 			'crossMarkMargin' => 0,
 			'cropMarkMargin' => 0,
