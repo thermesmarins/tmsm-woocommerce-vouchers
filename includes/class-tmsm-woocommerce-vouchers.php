@@ -69,7 +69,7 @@ class Tmsm_Woocommerce_Vouchers {
 	public function __construct() {
 
 		$this->plugin_name = 'tmsm-woocommerce-vouchers';
-		$this->version = '1.2.4';
+		$this->version = '1.2.5';
 
 		$this->load_dependencies();
 		$this->set_locale();
