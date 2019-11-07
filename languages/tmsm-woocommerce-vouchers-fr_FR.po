@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TMSM WooCommerce Vouchers\n"
 "POT-Creation-Date: 2019-09-19 16:35+0200\n"
-"PO-Revision-Date: 2019-09-19 16:40+0200\n"
+"PO-Revision-Date: 2019-11-07 15:30+0100\n"
 "Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language-Team: https://github.com/thermesmarins\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-KeywordsList: _e;__;_n:1,2;_x:1,2c;esc_attr__;esc_attr_e;"
 "esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-Basepath: ..\n"
@@ -579,7 +579,7 @@ msgstr "Définir un bénéficiaire de bon cadeau"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:406
 msgid "Recipient title:"
-msgstr "Civilité :"
+msgstr "Civilité du bénéficiaire :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:413
 msgid "Mister"
@@ -587,31 +587,31 @@ msgstr "Monsieur"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:430
 msgid "Recipient first name:"
-msgstr "Prénom :"
+msgstr "Prénom du bénéficiaire :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:450
 msgid "Recipient last name:"
-msgstr "Nom :"
+msgstr "Nom du bénéficiaire :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:470
 msgid "Recipient birth date:"
-msgstr "Date de naissance :"
+msgstr "Date de naissance du bénéficiaire :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:491
 msgid "Recipient address:"
-msgstr "Adresse :"
+msgstr "Adresse du bénéficiaire :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:511
 msgid "Recipient zipcode:"
-msgstr "Code postal :"
+msgstr "Code postal du bénéficiaire :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:532
 msgid "Recipient city:"
-msgstr "Ville :"
+msgstr "Ville du bénéficiaire :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:552
 msgid "Recipient country:"
-msgstr "Pays :"
+msgstr "Pays du bénéficiaire :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:568
 msgid "Recipient mobilephone:"
@@ -619,7 +619,7 @@ msgstr "Téléphone mobile :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:589
 msgid "Recipient email:"
-msgstr "Email :"
+msgstr "Email du bénéficiaire :"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:650
 #: public/class-tmsm-woocommerce-vouchers-public.php:662
@@ -677,7 +677,7 @@ msgstr "pour"
 #: public/class-tmsm-woocommerce-vouchers-public.php:1342
 #: public/class-tmsm-woocommerce-vouchers-public.php:1361
 msgid "You are not allowed to download this file"
-msgstr "Vous n’êtes pas autorisés à télécharger ce fichier."
+msgstr "Vous n’êtes pas autorisés à télécharger ce fichier"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:1541
 #, php-format

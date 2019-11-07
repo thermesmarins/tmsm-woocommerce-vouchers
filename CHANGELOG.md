@@ -1,4 +1,5 @@
 * Missing vendor file
+* Better translation for recipient field labels
 
 ### 1.2.5: October 31st, 2019
 * Hide ACF admin menu
