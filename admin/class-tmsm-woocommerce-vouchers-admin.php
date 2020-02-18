@@ -489,7 +489,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 
 		switch ( $column ) {
 			case 'shipping_address':
-				if ( !($address = $the_order->get_formatted_shipping_address() ) && $the_order->is_paid()) {
+				if ( !($address = $the_order->get_formatted_shipping_address() ) && $the_order->is_paid() && $the_order->get_meta('_appointment', true) !== 'yes') {
 					echo '<span class="description" style="display: inline-block; margin-top: -10px; margin-left: -5px;"><span class="dashicons dashicons-download" style=""></span>'.__( 'Virtual only', 'tmsm-woocommerce-vouchers' ).'</span>';
 				}
 				break;
