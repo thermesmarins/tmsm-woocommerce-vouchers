@@ -1,3 +1,5 @@
+* Consider Aquos Spa appointments orders
+
 ### 1.2.6: November 7th, 2019
 * Missing vendor file
 * Better translation for recipient field labels
