@@ -1,3 +1,4 @@
+### 1.2.7: February 19th, 2020
 * Consider Aquos Spa appointments orders
 
 ### 1.2.6: November 7th, 2019
