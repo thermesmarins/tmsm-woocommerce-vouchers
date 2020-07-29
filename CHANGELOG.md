@@ -1,3 +1,4 @@
+### 1.2.8: July 29th, 2020
 * Invert value for Title Miss/Mr, now Miss=2, Mr=1 for consistence with other plugin tmsm-woocommerce-billing-fields
 
 ### 1.2.7: February 19th, 2020
