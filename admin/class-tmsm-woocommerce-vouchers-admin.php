@@ -354,7 +354,7 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 			// title
 			if($meta->key == '_recipienttitle' && !empty($meta->value)){
 				$meta->display_key = __('Recipient title', 'tmsm-woocommerce-vouchers');
-				$meta->display_value = ($meta->value == 1 ?__('Miss', 'tmsm-woocommerce-vouchers'):__('Mr', 'tmsm-woocommerce-vouchers'));
+				$meta->display_value = ($meta->value == 2 ?__('Miss', 'tmsm-woocommerce-vouchers'):__('Mr', 'tmsm-woocommerce-vouchers'));
 			}
 
 			// firstname
