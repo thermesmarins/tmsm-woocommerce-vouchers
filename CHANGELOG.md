@@ -1,3 +1,5 @@
+* Fix title radio field labels
+
 ### 1.2.8: July 29th, 2020
 * Invert value for Title Miss/Mr, now Miss=2, Mr=1 for consistence with other plugin tmsm-woocommerce-billing-fields
 

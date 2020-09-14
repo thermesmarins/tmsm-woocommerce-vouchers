@@ -867,10 +867,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		if ( ! empty( $item['_recipientlastname'] ) && ! empty( $item['_recipientfirstname'] ) ) {
 			switch ( $item['_recipienttitle'] ) {
 				case 1:
-					$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
+					$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
 					break;
 				case 2:
-					$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
+					$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
 					break;
 				default:
 					$title = '';
@@ -1005,10 +1005,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		if ( !empty($item['_recipientlastname']) && !empty($item['_recipientfirstname'] )) {
 			switch ( $item['_recipienttitle'] ) {
 				case 1:
-					$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
+					$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
 					break;
 				case 2:
-					$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
+					$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
 					break;
 				default:
 					$title = '';
@@ -1262,10 +1262,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 											switch ( $item->get_meta('_recipienttitle') ) {
 												case 1:
-													$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
+													$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
 													break;
 												case 2:
-													$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
+													$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
 													break;
 												default:
 													$title = '';
@@ -2014,10 +2014,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			if ( !empty($recipient_firstname) && !empty($recipient_lastname) ) {
 				switch ( $recipient_title ) {
 					case 1:
-						$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
+						$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
 						break;
 					case 2:
-						$title = __( 'Mr', 'tmsm-woocommerce-vouchers' ) . ' ';
+						$title = __( 'Ms', 'tmsm-woocommerce-vouchers' ) . ' ';
 						break;
 					default:
 						$title = '';
