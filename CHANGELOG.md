@@ -1,3 +1,4 @@
+### 1.2.9: September 14th, 2020
 * Fix title radio field labels
 
 ### 1.2.8: July 29th, 2020
