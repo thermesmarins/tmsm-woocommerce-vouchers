@@ -1,3 +1,5 @@
+* Voucher fields CSS avoid to be overriden by WooCommerce defaults
+
 ### 1.3.0: September 14th, 2020
 * Fix version number
 

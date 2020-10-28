@@ -35,7 +35,7 @@ table.vouchers-fields .value{
   }
 }
 
-.vouchers-fields .title-field input, .vouchers-fields .title-field label {
+.woocommerce form .vouchers-fields .title-field input, .woocommerce form .vouchers-fields .title-field label {
   display: inline-block;
 }
 
