@@ -68,8 +68,14 @@ class Tmsm_Woocommerce_Vouchers {
 	 */
 	public function __construct() {
 
+		if ( defined( 'TMSM_WOOCOMMERCE_VOUCHERS_VERSION' ) ) {
+			$this->version = TMSM_WOOCOMMERCE_VOUCHERS_VERSION;
+		} else {
+			$this->version = '1.0.0';
+		}
+
 		$this->plugin_name = 'tmsm-woocommerce-vouchers';
-		$this->version = '1.3.0';
+		$this->version = '1.3.1';
 
 		$this->load_dependencies();
 		$this->set_locale();

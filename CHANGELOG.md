@@ -1,3 +1,4 @@
+### 1.3.1: October 30th, 2020
 * Voucher fields CSS avoid to be overriden by WooCommerce defaults
 * New setting for recipient heading text
 
