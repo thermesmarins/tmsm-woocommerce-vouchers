@@ -329,7 +329,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				echo '<div class="well vouchers-fields-wrapper' . ( $product->is_type( 'variation' ) ? '-variation' : '' )
 				     . '" id="vouchers-fields-wrapper-' . $variation_id . '" >';
 				echo '<h3 class=" first-heading vouchers-fields-title">';
-				echo __( 'Who to give this voucher to?', 'tmsm-woocommerce-vouchers' );
+				echo esc_html(get_option( 'tmsm_woocommerce_vouchers_recipientheading', __( 'Who to give this voucher to?', 'tmsm-woocommerce-vouchers' )));
 				echo '</h3>';
 				echo '<p>';
 				echo __( 'Vouchers are nominative, <b>please fill the details of the recipient</b>.', 'tmsm-woocommerce-vouchers' );

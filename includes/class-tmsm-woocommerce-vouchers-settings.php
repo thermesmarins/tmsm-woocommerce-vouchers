@@ -303,13 +303,6 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 							'id'   => 'tmsm_woocommerce_vouchers_settings',
 						),
 
-						array(
-							'type'     => 'checkbox',
-							'id'       => 'tmsm_woocommerce_vouchers_shippedstatus',
-							'name'     => __( 'Enable shipped status', 'tmsm-woocommerce-vouchers' ),
-							'desc'     => '<p class="description">'.__( 'If checked, the status shipped will be active (processing > shipped > complete)' ).'</p>',
-							'default'  => 'no',
-						),
 
 						array(
 							'type'     => 'checkbox',
@@ -326,6 +319,14 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 						),
 
 						array(
+							'type'     => 'text',
+							'id'       => 'tmsm_woocommerce_vouchers_recipientheading',
+							'name'     => __( 'Recipient Heading', 'tmsm-woocommerce-vouchers' ),
+							'desc'     => '<p class="description">'.__( 'Text introducing the recipient form' ).'</p>',
+							'default'  => __( 'Who to give this voucher to?', 'tmsm-woocommerce-vouchers' ),
+						),
+
+						array(
 							'type'     => 'checkbox',
 							'id'       => 'tmsm_woocommerce_vouchers_attachemail',
 							'name'     => __( 'Attach PDF voucher to email notification', 'tmsm-woocommerce-vouchers' ),
@@ -333,10 +334,10 @@ if ( ! class_exists( 'WC_Settings_Vouchers' ) ) :
 						),
 
 						array(
+							'type'		=> 'select',
 							'id'		=> 'tmsm_woocommerce_vouchers_notificationtime',
 							'name'		=> __( 'Select Time for Gift Notification Email', 'tmsm-woocommerce-vouchers' ),
 							'desc'		=> '<p class="description">'.__( 'It will send gift notification email at selected time.', 'tmsm-woocommerce-vouchers' ).'</p>',
-							'type'		=> 'select',
 							'class'		=> 'wc-enhanced-select',
 							'options'	=> $all_schedule_time_options
 						),
