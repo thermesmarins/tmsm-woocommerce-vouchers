@@ -474,6 +474,20 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 	}
 
 	/**
+	 * WooCommerce: Filter to allow us to exclude meta keys from product duplication.
+	 *
+	 * @param array $exclude_meta The keys to exclude from the duplicate.
+	 * @param array $existing_meta_keys The meta keys that the product already has.
+	 *
+	 * @return array
+	 */
+	public function woocommerce_duplicate_product_exclude_meta( array $exclude_meta, array $existing_meta_keys){
+		$exclude_meta[] = '_voucheruses';
+
+		return $exclude_meta;
+	}
+
+	/**
 	 * "Virtual only" column content
 	 *
 	 * @param $column

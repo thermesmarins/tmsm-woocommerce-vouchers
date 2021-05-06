@@ -197,6 +197,9 @@ class Tmsm_Woocommerce_Vouchers {
 
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post', 10, 1 );
 
+
+		$this->loader->add_filter( 'woocommerce_duplicate_product_exclude_meta', $plugin_admin, 'woocommerce_duplicate_product_exclude_meta', 10, 2 );
+
 		// Product types
 		$this->loader->add_filter( 'woocommerce_product_data_tabs', $plugin_admin, 'woocommerce_product_data_tabs_voucher', 98 );
 		$this->loader->add_filter( 'woocommerce_product_data_panels', $plugin_admin, 'woocommerce_product_data_panels_voucher' );
