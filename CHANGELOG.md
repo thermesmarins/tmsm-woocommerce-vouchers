@@ -1,3 +1,4 @@
+### 1.3.2: May 6th, 2021
 * Filter to allow us to exclude meta keys from product duplication
 
 ### 1.3.1: October 30th, 2020
