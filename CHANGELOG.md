@@ -1,4 +1,5 @@
 * Function get_product_from_item is deprecated
+* Fix title radio buttons alignment
 
 ### 1.3.2: May 6th, 2021
 * Filter to allow us to exclude meta keys from product duplication
