@@ -1218,8 +1218,12 @@ class Tmsm_Woocommerce_Vouchers_Public {
 						if ( ! empty( $order_items ) ) {// Check cart details are not empty
 							foreach ( $order_items as $item_id => $item ) {
 
-
-								$_product = $order->get_product_from_item( $item );
+								if ( is_callable( array( $item, 'get_product' ) ) ) {
+									$_product = $item->get_product();
+								}
+								else{
+									$_product = $order->get_product_from_item( $item );
+								}
 
 								if ( ! $_product ) {//If product deleted
 									$download_file_data = array();
