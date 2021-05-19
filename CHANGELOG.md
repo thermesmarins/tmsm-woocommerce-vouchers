@@ -1,3 +1,4 @@
+### 1.3.3: May 19th, 2021
 * Function get_product_from_item is deprecated
 * Fix title radio buttons alignment
 
