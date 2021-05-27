@@ -2081,7 +2081,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 					{localbusiness_intro}
 					</div>
 				</div>
-				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-2 tmsmvoucher-pdf-part-dotted"><div class="tmsmvoucher-pdf-product-control">{product_image}{voucher_code}{voucher_expirydate}{voucher_barcode}</div><div class="tmsmvoucher-pdf-product-data">{product_name}{product_intro}{product_description}{recipient_name}{recipient_message}</div></div>
+				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-2 tmsmvoucher-pdf-part-dotted"><div class="tmsmvoucher-pdf-product-control">{product_image}{voucher_code}{voucher_expirydate}{voucher_barcode}</div><div class="tmsmvoucher-pdf-product-data">{product_name}{product_breadcrumb}{product_intro}{product_description}{recipient_name}{recipient_message}</div></div>
 
 				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-3" style="">
 				{localbusiness_booking}
@@ -2097,11 +2097,26 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$product_image = strip_tags($product->get_image('shop_single', ['data-no-lazy'=> 1, 'class' => 'tmsmvoucher-pdf-product-image']), '<img>');
 			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.($product->get_meta('_alg_wc_product_open_pricing_enabled') === 'yes' ? $item->get_name() : $product->get_name() ).'</div>';
-			$product_intro = '';
+			$product_intro = __( 'Category:', 'tmsm-woocommerce-vouchers' );
 			$product_description = nl2br($product->get_meta('_tmsm_woocommerce_vouchers_description'));
 			$product_description = apply_filters('tmsm_woocommerce_vouchers_description', $product_description, $product, $order );
 			$product_description = $item_meta.'<div class="tmsmvoucher-pdf-product-description">'.$product_description.'</div>';
 
+			$product_breadcrumb = '';
+			$product_categories = $product->get_category_ids();
+			$first_category = array_pop($product_categories);
+			$product_parent_categories_all_hierachy = get_ancestors( $first_category, 'product_cat' );
+			array_pop($product_parent_categories_all_hierachy);
+			$product_parent_categories_all_hierachy = array_reverse($product_parent_categories_all_hierachy);
+			$product_parent_categories_all_hierachy[] = $first_category;
+			$counter = 0;
+			foreach($product_parent_categories_all_hierachy as $parent_cat_value){
+				$term = get_term_by("id", $parent_cat_value, 'product_cat');
+				if($counter > 0){
+					$product_breadcrumb .= ' >' ;
+				}
+				$product_breadcrumb .= $term->name;
+			}
 
 			if(!empty($voucher_expirydate)){
 				$voucher_expirydate = '<div class="tmsmvoucher-pdf-voucher-expirydate"><b>'._x( 'Expires:', 'Voucher PDF', 'tmsm-woocommerce-vouchers' ) .  '</b> '. date_i18n( get_option( 'date_format' ), strtotime( $voucher_expirydate ) ).'</div>';
@@ -2147,6 +2162,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				'{product_image}',
 				'{product_name}',
 				'{product_intro}',
+				'{product_breadcrumb}',
 				'{product_description}',
 				'{recipient_name}',
 				'{recipient_message}',
@@ -2166,16 +2182,13 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$product_image,
 				$product_name,
 				$product_intro,
+				$product_breadcrumb,
 				$product_description,
 				$recipient_name,
 				$recipient_message,
 			];
 
 			$html = str_replace($items_tags, $items_values, $html);
-
-
-
-
 
 			//$this->tmsmvoucher_output_mpdf6_from_html( $html, $pdf_args );
 			$this->tmsmvoucher_output_mpdf8_from_html( $html, $pdf_args );
