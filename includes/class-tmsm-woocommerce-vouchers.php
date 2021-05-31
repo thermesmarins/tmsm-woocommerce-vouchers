@@ -152,9 +152,9 @@ class Tmsm_Woocommerce_Vouchers {
 
 		$this->loader->add_filter( 'acf/settings/url', $plugin_posttypes, 'acf_url' );
 		$this->loader->add_filter( 'acf/settings/show_admin', $plugin_posttypes, 'acf_show_admin' );
-		//$this->loader->add_filter( 'acf/settings/path', $plugin_posttypes, 'acf_path' );
-		//$this->loader->add_filter( 'acf/settings/dir', $plugin_posttypes, 'acf_dir' );
-		//$this->loader->add_filter( 'plugins_loaded', $plugin_posttypes, 'acf_setup' );
+		$this->loader->add_filter( 'acf/settings/path', $plugin_posttypes, 'acf_path' );
+		$this->loader->add_filter( 'acf/settings/dir', $plugin_posttypes, 'acf_dir' );
+		$this->loader->add_filter( 'plugins_loaded', $plugin_posttypes, 'acf_setup' );
 
 	}
 

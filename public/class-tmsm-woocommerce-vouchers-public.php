@@ -1471,7 +1471,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 											'pdf_save' => true,
 											'download_key' => $download_key,
 										);
-
 										//Generating pdf
 										$this->tmsmvoucher_voucher_html_template( $data_id, $order_id, $item_id, $pdf_args);
 									}
@@ -2001,6 +2000,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		$voucher_expirydate	= wc_get_order_item_meta( $item_id, '_expirydate', true );
 
+
 		if(!empty($voucher_code) && !empty($order) ){
 
 			$recipient_title	= wc_get_order_item_meta( $item_id, '_recipienttitle', true );
@@ -2097,25 +2097,33 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			$product_image = strip_tags($product->get_image('shop_single', ['data-no-lazy'=> 1, 'class' => 'tmsmvoucher-pdf-product-image']), '<img>');
 			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.($product->get_meta('_alg_wc_product_open_pricing_enabled') === 'yes' ? $item->get_name() : $product->get_name() ).'</div>';
-			$product_intro = __( 'Category:', 'tmsm-woocommerce-vouchers' );
 			$product_description = nl2br($product->get_meta('_tmsm_woocommerce_vouchers_description'));
 			$product_description = apply_filters('tmsm_woocommerce_vouchers_description', $product_description, $product, $order );
 			$product_description = $item_meta.'<div class="tmsmvoucher-pdf-product-description">'.$product_description.'</div>';
 
-			$product_breadcrumb = '';
-			$product_categories = $product->get_category_ids();
-			$first_category = array_pop($product_categories);
+
+
+
+			// Breadcrumb
+			$product_breadcrumb                     = '';
+			$product_categories                     = $product->get_category_ids();
+			$first_category                         = array_pop( $product_categories );
 			$product_parent_categories_all_hierachy = get_ancestors( $first_category, 'product_cat' );
-			array_pop($product_parent_categories_all_hierachy);
-			$product_parent_categories_all_hierachy = array_reverse($product_parent_categories_all_hierachy);
+			array_pop( $product_parent_categories_all_hierachy );
+			$product_parent_categories_all_hierachy   = array_reverse( $product_parent_categories_all_hierachy );
 			$product_parent_categories_all_hierachy[] = $first_category;
-			$counter = 0;
-			foreach($product_parent_categories_all_hierachy as $parent_cat_value){
-				$term = get_term_by("id", $parent_cat_value, 'product_cat');
-				if($counter > 0){
-					$product_breadcrumb .= ' >' ;
+			$counter                                  = 0;
+			foreach ( $product_parent_categories_all_hierachy as $parent_cat_value ) {
+				$term = get_term_by( "id", $parent_cat_value, 'product_cat' );
+				if ( $counter > 0 ) {
+					$product_breadcrumb .= ' &gt;';
 				}
-				$product_breadcrumb .= $term->name;
+				$product_breadcrumb .= ' ' . $term->name;
+				$counter ++;
+			}
+			if ( ! empty( $product_breadcrumb ) ) {
+				$product_breadcrumb = '<div class="tmsmvoucher-pdf-voucher-breadcrumb">' . __( 'Category:', 'tmsm-woocommerce-vouchers' ) . ' '
+				                      . $product_breadcrumb . '</div>';
 			}
 
 			if(!empty($voucher_expirydate)){
@@ -2191,6 +2199,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			$html = str_replace($items_tags, $items_values, $html);
 
 			//$this->tmsmvoucher_output_mpdf6_from_html( $html, $pdf_args );
+
 			$this->tmsmvoucher_output_mpdf8_from_html( $html, $pdf_args );
 		}
 	}
@@ -2252,7 +2261,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			'mgh' => 0,
 			'mgf' => 0,
 			'orientation' => 'P',
-			'tempDir' => get_temp_dir().'/mpdf/',
+			//'tempDir' => get_temp_dir().'/mpdf/',
 			'bleedMargin' => 0,
 			'crossMarkMargin' => 0,
 			'cropMarkMargin' => 0,
@@ -2279,7 +2288,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		$mpdf->margBuffer = 0;
 		$mpdf->nonPrintMargin = 0;
 		$mpdf->SetDisplayMode('fullpage', 'single');
-		$mpdf->debug = true;
+		$mpdf->debug = false;
 		$mpdf->SetMargins(0, 0, 0);
 		$mpdf->showImageErrors = true;
 

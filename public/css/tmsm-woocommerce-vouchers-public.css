@@ -162,7 +162,7 @@ table.vouchers-fields .value{
   font-size: 18px;
   text-transform: uppercase;
   padding: 2px 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background: #b19263;
   color: white;
   font-weight: bold;
@@ -243,4 +243,8 @@ table.vouchers-fields .value{
 }
 .tmsmvoucher-pdf-localbusiness-info2{
   margin-left: 4%;
+}
+
+.tmsmvoucher-pdf-voucher-breadcrumb{
+  margin-bottom: 10px;
 }
