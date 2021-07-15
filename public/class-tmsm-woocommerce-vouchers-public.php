@@ -2113,7 +2113,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 					{localbusiness_intro}
 					</div>
 				</div>
-				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-2 tmsmvoucher-pdf-part-dotted"><div class="tmsmvoucher-pdf-product-control">{product_image}{voucher_code}{voucher_expirydate}{voucher_barcode}</div><div class="tmsmvoucher-pdf-product-data">{product_name}{product_breadcrumb}{product_intro}{product_description}{recipient_name}{recipient_message}</div></div>
+				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-2 tmsmvoucher-pdf-part-dotted"><div class="tmsmvoucher-pdf-product-control">{product_image}{voucher_code}{voucher_expirydate}{voucher_barcode}</div><div class="tmsmvoucher-pdf-product-data">{product_name}{product_breadcrumb}{product_description}{recipient_name}{recipient_message}</div></div>
 
 				<div class="tmsmvoucher-pdf-part tmsmvoucher-pdf-part-3" style="">
 				{localbusiness_booking}
@@ -2136,26 +2136,42 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 
 
-			// Breadcrumb
+			// Breadcrumb only for subcategories of main Spa category
 			$product_breadcrumb                     = '';
-			$product_categories                     = $product->get_category_ids();
-			$first_category                         = array_pop( $product_categories );
+			$primary_category = get_post_meta( $product->get_id(), 'rank_math_primary_category', true );
+			if (  ! empty( $primary_category ) ) {
+				$first_category = $primary_category;
+			}
+			else{
+				$product_categories                     = $product->get_category_ids();
+				$first_category                         = array_pop( $product_categories );
+			}
 			$product_parent_categories_all_hierachy = get_ancestors( $first_category, 'product_cat' );
-			array_pop( $product_parent_categories_all_hierachy );
+			//array_pop( $product_parent_categories_all_hierachy );
 			$product_parent_categories_all_hierachy   = array_reverse( $product_parent_categories_all_hierachy );
 			$product_parent_categories_all_hierachy[] = $first_category;
 			$counter                                  = 0;
+			$is_spa_sub_category = false;
 			foreach ( $product_parent_categories_all_hierachy as $parent_cat_value ) {
 				$term = get_term_by( "id", $parent_cat_value, 'product_cat' );
-				if ( $counter > 0 ) {
-					$product_breadcrumb .= ' &gt;';
+				if($term->term_id == get_option( 'tmsm_aquos_spa_booking_productcat' ) ){
+					$is_spa_sub_category = true;
 				}
-				$product_breadcrumb .= ' ' . $term->name;
-				$counter ++;
+				else{
+					if ( $counter > 0 ) {
+						$product_breadcrumb .= ' &gt;';
+					}
+					$product_breadcrumb .= ' ' . $term->name ;
+					$counter ++;
+				}
+
 			}
-			if ( ! empty( $product_breadcrumb ) ) {
+			if ( ! empty( $product_breadcrumb )) {
 				$product_breadcrumb = '<div class="tmsmvoucher-pdf-voucher-breadcrumb">' . __( 'Category:', 'tmsm-woocommerce-vouchers' ) . ' '
-				                      . $product_breadcrumb . '</div>';
+				                      . $product_breadcrumb . '</div><br>';
+			}
+			if($is_spa_sub_category == false){
+				$product_breadcrumb = null;
 			}
 
 			if(!empty($voucher_expirydate)){
@@ -2201,7 +2217,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				'{voucher_barcode}',
 				'{product_image}',
 				'{product_name}',
-				'{product_intro}',
 				'{product_breadcrumb}',
 				'{product_description}',
 				'{recipient_name}',
@@ -2221,7 +2236,6 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				$voucher_barcode,
 				$product_image,
 				$product_name,
-				$product_intro,
 				$product_breadcrumb,
 				$product_description,
 				$recipient_name,
