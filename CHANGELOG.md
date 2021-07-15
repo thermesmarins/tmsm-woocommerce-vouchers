@@ -1,3 +1,5 @@
+* Icons: consider theme and fontawesome 
+
 ### 1.3.4: May 31th, 2021
 * Added breadcrumb into the PDF voucher
 * Updated ACF to 5.9.6

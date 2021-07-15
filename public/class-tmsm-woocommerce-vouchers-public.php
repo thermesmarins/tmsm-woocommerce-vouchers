@@ -1489,12 +1489,44 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		return $attachments;
 	}
 
+	/**
+	 * Theme has parent theme
+	 *
+	 * @param $theme_name
+	 *
+	 * @return bool
+	 */
+	function has_parent_theme( $theme_name ) {
+		$current_theme = wp_get_theme();
+		$parent_theme  = $current_theme->parent();
+
+		return ! empty( $parent_theme ) && ! empty( $parent_theme->name ) && $parent_theme->name === $theme_name;
+	}
 
 	/**
 	 *  Single product display voucher expire in meta
 	 */
 	public function woocommerce_product_meta_end(){
 		global $product;
+
+		$gift_icon        = null;
+		$shipping_icon    = null;
+		$payment_icon     = null;
+		$localpickup_icon = null;
+
+		if ( self::has_parent_theme( 'StormBringer' ) ) {
+			$gift_icon        = 'glyphicon glyphicon-gift';
+			$shipping_icon    = '';
+			$payment_icon     = 'glyphicon glyphicon-credit-card';
+			$localpickup_icon = 'glyphicon glyphicon-map-marker';
+		}
+		if ( self::has_parent_theme( 'OceanWP' ) || wp_style_is( 'font-awesome', 'registered' ) ) {
+			$gift_icon        = 'fa fa-gift';
+			$shipping_icon    = 'fa fa-truck';
+			$payment_icon     = 'fa fa-credit-card';
+			$localpickup_icon = 'fa fa-map-marker';
+		}
+
 		if(!empty($product) ){
 
 			$has_variations = sizeof( $product->get_children() );
@@ -1541,10 +1573,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 			if($has_voucher ){
 				if(!empty($expirydate)){
-					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift fa fa-gift"></span> <time datetime="'.date( 'Y-m-d', strtotime( $expirydate ) ).'" title="'.esc_attr( strtotime( $expirydate ) ).'">'. sprintf( __( 'Voucher valid until %s', 'tmsm-woocommerce-vouchers' ), date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) )).'</time></p>';
+					echo '<p class="product_meta_voucher"><span class="'.$gift_icon.'"></span> <time datetime="'.date( 'Y-m-d', strtotime( $expirydate ) ).'" title="'.esc_attr( strtotime( $expirydate ) ).'">'. sprintf( __( 'Voucher valid until %s', 'tmsm-woocommerce-vouchers' ), date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) )).'</time></p>';
 				}
 				else{
-					echo '<p class="product_meta_voucher"><span class="glyphicon glyphicon-gift fa fa-gift"></span> '.sprintf( _n( 'Voucher valid %s month', 'Voucher valid %s months', $expiremonths, 'tmsm-woocommerce-vouchers' ), $expiremonths ).'</p>';
+					echo '<p class="product_meta_voucher"><span class="'.$gift_icon.'"></span> '.sprintf( _n( 'Voucher valid %s month', 'Voucher valid %s months', $expiremonths, 'tmsm-woocommerce-vouchers' ), $expiremonths ).'</p>';
 				}
 			}
 
