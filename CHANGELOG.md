@@ -1,3 +1,4 @@
+### 1.3.7: November 16th, 2021
 * Duplicate Post compatibility: don't copy _voucheruses when copying product 
 
 ### 1.3.6: July 15th, 2021
