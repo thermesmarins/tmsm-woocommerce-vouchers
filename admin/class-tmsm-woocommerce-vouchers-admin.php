@@ -510,4 +510,15 @@ class Tmsm_Woocommerce_Vouchers_Admin {
 		}
 	}
 
+	/**
+	 * Duplicate Post: Filters out custom fields from being duplicated in addition to the defaults.
+	 *
+	 * @param array $meta_excludelist The default exclusion list, based on the “Do not copy these fields” setting, plus some other field names.
+	 *
+	 * @return array The custom fields to exclude.
+	 */
+	function duplicate_post_excludelist_filter( array $meta_excludelist ): array {
+		return array_merge( $meta_excludelist, [ '_voucheruses', 'totalsales' ] );
+	}
+
 }

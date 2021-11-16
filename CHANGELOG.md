@@ -1,3 +1,5 @@
+* Duplicate Post compatibility: don't copy _voucheruses when copying product 
+
 ### 1.3.6: July 15th, 2021
 * Fix breadcrumb, only for main spa booking category
 

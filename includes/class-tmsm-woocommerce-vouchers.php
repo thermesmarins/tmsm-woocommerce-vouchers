@@ -222,6 +222,9 @@ class Tmsm_Woocommerce_Vouchers {
 		// Virtual only Column
 		$this->loader->add_action( 'manage_shop_order_posts_custom_column', $plugin_admin, 'shop_order_posts_custom_column_virtualonly', 50, 2 );
 
+		// Duplicate Post
+		$this->loader->add_filter( 'duplicate_post_excludelist_filter', $plugin_admin, 'duplicate_post_excludelist_filter', 20, 1 );
+
 	}
 
 	/**
