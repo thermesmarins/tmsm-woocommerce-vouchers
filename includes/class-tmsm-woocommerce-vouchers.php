@@ -225,6 +225,7 @@ class Tmsm_Woocommerce_Vouchers {
 		// Duplicate Post
 		$this->loader->add_filter( 'duplicate_post_excludelist_filter', $plugin_admin, 'duplicate_post_excludelist_filter', 20, 1 );
 
+
 	}
 
 	/**
@@ -261,6 +262,10 @@ class Tmsm_Woocommerce_Vouchers {
 
 		// Single Product
 		$this->loader->add_action( 'woocommerce_product_meta_end', $plugin_public, 'woocommerce_product_meta_end', 50 );
+
+		// Fix download link in WooCommerce 6.5
+		$this->loader->add_filter( 'woocommerce_product_get_downloads', $plugin_public, 'set_dummy_product_download', 20, 2 );
+		$this->loader->add_filter( 'woocommerce_product_variation_get_downloads', $plugin_public, 'set_dummy_product_download', 20, 2 );
 
 	}
 

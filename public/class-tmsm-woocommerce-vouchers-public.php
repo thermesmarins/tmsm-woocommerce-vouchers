@@ -2342,4 +2342,36 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 	}
 
+	/**
+	 * Fix download link in WooCommerce 6.5
+	 *
+	 * @param $downloads
+	 * @param $obj
+	 *
+	 * @since 1.3.8
+	 *
+	 * @return array
+	 */
+	public function set_dummy_product_download( $downloads, $obj ): array {
+
+		if ( isset( $_GET['download_file'], $_GET['order'], $_GET['key'] ) && ( isset( $_GET['email'] ) || isset( $_GET['uid'] ) ) ) {
+			$key       = $_GET['key'];
+			$check_key = strpos( $key, 'tmsmvoucher' );
+
+			if ( $check_key !== false ) {
+
+				$product_id = absint( $_GET['download_file'] );
+				$product    = wc_get_product( $product_id );
+				$key        = empty( $_GET['key'] ) ? '' : sanitize_text_field( wp_unslash( $_GET['key'] ) );
+
+				$pd_object = new WC_Product_Download();
+
+				$pd_object->set_id( $key );
+				$downloads[ $key ] = $pd_object;
+			}
+		}
+
+		return $downloads;
+	}
+
 }
