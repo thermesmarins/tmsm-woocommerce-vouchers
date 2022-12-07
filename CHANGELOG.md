@@ -1,3 +1,4 @@
+### 1.3.8: December 7th, 2022
 * Fix download link in WooCommerce 6.5
 
 ### 1.3.7: November 16th, 2021
