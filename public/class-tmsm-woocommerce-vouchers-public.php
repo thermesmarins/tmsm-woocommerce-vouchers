@@ -2321,9 +2321,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			'margin_top' => 0,
 			'margin_bottom' => 0
 		]);
-		// TODO décommenter pour la prod
-		// $stylesheet = file_get_contents(plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
-		$stylesheet = file_get_contents(plugin_dir_path( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
+		// TODO commenter pour le dev
+		$stylesheet = file_get_contents(plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
+		// $stylesheet = file_get_contents(plugin_dir_path( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
 
 		$mpdf->WriteHTML($stylesheet, 1);
 		$mpdf->dpi = 96;
