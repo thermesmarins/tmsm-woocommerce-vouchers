@@ -126,10 +126,10 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		else{
 			$username = __('Guest', 'tmsm-woocommerce-vouchers');
 		}
-
+		
 		$order_items = $order->get_items();
 		$order_date = $order->get_date_created();
-
+		
 		if (is_array($order_items)) {
 
 			// Check cart details
@@ -920,6 +920,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		if ( $product ) {
 			$variation_id = $product->get_id();
 		}
+
 		$is_virtual = get_post_meta( $variation_id, '_virtual', true ) == 'yes';
 		$is_voucher = get_post_meta( $variation_id, '_voucher', true ) == 'yes';
 
@@ -978,7 +979,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		if ( ! empty( $values['_recipientemail'] ) ) {
 			$item->add_meta_data( '_recipientemail', $values['_recipientemail'], true );
 		}
-
+		error_log(print_r($item, true));
 
 	}
 
@@ -2320,8 +2321,9 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			'margin_top' => 0,
 			'margin_bottom' => 0
 		]);
-
-		$stylesheet = file_get_contents(plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
+		// TODO décommenter pour la prod
+		// $stylesheet = file_get_contents(plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
+		$stylesheet = file_get_contents(plugin_dir_path( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
 
 		$mpdf->WriteHTML($stylesheet, 1);
 		$mpdf->dpi = 96;
