@@ -1,3 +1,7 @@
+### 1.4.0: July 25th, 2024
+* Update acf plugin
+* Fix deprecated warnings for php 8.3
+
 ### 1.3.8: December 7th, 2022
 * Fix download link in WooCommerce 6.5
 
