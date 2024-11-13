@@ -1,3 +1,6 @@
+### 1.4.1: November 13th, 2024
+* Update products meta for site Pro/B2B to replace vouchers 
+
 ### 1.4.0: July 25th, 2024
 * Update acf plugin
 * Fix deprecated warnings for php 8.3

@@ -3743,3 +3743,14 @@ msgstr ""
 #: ../public/class-tmsm-woocommerce-vouchers-public.php:2135
 msgid "N°"
 msgstr ""
+#: public/class-tmsm-woocommerce-vouchers-public.php:1546
+#, php-format
+msgid "Experience is valid until %s"
+msgstr ""
+
+#: public/class-tmsm-woocommerce-vouchers-public.php:1549
+#, php-format
+msgid "Experience is valid %s month"
+msgid_plural "Experience is valid %s months"
+msgstr[0] ""
+msgstr[1] ""
