@@ -1573,7 +1573,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			}
 			$site_url = get_site_url();
 			// Set different titles for proB2B and the others
-			if ($site_url === "http://prob2b.local") {
+			if ($site_url === "https://pro.thermes-marins.com") {
 				$title_date = "Experience is valid until %s";
 				$title = "Experience is valid %s";
 			} else {
