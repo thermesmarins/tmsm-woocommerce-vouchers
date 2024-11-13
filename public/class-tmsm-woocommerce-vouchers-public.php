@@ -1571,15 +1571,18 @@ class Tmsm_Woocommerce_Vouchers_Public {
 			if(empty($expiremonths)){
 				$expiremonths = get_option( 'tmsm_woocommerce_vouchers_expiremonths' );
 			}
+			$site_url = get_site_url();
 			// Set different titles for proB2B and the others
-			if (get_site_url() === "https://pro.thermes-marins.com") {
-				$title = "Experience is valid until %s";
+			if ($site_url === "http://prob2b.local") {
+				$title_date = "Experience is valid until %s";
+				$title = "Experience is valid %s";
 			} else {
-				$title = "Voucher valid until %s";
+				$title_date = "Voucher valid until %s";
+				$title = "Voucher valid %s";
 			}
 			if($has_voucher ){
 				if(!empty($expirydate)){
-					echo '<p class="product_meta_voucher"><span class="'.$gift_icon.'"></span> <time datetime="'.date( 'Y-m-d', strtotime( $expirydate ) ).'" title="'.esc_attr( strtotime( $expirydate ) ).'">'. sprintf( __( $title, 'tmsm-woocommerce-vouchers' ), date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) )).'</time></p>';
+					echo '<p class="product_meta_voucher"><span class="'.$gift_icon.'"></span> <time datetime="'.date( 'Y-m-d', strtotime( $expirydate ) ).'" title="'.esc_attr( strtotime( $expirydate ) ).'">'. sprintf( __( $title_date, 'tmsm-woocommerce-vouchers' ), date_i18n( get_option( 'date_format' ), strtotime( $expirydate ) )).'</time></p>';
 				}
 				else{
 					echo '<p class="product_meta_voucher"><span class="'.$gift_icon.'"></span> '.sprintf( _n( $title.' month', $title.' months', $expiremonths, 'tmsm-woocommerce-vouchers' ), $expiremonths ).'</p>';

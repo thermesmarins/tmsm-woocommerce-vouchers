@@ -692,7 +692,7 @@ msgstr[1] "Bon cadeau valable %s mois"
 #: public/class-tmsm-woocommerce-vouchers-public.php:1546
 #, php-format
 msgid "Experience is valid until %s"
-msgstr "Prestation valable %s"
+msgstr "Prestation valable jusqu’au %s"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:1549
 #, php-format
