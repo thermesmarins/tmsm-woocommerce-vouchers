@@ -1,3 +1,6 @@
+### 1.4.2: January 15th, 2025
+* Add HPOS compatibility for downloadable products
+
 ### 1.4.1: November 13th, 2024
 * Update products meta for site Pro/B2B to replace vouchers 
 
