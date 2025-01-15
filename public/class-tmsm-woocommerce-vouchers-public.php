@@ -20,6 +20,8 @@
  * @subpackage Tmsm_Woocommerce_Vouchers/public
  * @author     Nicolas Mollet <nmollet@thalassotherapie.com>
  */
+
+ use Automattic\WooCommerce\Utilities\OrderUtil;
 class Tmsm_Woocommerce_Vouchers_Public {
 
 	/**
@@ -1076,7 +1078,8 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 		if ( sizeof( $order->get_items() ) > 0 ) { //Get all items in order
 			foreach ( $order->get_items() as $item_id => $item ) {
-
+				error_log("item");
+error_log(print_r($item, true));
 				$product = $item->get_product();
 				//$_product = $order->get_product_from_item($item); //Get product from Item ( It is required otherwise multipdf voucher link not work and global $woo_vou_item_id will not work )
 				$variation_id = ! empty( $item['variation_id'] ) ? $item['variation_id'] : ''; // Taking variation id
@@ -1115,17 +1118,18 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 */
 	public function woocommerce_get_item_downloads( $files, $item, $order ) {
 
-		//echo 'woocommerce_get_item_downloads tmsm';
+		// echo 'woocommerce_get_item_downloads tmsm';
 		$this->woocommerce_payment_complete($order->get_id());
 
 		$product = $item->get_product();
-
+		
 		if ( ! ( $product && $order && $product->is_downloadable() && $order->is_download_permitted() ) ) {
+		
 			return $files;
 		}
 
 		$variation_id = ! empty( $item['variation_id'] ) ? $item['variation_id'] : $item['product_id'];
-
+		
 		$pdf_downloadable_files = $this->tmsmvoucher_download_key( $order->get_id(), $variation_id, $item->get_id() );
 
 		if ( ! empty( $pdf_downloadable_files ) ) {
@@ -1185,7 +1189,15 @@ class Tmsm_Woocommerce_Vouchers_Public {
 	 * @throws Exception
 	 */
 	public function woocommerce_customer_get_downloadable_products( $downloads = [] ) {
-
+		$current_user = wp_get_current_user();
+		// echo $current_user->ID;
+		
+		$orders = wc_get_orders(
+			array(
+				'billing_email' => $current_user->user_email,
+			)
+		);
+		
 		if ( is_user_logged_in() ) {//If user is logged in
 			//Get user ID
 			$user_id = get_current_user_id();
@@ -1198,29 +1210,55 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				'post_type'   => wc_get_order_types( 'view-orders' ),
 				'post_status' => wc_get_order_statuses(),
 			);
-
+			if( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+				// HPOS is enabled.
+				error_log("hpos ok");
+				$user_orders = $orders;
+			} else {
+				// CPT-based orders are in use.
+					$user_orders = get_posts( $args );
+					error_log("hpos off");
+			}
+			
 			//user orders
-			$user_orders = get_posts( $args );
+		
+			
+			
+			
 
 			if ( ! empty( $user_orders ) ) {//If orders are not empty
 				foreach ( $user_orders as $user_order ) {
-					//Get order ID
-					$order_id = isset( $user_order->ID ) ? $user_order->ID : '';
+					// echo print_r($user_order, true);
 
+					if( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+						// HPOS is enabled.
+						$order_id = !empty( $user_order->get_id() ) ? $user_order->get_id() : '';
+					} else {
+						// CPT-based orders are in use.
+							$order_id = isset( $user_order->ID ) ? $user_order->ID : '';
+					}
+					//Get order ID
+					
+					
+					
+					
 					if ( ! empty( $order_id ) ) {//Order it not empty
 
 
 						//Get cart details
 						$order = wc_get_order( $order_id );
 						$order_items  = $order->get_items();
+						
 						$order_date   = $order->get_date_modified(); // Get order date
 						//$order_date   = date( 'F j, Y', strtotime( $order_date ) );
 
 						if ( ! empty( $order_items ) ) {// Check cart details are not empty
 							foreach ( $order_items as $item_id => $item ) {
+								
 
 								if ( is_callable( array( $item, 'get_product' ) ) ) {
 									$_product = $item->get_product();
+								
 								}
 								else{
 									$_product = $order->get_product_from_item( $item );
@@ -1228,18 +1266,23 @@ class Tmsm_Woocommerce_Vouchers_Public {
 
 								if ( ! $_product ) {//If product deleted
 									$download_file_data = array();
+									
 								} else {
 									//$download_file_data = $woo_vou_model->woo_vou_get_item_downloads_from_order( $order, $item );
 									$download_file_data = $item->get_item_downloads();
+								
 								}
 
 								//Get voucher codes
 								$code = wc_get_order_item_meta( $item_id, '_vouchercode', true );
-
+								
 								$expirydate = wc_get_order_item_meta( $item_id, '_expirydate', true );
-
+								
 								if ( ! empty( $download_file_data ) && ! empty( $code ) ) {//If download exist and code is not empty
 									foreach ( $download_file_data as $key => $download_file ) {
+									
+							
+								
 
 										//check download key is voucher key or not
 										$check_key = strpos( $key, 'tmsmvoucher_pdf_'.$item_id.'_' );
@@ -2338,6 +2381,7 @@ class Tmsm_Woocommerce_Vouchers_Public {
 		]);
 		// TODO commenter pour le dev
 		$stylesheet = file_get_contents(plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
+		//TODO commenter en production
 		// $stylesheet = file_get_contents(plugin_dir_path( __FILE__ ) . 'css/tmsm-woocommerce-vouchers-public.css');
 
 		$mpdf->WriteHTML($stylesheet, 1);
