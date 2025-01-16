@@ -1212,12 +1212,10 @@ error_log(print_r($item, true));
 			);
 			if( OrderUtil::custom_orders_table_usage_is_enabled() ) {
 				// HPOS is enabled.
-				error_log("hpos ok");
 				$user_orders = $orders;
 			} else {
 				// CPT-based orders are in use.
 					$user_orders = get_posts( $args );
-					error_log("hpos off");
 			}
 			
 			//user orders
