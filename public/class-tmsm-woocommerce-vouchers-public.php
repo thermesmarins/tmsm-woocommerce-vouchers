@@ -1195,6 +1195,7 @@ error_log(print_r($item, true));
 		$orders = wc_get_orders(
 			array(
 				'billing_email' => $current_user->user_email,
+				'limit'         => - 1,
 			)
 		);
 		
