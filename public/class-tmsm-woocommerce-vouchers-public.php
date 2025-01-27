@@ -2435,40 +2435,29 @@ error_log(print_r($item, true));
 
 		return $downloads;
 	}
-/**
-	 * Display appointment link below product short description in single product
-	 */
-	public function add_woocommerce_valid_order_statuses_for_cancel_filter( $array, $order ){
-		$array = [
-		   'appointment',
-		   'pending', 
-		   'failed'
-		];
-		   // filter...
-		   return $array;
-	   }
-	/**
-	 * Display appointment link below product short description in single product
-	 */
-	public function add_woocommerce_order_details_after_order_table ($order) {
-		$actions = wc_get_account_orders_actions( $order );
-		// $date = [];
-		// foreach ( $order->get_items() as $item_id => $item ) {
-		// 	$date = wc_get_order_item_meta($item_id,'_appointment_date', true);
-		// }
-		
-	// echo	print_r($date, true);
 
-	if ( ! empty( $actions ) ) {
-		foreach ( $actions as $key => $action ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-			/* translators: %s: order number */
-			echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . 
-			'" aria-label="' . esc_attr( sprintf( __( 'View order number %s', 'woocommerce' ), $order->get_order_number() ) ) . '"> ' 
-			. esc_html( $action['name'] ) . '</a>  ';
+	// /**
+	//  * Display appointment link below product short description in single product
+	//  */
+	// public function add_woocommerce_order_details_after_order_table ($order) {
+	// 	$actions = wc_get_account_orders_actions( $order );
+	// 	// $date = [];
+	// 	// foreach ( $order->get_items() as $item_id => $item ) {
+	// 	// 	$date = wc_get_order_item_meta($item_id,'_appointment_date', true);
+	// 	// }
+		
+	// // echo	print_r($date, true);
+
+	// if ( ! empty( $actions ) ) {
+	// 	foreach ( $actions as $key => $action ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	// 		/* translators: %s: order number */
+	// 		echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . 
+	// 		'" aria-label="' . esc_attr( sprintf( __( 'View order number %s', 'woocommerce' ), $order->get_order_number() ) ) . '"> ' 
+	// 		. esc_html( $action['name'] ) . '</a>  ';
 			
-		}
-	}
-	}
+	// 	}
+	// }
+	// }
 
 	/**
 	 * Get the value of a meta_key from the woocommerce_order_itemmeta table.
