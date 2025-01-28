@@ -267,6 +267,8 @@ class Tmsm_Woocommerce_Vouchers {
 		$this->loader->add_filter( 'woocommerce_product_get_downloads', $plugin_public, 'set_dummy_product_download', 20, 2 );
 		$this->loader->add_filter( 'woocommerce_product_variation_get_downloads', $plugin_public, 'set_dummy_product_download', 20, 2 );
 
+
+
 	}
 
 	/**
