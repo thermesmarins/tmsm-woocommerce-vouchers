@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The plugin bootstrap file
  *
@@ -15,7 +16,7 @@
  * Plugin Name:       TMSM WooCommerce Vouchers
  * Plugin URI:        https://github.com/thermesmarins/tmsm-woocommerce-vouchers/
  * Description:       WooCommerce Vouchers for Thermes Marins de Saint-Malo
- * Version:           1.4.2
+ * Version:           1.4.3
  * Author:            Nicolas Mollet
  * Author URI:        https://github.com/thermesmarins/
  * Requires PHP:      7.0
@@ -37,22 +38,23 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'TMSM_WOOCOMMERCE_VOUCHERS_VERSION', '1.4.2' );
+define('TMSM_WOOCOMMERCE_VOUCHERS_VERSION', '1.4.3');
 
 $upload_dir		= wp_upload_dir();
-$upload_path	= isset( $upload_dir['basedir'] ) ? $upload_dir['basedir'].'/' : ABSPATH;
-define( 'TMSMWOOCOMMERCEVOUCHERS_UPLOADDIR' , $upload_path . 'woocommerce_uploads/vouchers/' ); // Voucher upload dir
-define( 'TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR', plugin_dir_path( __FILE__ ) );
+$upload_path	= isset($upload_dir['basedir']) ? $upload_dir['basedir'] . '/' : ABSPATH;
+define('TMSMWOOCOMMERCEVOUCHERS_UPLOADDIR', $upload_path . 'woocommerce_uploads/vouchers/'); // Voucher upload dir
+define('TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR', plugin_dir_path(__FILE__));
 
-define( 'TMSMWOOCOMMERCEVOUCHERS_ACF_PATH', plugin_dir_path( __FILE__ ) . 'includes/advanced-custom-fields/' );
-define( 'TMSMWOOCOMMERCEVOUCHERS_ACF_URL', plugin_dir_url( __FILE__ ) . 'includes/advanced-custom-fields/' );
-include_once( TMSMWOOCOMMERCEVOUCHERS_ACF_PATH . 'acf.php' );
+define('TMSMWOOCOMMERCEVOUCHERS_ACF_PATH', plugin_dir_path(__FILE__) . 'includes/advanced-custom-fields/');
+define('TMSMWOOCOMMERCEVOUCHERS_ACF_URL', plugin_dir_url(__FILE__) . 'includes/advanced-custom-fields/');
+include_once(TMSMWOOCOMMERCEVOUCHERS_ACF_PATH . 'acf.php');
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-tmsm-woocommerce-vouchers-activator.php
  */
-function activate_tmsm_woocommerce_vouchers() {
+function activate_tmsm_woocommerce_vouchers()
+{
 	require_once TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/class-tmsm-woocommerce-vouchers-activator.php';
 	Tmsm_Woocommerce_Vouchers_Activator::activate();
 }
@@ -61,13 +63,14 @@ function activate_tmsm_woocommerce_vouchers() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-tmsm-woocommerce-vouchers-deactivator.php
  */
-function deactivate_tmsm_woocommerce_vouchers() {
+function deactivate_tmsm_woocommerce_vouchers()
+{
 	require_once TMSMWOOCOMMERCEVOUCHERS_PLUGINDIR . 'includes/class-tmsm-woocommerce-vouchers-deactivator.php';
 	Tmsm_Woocommerce_Vouchers_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_tmsm_woocommerce_vouchers' );
-register_deactivation_hook( __FILE__, 'deactivate_tmsm_woocommerce_vouchers' );
+register_activation_hook(__FILE__, 'activate_tmsm_woocommerce_vouchers');
+register_deactivation_hook(__FILE__, 'deactivate_tmsm_woocommerce_vouchers');
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -87,10 +90,10 @@ require_once __DIR__ . '/vendor/autoload.php';
  *
  * @since    1.0.0
  */
-function run_tmsm_woocommerce_vouchers() {
+function run_tmsm_woocommerce_vouchers()
+{
 
 	$plugin = new Tmsm_Woocommerce_Vouchers();
 	$plugin->run();
-
 }
 run_tmsm_woocommerce_vouchers();

@@ -1,3 +1,8 @@
+### 1.4.3: January 15th, 2025
+* Fix compatibility issues with WooCommerce HPOS (High Performance Order Storage)
+* Resolve undefined method errors for get_product() and get_item_downloads() 
+* Improve error handling in downloadable products functionality
+
 ### 1.4.2: January 15th, 2025
 * Add HPOS compatibility for downloadable products
 
