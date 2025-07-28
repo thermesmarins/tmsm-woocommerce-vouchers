@@ -149,7 +149,11 @@ class Tmsm_Woocommerce_Vouchers_Public {
 				//Get voucher code from item meta "Now we store voucher codes in item meta fields"
 
 				// No recipient, no voucher
-				$has_recipient = !empty(wc_get_order_item_meta($item_id, '_recipientlastname'));
+				if (get_option( 'tmsm_woocommerce_vouchers_recipientoptionnal' ) == 'yes') {
+					$has_recipient = true;
+				} else {
+					$has_recipient = !empty(wc_get_order_item_meta($item_id, '_recipientlastname'));
+				}
 				if($has_recipient === false){
 					continue;
 				}
