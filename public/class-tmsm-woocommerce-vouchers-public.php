@@ -2188,8 +2188,17 @@ error_log(print_r($item, true));
 			if(!empty($localbusiness_intro)){
 				$localbusiness_intro = '<div class="tmsmvoucher-pdf-localbusiness-intro">'.$localbusiness_intro.'</div>';
 			}
-
-			$product_image = strip_tags($product->get_image('shop_single', ['data-no-lazy'=> 1, 'class' => 'tmsmvoucher-pdf-product-image']), '<img>');
+			$home_url = get_home_url();
+			$pro_site = false;
+			if ($home_url == 'https://prob2b.local:4435' || $home_url == 'https://stg-prosb2b-staging.kinsta.cloud' || $home_url == 'https://pro.thermes-marins.com'){
+				$pro_site = true;
+			}
+			
+			$gallery_image_ids = $product->get_gallery_image_ids();
+			$product_image_url = wp_get_attachment_image_url($gallery_image_ids[0], 'full');
+			$product_image_tag = strip_tags($product->get_image('shop_single', ['data-no-lazy'=> 1, 'class' => 'tmsmvoucher-pdf-product-image']), '<img>');
+			$product_image_url = '<img src="'.esc_url($product_image_url).'" class="tmsmvoucher-pdf-product-image" data-no-lazy="1" />';
+			$product_image = $pro_site ? $product_image_url : $product_image_tag;
 			$product_name = '<div class="tmsmvoucher-pdf-product-name" style="'.(!empty($localbusiness_color)?'background:'.$localbusiness_color:'').'">'.($product->get_meta('_alg_wc_product_open_pricing_enabled') === 'yes' ? $item->get_name() : $product->get_name() ).'</div>';
 			$product_description = nl2br($product->get_meta('_tmsm_woocommerce_vouchers_description'));
 			$product_description = apply_filters('tmsm_woocommerce_vouchers_description', $product_description, $product, $order );
