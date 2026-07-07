@@ -1,3 +1,6 @@
+### 1.4.5: July 7th, 2026
+* Add ACF image and text fields for articles
+
 ### 1.4.4: July 29th, 2025
 * Manage pictures to show on vouchers on pro site
 
