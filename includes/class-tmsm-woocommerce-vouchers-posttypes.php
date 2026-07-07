@@ -154,6 +154,54 @@ class Tmsm_Woocommerce_Vouchers_Posttypes {
 	}
 
 	/**
+	 * Register ACF fields for articles (post type "post")
+	 *
+	 */
+	public function register_fields_articles(){
+		if(function_exists("acf_add_local_field_group"))
+		{
+			acf_add_local_field_group(array (
+				'id' => 'acf_article-fields',
+				'title' => 'Article fields',
+				'fields' => array (
+					array (
+						'key' => 'field_article_image',
+						'label' => 'Image',
+						'name' => 'article_image',
+						'type' => 'image',
+						'return_format' => 'url',
+					),
+					array (
+						'key' => 'field_article_texte',
+						'label' => 'Texte',
+						'name' => 'article_texte',
+						'type' => 'text',
+						'default_value' => '',
+						'placeholder' => '',
+					),
+				),
+				'location' => array (
+					array (
+						array (
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'post',
+							'order_no' => 0,
+							'group_no' => 0,
+						),
+					),
+				),
+				'options' => array (
+					'position' => 'normal',
+					'style' => 'default',
+					'hide_on_screen' => array (),
+				),
+				'menu_order' => 10,
+			));
+		}
+	}
+
+	/**
 	 * Load ACF path
 	 *
 	 * @param $path

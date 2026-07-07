@@ -149,6 +149,7 @@ class Tmsm_Woocommerce_Vouchers {
 		$plugin_posttypes = new Tmsm_Woocommerce_Vouchers_Posttypes();
 
 		$this->loader->add_filter( 'init', $plugin_posttypes, 'register_post_type_localbusiness' );
+		$this->loader->add_filter( 'init', $plugin_posttypes, 'register_fields_articles' );
 
 		$this->loader->add_filter( 'acf/settings/url', $plugin_posttypes, 'acf_url' );
 		$this->loader->add_filter( 'acf/settings/show_admin', $plugin_posttypes, 'acf_show_admin' );
