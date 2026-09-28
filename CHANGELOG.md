@@ -1,3 +1,6 @@
+### 1.4.6: September 28th, 2026
+* Update French translation: "Arriver 1 heure avant votre soin" instead of "60 minutes"
+
 ### 1.4.5: July 7th, 2026
 * Add ACF image and text fields for articles
 

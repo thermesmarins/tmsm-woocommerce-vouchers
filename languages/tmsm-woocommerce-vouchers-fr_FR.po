@@ -707,7 +707,7 @@ msgstr "Télécharger le bon cadeau"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:1986
 msgid "(Come one hour before your treatments to enjoy)"
-msgstr "(Arriver 60 minutes avant votre soin pour en profiter)"
+msgstr "(Arriver 1 heure avant votre soin pour en profiter)"
 
 #: public/class-tmsm-woocommerce-vouchers-public.php:2045
 msgid "This voucher is reserved to:"
